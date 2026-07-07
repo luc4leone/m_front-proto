@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M_</title>
+  <meta name="description" content="Iscriviti alla newsletter per ricevere aggiornamenti." />
+
+  <link rel="stylesheet" href="protos/nuova-notazione/tokens.css" />
+
+  <style>
+    @font-face {
+      font-family: "Excalifont";
+      src: url("assets/font/Excalifont-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: var(--font-hand);
+      color: var(--text-zinc-500);
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 var(--gap-40) 0;
+    }
+
+    /* stack gap-40, indented gap-16 */
+    .index {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-40);
+      max-width: fit-content;
+    }
+
+    /* Index-item: stack gap-12 */
+    .index-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-12);
+    }
+
+    /* Item-head: row gap-8 */
+    .item-head {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-8);
+    }
+
+    .item-head span {
+      font-size: var(--text-lg);
+      font-weight: var(--font-semibold);
+    }
+
+    /* Item-link */
+    .item-link {
+      color: var(--text-blue-500);
+      text-decoration: underline;
+      padding-left: var(--gap-16);
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>M_</h1>
+
+  <div class="index">
+
+    <div class="index-item">
+      <div class="item-head">
+        <img src="protos/nuova-notazione/icons/loose-ends.svg" width="18" height="18" alt="">
+        <span>fili pendenti</span>
+      </div>
+      <a href="sketches/fili-pendenti.html" class="item-link">sketch</a>
+    </div>
+
+    <div class="index-item">
+      <div class="item-head">
+        <img src="protos/nuova-notazione/icons/dashboard.svg" width="18" height="18" alt="">
+        <span>dashboard</span>
+      </div>
+      <a href="sketches/dashboard.html" class="item-link">sketch</a>
+      <a href="protos/dashboard/index.html" class="item-link">HTML</a>
+      <a href="protos/dashboard/index5-tabs-overflow.html" class="item-link">HTML5</a>
+    </div>
+
+    <div class="index-item">
+      <div class="item-head">
+        <img src="protos/nuova-notazione/icons/project.svg" width="18" height="18" alt="">
+        <span>progetto</span>
+      </div>
+      <a href="sketches/progetto.html" class="item-link">sketch</a>
+      <a href="protos/progetto/index.html" class="item-link">HTML</a>
+    </div>
+
+    <div class="index-item">
+      <div class="item-head">
+        <img src="assets/icons/wall_art.svg" width="18" height="18" alt="">
+        <span>elementi grafici</span>
+      </div>
+      <a href="components/index.html" class="item-link">index</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

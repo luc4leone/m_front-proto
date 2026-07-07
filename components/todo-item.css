@@ -1,0 +1,40 @@
+.todo-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.todo-item__row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+}
+
+.todo-item__check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+
+.todo-item__label {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-500);
+  color: var(--color-text);
+}
+
+.todo-item--done .todo-item__label {
+  color: var(--color-text-muted);
+}
+
+/* row 2 indented to align below label text: checkbox (space-20) + gap (space-8) */
+.todo-item__row2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  padding-left: calc(var(--space-20) + var(--space-8));
+}

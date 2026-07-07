@@ -1,0 +1,297 @@
+[
+  {
+    "id": 10,
+    "value": "Direttore responsabile",
+    "priority": 1
+  },
+  {
+    "id": 35,
+    "value": "Direttore editoriale",
+    "priority": 2
+  },
+  {
+    "id": 15,
+    "value": "Direttore",
+    "priority": 3
+  },
+  {
+    "id": 30,
+    "value": "Direttore Sede regionale",
+    "priority": 4
+  },
+  {
+    "id": 250,
+    "value": "Direttore Scientifico",
+    "priority": 5
+  },
+  {
+    "id": 5,
+    "value": "Direttore rete",
+    "priority": 6
+  },
+  {
+    "id": 25,
+    "value": "Direttore programmi",
+    "priority": 7
+  },
+  {
+    "id": 20,
+    "value": "Direttore politico",
+    "priority": 8
+  },
+  {
+    "id": 40,
+    "value": "Direttore tecnico",
+    "priority": 9
+  },
+  {
+    "id": 50,
+    "value": "Condirettore",
+    "priority": 10
+  },
+  {
+    "id": 55,
+    "value": "Vicedirettore",
+    "priority": 11
+  },
+  {
+    "id": 220,
+    "value": "Aggiunto al Direttore",
+    "priority": 12
+  },
+  {
+    "id": 180,
+    "value": "Produttore Esecutivo",
+    "priority": 13
+  },
+  {
+    "id": 60,
+    "value": "Responsabile redazione",
+    "priority": 14
+  },
+  {
+    "id": 275,
+    "value": "Vice Responsabile di redazione",
+    "priority": 15
+  },
+  {
+    "id": 280,
+    "value": "Responsabile Rubrica",
+    "priority": 16
+  },
+  {
+    "id": 65,
+    "value": "Responsabile programmi",
+    "priority": 17
+  },
+  {
+    "id": 45,
+    "value": "Comitato direttivo",
+    "priority": 18
+  },
+  {
+    "id": 80,
+    "value": "Comitato editoriale",
+    "priority": 19
+  },
+  {
+    "id": 255,
+    "value": "Comitato di Redazione",
+    "priority": 20
+  },
+  {
+    "id": 75,
+    "value": "Comitato scientifico",
+    "priority": 21
+  },
+  {
+    "id": 160,
+    "value": "Coordinamento editoriale",
+    "priority": 22
+  },
+  {
+    "id": 155,
+    "value": "Coordinamento redazionale",
+    "priority": 23
+  },
+  {
+    "id": 165,
+    "value": "Consulente editoriale",
+    "priority": 24
+  },
+  {
+    "id": 230,
+    "value": "Art Director",
+    "priority": 25
+  },
+  {
+    "id": 265,
+    "value": "Capo Area",
+    "priority": 26
+  },
+  {
+    "id": 85,
+    "value": "Capo redattore",
+    "priority": 27
+  },
+  {
+    "id": 90,
+    "value": "Vice Capo redattore centrale",
+    "priority": 28
+  },
+  {
+    "id": 285,
+    "value": "Capocronista",
+    "priority": 29
+  },
+  {
+    "id": 95,
+    "value": "Capo redattore",
+    "priority": 30
+  },
+  {
+    "id": 100,
+    "value": "Vice Capo redattore",
+    "priority": 31
+  },
+  {
+    "id": 105,
+    "value": "Capo servizio",
+    "priority": 32
+  },
+  {
+    "id": 110,
+    "value": "Vice Capo servizio",
+    "priority": 33
+  },
+  {
+    "id": 290,
+    "value": "Vaticanista",
+    "priority": 34
+  },
+  {
+    "id": 120,
+    "value": "Responsabile Servizi speciali",
+    "priority": 35
+  },
+  {
+    "id": 185,
+    "value": "Curatore",
+    "priority": 36
+  },
+  {
+    "id": 190,
+    "value": "Autore",
+    "priority": 37
+  },
+  {
+    "id": 70,
+    "value": "Regia",
+    "priority": 38
+  },
+  {
+    "id": 125,
+    "value": "Conduttore",
+    "priority": 39
+  },
+  {
+    "id": 195,
+    "value": "Programmista Regista",
+    "priority": 40
+  },
+  {
+    "id": 200,
+    "value": "Assistente programmi",
+    "priority": 41
+  },
+  {
+    "id": 210,
+    "value": "Redattore Esperto",
+    "priority": 42
+  },
+  {
+    "id": 135,
+    "value": "Redattore\/trice",
+    "priority": 43
+  },
+  {
+    "id": 245,
+    "value": "Web Editor",
+    "priority": 44
+  },
+  {
+    "id": 260,
+    "value": "Public Editor",
+    "priority": 45
+  },
+  {
+    "id": 215,
+    "value": "Praticante",
+    "priority": 46
+  },
+  {
+    "id": 140,
+    "value": "Inviato",
+    "priority": 47
+  },
+  {
+    "id": 145,
+    "value": "Inviato estero",
+    "priority": 48
+  },
+  {
+    "id": 130,
+    "value": "Corrispondente",
+    "priority": 49
+  },
+  {
+    "id": 240,
+    "value": "Stylist",
+    "priority": 50
+  },
+  {
+    "id": 115,
+    "value": "Editorialista",
+    "priority": 51
+  },
+  {
+    "id": 150,
+    "value": "Collaboratore",
+    "priority": 52
+  },
+  {
+    "id": 235,
+    "value": "Blogger",
+    "priority": 53
+  },
+  {
+    "id": 270,
+    "value": "Assistente",
+    "priority": 54
+  },
+  {
+    "id": 205,
+    "value": "Segreteria Direzione",
+    "priority": 56
+  },
+  {
+    "id": 170,
+    "value": "Responsabile segreteria redazione",
+    "priority": 57
+  },
+  {
+    "id": 175,
+    "value": "Segreteria redazione",
+    "priority": 58
+  },
+  {
+    "id": 300,
+    "value": "Contributor",
+    "priority": 59
+  },
+  {
+    "id": 225,
+    "value": "Altro",
+    "priority": 60
+  }
+]

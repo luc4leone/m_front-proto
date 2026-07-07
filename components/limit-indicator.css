@@ -1,0 +1,56 @@
+.limit-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  font-family: var(--font);
+  font-size: var(--fs-14);
+  color: var(--color-text);
+}
+
+.limit-indicator__label {
+  font-weight: var(--fw-500);
+  min-width: 6ch;
+}
+
+.limit-indicator__bar {
+  flex: 0 0 48px;
+  height: var(--space-6);
+  background-color: var(--grey-300);
+  border-radius: var(--radius-2);
+  overflow: hidden;
+  position: relative;
+}
+
+.limit-indicator__progress {
+  height: 100%;
+  background-color: var(--grey-500);
+  border-radius: var(--radius-2);
+}
+
+.limit-indicator__progress--full {
+  background-color: var(--red-600);
+}
+
+.limit-indicator__value {
+  font-weight: var(--fw-600);
+  color: var(--color-text-strong);
+  min-width: 4ch;
+  text-align: right;
+}
+
+/* ── Dot variant ─────────────────────────────────────────────── */
+.limit-indicator--dot .limit-indicator__progress,
+.limit-indicator--dot .limit-indicator__progress--full {
+  background-color: var(--grey-500);
+}
+
+.limit-indicator__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.limit-indicator__dot--green  { background-color: var(--green-500); }
+.limit-indicator__dot--orange { background-color: #f97316; }
+.limit-indicator__dot--red    { background-color: var(--red-600); }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>action-link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./action-link.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>action-link</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Primary action-link:</p>
+      <div class="showcase__display">
+        <button type="button" class="action-link">
+          <span class="action-link__icon" aria-hidden="true">
+            <img src="../assets/icons/add.svg" alt="" />
+          </span>
+          <span class="action-link__label">aggiungi articolo</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>In questa UI sostituisce il button, permette allo user di compiere un'azione. L'action-link in un form o in una dialog, non ha icona, ecco un primary action-link in una dialog:</p>
+      <div class="showcase__display">
+        <button type="submit" class="action-link action-link--primary">salva</button>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Ed ecco un secondary action-link in una dialog:</p>
+      <div class="showcase__display">
+        <button type="button" class="action-link action-link--secondary">annulla</button>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/*.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-12);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+  background-color: var(--grey-100);
+  border: var(--border-width-1) solid var(--grey-400);
+  border-radius: var(--radius-full);
+  cursor: default;
+  user-select: text;
+  text-shadow: 1px 1px 0 var(--white);
+  letter-spacing: 0.01em;
+}*/
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+  background-color: var(--grey-200);
+
+  border-radius: var(--radius-full);
+  cursor: default;
+  user-select: text;
+  text-shadow: 1px 1px 0 var(--white);
+  letter-spacing: 0.01em;
+}

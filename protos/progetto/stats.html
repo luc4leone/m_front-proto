@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="
+      this.onload = null;
+      this.rel = 'stylesheet';
+    "
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <link rel="stylesheet" href="../../components/meta-item.css" />
+  <link rel="stylesheet" href="../../components/stats.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <main class="app-layout__main">
+      <div class="project-view">
+        <section class="press-release" aria-label="Comunicati">
+          <div class="press-release__header">
+            <h3>
+              <a href="#">Il Politecnico di Torino premia Draghi</a>
+            </h3>
+            <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+              <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+            </button>
+          </div>
+
+          <div class="press-release__body">
+            <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+              <div class="meta__item">
+                <dt class="meta__label">Spedito il</dt>
+                <dd class="meta__value">21/6/2025</dd>
+              </div>
+            </dl>
+            
+            <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+            <div class="meta__item meta__item--inverted">
+              <span class="meta__label">destinatari</span>
+              <span class="meta__value" data-raw="701" data-base="701">701</span>
+            </div>
+            <div class="stats__group">
+              <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                <span class="meta__label">ricevute</span>
+                <span class="meta__value" data-raw="682" data-base="682">682</span>
+              </div>
+              <span class="stats__details">(</span>
+              <div class="stats__subgroup">
+                <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                  <span class="meta__label">aperte</span>
+                  <span class="meta__value" data-raw="19" data-percent="2.78">19</span>
+                </div>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">chiuse</span>
+                  <span class="meta__value" data-raw="663" data-percent="97">663</span>
+                </div>
+              </div>
+              <span class="stats__details">)</span>
+            </div>
+            <span class="stats__separator">|</span>
+            <div class="meta__item meta__item--with-led meta__item--with-led-error">
+              <span class="meta__label">errori</span>
+              <span class="meta__value" data-raw="19" data-base="19">19</span>
+            </div>
+            <button type="button" class="action-link stats__toggle" data-toggle-btn>
+              <span class="action-link__label">%</span>
+            </button>
+          </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const statsContainer = document.querySelector('[data-stats-toggle]');
+      const toggleBtn = document.querySelector('[data-toggle-btn]');
+      
+      if (!statsContainer || !toggleBtn) return;
+      
+      let isPercentage = false;
+      
+      toggleBtn.addEventListener('click', () => {
+        isPercentage = !isPercentage;
+        
+        const values = statsContainer.querySelectorAll('.meta__value[data-percent]');
+        values.forEach(el => {
+          const raw = el.dataset.raw;
+          const percent = el.dataset.percent;
+          el.textContent = isPercentage ? percent + '%' : raw;
+        });
+        
+        toggleBtn.querySelector('.action-link__label').textContent = isPercentage ? 'nominale' : '%';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.text {
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-zinc-800);
+  font-family: var(--font-sans);
+  text-transform: none;
+  font-style: var(--not-italic);
+  line-height: var(--leading-5);
+}

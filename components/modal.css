@@ -1,0 +1,76 @@
+/* modal.css
+   Stili per il componente modal.
+   Usa esclusivamente variabili da tokens.css e theme-default.css.
+*/
+
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--black-alpha-35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-300);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-150), visibility var(--transition-150);
+}
+
+.modal__overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-4);
+  padding: var(--space-24);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  margin: var(--space-16);
+  box-shadow: var(--shadow-24px);
+  overflow-y: auto;
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.modal__title {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+}
+
+.modal__subtitle {
+  font-size: var(--fs-14);
+  color: var(--color-text-muted);
+  margin-top: var(--space-4);
+}
+
+.modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: var(--space-4);
+  cursor: pointer;
+  color: var(--color-text);
+  transition: color var(--transition-150);
+  flex-shrink: 0;
+  font-size: var(--fs-24);
+  line-height: 1;
+  width: var(--space-32);
+  height: var(--space-32);
+}
+
+.modal__close:hover {
+  color: var(--color-primary);
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>limit-indicator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./limit-indicator.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>limit-indicator</h1>
+    <p>Indicatore di utilizzo per la sezione "Limiti abbonamento"</p>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Spedizioni — 50k su 100k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">spedizioni</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 50%;"></div>
+          </div>
+          <span class="limit-indicator__value">50k/100k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Esportazioni — 80k su 100k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">esportazioni</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 80%;"></div>
+          </div>
+          <span class="limit-indicator__value">80k/100k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Mailing list — 20k su 50k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">mailing list</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 40%;"></div>
+          </div>
+          <span class="limit-indicator__value">20k/50k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Progetti — limite completamente utilizzato:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">progetti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress limit-indicator__progress--full" style="width: 100%;"></div>
+          </div>
+          <span class="limit-indicator__value">10/10</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Ospiti — nessun utilizzo:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">ospiti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 0%;"></div>
+          </div>
+          <span class="limit-indicator__value">0/5</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Variante dot — ospiti 100/100 (valore ≥ 40 → verde):</p>
+      <div class="showcase__display">
+        <div class="limit-indicator limit-indicator--dot">
+          <span class="limit-indicator__label">ospiti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 100%;"></div>
+          </div>
+          <span class="limit-indicator__value">100/100</span>
+          <span class="limit-indicator__dot limit-indicator__dot--green"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Variante dot — ospiti 30/100 (valore 21–39 → arancione):</p>
+      <div class="showcase__display">
+        <div class="limit-indicator limit-indicator--dot">
+          <span class="limit-indicator__label">ospiti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 30%;"></div>
+          </div>
+          <span class="limit-indicator__value">30/100</span>
+          <span class="limit-indicator__dot limit-indicator__dot--orange"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Variante dot — ospiti 15/100 (valore 0–20 → rosso):</p>
+      <div class="showcase__display">
+        <div class="limit-indicator limit-indicator--dot">
+          <span class="limit-indicator__label">ospiti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="width: 15%;"></div>
+          </div>
+          <span class="limit-indicator__value">15/100</span>
+          <span class="limit-indicator__dot limit-indicator__dot--red"></span>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

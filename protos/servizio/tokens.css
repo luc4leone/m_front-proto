@@ -1,0 +1,55 @@
+:root {
+  --fs-10: 10px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+  --fs-28: 28px;
+
+  --fs-xxs: var(--fs-10);
+  --fs-xs: var(--fs-11);
+  --fs-sm: var(--fs-12);
+  --fs-md: var(--fs-13);
+  --fs-base: var(--fs-14);
+  --fs-lg: var(--fs-15);
+  --fs-xl: var(--fs-16);
+  --fs-2xl: var(--fs-18);
+  --fs-3xl: var(--fs-20);
+  --fs-4xl: var(--fs-24);
+  --fs-5xl: var(--fs-28);
+
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+  --fw-800: 800;
+  --fw-900: 900;
+
+  --fw-regular: var(--fw-400);
+  --fw-medium: var(--fw-500);
+  --fw-semibold: var(--fw-600);
+  --fw-bold: var(--fw-700);
+  --fw-extrabold: var(--fw-800);
+  --fw-black: var(--fw-900);
+
+  --lh-tight: 1.1;
+  --lh-base: 1.25;
+  --lh-loose: 1.35;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-18: 18px;
+  --space-24: 24px;
+  --space-32: 32px;
+}

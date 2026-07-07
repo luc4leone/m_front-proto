@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>meta-item</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./meta-item.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>meta-item</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Meta item singolo (label + value):</p>
+      <div class="showcase__display">
+        <div class="meta__item">
+          <span class="meta__label">Autore:</span>
+          <span class="meta__value">Jack Sparrow</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Gruppo di meta item:</p>
+      <div class="showcase__display">
+        <div class="meta">
+          <div class="meta__item">
+            <span class="meta__label">Data:</span>
+            <span class="meta__value">21 apr 2026</span>
+          </div>
+          <div class="meta__item">
+            <span class="meta__label">Autore:</span>
+            <span class="meta__value">Mario Rossi</span>
+          </div>
+          <div class="meta__item">
+            <span class="meta__label">Categoria:</span>
+            <span class="meta__value">Progetto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Meta group (item ravvicinati):</p>
+      <div class="showcase__display">
+        <div class="meta__group">
+          <div class="meta__item">
+            <span class="meta__label">Da:</span>
+            <span class="meta__value">15 mar 2026</span>
+          </div>
+          <div class="meta__item">
+            <span class="meta__label">A:</span>
+            <span class="meta__value">15 apr 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Meta item label-medium (label fw-500):</p>
+      <div class="showcase__display">
+        <div class="meta">
+          <div class="meta__item meta__item--label-medium">
+            <span class="meta__label">Data:</span>
+            <span class="meta__value">21 apr 2026</span>
+          </div>
+          <div class="meta__item meta__item--label-medium">
+            <span class="meta__label">Autore:</span>
+            <span class="meta__value">Mario Rossi</span>
+          </div>
+          <div class="meta__item meta__item--label-medium">
+            <span class="meta__label">Categoria:</span>
+            <span class="meta__value">Progetto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Meta item inverted (value prima della label):</p>
+      <div class="showcase__display">
+        <div class="meta__item meta__item--inverted">
+          <span class="meta__label">Destinatari</span>
+          <span class="meta__value">234</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Meta item with led:</p>
+      <div class="showcase__display">
+        <div class="meta">
+
+          <div class="meta__item meta__item--with-led meta__item--with-led-success">
+            <span class="meta__label">Aperte</span>
+            <span class="meta__value">234</span>
+          </div>
+          <div class="meta__item meta__item--with-led meta__item--with-led-error">
+            <span class="meta__label">Chiuse</span>
+            <span class="meta__value">123</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

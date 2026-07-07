@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sidebar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    .showcase__display--sidebar {
+      height: 600px;
+      overflow: hidden;
+      padding: 8px;
+    }
+    .showcase__display--sidebar .sidebar {
+      min-height: 100%;
+      height: 100%;
+    }
+    .sidebar__separator {
+      background-color: var(--white-alpha-12);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>sidebar</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Sidebar di navigazione verticale. L'ultimo item è un toggle light / dark mode.</p>
+      <div class="showcase__display showcase__display--sidebar" id="sidebar-container"></div>
+    </section>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render, init } from './sidebar.js';
+
+    const container = document.getElementById('sidebar-container');
+    const items = [
+      { id: 'dashboard', icon: '../assets/icons/M_.svg', href: '#', label: 'dashboard' },
+      { id: 'banca-dati', icon: '../assets/icons/filter.svg', href: '#', label: 'banca dati' },
+      { type: 'separator' },
+      { type: 'spacer' },
+      { type: 'separator' },
+      { id: 'notifiche', icon: '../assets/icons/notification.svg', href: '#', label: 'notifiche' },
+      { id: 'account', icon: '../assets/icons/account.svg', href: '#', label: 'account' },
+      { type: 'separator' },
+      { id: 'theme', type: 'toggle', icon: '../assets/icons/light_mode.svg', iconDark: '../assets/icons/dark_mode.svg' }
+    ];
+
+    container.innerHTML = render({ items, activeId: 'dashboard' });
+    init(container.querySelector('[data-sidebar]'), {
+      onNavigate: (id) => console.log('Navigated to:', id)
+    });
+  </script>
+</body>
+</html>

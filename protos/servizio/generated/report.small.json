@@ -1,0 +1,15 @@
+{
+  "seed": "small-v1",
+  "target": 2000,
+  "input": {
+    "journalists": 24377,
+    "testate": 6626
+  },
+  "output": {
+    "journalists": 2000,
+    "testate": 1827
+  },
+  "notes": {
+    "strategy": "stratified round-robin over (servizio, ruolo, testata bucket) with deterministic ordering"
+  }
+}

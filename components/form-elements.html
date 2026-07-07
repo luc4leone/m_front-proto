@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>form-elements</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./form-elements.css" />
+  <link rel="stylesheet" href="./button.css" />
+  <style>
+    .demo-form {
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>form-elements</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Text input con label:</p>
+      <div class="showcase__display">
+        <div class="form__field demo-form">
+          <label class="form__label" for="demo-input">Nome progetto <span class="form__required">*</span></label>
+          <input type="text" id="demo-input" class="form__input" placeholder="Inserisci il nome del progetto" />
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Text input con label e help text:</p>
+      <div class="showcase__display">
+        <div class="form__field demo-form">
+          <label class="form__label" for="demo-input-help">Email <span class="form__required">*</span></label>
+          <div class="form__input-wrapper">
+            <input type="email" id="demo-input-help" class="form__input" placeholder="es. mario@esempio.it" />
+            <span class="form__help-text">Useremo questa email solo per comunicazioni importanti.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Input readonly (non editabile):</p>
+      <div class="showcase__display">
+        <div class="form__field demo-form">
+          <label class="form__label" for="demo-readonly">ID progetto</label>
+          <input type="text" id="demo-readonly" class="form__input form__input--readonly" value="PRJ-2024-001" readonly />
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Select dropdown:</p>
+      <div class="showcase__display">
+        <div class="form__field demo-form">
+          <label class="form__label" for="demo-select">Stato</label>
+          <div class="form__select-wrapper">
+            <select id="demo-select" class="form__select">
+              <option value="">Seleziona uno stato</option>
+              <option value="active">Attivo</option>
+              <option value="paused">In pausa</option>
+              <option value="completed">Completato</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Input e select compact — stessa altezza del button (padding var(--space-8)):</p>
+      <div class="showcase__display">
+        <div style="display:flex; align-items:center; gap: var(--space-12);">
+          <input type="text" class="form__input form__input--compact" placeholder="cerca..." style="flex:1" />
+          <div class="form__select-wrapper" style="flex:1">
+            <select class="form__select form__select--compact">
+              <option>ordina per nome</option>
+              <option>ordina per data</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn--primary">cerca</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Textarea:</p>
+      <div class="showcase__display">
+        <div class="form__field demo-form">
+          <label class="form__label" for="demo-textarea">Descrizione</label>
+          <textarea id="demo-textarea" class="form__textarea" rows="4" placeholder="Inserisci una descrizione..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Checkbox:</p>
+      <div class="showcase__display">
+        <div class="form__field form__field--checkbox">
+          <label class="form__checkbox-label">
+            <input type="checkbox" class="form__checkbox" checked />
+            <span class="form__checkbox-text">Attiva notifiche email</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

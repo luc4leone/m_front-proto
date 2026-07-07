@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text component</title>
+  <link rel="stylesheet" href="../../../../css/reset.css">
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="text.css">
+  <style>
+    body {
+      font-family: var(--font-sans);
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    def Text {text, font-size, font-weight, color, font-family, text-transform, font-style, line-height}
+
+    defaults:
+      font-size:      text-base   → var(--text-base)     = 1rem
+      font-weight:    font-normal → var(--font-normal)    = 400
+      color:          text-grey-500 → var(--text-grey-500) = #555
+      font-family:    font-sans   → var(--font-sans)      = Inter, sans-serif
+      text-transform: normal-case → none
+      font-style:     not-italic  → var(--not-italic)     = normal
+      line-height:    leading-5   → var(--leading-5)      = 1.25rem
+  -->
+
+  <!-- [Text] — tutti i valori default -->
+  <p class="text">default Text</p>
+
+  <!-- [Text text="Hello World" font-bold] -->
+  <p class="text" style="font-weight: var(--font-bold);">bold Text</p>
+
+  <!-- [Text text="jack of trade" font-bold text-grey-900] -->
+  <p class="text" style="font-weight: var(--font-bold); color: var(--text-grey-900);">bold muted Text</p>
+
+</body>
+</html>

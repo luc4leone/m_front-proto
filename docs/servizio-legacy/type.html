@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Inventory</title>
+    <style>
+      :root {
+        --bg: #f7f7f8;
+        --panel: #ffffff;
+        --text: #101218;
+        --muted: #5f6470;
+        --border: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 24px 80px;
+      }
+
+      .title {
+        font-size: 28px;
+        line-height: 1.2;
+        margin: 0 0 8px;
+      }
+
+      .intro {
+        margin: 0 0 20px;
+        color: var(--muted);
+      }
+
+      .status {
+        margin: 0 0 26px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .role-section {
+        margin-top: 40px;
+      }
+
+      .role-title {
+        margin: 0 0 14px;
+        font-size: 20px;
+      }
+
+      .role-count {
+        font-size: 14px;
+        color: var(--muted);
+        margin-left: 8px;
+        font-weight: 400;
+      }
+
+      .role-list {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+      }
+
+      .specimen {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+      }
+
+      .specimen-preview {
+        margin: 0 0 14px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .specimen-id {
+        margin: 0 0 8px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+      }
+
+      .specimen-props {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 16px;
+      }
+
+      .specimen-props li {
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .prop-label {
+        color: var(--muted);
+      }
+
+      .hidden-frame {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+        border: 0;
+      }
+
+      @media (max-width: 780px) {
+        .specimen-props {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title">Type Inventory · proto/index.html</h1>
+      <p class="intro">
+        Inventario automatico degli elementi tipografici presenti in
+        <code>proto-servizio/proto/index.html</code>, raggruppati per ruolo.
+      </p>
+      <p class="status" id="status">Caricamento e analisi in corso…</p>
+
+      <div id="output"></div>
+    </div>
+
+    <iframe
+      id="sourceFrame"
+      class="hidden-frame"
+      src="./proto-servizio/proto/index.html"
+      title="source"
+    ></iframe>
+
+    <script>
+      const ROLES = [
+        "metadata_helper_muted",
+        "label_campi",
+        "body_testi",
+        "titoli_sottotitoli",
+      ];
+
+      const ROLE_LABELS = {
+        metadata_helper_muted: "metadata / helper / muted",
+        label_campi: "label campi",
+        body_testi: "body testi",
+        titoli_sottotitoli: "titoli / sottotitoli",
+      };
+
+      const statusEl = document.getElementById("status");
+      const outputEl = document.getElementById("output");
+      const frame = document.getElementById("sourceFrame");
+
+      function normalizeSpace(v) {
+        return String(v || "")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function getDirectText(el) {
+        if (!el) return "";
+        const chunks = [];
+        for (const node of el.childNodes || []) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const txt = normalizeSpace(node.textContent);
+            if (txt) chunks.push(txt);
+          }
+        }
+
+        if (chunks.length) return chunks.join(" ");
+
+        const tag = String(el.tagName || "").toLowerCase();
+        if (tag === "input") {
+          return (
+            normalizeSpace(el.getAttribute("placeholder")) ||
+            normalizeSpace(el.value) ||
+            normalizeSpace(el.getAttribute("aria-label"))
+          );
+        }
+        if (tag === "textarea") {
+          return (
+            normalizeSpace(el.getAttribute("placeholder")) ||
+            normalizeSpace(el.value) ||
+            normalizeSpace(el.getAttribute("aria-label"))
+          );
+        }
+        if (tag === "option") {
+          return normalizeSpace(el.textContent) || normalizeSpace(el.value);
+        }
+
+        return "";
+      }
+
+      function isTypographicCandidate(el) {
+        const tag = String(el.tagName || "").toLowerCase();
+        const allowedTags = new Set([
+          "a",
+          "span",
+          "p",
+          "div",
+          "label",
+          "button",
+          "li",
+          "td",
+          "th",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "small",
+          "strong",
+          "em",
+          "option",
+          "summary",
+          "input",
+          "textarea",
+        ]);
+        if (!allowedTags.has(tag)) return false;
+
+        const txt = getDirectText(el);
+        if (!txt) return false;
+
+        if (txt === "×") return false;
+        return true;
+      }
+
+      function buildSignature(el) {
+        const tag = String(el.tagName || "").toLowerCase();
+        const classes = Array.from(el.classList || []).sort();
+        return `${tag}${classes.length ? "." + classes.join(".") : ""}`;
+      }
+
+      function classifyRole(el) {
+        const tag = String(el.tagName || "").toLowerCase();
+        const classes = Array.from(el.classList || [])
+          .join(" ")
+          .toLowerCase();
+
+        const isHeadingTag = /^h[1-6]$/.test(tag);
+        const isHeadingClass =
+          /(main-title|main-subtitle|title|subtitle|heading|header)/.test(
+            classes,
+          );
+        if (isHeadingTag || isHeadingClass) return "titoli_sottotitoli";
+
+        const isLabelTag = tag === "label";
+        const isLabelClass = /(field-label|label|sidebar-section-title)/.test(
+          classes,
+        );
+        if (isLabelTag || isLabelClass) return "label_campi";
+
+        const isMetaClass =
+          /(muted|meta|helper|hint|note|caption|pill|badge)/.test(classes);
+        if (isMetaClass || tag === "small") return "metadata_helper_muted";
+
+        return "body_testi";
+      }
+
+      function toItem(el, win) {
+        const style = win.getComputedStyle(el);
+        return {
+          signature: buildSignature(el),
+          role: classifyRole(el),
+          preview: getDirectText(el),
+          props: {
+            fontSize: style.fontSize,
+            color: style.color,
+            lineHeight: style.lineHeight,
+            letterSpacing: style.letterSpacing,
+            fontWeight: style.fontWeight,
+          },
+        };
+      }
+
+      function renderRoleSection(role, items) {
+        const section = document.createElement("section");
+        section.className = "role-section";
+
+        const h2 = document.createElement("h2");
+        h2.className = "role-title";
+        h2.innerHTML = `${ROLE_LABELS[role]} <span class="role-count">(${items.length})</span>`;
+        section.appendChild(h2);
+
+        const list = document.createElement("div");
+        list.className = "role-list";
+
+        for (const it of items) {
+          const card = document.createElement("div");
+          card.className = "specimen";
+
+          const preview = document.createElement("div");
+          preview.className = "specimen-preview";
+          preview.textContent = it.preview;
+          preview.style.fontSize = it.props.fontSize;
+          preview.style.color = it.props.color;
+          preview.style.lineHeight = it.props.lineHeight;
+          preview.style.letterSpacing = it.props.letterSpacing;
+          preview.style.fontWeight = it.props.fontWeight;
+          card.appendChild(preview);
+
+          const id = document.createElement("p");
+          id.className = "specimen-id";
+          id.textContent = it.signature;
+          card.appendChild(id);
+
+          const ul = document.createElement("ul");
+          ul.className = "specimen-props";
+
+          const rows = [
+            ["font-size", it.props.fontSize],
+            ["color", it.props.color],
+            ["line-height", it.props.lineHeight],
+            ["letter-spacing", it.props.letterSpacing],
+            ["font-weight", it.props.fontWeight],
+          ];
+
+          for (const [k, v] of rows) {
+            const li = document.createElement("li");
+            li.innerHTML = `<span class="prop-label">${k}</span>: ${v}`;
+            ul.appendChild(li);
+          }
+
+          card.appendChild(ul);
+          list.appendChild(card);
+        }
+
+        section.appendChild(list);
+        return section;
+      }
+
+      function runInventory() {
+        try {
+          const doc = frame.contentDocument;
+          const win = frame.contentWindow;
+          if (!doc || !win) {
+            statusEl.textContent =
+              "Impossibile accedere al documento sorgente. Avvia il progetto da web server locale.";
+            return;
+          }
+
+          const nodes = Array.from(doc.querySelectorAll("*"));
+          const bySignature = new Map();
+
+          for (const el of nodes) {
+            if (!isTypographicCandidate(el)) continue;
+            const item = toItem(el, win);
+            if (!bySignature.has(item.signature)) {
+              bySignature.set(item.signature, item);
+            }
+          }
+
+          const grouped = {
+            metadata_helper_muted: [],
+            label_campi: [],
+            body_testi: [],
+            titoli_sottotitoli: [],
+          };
+
+          for (const item of bySignature.values()) {
+            grouped[item.role].push(item);
+          }
+
+          for (const role of ROLES) {
+            grouped[role].sort((a, b) =>
+              a.signature.localeCompare(b.signature, "it", {
+                sensitivity: "base",
+              }),
+            );
+            outputEl.appendChild(renderRoleSection(role, grouped[role]));
+          }
+
+          const total = Array.from(bySignature.keys()).length;
+          statusEl.textContent = `Completato: ${total} elementi tipografici unici trovati.`;
+        } catch (err) {
+          statusEl.textContent = `Errore durante l'analisi: ${String(err && err.message ? err.message : err)}`;
+        }
+      }
+
+      frame.addEventListener("load", () => {
+        setTimeout(runInventory, 900);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rsync -av /Users/luca/Sync/_projects/m_front-proto/m_protos_new_wf/ /Users/luca/Sync/_projects/m_front-proto/)",
+      "Bash(mv /Users/luca/Sync/_projects/m_front-proto/m_proto/proto-servizio/proto /Users/luca/Sync/_projects/m_front-proto/protos/servizio)",
+      "Bash(mv /Users/luca/Sync/_projects/m_front-proto/m_proto/proto-servizio/prototipi_specifici /Users/luca/Sync/_projects/m_front-proto/protos/servizio-varianti)",
+      "Bash(mkdir -p /Users/luca/Sync/_projects/m_front-proto/docs/servizio-legacy)",
+      "Bash(mv /Users/luca/Sync/_projects/m_front-proto/m_proto/DOCS/* /Users/luca/Sync/_projects/m_front-proto/docs/servizio-legacy/)",
+      "Bash(mv /Users/luca/Sync/_projects/m_front-proto/m_proto/readme.md /Users/luca/Sync/_projects/m_front-proto/docs/servizio-legacy/)",
+      "Bash(rm -rf /Users/luca/Sync/_projects/m_front-proto/m_proto)",
+      "Bash(rm -rf /Users/luca/Sync/_projects/m_front-proto/m_protos_new_wf)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

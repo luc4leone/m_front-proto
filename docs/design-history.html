@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design History — proto-template</title>
+  <style>
+    /* Reset minimale */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Token inline — stessa palette del progetto */
+    :root {
+      --color-primary:        #3b5bdb;
+      --color-primary-hover:  #364fc7;
+      --color-primary-subtle: #e7edff;
+      --color-background:     #f8f9fa;
+      --color-surface:        #ffffff;
+      --color-text:           #1a1a2e;
+      --color-text-muted:     #6b7280;
+      --color-border:         #dee2e6;
+      --font:    'Inter', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', monospace;
+      --radius:  8px;
+      --shadow:  0 4px 12px rgba(0,0,0,.08);
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 48px 40px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--color-border);
+    }
+    .header__title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .header__sub {
+      color: var(--color-text-muted);
+      font-size: .9375rem;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: box-shadow 150ms ease;
+    }
+    .card:hover { box-shadow: var(--shadow); }
+
+    .card__body { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+
+    .card__title {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: .7rem;
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .hash {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--color-text-muted);
+    }
+
+    .date {
+      font-size: .8125rem;
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+
+    /* Actions */
+    .card__actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-primary, .btn-secondary {
+      flex: 1;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: .875rem;
+      font-weight: 500;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--color-primary-hover); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--color-primary-subtle);
+    }
+
+    /* Empty state */
+    .empty {
+      color: var(--color-text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .empty pre {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-family: var(--mono);
+      font-size: .8125rem;
+      line-height: 1.8;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1 class="header__title">Design History</h1>
+    <p class="header__sub">proto-template &mdash; 3 prototipoi</p>
+  </header>
+
+  <div class="grid">
+    <article class="card">
+      <div class="card__body">
+        <h2 class="card__title">Progetto — v1</h2>
+        <div class="card__meta">
+          <span class="tag">proto/progetto/v1</span>
+          <span class="hash">f1e8902</span>
+          <span class="date">17 aprile 2026</span>
+        </div>
+      </div>
+      <div class="card__actions">
+        <a class="btn-primary" href="snapshots/progetto-v1/protos/progetto/index.html" target="_blank">Prototipo</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__body">
+        <h2 class="card__title">Progetto - v2</h2>
+        <div class="card__meta">
+          <span class="tag">proto/progetto/v2</span>
+          <span class="hash">7bfac44</span>
+          <span class="date">17 aprile 2026</span>
+        </div>
+      </div>
+      <div class="card__actions">
+        <a class="btn-primary" href="snapshots/progetto-v2/protos/progetto/index.html" target="_blank">Prototipo</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card__body">
+        <h2 class="card__title">stats layout inline con toggle %/nominale</h2>
+        <div class="card__meta">
+          <span class="tag">proto/progetto/v3</span>
+          <span class="hash">9c1085e</span>
+          <span class="date">20 aprile 2026</span>
+        </div>
+      </div>
+      <div class="card__actions">
+        <a class="btn-primary" href="snapshots/progetto-v3/protos/progetto/index.html" target="_blank">Prototipo</a><a class="btn-secondary" href="snapshots/progetto-v3/protos/progetto/stats.html" target="_blank">stats</a>
+      </div>
+    </article></div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+# UX / UI Design M\_\_
+
+## _TRIAGE_
+- [ ] *suggerimenti AI*
+- [ ] *disegnare Account*
+- [ ] *scheda giornalista da "ok" a "aggiungi"*
+- [ ] *mobile view*
+- [ ] *feedback test: alcuni testi sono poco leggibili*
+- [ ] *feedback test: con autosave testo non ho feedback se il cs è stato salvato*
+- [ ] *feedback test: table view gradita come opzione a card view*
+
+## _IN PROGRESS_
+- [ ] *nuove statistiche proposte per dashboard*
+- [ ] *filtro sede giornalista*
+- [ ] applicare stessa logica di troncatura nome giornalista in selezionati e scheda
+
+
+## _DONE_
+- [x] in proto-servizio/proto/index.html#crea-lista-futuro ho creato proof of concept del futuro  "crea lista"
+- [x] spedizione
+- [x] comunicato
+- [x] completa scheda testata
+- [x] fix larghezza cards
+  - le cards devono occupare sempre tutto lo spazio della riga
+- [x] fix regola troncatura nome e cognome in card
+ - [x] disegnato prima bozza dark mode
+ - [x] completata scheda giornalista
+   - sezione mailing lists aggiunto filtra e ordina
+   - sezione spedizioni aggiunto filtra e ordina
+   - note:
+     - sezione articoli: manca rassegna
+- [x] **completato 90% scheda giornalista**
+  - adeguamento a UI in https://luc4leone.github.io/mediaddress-grafica/examples/index.html
+  - non ovvio: cmd/enter -> ok, esc -> cancel in editor note e in input servizio
+  - note:
+    - il link "aggiungi redazione" è mockato
+    - le spedizioni sono mockate
+    - ruolo è unico, non ancora per redazione
+- [x] **aumentato padding verticale tra i link in nav sidebar**
+- [x] **reso il layout più fluido**
+  - ora all'allargarsi dello screen le cards per riga non si allargano più a dismisura, si allargano finchè c'è spazio per aggiungere un'altra card
+- [x] **modificato nome "filtra banca dati" in nav bar**
+  - modificato anche titolo e nome link per modificare la banca dati
+- [x] **separati in nav bar comunicati e spedizioni**
+- [x] **modificata interaction "rimuovi card" in lista**
+  - x in card appare on mouse over 
+- [x] **allineata grafica a landing page marketing**
+  - squadrato split button
+  - squadrato dropdown ordinamento cards
+  - squadrato chips selezionati
+  - squadrato in dashboard chips giornalisti in lista mailing list
+  - sostituito h in hsl di tutta la scala di grigi
+- [x] **migliorata grafica**
+  - resi più scuri i testi dei valori dei campi (servizio giornalistico: mostre -> ora mostre è più scuro)
+  - fixato regressione su color card note value
+  - aggiunta ombreggiatura a cards
+- [x] **migliorato dettaglio di interaction**
+  - chevron ruota su controllo "ordina" in main, e split button in panel selezionati
+- [x] **allineata grafica a landing page marketing**
+  - sostituito type
+  - modificato radius filtri e chips
+  - modificato background color nav sidebar
+  - modificato color active link nav sidebar
+  - sostituito logo
+  - modificato il blue dei link
+- [x] **aggiunto funzionalità "condividi mailing list"**
+  - ho aggiunto l'autore della mailing list, nel proto è una valore statico perché non ho sviluppato il concetto di user del programma, quindi tutte le mailing list sono create da @ugo
+- [x] **aggiunto funzionalità "elimina mailing list in mailing list"**
+  - così lo user può eliminare una mailing list sia dalla lista delle mailing list che dalla mailing list stessa
+- [x] **aggiunto funzionalità "rimuovi selezionati da mailing list"** -> in mailing list, seleziona giornalista -> vedi riga 2 dall'alto nel panel selezionati
+  - questa riga viene mostrata solo in lista, non cross viste (non per es in filtra)
+- [x] **aggiunto action link "rimuovi da lista"** in card in lista
+- [x] **rinominate le opzioni del menu dello split button** (potremmo chiamarlo "split link" 😉). ora sono logiche (@fabio 💪), vediamo se nei test di usabilità sono comprensibili
+- [x] **tolto action link "deseleziona tutti"** da main, era ridondante e forse fuorviante (@fabio 💪)
+- [x] **rinominato action link "rimuovi selezionati"** in "svuota selezione" in panel selezionati per evitare confusione con action link riga sopra "rimuovi da lista"
+- facendo riferimento al punto 3 del 19 gennaio:
+- [x] aggiunto split button
+  - [x] modificato la creazione di una nuova spedizione rispetto a sketch in Excalidraw: ora è un'opzione esplicita nella tenda dello split button
+    - il titolo della dialog "aggiungi a nuova spedizione" è dinamico: contiene la var "numero di selezionati"
+    - "salva lista" e le altre azioni sono link sottolineati by design, e hanno hover state by design
+  - [x] modificato patter per la creazione di una nuova spedizione
+
+> 1. ordinamento: preferiamo una tendina, i problemi della soluzione proposta sono:
+>    •⁠ ⁠non scala su schermi piccoli
+>    •⁠ ⁠⁠non scala se vogliamo aggiungere altre voci (attualmente, intendo mdddr6, l’ordinamento di default è per testata e quasi nessuno lo cambia, nello schema proposto non è neanche disponibile)
+> 2. l’accoppiamento nel menù di sx di “comunicati e spedizioni” non ci convince
+> 3. la soluzione per eliminare lo “split button” nel menù dei selezionati sembra poco leggibile e il pattern per creare una nuova spedizione o aggiungere a una spedizione esistente è diverso dal pattern per creare una nuova lista o aggiungere a una lista esistente
+
+---
+
+elenco puntato numerato fa riferimento a quello sopra:
+
+1. ho sostituito il sort control in "filtra banca dati"
+
+- 1.1 dato che è un prototipo lascio perdere "aggiungere criterio testata" - sarebbe "testata a-z"?
+- 1.2 su mobile non metterei nemmeno il controllo
+
+2. non convince al 100% nemmeno me; nasce dal fatto che la lista dei comunicati e la lista delle spedizioni ripetono spesso gli stessi dati (titolo, autore, data creazione); lo terrei così per ora
+3. IN PROGRESS
+4. modificato colore active element in nav bar
+
+## 16 gennaio 2026
+
+### SIDEBAR NAV
+
+- aggiunto link "mailing list"
+- eliminato "nuova spedizione"
+- modificati links
+  “nuovo comunicato” -> “comunicati e spedizioni”
+  “nuovo progetto” -> “progetti”
+  “nuovo todo” -> “todos”
+- cambiato background color active element
+
+### SIDEBAR "SELEZIONATI"
+
+- split button diviso in 3 bottoni
+- aggiunta funzione "aggiungi a lista"
+- nella dialog ho una dropdown filtrabile con un termine (vengono filtrate le liste che hanno almeno una parola che inizia con il termine inserito)
+- aggiunta funzione "aggiungi a spedizione" (ho sostituito "destinatari" con "spedizione)
+- spostate le dialog + in alto, non sono + centrate verticalmente; inoltre rispetto alla larghezza di "salva lista" sono state allargate
+
+### MAIN
+
+- spostato il blocco di controlli "seleziona tutti... ordina:"
+- aggiunti ordinamenti sia in modalità "giornalisti" che "testate"
+- giornalisti -> aggiunti ruolo z-a, tipo di media, frequenza
+- testate -> aggiunti tipo di media, frequenza
+- modificato link "scegli Banca Dati" -> "banca dati"
+
+### BUG FIX
+
+- seleziona giornalista, vai in dashboard, torna in filtra, la sidebar "selezionati" era chiusa, DEVE ESSERE APERTA
+
+### MISC
+
+- uniformato copy: tolto "mailing list/s" ovunque, sostituito con "lista/e".

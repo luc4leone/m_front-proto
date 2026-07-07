@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dashboard-section</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./titolo.css" />
+  <link rel="stylesheet" href="./badge.css" />
+  <link rel="stylesheet" href="./link.css" />
+  <link rel="stylesheet" href="./action-link.css" />
+  <link rel="stylesheet" href="./form-elements.css" />
+  <link rel="stylesheet" href="./tabs.css" />
+  <link rel="stylesheet" href="./meta-item.css" />
+  <link rel="stylesheet" href="./list-item.css" />
+  <link rel="stylesheet" href="./todo-item.css" />
+  <link rel="stylesheet" href="./dashboard-section.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>dashboard-section</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Dashboard section variante Mailing List:</p>
+      <div class="showcase__display">
+
+        <section class="dashboard-section">
+
+          <div class="dashboard-section__header">
+            <div class="dashboard-section__header-group">
+              <div class="dashboard-section__header-left">
+                <h2 class="titolo titolo--sezione">Mailing Lists</h2>
+                <span class="badge">199</span>
+              </div>
+              <span id="header-link-vedi-tutte"></span>
+            </div>
+            <a href="#" class="action-link action-link--primary">nuova lista</a>
+          </div>
+
+          <div class="dashboard-section__toolbar">
+            <input type="text" class="form__input" placeholder="cerca mailing list" style="flex: 1 1 280px;" />
+            <div class="form__select-wrapper" style="flex: 0 0 220px;">
+              <select class="form__select">
+                <option value="name">ordina per nome (a-z)</option>
+                <option value="date">ordina per data</option>
+              </select>
+            </div>
+          </div>
+
+          <nav class="tabs tabs--highlight" data-tabs role="tablist" aria-label="Filtro liste" id="dashboard-tabs">
+            <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+            <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+            <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+            <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+          </nav>
+
+          <div class="dashboard-section__list" id="dashboard-list"></div>
+
+        </section>
+
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Dashboard section variante Progetti:</p>
+      <div class="showcase__display">
+
+        <section class="dashboard-section">
+
+          <div class="dashboard-section__header">
+            <div class="dashboard-section__header-group">
+              <div class="dashboard-section__header-left">
+                <h2 class="titolo titolo--sezione">Progetti</h2>
+                <span class="badge">3</span>
+              </div>
+              <span id="header-link-vedi-tutti"></span>
+            </div>
+            <a href="#" class="action-link action-link--primary">nuovo progetto</a>
+          </div>
+
+          <div class="dashboard-section__toolbar">
+            <input type="text" class="form__input" placeholder="cerca progetto..." style="flex: 1 1 280px;" />
+          </div>
+
+          <nav class="tabs tabs--highlight" data-tabs role="tablist" aria-label="Filtro progetti" id="progetti-tabs">
+            <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+            <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+            <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+            <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+          </nav>
+
+          <div class="dashboard-section__list" id="progetti-list"></div>
+
+        </section>
+
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Dashboard section variante Comunicati / Spedizioni:</p>
+      <div class="showcase__display">
+
+        <section class="dashboard-section">
+
+          <div class="dashboard-section__header">
+            <div class="dashboard-section__header-group">
+              <div class="dashboard-section__header-left" id="cs-main-tabs"></div>
+              <span id="cs-link-vedi-tutti"></span>
+            </div>
+            <a href="#" class="action-link action-link--primary" id="cs-action-link">nuovo comunicato</a>
+          </div>
+
+          <div class="dashboard-section__toolbar">
+            <input type="text" class="form__input" id="cs-search" placeholder="cerca comunicato..." style="flex: 1 1 280px;" />
+          </div>
+
+          <div id="cs-filter-tabs"></div>
+
+          <div class="dashboard-section__list" id="cs-list"></div>
+
+        </section>
+
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Dashboard section variante Todos:</p>
+      <div class="showcase__display">
+
+        <section class="dashboard-section">
+
+          <div class="dashboard-section__header">
+            <div class="dashboard-section__header-group">
+              <div class="dashboard-section__header-left">
+                <h2 class="titolo titolo--sezione">Todos</h2>
+                <span class="badge">4</span>
+              </div>
+              <span id="todos-link-vedi-tutti"></span>
+            </div>
+            <div class="dashboard-section__header-actions">
+              <a href="#" class="action-link">lista</a>
+              <a href="#" class="action-link">cal</a>
+              <a href="#" class="action-link action-link--primary">nuovo todo</a>
+            </div>
+          </div>
+
+          <div class="dashboard-section__toolbar">
+            <input type="text" class="form__input" placeholder="cerca todo" style="flex: 1 1 280px;" />
+          </div>
+
+          <nav class="tabs tabs--highlight" data-tabs role="tablist" aria-label="Filtro todos" id="todos-tabs">
+            <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+            <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+            <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+            <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+          </nav>
+
+          <div class="dashboard-section__list" id="todos-list"></div>
+
+        </section>
+
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render as renderLink } from './link.js';
+    import { render as renderListItem } from './list-item.js';
+    import { render as renderTabs, init } from './tabs.js';
+    import { render as renderTodoItem } from './todo-item.js';
+
+    const items = [
+      {
+        category: 'rosa',
+        title: { href: '#', label: "Studi sull'abitare" },
+        links: [{ href: '#', label: '6 giornalisti suggeriti' }],
+        meta: [
+          { group: [{ label: 'Giornalisti', value: 27 }, { label: 'Testate', value: 4 }] },
+          { label: 'Modificata il', value: '19-5-2026' },
+          { label: 'Da', value: '@rosa' },
+        ],
+      },
+      {
+        category: 'iris',
+        title: { href: '#', label: 'Rassegna economica' },
+        links: [{ href: '#', label: '3 giornalisti suggeriti' }],
+        meta: [
+          { group: [{ label: 'Giornalisti', value: 15 }, { label: 'Testate', value: 8 }] },
+          { label: 'Modificata il', value: '18-5-2026' },
+          { label: 'Da', value: '@iris' },
+        ],
+      },
+      {
+        category: 'margherita',
+        title: { href: '#', label: 'Sport locale' },
+        links: [],
+        meta: [
+          { group: [{ label: 'Giornalisti', value: 9 }, { label: 'Testate', value: 2 }] },
+          { label: 'Modificata il', value: '17-5-2026' },
+          { label: 'Da', value: '@margherita' },
+        ],
+      },
+    ];
+
+    document.getElementById('header-link-vedi-tutte').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
+
+    document.getElementById('dashboard-list').innerHTML = items.map(renderListItem).join('');
+
+    const tabsElement = document.getElementById('dashboard-tabs');
+    const listElements = document.querySelectorAll('#dashboard-list .list-item');
+
+    init(tabsElement, {
+      onTabChange: (tabId) => {
+        listElements.forEach((item) => {
+          if (tabId === 'tutti' || item.dataset.category === tabId) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    const progettiItems = [
+      {
+        category: 'rosa',
+        title: { href: '#', label: 'Progetto Draghi' },
+        links: [{ href: '#', label: '2 articoli suggeriti' }],
+        meta: [
+          { group: [{ label: 'Comunicati', value: 2, inverted: true }, { label: 'Articoli', value: 18, inverted: true }] },
+          { group: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+        ],
+      },
+      {
+        category: 'iris',
+        title: { href: '#', label: 'Rassegna economica' },
+        links: [],
+        meta: [
+          { group: [{ label: 'Comunicati', value: 5, inverted: true }, { label: 'Articoli', value: 32, inverted: true }] },
+          { group: [{ label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] },
+        ],
+      },
+      {
+        category: 'margherita',
+        title: { href: '#', label: 'Sport locale' },
+        links: [{ href: '#', label: '1 articolo suggerito' }],
+        meta: [
+          { group: [{ label: 'Comunicati', value: 1, inverted: true }, { label: 'Articoli', value: 7, inverted: true }] },
+          { group: [{ label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] },
+        ],
+      },
+    ];
+
+    document.getElementById('header-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+
+    document.getElementById('progetti-list').innerHTML = progettiItems.map(renderListItem).join('');
+
+    const progettiTabsElement = document.getElementById('progetti-tabs');
+    const progettiListElements = document.querySelectorAll('#progetti-list .list-item');
+
+    init(progettiTabsElement, {
+      onTabChange: (tabId) => {
+        progettiListElements.forEach((item) => {
+          if (tabId === 'tutti' || item.dataset.category === tabId) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    // ── Comunicati / Spedizioni ──────────────────────────────────────────────
+
+    const csMainTabs = [
+      { id: 'comunicati', label: 'Comunicati', badge: 5 },
+      { id: 'spedizioni', label: 'Spedizioni', badge: 8 },
+    ];
+
+    const csConfig = {
+      comunicati: {
+        actionLabel: 'nuovo comunicato',
+        placeholder: 'cerca comunicato...',
+        filterTabs: [
+          { id: 'tutti', label: 'tutti' },
+          { id: 'rosa', label: 'rosa' },
+          { id: 'iris', label: 'iris' },
+          { id: 'margherita', label: 'margherita' },
+        ],
+        items: [
+          {
+            category: 'rosa',
+            title: { href: '#', label: 'Riqualificazione urbana' },
+            badge: 'bozza',
+            links: [{ href: '#', label: '2 giornalisti suggeriti' }],
+            meta: [
+              { group: [{ label: 'Lista', value: "Studi sull'abitare" }, { label: 'Inviato a', value: '27 giornalisti' }] },
+              { group: [{ label: 'Creato il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+            ],
+          },
+          {
+            category: 'iris',
+            title: { href: '#', label: 'Analisi mercati Q2' },
+            badge: 'programmato',
+            links: [],
+            meta: [
+              { group: [{ label: 'Lista', value: 'Rassegna economica' }, { label: 'Inviato a', value: '15 giornalisti' }] },
+              { group: [{ label: 'Creato il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] },
+            ],
+          },
+          {
+            category: 'margherita',
+            title: { href: '#', label: 'Torneo regionale' },
+            badge: 'inviato',
+            links: [],
+            meta: [
+              { group: [{ label: 'Lista', value: 'Sport locale' }, { label: 'Inviato a', value: '9 giornalisti' }] },
+              { group: [{ label: 'Creato il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] },
+            ],
+          },
+        ],
+      },
+      spedizioni: {
+        actionLabel: 'nuova spedizione',
+        placeholder: 'cerca spedizione...',
+        filterTabs: [
+          { id: 'tutti', label: 'tutti' },
+          { id: 'rosa', label: 'rosa' },
+          { id: 'iris', label: 'iris' },
+          { id: 'margherita', label: 'margherita' },
+        ],
+        items: [
+          {
+            category: 'rosa',
+            title: { href: '#', label: 'Invito convegno abitare' },
+            badge: 'in corso',
+            links: [{ href: '#', label: 'aperta da 12 giornalisti' }],
+            meta: [
+              { group: [{ label: 'Email inviate', value: '539' }, { label: 'Aperte', value: '18%' }] },
+              { group: [{ label: 'Inviata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+            ],
+          },
+          {
+            category: 'iris',
+            title: { href: '#', label: 'Newsletter economia Q1' },
+            badge: 'conclusa il 10-5-2026',
+            links: [],
+            meta: [
+              { group: [{ label: 'Email inviate', value: '1.200' }, { label: 'Aperte', value: '22%' }] },
+              { group: [{ label: 'Inviata il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] },
+            ],
+          },
+          {
+            category: 'margherita',
+            title: { href: '#', label: 'Risultati campionato' },
+            badge: 'programmata il 25-5-2026',
+            links: [],
+            meta: [
+              { group: [{ label: 'Email inviate', value: '—' }, { label: 'Aperte', value: '—' }] },
+              { group: [{ label: 'Programmata il', value: '25-5-2026' }, { label: 'Da', value: '@margherita' }] },
+            ],
+          },
+        ],
+      },
+    };
+
+    function switchMainTab(tabId) {
+      const cfg = csConfig[tabId];
+      document.getElementById('cs-action-link').textContent = cfg.actionLabel;
+      document.getElementById('cs-search').placeholder = cfg.placeholder;
+
+      const filterTabsHost = document.getElementById('cs-filter-tabs');
+      filterTabsHost.innerHTML = renderTabs({ tabs: cfg.filterTabs, activeId: 'tutti', variant: 'highlight' });
+
+      const listHost = document.getElementById('cs-list');
+      listHost.innerHTML = cfg.items.map(renderListItem).join('');
+
+      const listItems = listHost.querySelectorAll('.list-item');
+      init(filterTabsHost.querySelector('[data-tabs]'), {
+        onTabChange: (id) => {
+          listItems.forEach(item => {
+            item.style.display = (id === 'tutti' || item.dataset.category === id) ? '' : 'none';
+          });
+        },
+      });
+    }
+
+    document.getElementById('cs-main-tabs').innerHTML =
+      renderTabs({ tabs: csMainTabs, activeId: 'comunicati', variant: ['highlight', 'titolo'] });
+    init(document.querySelector('#cs-main-tabs [data-tabs]'), { onTabChange: switchMainTab });
+
+    document.getElementById('cs-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+
+    switchMainTab('comunicati');
+
+    // ── Todos ────────────────────────────────────────────────────────────────
+
+    const todosItems = [
+      { category: 'iris', label: 'scrivi follow up a Sara', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'margherita', label: 'chiama Serena', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'iris', label: 'mail a Paola', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'rosa', label: 'report a Giada', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', label: 'fai rassegna progetto "Draghi"', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+
+    document.getElementById('todos-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+
+    document.getElementById('todos-list').innerHTML = todosItems.map(renderTodoItem).join('');
+
+    const todosTabsElement = document.getElementById('todos-tabs');
+    const todosListElements = document.querySelectorAll('#todos-list .todo-item');
+
+    init(todosTabsElement, {
+      onTabChange: (tabId) => {
+        todosListElements.forEach((item) => {
+          item.style.display = (tabId === 'tutti' || item.dataset.category === tabId) ? '' : 'none';
+        });
+      },
+    });
+  </script>
+</body>
+</html>

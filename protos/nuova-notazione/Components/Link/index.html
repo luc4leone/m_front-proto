@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link component</title>
+  <link rel="stylesheet" href="../../../../css/reset.css">
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="link.css">
+  <style>
+    body {
+      font-family: var(--font-sans);
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    def Link {text, font-size, font-weight, color, font-family, text-transform, font-style, line-height,
+              text-decoration-thickness, text-decoration-style, text-decoration-color, text-decoration-line}
+
+    defaults:
+      font-size:                text-base        → var(--text-base)          = 1rem
+      font-weight:              font-normal      → var(--font-normal)        = 400
+      color:                    text-blue-500    → var(--text-blue-500)      = #3b82f6
+      font-family:              font-sans        → var(--font-sans)          = Inter, sans-serif
+      text-transform:           normal-case      → none
+      font-style:               not-italic       → var(--not-italic)         = normal
+      line-height:              leading-5        → var(--leading-5)          = 1.25rem
+      text-decoration-line:     underline        → var(--underline)          = underline
+      text-decoration-style:    solid            → var(--solid)              = solid
+      text-decoration-thickness: decoration-auto → var(--decoration-auto)   = auto
+      text-decoration-color:    decoration-inherit → var(--decoration-inherit) = inherit
+  -->
+
+  <!-- [Link text="default Link"] — tutti i valori default -->
+  <a class="link" href="#">default Link</a>
+
+  <!-- [Link text="bold Link " font-bold decoration-2] -->
+  <p><a class="link" style="font-weight: var(--font-bold); text-decoration-thickness: var(--decoration-2);" href="#">bold Link</a></p>
+
+
+</body>
+</html>

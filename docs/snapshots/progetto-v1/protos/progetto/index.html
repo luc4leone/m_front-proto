@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progetto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="
+      this.onload = null;
+      this.rel = 'stylesheet';
+    "
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-layout__sidebar">
+      <div id="sidebar"></div>
+    </aside>
+
+    <main class="app-layout__main">
+      <div class="project-view">
+        <header class="project-header">
+          <div class="project-header__top">
+            <div class="project-header__title-edit" data-project-title>
+              <h1 class="project-header__title">Progetto Draghi</h1>
+              <input
+                class="project-header__title-input"
+                type="text"
+                value="Progetto Draghi"
+                aria-label="Titolo progetto"
+              />
+            </div>
+            <div class="project-header__actions" aria-label="Azioni progetto">
+
+            <div class="project-header__share">
+              <span class="project-header__status">
+                <img src="../../assets/icons/lock.svg" alt="" aria-hidden="true" />
+                progetto privato
+              </span>
+              <button type="button" class="action-link" id="edit-collaborators-btn">
+                <span class="action-link__icon" aria-hidden="true">
+                  <img src="../../assets/icons/edit.svg" alt="" />
+                </span>
+                <span class="action-link__label">modifica</span>
+              </button>
+            </div>
+
+              <button type="button" class="action-link" id="invite-guest-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/share.svg" alt="" /></span>
+                <span class="action-link__label">invita ospite</span>
+              </button>
+              <button type="button" class="action-link" id="send-report-btn">
+                <span class="action-link__icon" aria-hidden="true">
+                  <img src="../../assets/icons/send_report.svg" alt="" />
+                </span>
+                <span class="action-link__label">invia report</span>
+              </button>
+            </div>
+          </div>
+
+          <dl class="meta" aria-label="Metadati progetto">
+            <div class="meta__item">
+              <dt class="meta__label">Ultima modifica</dt>
+              <dd class="meta__value">17/6/2025</dd>
+            </div>
+            <div class="meta__item">
+              <dt class="meta__label">Autore</dt>
+              <dd class="meta__value">Fabio</dd>
+            </div>
+            <div class="meta__group">
+              <div class="meta__item">
+                <dt class="meta__label">Ospite</dt>
+                <dd class="meta__value">Ilaria</dd>
+              </div>
+            </div>
+          </dl>
+        </header>
+
+        <div class="project-view__body">
+          <div id="section-tabs"></div>
+
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Il Politecnico di Torino premia Draghi</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+
+            <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+              <div class="meta__item">
+                <dt class="meta__label">Spedito il</dt>
+                <dd class="meta__value">21/6/2025</dd>
+              </div>
+            </dl>
+
+            <div class="stats press-release__collapsible" aria-label="Statistiche comunicato">
+              <div class="stat">
+                <span class="stat__value">701</span>
+                <span class="stat__label">destinatari</span>
+              </div>
+
+              <div class="stats__group">
+                <div class="stat stat--success">
+                  <span class="stat__value">682</span>
+                  <span class="stat__label">ricevute</span>
+                </div>
+                <div class="stats__subgroup">
+                  <div class="stat stat--success">
+                    <span class="stat__value">19</span>
+                    <span class="stat__label">aperte</span>
+                  </div>
+                  <div class="stat stat--error">
+                    <span class="stat__value">81</span>
+                    <span class="stat__label">chiuse</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat stat--error">
+                <span class="stat__value">19</span>
+                <span class="stat__label">errori</span>
+              </div>
+            </div>
+          </section>
+          
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="2 articoli">2</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo">
+                <div class="article-card__top">
+                  <div class="article-card__heading">
+                    <div class="article-card__publisher">Il Corriere della Sera</div>
+                    <h4 class="article-card__title">
+                      <a href="#">Draghi sei inarrestabile!</a>
+                    </h4>
+                  </div>
+                  <button type="button" class="action-link">
+                    <span class="action-link__icon" aria-hidden="true">
+                      <img src="../../assets/icons/delete.svg" alt="" />
+                    </span>
+                    <span class="action-link__label">rimuovi</span>
+                  </button>
+                </div>
+
+                <dl class="meta" aria-label="Metadati articolo">
+                  <div class="meta__item">
+                    <dt class="meta__label">Data di pubblicazione</dt>
+                    <dd class="meta__value">21/6/2025</dd>
+                  </div>
+                </dl>
+              </article>
+
+              <article class="article-card" aria-label="Articolo">
+                <div class="article-card__top">
+                  <div class="article-card__heading">
+                    <div class="article-card__publisher">Il Corriere della Sera</div>
+                    <h4 class="article-card__title">
+                      <a href="#">Draghi sempre il primo della classe boooh!</a>
+                    </h4>
+                  </div>
+                  <button type="button" class="action-link">
+                    <span class="action-link__icon" aria-hidden="true">
+                      <img src="../../assets/icons/delete.svg" alt="" />
+                    </span>
+                    <span class="action-link__label">rimuovi</span>
+                  </button>
+                </div>
+
+                <dl class="meta" aria-label="Metadati articolo">
+                  <div class="meta__item">
+                    <dt class="meta__label">Data di pubblicazione</dt>
+                    <dd class="meta__value">21/6/2025</dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link" id="add-article-btn">
+                <span class="action-link__icon" aria-hidden="true">
+                  <img src="../../assets/icons/add.svg" alt="" />
+                </span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="article-modal"></div>
+  <div id="report-modal"></div>
+  <div id="collaborator-modal"></div>
+  <div id="invite-guest-modal"></div>
+
+  <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

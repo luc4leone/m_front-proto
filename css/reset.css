@@ -1,0 +1,117 @@
+/* reset.css
+   Basato su Andy Bell's Modern CSS Reset (piccole customizzazioni).
+   Obiettivo: comportamento prevedibile cross-browser, senza azzerare
+   tutto come il vecchio reset di Meyer. Normalizza senza annullare.
+   https://andy-bell.co.uk/a-modern-css-reset/
+*/
+
+/* 1. Box model coerente su tutti gli elementi */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Rimuove margin e padding di default del browser */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Altezza minima della pagina pari al viewport, senza overflow
+      orizzontale inatteso */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* 4. Ereditarietà font per tutto — i browser non la applicano
+      di default a input, button, select, textarea */
+body,
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* 5. Miglioramento rendering testo */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 6. Immagini e media: si adattano al contenitore,
+      non fuoriescono mai */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Testo nei paragrafi non supera la larghezza leggibile
+      (override con classe se serve larghezza piena) */
+p,
+li,
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Liste senza stile solo se hanno role="list" (accessibilità:
+      VoiceOver rimuove la semantica delle liste senza stile) */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* 9. Rimuove decorazione dei link solo quando esplicita */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* 10. Form elements: rimuove stili opinionated del browser */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+input,
+textarea,
+select {
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* 11. Focus visibile per navigazione da tastiera.
+       Non rimuovere mai outline senza un'alternativa visibile. */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus, #3b5bdb);
+  outline-offset: 2px;
+}
+
+/* 12. Riduce il movimento per chi ha preferenza sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

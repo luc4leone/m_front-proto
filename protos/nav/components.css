@@ -1,0 +1,97 @@
+/* protos/nav/components.css
+   Componenti locali del nav prototype — stile minimalista.
+   Non usa le componenti di progetto in /components/.
+*/
+
+/* ─── layout ──────────────────────────────────────────────────── */
+
+.n-col-layout {
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr);
+  min-height: 100%;
+}
+
+.n-col {
+  padding: var(--space-24);
+  border-right: var(--border-width-1) solid var(--color-border);
+}
+
+.n-col:last-child {
+  border-right: none;
+}
+
+.n-col-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.n-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.n-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ─── components ──────────────────────────────────────────────── */
+
+.n-h2 {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-600);
+  color: var(--color-text);
+  line-height: var(--line-height-12);
+}
+
+.n-link {
+  font-size: var(--fs-14);
+  color: var(--color-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.n-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.n-btn {
+  font-family: var(--font);
+  font-size: var(--fs-14);
+  color: var(--color-text);
+  background: none;
+  border: var(--border-width-1) solid var(--color-border-strong);
+  border-radius: var(--radius-2);
+  padding: var(--space-2) var(--space-8);
+  cursor: pointer;
+  line-height: var(--line-height-14);
+}
+
+.n-btn:hover {
+  background-color: var(--color-surface);
+}
+
+.n-tab {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-400);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font);
+  text-align: left;
+}
+
+.n-tab--active {
+  font-weight: var(--fw-700);
+  color: var(--color-text-strong);
+}
+
+.n-tab:hover:not(.n-tab--active) {
+  color: var(--color-text);
+}

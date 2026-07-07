@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@font-face {
+  font-family: "Excalifont";
+  src: url("../../assets/font/Excalifont-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+   /* font-family */
+  --font-sans: Inter, sans-serif;
+  --font-hand: "Excalifont", sans-serif;
+
+  /* font-size */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+
+  /* font-weight */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+
+  /* color */
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  
+  --text-zinc-500: var(--zinc-500);
+  --text-zinc-800: var(--zinc-800);
+
+  --blue-500: #3b82f6;
+  --blue-800: #1e40af;
+
+  --text-blue-500: var(--blue-500);
+  --text-blue-800: var(--blue-800);
+
+  --text-fuchsia-500: #d946ef;
+
+  /* line-height */
+  --leading-none: 1;
+  --leading-5: 1.25rem;
+  --leading-6: 1.5rem;
+
+  /* font-style */
+  --italic: italic;
+  --not-italic: normal;
+
+  /* text-transform */
+  --uppercase: uppercase;
+  --lowercase: lowercase;
+  --capitalize: capitalize;
+  --inherit: inherit;
+
+  /* text-decoration-thickness */
+  --decoration-auto: auto;
+  --decoration-2: 2px;
+
+  /* text-decoration-style */
+  --underline: underline;
+  --line-through: line-through;
+
+  /* text-decoration-color */
+  --decoration-inherit: inherit;
+
+  /* text-decoration-line */
+  --solid: solid;
+
+  /* border */
+  --border-width-1: 1px;
+  --border-color-subtle: #e5e7eb;
+
+  /* background */
+  --bg-white: #ffffff;
+  --bg-black: #000000;
+  
+  --bg-zinc-50: #fafafa;
+  --bg-zinc-100: #f4f4f5;
+  --bg-zinc-200: #e4e4e7;
+  --bg-zinc-300: #d4d4d8;
+  --bg-zinc-400: #a1a1aa;
+  --bg-zinc-500: #71717a;
+  --bg-zinc-600: #52525b;
+  --bg-zinc-700: #3f3f46;
+  --bg-zinc-800: #27272a;
+  --bg-zinc-900: #18181b;
+  
+
+  /* shadow */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* border-radius */
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+
+  /* space */
+  --gap-4: 4px;
+  --gap-6: 6px;
+  --gap-8: 8px;
+  --gap-10: 10px;
+  --gap-12: 12px;
+  --gap-14: 14px;
+  --gap-16: 16px;
+  --gap-18: 18px;
+  --gap-20: 20px;
+  --gap-24: 24px;
+  --gap-30: 30px;
+  --gap-36: 36px;
+  --gap-40: 40px;
+  --gap-48: 48px;
+}

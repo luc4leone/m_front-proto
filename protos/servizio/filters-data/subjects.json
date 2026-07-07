@@ -1,0 +1,2843 @@
+[
+  {
+    "id": 31000,
+    "parent_id": null,
+    "value": "Agricoltura/Zootecnica",
+    "synonyms": ["Agricoltura", "Zootecnica"]
+  },
+  {
+    "id": 13100,
+    "parent_id": null,
+    "value": "Alimentari/Bevande",
+    "synonyms": ["Alimentari", "Bevande"]
+  },
+  {
+    "id": 23100,
+    "parent_id": null,
+    "value": "Ambiente/Ecologia",
+    "synonyms": ["Camera", "Locale"]
+  },
+  {
+    "id": 28100,
+    "parent_id": null,
+    "value": "Amministrazione e Servizi Pubblici",
+    "synonyms": ["Amministrazione e Servizi Pubblici"]
+  },
+  {
+    "id": 51000,
+    "parent_id": null,
+    "value": "Architettura e progettazione",
+    "synonyms": ["Concezione", "Creazione"]
+  },
+  {
+    "id": 31100,
+    "parent_id": null,
+    "value": "Arredamento/Design",
+    "synonyms": ["Apparato", "Arredo"]
+  },
+  {
+    "id": 17100,
+    "parent_id": null,
+    "value": "Arte / Cultura",
+    "synonyms": ["Attività", "Mestiere"]
+  },
+  {
+    "id": 96000,
+    "parent_id": null,
+    "value": "Attualità Informazioni Generali",
+    "synonyms": ["Attualità Informazioni Generali"]
+  },
+  {
+    "id": 81000,
+    "parent_id": null,
+    "value": "Automazione e strumentazione",
+    "synonyms": ["Apparecchiatura", "Attrezzatura"]
+  },
+  {
+    "id": 15100,
+    "parent_id": null,
+    "value": "Chimica/Farmaceutica",
+    "synonyms": ["Farmacia", "Farmacologia"]
+  },
+  {
+    "id": 95800,
+    "parent_id": null,
+    "value": "Commercio/Grande Distribuzione",
+    "synonyms": ["Compravendita", "Scambio"]
+  },
+  {
+    "id": 91000,
+    "parent_id": null,
+    "value": "Cosmesi/Bellezza",
+    "synonyms": ["Amenità", "Gradevolezza"]
+  },
+  {
+    "id": 26100,
+    "parent_id": null,
+    "value": "Economia / Finanza",
+    "synonyms": ["Frugalità", "Moderazione"]
+  },
+  {
+    "id": 11100,
+    "parent_id": null,
+    "value": "Edilizia, costruzione e materiali",
+    "synonyms": ["Tecnica della costruzione", "Abitazioni"]
+  },
+  {
+    "id": 27100,
+    "parent_id": null,
+    "value": "Energia e Risorse energetiche",
+    "synonyms": ["Energia e Risorse energetiche"]
+  },
+  {
+    "id": 95200,
+    "parent_id": null,
+    "value": "Fotografia/Ottica",
+    "synonyms": ["Istantanea", "Scatto"]
+  },
+  {
+    "id": 35100,
+    "parent_id": null,
+    "value": "Gestione e Logistica materiali",
+    "synonyms": ["Gestione e Logistica materiali"]
+  },
+  {
+    "id": 95700,
+    "parent_id": null,
+    "value": "HI-FI/Elettronica",
+    "synonyms": ["HI", "FI"]
+  },
+  {
+    "id": 33100,
+    "parent_id": null,
+    "value": "Hobby/Tempo Libero",
+    "synonyms": ["Diletto", "Divertimento"]
+  },
+  {
+    "id": 21100,
+    "parent_id": null,
+    "value": "Impiantistica/Macchinari/Attrezzature",
+    "synonyms": ["Impiantistica", "Macchinari"]
+  },
+  {
+    "id": 12100,
+    "parent_id": null,
+    "value": "Imprese e Industria",
+    "synonyms": ["Azienda", "Fabbrica"]
+  },
+  {
+    "id": 16100,
+    "parent_id": null,
+    "value": "Informatica/Web/Information Technology",
+    "synonyms": ["Informatica", "Web"]
+  },
+  {
+    "id": 95300,
+    "parent_id": null,
+    "value": "Lavoro",
+    "synonyms": ["Attività", "Compito"]
+  },
+  {
+    "id": 32100,
+    "parent_id": null,
+    "value": "Legge/Diritto/Fisco",
+    "synonyms": ["Diritto", "Giurisprudenza"]
+  },
+  {
+    "id": 95900,
+    "parent_id": null,
+    "value": "Management/Organizzazione Aziendale",
+    "synonyms": ["Amministrazione", "Direzione"]
+  },
+  {
+    "id": 29100,
+    "parent_id": null,
+    "value": "Medicina Salute Benessere",
+    "synonyms": ["Appagamento", "Salute"]
+  },
+  {
+    "id": 25100,
+    "parent_id": null,
+    "value": "Moda / Lifestyle",
+    "synonyms": ["Costume", "Tendenza"]
+  },
+  {
+    "id": 95100,
+    "parent_id": null,
+    "value": "Motori",
+    "synonyms": ["Motori"]
+  },
+  {
+    "id": 37100,
+    "parent_id": null,
+    "value": "Musica",
+    "synonyms": ["Musica"]
+  },
+  {
+    "id": 41100,
+    "parent_id": null,
+    "value": "Politica",
+    "synonyms": ["Amministrazione", "Approccio"]
+  },
+  {
+    "id": 11000,
+    "parent_id": null,
+    "value": "Pubblicità/Marketing/Media/Comunicazione",
+    "synonyms": ["Comunicazione", "Divulgazione"]
+  },
+  {
+    "id": 10100,
+    "parent_id": null,
+    "value": "Radio/TV/Video",
+    "synonyms": ["Radioricevente", "Radiotrasmissione"]
+  },
+  {
+    "id": 95400,
+    "parent_id": null,
+    "value": "Ristorazione / Alberghi",
+    "synonyms": ["Ristorazione", "Alberghi"]
+  },
+  {
+    "id": 47100,
+    "parent_id": null,
+    "value": "Scienza/Tecnica",
+    "synonyms": ["Cognizione", "Conoscenza"]
+  },
+  {
+    "id": 46100,
+    "parent_id": null,
+    "value": "Sicurezza/Protezione/Difesa",
+    "synonyms": ["Abilità", "Certezza"]
+  },
+  {
+    "id": 95500,
+    "parent_id": null,
+    "value": "Società",
+    "synonyms": ["Associazione", "Collettività"]
+  },
+  {
+    "id": 22100,
+    "parent_id": null,
+    "value": "Spettacoli",
+    "synonyms": ["Spettacoli"]
+  },
+  {
+    "id": 49100,
+    "parent_id": null,
+    "value": "Sport",
+    "synonyms": ["Attività fisica", "Divertimento"]
+  },
+  {
+    "id": 50100,
+    "parent_id": null,
+    "value": "Telecomunicazioni/Telefonia",
+    "synonyms": ["Telecomunicazioni", "Telefonia"]
+  },
+  {
+    "id": 51100,
+    "parent_id": null,
+    "value": "Trasporto",
+    "synonyms": ["Ardore", "Entusiasmo"]
+  },
+  {
+    "id": 94082,
+    "parent_id": null,
+    "value": "Turismo",
+    "synonyms": ["Escursionismo", "Viaggi"]
+  },
+  {
+    "id": 10103,
+    "parent_id": 10100,
+    "value": "Home video",
+    "synonyms": [
+      "Video domestico",
+      "Cinema in casa",
+      "Videocassette",
+      "DVD",
+      "Blue-ray"
+    ]
+  },
+  {
+    "id": 10127,
+    "parent_id": 10100,
+    "value": "Programmi radio",
+    "synonyms": ["Trasmissioni radiofoniche", "Palinsesti radio", "Radiofonia"]
+  },
+  {
+    "id": 10126,
+    "parent_id": 10100,
+    "value": "Serie/film/TV",
+    "synonyms": ["Produzioni televisive", "Fiction", "Telefilm", "Broadcasting"]
+  },
+  {
+    "id": 11001,
+    "parent_id": 11000,
+    "value": "Advertising",
+    "synonyms": [
+      "Pubblicità",
+      "Advertising",
+      "Réclame",
+      "Promozione commerciale"
+    ]
+  },
+  {
+    "id": 11013,
+    "parent_id": 11000,
+    "value": "Analisi di mercato",
+    "synonyms": ["Ricerche di mercato", "Sondaggi", "Analisi del settore"]
+  },
+  {
+    "id": 11027,
+    "parent_id": 11000,
+    "value": "Comunicazione",
+    "synonyms": ["Relazioni pubbliche", "Info-comunicazione", "Divulgazione"]
+  },
+  {
+    "id": 11028,
+    "parent_id": 11000,
+    "value": "Eventi",
+    "synonyms": ["Manifestazioni", "Convegni", "Fiere", "Meeting"]
+  },
+  {
+    "id": 11026,
+    "parent_id": 11000,
+    "value": "Marketing",
+    "synonyms": ["Mercatistica", "Strategia di vendita", "Promozione"]
+  },
+  {
+    "id": 11025,
+    "parent_id": 11000,
+    "value": "Media",
+    "synonyms": ["Mezzi di comunicazione", "Mass media", "Informazione"]
+  },
+  {
+    "id": 11146,
+    "parent_id": 11100,
+    "value": "Bio Edilizia",
+    "synonyms": [
+      "Architettura sostenibile",
+      "Green building",
+      "Bioarchitettura"
+    ]
+  },
+  {
+    "id": 11148,
+    "parent_id": 11100,
+    "value": "Edilizia",
+    "synonyms": ["Costruzioni", "Opere murarie", "Urbanistica"]
+  },
+  {
+    "id": 11149,
+    "parent_id": 11100,
+    "value": "Materiali",
+    "synonyms": ["Componenti edilizi", "Materie prime", "Sostanze"]
+  },
+  {
+    "id": 11147,
+    "parent_id": 11100,
+    "value": "Serramenti",
+    "synonyms": ["Infissi", "Telai", "Porte e finestre", "Chiusure"]
+  },
+  {
+    "id": 11114,
+    "parent_id": 11100,
+    "value": "Tecnologia delle costruzioni",
+    "synonyms": ["Tecnica edilizia", "Ingegneria civile", "Sistemi costruttivi"]
+  },
+  {
+    "id": 12113,
+    "parent_id": 12100,
+    "value": "e-business",
+    "synonyms": ["Commercio elettronico", "E-commerce", "Vendite online"]
+  },
+  {
+    "id": 12118,
+    "parent_id": 12100,
+    "value": "Esportazioni",
+    "synonyms": ["Export", "Vendite all'estero", "Commercio estero"]
+  },
+  {
+    "id": 12119,
+    "parent_id": 12100,
+    "value": "Franchising",
+    "synonyms": ["Affiliazione commerciale", "Franchise", "Rete di vendita"]
+  },
+  {
+    "id": 12120,
+    "parent_id": 12100,
+    "value": "Importazioni",
+    "synonyms": ["Import", "Acquisti dall'estero", "Approvvigionamento estero"]
+  },
+  {
+    "id": 12157,
+    "parent_id": 12100,
+    "value": "Imprese",
+    "synonyms": ["Ditte", "Società", "Aziende", "Corporation"]
+  },
+  {
+    "id": 12158,
+    "parent_id": 12100,
+    "value": "Industria",
+    "synonyms": ["Settore secondario", "Comparto industriale", "Manifattura"]
+  },
+  {
+    "id": 12156,
+    "parent_id": 12100,
+    "value": "Metallurgia",
+    "synonyms": ["Siderurgia", "Lavorazione metalli", "Scienza dei metalli"]
+  },
+  {
+    "id": 12132,
+    "parent_id": 12100,
+    "value": "Produzione",
+    "synonyms": ["Fabbricazione", "Lavorazione", "Realizzazione"]
+  },
+  {
+    "id": 12159,
+    "parent_id": 12100,
+    "value": "Responsabilità sociale d'impresa",
+    "synonyms": ["CSR", "Etica d'impresa", "Sostenibilità aziendale"]
+  },
+  {
+    "id": 12160,
+    "parent_id": 12100,
+    "value": "Start-up",
+    "synonyms": ["Nuove imprese", "Imprese emergenti", "Business innovativo"]
+  },
+  {
+    "id": 13159,
+    "parent_id": 13100,
+    "value": "Alimentazione",
+    "synonyms": ["Nutrizione", "Dieta", "Regime alimentare"]
+  },
+  {
+    "id": 13140,
+    "parent_id": 13100,
+    "value": "Alimenti di produzione biologica",
+    "synonyms": ["Alimentazione bio", "Cibo organico", "Prodotti naturali"]
+  },
+  {
+    "id": 13144,
+    "parent_id": 13100,
+    "value": "Bevande",
+    "synonyms": ["Dissetanti", "Bibite", "Drink"]
+  },
+  {
+    "id": 13103,
+    "parent_id": 13100,
+    "value": "Birra",
+    "synonyms": ["Cervogia", "Bionda", "Rossa", "Luppolo"]
+  },
+  {
+    "id": 13158,
+    "parent_id": 13100,
+    "value": "Cucina / Gastronomia",
+    "synonyms": ["Arte culinaria", "Ristorazione", "Preparazione pasti"]
+  },
+  {
+    "id": 13152,
+    "parent_id": 13100,
+    "value": "Distribuzione automatica",
+    "synonyms": ["Vending", "Distributori automatici", "Self-service food"]
+  },
+  {
+    "id": 13108,
+    "parent_id": 13100,
+    "value": "Dolciumi",
+    "synonyms": ["Pasticceria", "Dolci", "Confetteria"]
+  },
+  {
+    "id": 13116,
+    "parent_id": 13100,
+    "value": "Igiene alimentare",
+    "synonyms": ["Sicurezza alimentare", "HACCP", "Controllo alimenti"]
+  },
+  {
+    "id": 13117,
+    "parent_id": 13100,
+    "value": "Industria alimentare",
+    "synonyms": ["Agroalimentare", "Trasformazione alimentare", "Food industry"]
+  },
+  {
+    "id": 13138,
+    "parent_id": 13100,
+    "value": "Latte e latticini",
+    "synonyms": ["Prodotti caseari", "Latticini", "Derivati del latte"]
+  },
+  {
+    "id": 13145,
+    "parent_id": 13100,
+    "value": "Liquori",
+    "synonyms": ["Superalcolici", "Spiriti", "Distillati"]
+  },
+  {
+    "id": 13107,
+    "parent_id": 13100,
+    "value": "Tè/Caffé",
+    "synonyms": ["Infusi", "Bevande nervine", "Torrefazione"]
+  },
+  {
+    "id": 13151,
+    "parent_id": 13100,
+    "value": "Vegetarianesimo",
+    "synonyms": ["Dieta vegetale", "Veg", "No-meat"]
+  },
+  {
+    "id": 13160,
+    "parent_id": 13100,
+    "value": "Vini / Enologia",
+    "synonyms": ["Viticoltura", "Bacco", "Sommellerie"]
+  },
+  {
+    "id": 15102,
+    "parent_id": 15100,
+    "value": "Biochimica",
+    "synonyms": ["Chimica biologica", "Biologia molecolare"]
+  },
+  {
+    "id": 15108,
+    "parent_id": 15100,
+    "value": "Chimica",
+    "synonyms": ["Scienze chimiche", "Alchimia (storico)"]
+  },
+  {
+    "id": 15110,
+    "parent_id": 15100,
+    "value": "Farmaceutica",
+    "synonyms": ["Farmacologia", "Medicinali", "Industria del farmaco"]
+  },
+  {
+    "id": 16136,
+    "parent_id": 16100,
+    "value": "App, smartphone, Android, iOS",
+    "synonyms": ["Mobile computing", "Applicazioni mobili", "Tecnologia mobile"]
+  },
+  {
+    "id": 16108,
+    "parent_id": 16100,
+    "value": "Computer grafica 3D",
+    "synonyms": ["Modellazione 3D", "Rendering", "CGI"]
+  },
+  {
+    "id": 16123,
+    "parent_id": 16100,
+    "value": "Editoria elettronica",
+    "synonyms": ["Digital publishing", "E-publishing", "Pubblicazioni digitali"]
+  },
+  {
+    "id": 16107,
+    "parent_id": 16100,
+    "value": "Giochi/Videogame",
+    "synonyms": ["Gaming", "Giochi elettronici", "Intrattenimento digitale"]
+  },
+  {
+    "id": 16109,
+    "parent_id": 16100,
+    "value": "Hardware informatico",
+    "synonyms": [
+      "Componentistica PC",
+      "Architettura hardware",
+      "Ferramenta informatica"
+    ]
+  },
+  {
+    "id": 16110,
+    "parent_id": 16100,
+    "value": "Home entertainment per PC",
+    "synonyms": ["Multimedia PC", "Intrattenimento domestico"]
+  },
+  {
+    "id": 94113,
+    "parent_id": 16100,
+    "value": "Information Technology",
+    "synonyms": ["Information Technology"]
+  },
+  {
+    "id": 16106,
+    "parent_id": 16100,
+    "value": "Ingegneria informatica",
+    "synonyms": ["Ingegneria del software", "Computer engineering"]
+  },
+  {
+    "id": 16160,
+    "parent_id": 16100,
+    "value": "Multimedialità",
+    "synonyms": ["Multi-media", "Media interattivi", "Contenuti misti"]
+  },
+  {
+    "id": 16150,
+    "parent_id": 16100,
+    "value": "Reti informatiche",
+    "synonyms": ["Networking", "Infrastrutture di rete", "LAN/WAN"]
+  },
+  {
+    "id": 16147,
+    "parent_id": 16100,
+    "value": "Sicurezza dei sistemi",
+    "synonyms": ["Cybersecurity", "Protezione dati", "Sicurezza informatica"]
+  },
+  {
+    "id": 16154,
+    "parent_id": 16100,
+    "value": "Sicurezza delle informazioni",
+    "synonyms": ["Data protection", "Privacy digitale", "Crittografia"]
+  },
+  {
+    "id": 16145,
+    "parent_id": 16100,
+    "value": "Software",
+    "synonyms": ["Programmi informatici", "Applicativi", "Sistemi operativi"]
+  },
+  {
+    "id": 16159,
+    "parent_id": 16100,
+    "value": "Web design/Progettazione siti Web",
+    "synonyms": ["Sviluppo web", "Web authoring", "Interfacce web"]
+  },
+  {
+    "id": 94112,
+    "parent_id": 16100,
+    "value": "Web e Social Network",
+    "synonyms": ["Rete di emittenti", "Rete informatica"]
+  },
+  {
+    "id": 17138,
+    "parent_id": 17100,
+    "value": "Antiquariato",
+    "synonyms": ["Modernariato", "Oggetti antichi", "Collezionismo d'epoca"]
+  },
+  {
+    "id": 17139,
+    "parent_id": 17100,
+    "value": "Archeologia",
+    "synonyms": ["Paletnologia", "Scavi", "Civiltà sepolte"]
+  },
+  {
+    "id": 17131,
+    "parent_id": 17100,
+    "value": "Arte",
+    "synonyms": ["Belle arti", "Espressione artistica", "Estetica"]
+  },
+  {
+    "id": 17104,
+    "parent_id": 17100,
+    "value": "Arte Contemporanea",
+    "synonyms": ["Arte moderna", "Avanguardie", "Post-moderno"]
+  },
+  {
+    "id": 17121,
+    "parent_id": 17100,
+    "value": "Arti Grafiche",
+    "synonyms": ["Grafica d'arte", "Design grafico", "Arti visive"]
+  },
+  {
+    "id": 17137,
+    "parent_id": 17100,
+    "value": "Cultura",
+    "synonyms": ["Sapere", "Civiltà", "Tradizioni", "Umanesimo"]
+  },
+  {
+    "id": 17140,
+    "parent_id": 17100,
+    "value": "Disegno",
+    "synonyms": ["Grafica", "Schizzo", "Illustrazione"]
+  },
+  {
+    "id": 17130,
+    "parent_id": 17100,
+    "value": "Filosofia",
+    "synonyms": ["Metafisica", "Etica", "Pensiero speculativo"]
+  },
+  {
+    "id": 17136,
+    "parent_id": 17100,
+    "value": "Geografia",
+    "synonyms": ["Geopolitica", "Cartografia", "Territori"]
+  },
+  {
+    "id": 17118,
+    "parent_id": 17100,
+    "value": "Letteratura",
+    "synonyms": ["Belle lettere", "Scrittura", "Umanistica"]
+  },
+  {
+    "id": 17107,
+    "parent_id": 17100,
+    "value": "Libri per bambini",
+    "synonyms": ["Infanzia", "Fiabe", "Letteratura per ragazzi"]
+  },
+  {
+    "id": 17132,
+    "parent_id": 17100,
+    "value": "Libri/Editoria",
+    "synonyms": ["Volumi", "Pubblicazioni", "Libraria"]
+  },
+  {
+    "id": 17134,
+    "parent_id": 17100,
+    "value": "Mercato Arte/Aste",
+    "synonyms": ["Investimenti arte", "Case d'aste", "Collezionismo"]
+  },
+  {
+    "id": 17133,
+    "parent_id": 17100,
+    "value": "Mostre",
+    "synonyms": ["Esposizioni", "Rassegne", "Vernissage"]
+  },
+  {
+    "id": 17144,
+    "parent_id": 17100,
+    "value": "Musei / Beni Culturali",
+    "synonyms": ["Pinacoteche", "Patrimonio culturale", "Gallerie"]
+  },
+  {
+    "id": 17110,
+    "parent_id": 17100,
+    "value": "Narrativa",
+    "synonyms": ["Romanzi", "Racconti", "Prosa"]
+  },
+  {
+    "id": 17141,
+    "parent_id": 17100,
+    "value": "Pittura",
+    "synonyms": ["Tele", "Affreschi", "Arte pittorica"]
+  },
+  {
+    "id": 17122,
+    "parent_id": 17100,
+    "value": "Poesia",
+    "synonyms": ["Lirica", "Versi", "Componimenti"]
+  },
+  {
+    "id": 17143,
+    "parent_id": 17100,
+    "value": "Restauro",
+    "synonyms": ["Conservazione", "Riparazione opere", "Manutenzione artistica"]
+  },
+  {
+    "id": 17142,
+    "parent_id": 17100,
+    "value": "Scultura",
+    "synonyms": ["Statuaria", "Plastica", "Modellazione"]
+  },
+  {
+    "id": 17135,
+    "parent_id": 17100,
+    "value": "Storia",
+    "synonyms": ["Storiografia", "Annali", "Passato"]
+  },
+  {
+    "id": 21117,
+    "parent_id": 21100,
+    "value": "Affidabilità e controllo qualità",
+    "synonyms": ["Certificazione", "Standardizzazione", "Check-up"]
+  },
+  {
+    "id": 21124,
+    "parent_id": 21100,
+    "value": "Idraulica",
+    "synonyms": ["Oleodinamica", "Sistemi idrici", "Meccanica dei fluidi"]
+  },
+  {
+    "id": 21126,
+    "parent_id": 21100,
+    "value": "Macchine tessili",
+    "synonyms": ["Telai industriali", "Filatura meccanica"]
+  },
+  {
+    "id": 21122,
+    "parent_id": 21100,
+    "value": "Meccanica",
+    "synonyms": ["Cinematica", "Ingegneria meccanica", "Officina"]
+  },
+  {
+    "id": 21121,
+    "parent_id": 21100,
+    "value": "Meccanizzazione agricola",
+    "synonyms": ["Macchine agricole", "Trattoristica", "Agrotecnica"]
+  },
+  {
+    "id": 22102,
+    "parent_id": 22100,
+    "value": "Cabaret",
+    "synonyms": ["Varietà", "Spettacolo leggero", "Comicità"]
+  },
+  {
+    "id": 22112,
+    "parent_id": 22100,
+    "value": "Cinema",
+    "synonyms": ["Cinematografia", "Settima arte", "Filmologia"]
+  },
+  {
+    "id": 22114,
+    "parent_id": 22100,
+    "value": "Corrida",
+    "synonyms": ["Tauromachia", "Toro", "Matador"]
+  },
+  {
+    "id": 22111,
+    "parent_id": 22100,
+    "value": "Danza",
+    "synonyms": ["Coreografia", "Ballo", "Tersicore"]
+  },
+  {
+    "id": 22108,
+    "parent_id": 22100,
+    "value": "Mondo dello spettacolo",
+    "synonyms": ["Show business", "Entertainment", "Lustrini"]
+  },
+  {
+    "id": 22113,
+    "parent_id": 22100,
+    "value": "Spettacoli",
+    "synonyms": ["Eventi live", "Performance", "Rappresentazioni"]
+  },
+  {
+    "id": 22110,
+    "parent_id": 22100,
+    "value": "Teatro",
+    "synonyms": ["Drammaturgia", "Recitazione", "Palcoscenico"]
+  },
+  {
+    "id": 23116,
+    "parent_id": 23100,
+    "value": "Cambiamento climatico",
+    "synonyms": ["Riscaldamento globale", "Crisi climatica", "Global warming"]
+  },
+  {
+    "id": 23104,
+    "parent_id": 23100,
+    "value": "Ecologia/Salute ambientale",
+    "synonyms": ["Ecologismo", "Ambiente", "Natura"]
+  },
+  {
+    "id": 23103,
+    "parent_id": 23100,
+    "value": "Ingegneria ambientale",
+    "synonyms": ["Ingegneria per l'ambiente", "Tecnologie verdi"]
+  },
+  {
+    "id": 23106,
+    "parent_id": 23100,
+    "value": "Inquinamento",
+    "synonyms": ["Contaminazione", "Emissione", "Degrado ambientale"]
+  },
+  {
+    "id": 23114,
+    "parent_id": 23100,
+    "value": "Politiche Ambientali",
+    "synonyms": ["Governance ambientale", "Piani ecologici"]
+  },
+  {
+    "id": 23115,
+    "parent_id": 23100,
+    "value": "Territorio",
+    "synonyms": ["Suolo", "Geografia fisica", "Paesaggio"]
+  },
+  {
+    "id": 23109,
+    "parent_id": 23100,
+    "value": "Trattamento e riciclaggio dei rifiuti",
+    "synonyms": ["Nettezza urbana", "Smaltimento", "Riuso"]
+  },
+  {
+    "id": 25123,
+    "parent_id": 25100,
+    "value": "Abbigliamento sportivo",
+    "synonyms": ["Sportswear", "Tute", "Abbigliamento tecnico"]
+  },
+  {
+    "id": 25135,
+    "parent_id": 25100,
+    "value": "Abiti da Cerimonia",
+    "synonyms": ["Wedding", "Abiti da sposa", "Formal wear"]
+  },
+  {
+    "id": 25133,
+    "parent_id": 25100,
+    "value": "Accessori",
+    "synonyms": ["Complementi moda", "Guanti", "Borse", "Cinture"]
+  },
+  {
+    "id": 25136,
+    "parent_id": 25100,
+    "value": "Alta Moda",
+    "synonyms": ["Haute couture", "Grandi firme", "Sartoria"]
+  },
+  {
+    "id": 25118,
+    "parent_id": 25100,
+    "value": "Biancheria intima",
+    "synonyms": ["Lingerie", "Intimo", "Corsetteria"]
+  },
+  {
+    "id": 93414,
+    "parent_id": 25100,
+    "value": "Bigiotteria",
+    "synonyms": ["Chincaglieria", "Cianfrusaglia"]
+  },
+  {
+    "id": 25109,
+    "parent_id": 25100,
+    "value": "Calzature",
+    "synonyms": ["Scarpe", "Calzaturifici", "Pelletteria"]
+  },
+  {
+    "id": 99001,
+    "parent_id": 25100,
+    "value": "Femminili",
+    "synonyms": ["Femminili"]
+  },
+  {
+    "id": 14001,
+    "parent_id": 25100,
+    "value": "Lifestyle / Tendenze",
+    "synonyms": ["Stile di vita", "Moda", "Costume", "Trend"]
+  },
+  {
+    "id": 93412,
+    "parent_id": 25100,
+    "value": "Luxury",
+    "synonyms": ["Luxury"]
+  },
+  {
+    "id": 99002,
+    "parent_id": 25100,
+    "value": "Maschili",
+    "synonyms": ["Maschili"]
+  },
+  {
+    "id": 25137,
+    "parent_id": 25100,
+    "value": "Moda",
+    "synonyms": ["Vestiario", "Fashion", "Abbigliamento"]
+  },
+  {
+    "id": 93415,
+    "parent_id": 25100,
+    "value": "Moda Bimbi",
+    "synonyms": ["Moda Bimbi"]
+  },
+  {
+    "id": 25138,
+    "parent_id": 25100,
+    "value": "Moda Business",
+    "synonyms": ["Moda Business"]
+  },
+  {
+    "id": 25120,
+    "parent_id": 25100,
+    "value": "Moda Maschile",
+    "synonyms": ["Uomo moda", "Abbigliamento uomo", "Menswear"]
+  },
+  {
+    "id": 25134,
+    "parent_id": 25100,
+    "value": "Orologeria e gioielleria",
+    "synonyms": ["Preziosi", "Gioielli", "Cronometri"]
+  },
+  {
+    "id": 93413,
+    "parent_id": 25100,
+    "value": "Pelletteria",
+    "synonyms": ["Valigeria"]
+  },
+  {
+    "id": 25127,
+    "parent_id": 25100,
+    "value": "Tessile moda",
+    "synonyms": ["Tessuti", "Filati", "Industria tessile"]
+  },
+  {
+    "id": 25132,
+    "parent_id": 25100,
+    "value": "Vetrine/Shopping",
+    "synonyms": ["Visual merchandising", "Acquisti", "Retail"]
+  },
+  {
+    "id": 26163,
+    "parent_id": 26100,
+    "value": "Assicurazioni",
+    "synonyms": ["Assicurazioni"]
+  },
+  {
+    "id": 26161,
+    "parent_id": 26100,
+    "value": "Banca",
+    "synonyms": ["Banco", "Cassa"]
+  },
+  {
+    "id": 26164,
+    "parent_id": 26100,
+    "value": "Borsa",
+    "synonyms": ["Bisaccia", "Borsello"]
+  },
+  {
+    "id": 26122,
+    "parent_id": 26100,
+    "value": "Buoni del Tesoro",
+    "synonyms": ["Capitale", "Fortuna"]
+  },
+  {
+    "id": 26167,
+    "parent_id": 26100,
+    "value": "Consumatori",
+    "synonyms": ["Consumatori"]
+  },
+  {
+    "id": 26112,
+    "parent_id": 26100,
+    "value": "E-commerce",
+    "synonyms": ["E", "Commerce"]
+  },
+  {
+    "id": 26165,
+    "parent_id": 26100,
+    "value": "Economia",
+    "synonyms": ["Frugalità", "Moderazione"]
+  },
+  {
+    "id": 26113,
+    "parent_id": 26100,
+    "value": "Economia internazionale",
+    "synonyms": ["Cosmopolita", "Mondiale"]
+  },
+  {
+    "id": 26169,
+    "parent_id": 26100,
+    "value": "Economia Locale",
+    "synonyms": ["Caratteristico", "Folcloristico"]
+  },
+  {
+    "id": 26115,
+    "parent_id": 26100,
+    "value": "Euro-obbligazioni",
+    "synonyms": ["Euro", "Obbligazioni"]
+  },
+  {
+    "id": 26116,
+    "parent_id": 26100,
+    "value": "Euromercati",
+    "synonyms": ["Euromercati"]
+  },
+  {
+    "id": 26166,
+    "parent_id": 26100,
+    "value": "Finanza",
+    "synonyms": ["Demanio", "Erario"]
+  },
+  {
+    "id": 26127,
+    "parent_id": 26100,
+    "value": "Fondi di investimento",
+    "synonyms": ["Collocamento", "Impiego"]
+  },
+  {
+    "id": 26104,
+    "parent_id": 26100,
+    "value": "Gestione dei titoli obbligazionari",
+    "synonyms": ["Gestione dei titoli obbligazionari"]
+  },
+  {
+    "id": 26147,
+    "parent_id": 26100,
+    "value": "Imposte",
+    "synonyms": ["Imposte"]
+  },
+  {
+    "id": 26128,
+    "parent_id": 26100,
+    "value": "Leasing",
+    "synonyms": ["Leasing"]
+  },
+  {
+    "id": 26107,
+    "parent_id": 26100,
+    "value": "Materie prime",
+    "synonyms": ["Materie prime"]
+  },
+  {
+    "id": 26114,
+    "parent_id": 26100,
+    "value": "Mercati emergenti/New Economy",
+    "synonyms": ["Mercati emergenti", "New Economy"]
+  },
+  {
+    "id": 26146,
+    "parent_id": 26100,
+    "value": "Mercato azionario",
+    "synonyms": ["Mercato azionario"]
+  },
+  {
+    "id": 26168,
+    "parent_id": 26100,
+    "value": "Mercato Immobiliare",
+    "synonyms": ["Mercato Immobiliare"]
+  },
+  {
+    "id": 26132,
+    "parent_id": 26100,
+    "value": "Mutui",
+    "synonyms": ["Mutui"]
+  },
+  {
+    "id": 26162,
+    "parent_id": 26100,
+    "value": "Risparmio/Affari personali",
+    "synonyms": ["Denaro", "Economia"]
+  },
+  {
+    "id": 26155,
+    "parent_id": 26100,
+    "value": "Titoli e azioni",
+    "synonyms": ["Titoli e azioni"]
+  },
+  {
+    "id": 27125,
+    "parent_id": 27100,
+    "value": "Consumi Energetici",
+    "synonyms": ["Consumi Energetici"]
+  },
+  {
+    "id": 27115,
+    "parent_id": 27100,
+    "value": "Elettricità",
+    "synonyms": ["Corrente", "Energia elettrica"]
+  },
+  {
+    "id": 27127,
+    "parent_id": 27100,
+    "value": "Energia",
+    "synonyms": ["Forza", "Gagliardia"]
+  },
+  {
+    "id": 27110,
+    "parent_id": 27100,
+    "value": "Energia nucleare",
+    "synonyms": ["Atomico", "Energia atomica"]
+  },
+  {
+    "id": 27128,
+    "parent_id": 27100,
+    "value": "Energie Rinnovabili",
+    "synonyms": ["Energie Rinnovabili"]
+  },
+  {
+    "id": 27107,
+    "parent_id": 27100,
+    "value": "Gas",
+    "synonyms": ["Corpo gassoso", "Miscela gassosa"]
+  },
+  {
+    "id": 27112,
+    "parent_id": 27100,
+    "value": "Ingegneria petrolifera",
+    "synonyms": ["Ingegneria petrolifera"]
+  },
+  {
+    "id": 27123,
+    "parent_id": 27100,
+    "value": "Società Acqua/Luce/Gas",
+    "synonyms": ["Baleno", "Fulgore"]
+  },
+  {
+    "id": 27126,
+    "parent_id": 27100,
+    "value": "Sostenibilità",
+    "synonyms": ["Sostenibilità"]
+  },
+  {
+    "id": 28127,
+    "parent_id": 28100,
+    "value": "Amministrazione Pubblica",
+    "synonyms": ["Amministrazione Pubblica"]
+  },
+  {
+    "id": 28126,
+    "parent_id": 28100,
+    "value": "Amministrazione regionale/comunale",
+    "synonyms": ["Civile", "Municipale"]
+  },
+  {
+    "id": 28135,
+    "parent_id": 28100,
+    "value": "Appalti e gare",
+    "synonyms": ["Appalti e gare"]
+  },
+  {
+    "id": 28125,
+    "parent_id": 28100,
+    "value": "Assistenza all'Infanzia",
+    "synonyms": ["Assistenza allInfanzia", "Assistenza all Infanzia"]
+  },
+  {
+    "id": 28110,
+    "parent_id": 28100,
+    "value": "Biblioteche",
+    "synonyms": ["Biblioteche"]
+  },
+  {
+    "id": 28136,
+    "parent_id": 28100,
+    "value": "Camera Deputati / Senato",
+    "synonyms": ["Camera Deputati", "Senato"]
+  },
+  {
+    "id": 28120,
+    "parent_id": 28100,
+    "value": "Lavori pubblici",
+    "synonyms": ["Lavori pubblici"]
+  },
+  {
+    "id": 28117,
+    "parent_id": 28100,
+    "value": "Servizi e spazi pubblici",
+    "synonyms": ["Servizi e spazi pubblici"]
+  },
+  {
+    "id": 95304,
+    "parent_id": 28100,
+    "value": "Welfare",
+    "synonyms": ["Welfare"]
+  },
+  {
+    "id": 29207,
+    "parent_id": 29100,
+    "value": "Benessere",
+    "synonyms": ["Appagamento", "Salute"]
+  },
+  {
+    "id": 29109,
+    "parent_id": 29100,
+    "value": "Biotecnologia",
+    "synonyms": ["Biotecnologia"]
+  },
+  {
+    "id": 29111,
+    "parent_id": 29100,
+    "value": "Cardiologia",
+    "synonyms": ["Cardiologia"]
+  },
+  {
+    "id": 29115,
+    "parent_id": 29100,
+    "value": "Chiropratica",
+    "synonyms": ["Chiropratica"]
+  },
+  {
+    "id": 29177,
+    "parent_id": 29100,
+    "value": "Chirurgia",
+    "synonyms": ["Chirurgia"]
+  },
+  {
+    "id": 29122,
+    "parent_id": 29100,
+    "value": "Dermatologia",
+    "synonyms": ["Dermatologia"]
+  },
+  {
+    "id": 29186,
+    "parent_id": 29100,
+    "value": "Dietetica",
+    "synonyms": ["Dietologia", "Trofologia"]
+  },
+  {
+    "id": 29140,
+    "parent_id": 29100,
+    "value": "Ematologia",
+    "synonyms": ["Ematologia"]
+  },
+  {
+    "id": 29129,
+    "parent_id": 29100,
+    "value": "Endocrinologia",
+    "synonyms": ["Endocrinologia"]
+  },
+  {
+    "id": 29211,
+    "parent_id": 29100,
+    "value": "Erboristeria",
+    "synonyms": ["Erboristeria"]
+  },
+  {
+    "id": 29215,
+    "parent_id": 29100,
+    "value": "Farmacia",
+    "synonyms": ["Farmaceutica", "Farmacologia"]
+  },
+  {
+    "id": 29176,
+    "parent_id": 29100,
+    "value": "Fisioterapia",
+    "synonyms": ["Fisioterapia"]
+  },
+  {
+    "id": 29206,
+    "parent_id": 29100,
+    "value": "Fitness",
+    "synonyms": ["Fitness"]
+  },
+  {
+    "id": 29137,
+    "parent_id": 29100,
+    "value": "Gastroenterologia",
+    "synonyms": ["Gastroenterologia"]
+  },
+  {
+    "id": 29112,
+    "parent_id": 29100,
+    "value": "Geriatria",
+    "synonyms": ["Gerontoiatria", "Gerontologia"]
+  },
+  {
+    "id": 29101,
+    "parent_id": 29100,
+    "value": "HIV, AIDS e malattie autoimmuni",
+    "synonyms": ["HIV", "AIDS e malattie autoimmuni"]
+  },
+  {
+    "id": 29125,
+    "parent_id": 29100,
+    "value": "Invalidità e riabilitazione",
+    "synonyms": ["Redenzione", "Reintegrazione"]
+  },
+  {
+    "id": 29213,
+    "parent_id": 29100,
+    "value": "Medicina - Varie",
+    "synonyms": ["Balsamo", "Cura"]
+  },
+  {
+    "id": 29104,
+    "parent_id": 29100,
+    "value": "Medicina alternativa",
+    "synonyms": ["Decisione", "Dilemma"]
+  },
+  {
+    "id": 29212,
+    "parent_id": 29100,
+    "value": "Medicina Generale",
+    "synonyms": ["Collettivo", "Complessivo"]
+  },
+  {
+    "id": 29201,
+    "parent_id": 29100,
+    "value": "Medicina Interna",
+    "synonyms": ["Medicina Interna"]
+  },
+  {
+    "id": 29166,
+    "parent_id": 29100,
+    "value": "Medicina nucleare",
+    "synonyms": ["Atomico", "Energia atomica"]
+  },
+  {
+    "id": 29187,
+    "parent_id": 29100,
+    "value": "Medicina sportiva",
+    "synonyms": ["Medicina sportiva"]
+  },
+  {
+    "id": 29164,
+    "parent_id": 29100,
+    "value": "Neurologia",
+    "synonyms": ["Neurologia"]
+  },
+  {
+    "id": 29202,
+    "parent_id": 29100,
+    "value": "Neuropsichiatria",
+    "synonyms": ["Neuropsichiatria"]
+  },
+  {
+    "id": 29203,
+    "parent_id": 29100,
+    "value": "Neuropsicofisiologia",
+    "synonyms": ["Neuropsicofisiologia"]
+  },
+  {
+    "id": 29204,
+    "parent_id": 29100,
+    "value": "Neuroscienze",
+    "synonyms": ["Neuroscienze"]
+  },
+  {
+    "id": 29121,
+    "parent_id": 29100,
+    "value": "Odontoiatria",
+    "synonyms": ["Odontoiatria"]
+  },
+  {
+    "id": 29145,
+    "parent_id": 29100,
+    "value": "Omeopatia",
+    "synonyms": ["Omeopatia"]
+  },
+  {
+    "id": 29110,
+    "parent_id": 29100,
+    "value": "Oncologia",
+    "synonyms": ["Oncologia"]
+  },
+  {
+    "id": 29171,
+    "parent_id": 29100,
+    "value": "Ortopedia",
+    "synonyms": ["Osteoclasia", "Osteotomia"]
+  },
+  {
+    "id": 29172,
+    "parent_id": 29100,
+    "value": "Osteopatia",
+    "synonyms": ["Osteopatia"]
+  },
+  {
+    "id": 29169,
+    "parent_id": 29100,
+    "value": "Ostetricia e ginecologia",
+    "synonyms": ["Ostetricia"]
+  },
+  {
+    "id": 29173,
+    "parent_id": 29100,
+    "value": "Otorinolaringoiatria",
+    "synonyms": ["Otorinolaringoiatria"]
+  },
+  {
+    "id": 29210,
+    "parent_id": 29100,
+    "value": "Pedagogia",
+    "synonyms": ["Pedagogia"]
+  },
+  {
+    "id": 29174,
+    "parent_id": 29100,
+    "value": "Pediatria",
+    "synonyms": ["Pediatria"]
+  },
+  {
+    "id": 29161,
+    "parent_id": 29100,
+    "value": "Psichiatria",
+    "synonyms": ["Psicanalisi", "Psicologia"]
+  },
+  {
+    "id": 29205,
+    "parent_id": 29100,
+    "value": "Psicologia",
+    "synonyms": ["Psichiatria", "Psicoanalisi"]
+  },
+  {
+    "id": 29184,
+    "parent_id": 29100,
+    "value": "Reumatologia",
+    "synonyms": ["Reumatologia"]
+  },
+  {
+    "id": 29208,
+    "parent_id": 29100,
+    "value": "Salute",
+    "synonyms": ["Caspita", "Cincin"]
+  },
+  {
+    "id": 29214,
+    "parent_id": 29100,
+    "value": "Sanità",
+    "synonyms": ["Salute"]
+  },
+  {
+    "id": 29185,
+    "parent_id": 29100,
+    "value": "Sessuologia",
+    "synonyms": ["Sessuologia"]
+  },
+  {
+    "id": 29209,
+    "parent_id": 29100,
+    "value": "Terme",
+    "synonyms": ["Terme"]
+  },
+  {
+    "id": 29193,
+    "parent_id": 29100,
+    "value": "Trapianti",
+    "synonyms": ["Trapianti"]
+  },
+  {
+    "id": 29194,
+    "parent_id": 29100,
+    "value": "Traumatologia",
+    "synonyms": ["Traumatologia"]
+  },
+  {
+    "id": 29195,
+    "parent_id": 29100,
+    "value": "Urologia",
+    "synonyms": ["Urologia"]
+  },
+  {
+    "id": 31056,
+    "parent_id": 31000,
+    "value": "Agricoltura",
+    "synonyms": ["Coltivazione", "Piantumazione", "Seminazione"]
+  },
+  {
+    "id": 31043,
+    "parent_id": 31000,
+    "value": "Agricoltura biologica",
+    "synonyms": ["Agricoltura biologica"]
+  },
+  {
+    "id": 31001,
+    "parent_id": 31000,
+    "value": "Agroalimentare",
+    "synonyms": ["Agroalimentare"]
+  },
+  {
+    "id": 31057,
+    "parent_id": 31000,
+    "value": "Foreste",
+    "synonyms": ["Foreste"]
+  },
+  {
+    "id": 31005,
+    "parent_id": 31000,
+    "value": "Politica agraria",
+    "synonyms": ["Politica agraria"]
+  },
+  {
+    "id": 31058,
+    "parent_id": 31000,
+    "value": "Veterinaria",
+    "synonyms": ["Veterinaria"]
+  },
+  {
+    "id": 31055,
+    "parent_id": 31000,
+    "value": "Viticoltura",
+    "synonyms": ["Viticoltura"]
+  },
+  {
+    "id": 31012,
+    "parent_id": 31000,
+    "value": "Zootecnica / Allevamento",
+    "synonyms": ["Produzione", "Scuderia"]
+  },
+  {
+    "id": 31121,
+    "parent_id": 31100,
+    "value": "Arredo di interni",
+    "synonyms": ["Arredo di interni"]
+  },
+  {
+    "id": 31115,
+    "parent_id": 31100,
+    "value": "Arredo urbano",
+    "synonyms": ["Beneducato", "Cittadino"]
+  },
+  {
+    "id": 31118,
+    "parent_id": 31100,
+    "value": "Automazione domestica - domotica - Illuminazione",
+    "synonyms": ["Chiarore", "Illuminamento"]
+  },
+  {
+    "id": 31120,
+    "parent_id": 31100,
+    "value": "Design",
+    "synonyms": ["Design"]
+  },
+  {
+    "id": 31113,
+    "parent_id": 31100,
+    "value": "Forniture per uffici e negozi",
+    "synonyms": ["Forniture per uffici e negozi"]
+  },
+  {
+    "id": 31124,
+    "parent_id": 31100,
+    "value": "Forniture/Elettrodomestici",
+    "synonyms": ["Forniture", "Elettrodomestici"]
+  },
+  {
+    "id": 31123,
+    "parent_id": 31100,
+    "value": "Graphic design",
+    "synonyms": ["Graphic design"]
+  },
+  {
+    "id": 31119,
+    "parent_id": 31100,
+    "value": "Modernariato",
+    "synonyms": ["Modernariato"]
+  },
+  {
+    "id": 31122,
+    "parent_id": 31100,
+    "value": "Tessile arredamento",
+    "synonyms": ["Apparato", "Arredo"]
+  },
+  {
+    "id": 32127,
+    "parent_id": 32100,
+    "value": "Brevetti, marchi e copyright",
+    "synonyms": ["Brevetti", "Marchi e copyright"]
+  },
+  {
+    "id": 32135,
+    "parent_id": 32100,
+    "value": "Fisco/Tributi",
+    "synonyms": ["Cassa dello Stato", "Erario"]
+  },
+  {
+    "id": 32136,
+    "parent_id": 32100,
+    "value": "Legge/Diritto",
+    "synonyms": ["Diritto", "Giurisprudenza"]
+  },
+  {
+    "id": 33154,
+    "parent_id": 33100,
+    "value": "Animali",
+    "synonyms": ["Animali"]
+  },
+  {
+    "id": 33145,
+    "parent_id": 33100,
+    "value": "Armi",
+    "synonyms": ["Armi"]
+  },
+  {
+    "id": 33152,
+    "parent_id": 33100,
+    "value": "Collezionismo",
+    "synonyms": ["Collezionismo"]
+  },
+  {
+    "id": 33159,
+    "parent_id": 33100,
+    "value": "DIY/Bricolage",
+    "synonyms": ["DIY", "Bricolage"]
+  },
+  {
+    "id": 33114,
+    "parent_id": 33100,
+    "value": "Fantascienza, fantasy, horror",
+    "synonyms": ["Fantascienza", "Fantasy"]
+  },
+  {
+    "id": 33151,
+    "parent_id": 33100,
+    "value": "Filatelia/Numismatica",
+    "synonyms": ["Collezionismo di monete", "Filatelia"]
+  },
+  {
+    "id": 33155,
+    "parent_id": 33100,
+    "value": "Fumetti",
+    "synonyms": ["Manga", "Comics"]
+  },
+  {
+    "id": 33153,
+    "parent_id": 33100,
+    "value": "Giardinaggio",
+    "synonyms": ["Floricoltura", "Orticoltura"]
+  },
+  {
+    "id": 33112,
+    "parent_id": 33100,
+    "value": "Giochi",
+    "synonyms": ["Giochi"]
+  },
+  {
+    "id": 33156,
+    "parent_id": 33100,
+    "value": "Hobby Vari",
+    "synonyms": ["Hobby Vari"]
+  },
+  {
+    "id": 33150,
+    "parent_id": 33100,
+    "value": "Lavori a maglia, cucito, decoupage, restauro, pittura, crochet",
+    "synonyms": ["Confezionato", "Ricucito"]
+  },
+  {
+    "id": 33127,
+    "parent_id": 33100,
+    "value": "Modellismo",
+    "synonyms": ["Modellismo"]
+  },
+  {
+    "id": 33157,
+    "parent_id": 33100,
+    "value": "Natura",
+    "synonyms": ["Ambiente", "Animo"]
+  },
+  {
+    "id": 33131,
+    "parent_id": 33100,
+    "value": "Parchi e campi sportivi",
+    "synonyms": ["Parchi e campi sportivi"]
+  },
+  {
+    "id": 33158,
+    "parent_id": 33100,
+    "value": "Tempo Libero",
+    "synonyms": ["Affrancato", "Sciolto"]
+  },
+  {
+    "id": 35107,
+    "parent_id": 35100,
+    "value": "Immagazzinaggio/Imballaggio",
+    "synonyms": ["Confezione", "Imballo"]
+  },
+  {
+    "id": 35104,
+    "parent_id": 35100,
+    "value": "Logistica",
+    "synonyms": ["Organizzazione"]
+  },
+  {
+    "id": 35102,
+    "parent_id": 35100,
+    "value": "Refrigerazione",
+    "synonyms": ["Congelamento", "Raffreddamento"]
+  },
+  {
+    "id": 37121,
+    "parent_id": 37100,
+    "value": "Dischi",
+    "synonyms": ["Dischi"]
+  },
+  {
+    "id": 37103,
+    "parent_id": 37100,
+    "value": "Musica Classica e Sinfonica",
+    "synonyms": ["Musica Classica e Sinfonica"]
+  },
+  {
+    "id": 37107,
+    "parent_id": 37100,
+    "value": "Musica Jazz",
+    "synonyms": ["Musica Jazz"]
+  },
+  {
+    "id": 37124,
+    "parent_id": 37100,
+    "value": "Musica Leggera",
+    "synonyms": ["Musica Leggera"]
+  },
+  {
+    "id": 37114,
+    "parent_id": 37100,
+    "value": "Musica pop",
+    "synonyms": ["Musica pop"]
+  },
+  {
+    "id": 37125,
+    "parent_id": 37100,
+    "value": "Musica Rock",
+    "synonyms": ["Musica Rock"]
+  },
+  {
+    "id": 37102,
+    "parent_id": 37100,
+    "value": "Musica Sacra",
+    "synonyms": ["Musica Sacra"]
+  },
+  {
+    "id": 37119,
+    "parent_id": 37100,
+    "value": "Musica Tradizionale",
+    "synonyms": ["Abituale", "Classico"]
+  },
+  {
+    "id": 37122,
+    "parent_id": 37100,
+    "value": "Musica Varia",
+    "synonyms": ["Musica Varia"]
+  },
+  {
+    "id": 37113,
+    "parent_id": 37100,
+    "value": "Opera Lirica",
+    "synonyms": ["Canto", "Carme"]
+  },
+  {
+    "id": 37123,
+    "parent_id": 37100,
+    "value": "Strumenti Musicali",
+    "synonyms": ["Strumenti Musicali"]
+  },
+  {
+    "id": 41104,
+    "parent_id": 41100,
+    "value": "Cooperazione e Relazioni Internazionali",
+    "synonyms": ["Cooperazione e Relazioni Internazionali"]
+  },
+  {
+    "id": 41122,
+    "parent_id": 41100,
+    "value": "Geopolitica",
+    "synonyms": ["Geopolitica"]
+  },
+  {
+    "id": 41121,
+    "parent_id": 41100,
+    "value": "Interni",
+    "synonyms": ["Interni"]
+  },
+  {
+    "id": 41119,
+    "parent_id": 41100,
+    "value": "Politica Economica",
+    "synonyms": ["Politica Economica"]
+  },
+  {
+    "id": 41125,
+    "parent_id": 41100,
+    "value": "Politica Interna",
+    "synonyms": ["Politica Interna"]
+  },
+  {
+    "id": 41120,
+    "parent_id": 41100,
+    "value": "Politica Internazionale",
+    "synonyms": ["Cosmopolita", "Mondiale"]
+  },
+  {
+    "id": 41126,
+    "parent_id": 41100,
+    "value": "Politica Locale",
+    "synonyms": ["Caratteristico", "Folcloristico"]
+  },
+  {
+    "id": 41124,
+    "parent_id": 41100,
+    "value": "Politica Parlamentare",
+    "synonyms": ["Assembleare", "Camerale"]
+  },
+  {
+    "id": 41105,
+    "parent_id": 41100,
+    "value": "Unione europea",
+    "synonyms": ["Unione europea"]
+  },
+  {
+    "id": 41123,
+    "parent_id": 41100,
+    "value": "Vaticano",
+    "synonyms": ["Papale", "Pontificio"]
+  },
+  {
+    "id": 46106,
+    "parent_id": 46100,
+    "value": "Controllo e prevenzione antincendio",
+    "synonyms": ["Antifiamma", "Antifuoco"]
+  },
+  {
+    "id": 46111,
+    "parent_id": 46100,
+    "value": "Difesa / Forze Armate",
+    "synonyms": ["Baluardo", "Protezione"]
+  },
+  {
+    "id": 46104,
+    "parent_id": 46100,
+    "value": "Prevenzione del crimine",
+    "synonyms": ["Assassinio", "Colpa"]
+  },
+  {
+    "id": 46110,
+    "parent_id": 46100,
+    "value": "Sicurezza stradale",
+    "synonyms": ["Sicurezza stradale"]
+  },
+  {
+    "id": 46109,
+    "parent_id": 46100,
+    "value": "Sicurezza sul lavoro e Prevenzione dei rischi",
+    "synonyms": ["Sicurezza sul lavoro e Prevenzione dei rischi"]
+  },
+  {
+    "id": 46105,
+    "parent_id": 46100,
+    "value": "Sicurezza/Piani e interventi di emergenza",
+    "synonyms": ["Abilità", "Certezza"]
+  },
+  {
+    "id": 47143,
+    "parent_id": 47100,
+    "value": "Aerospazio",
+    "synonyms": ["Aerospazio"]
+  },
+  {
+    "id": 47103,
+    "parent_id": 47100,
+    "value": "Astronomia",
+    "synonyms": ["Astronomia"]
+  },
+  {
+    "id": 47119,
+    "parent_id": 47100,
+    "value": "Attrezzature medico-sanitarie",
+    "synonyms": ["Attrezzature medico", "Sanitarie"]
+  },
+  {
+    "id": 47141,
+    "parent_id": 47100,
+    "value": "Biologia",
+    "synonyms": ["Biologia"]
+  },
+  {
+    "id": 47108,
+    "parent_id": 47100,
+    "value": "Botanica",
+    "synonyms": ["Botanica"]
+  },
+  {
+    "id": 47122,
+    "parent_id": 47100,
+    "value": "Clima, meteorologia",
+    "synonyms": ["Condizione atmosferica", "Condizione meteorologica"]
+  },
+  {
+    "id": 47131,
+    "parent_id": 47100,
+    "value": "Fisica",
+    "synonyms": ["Fisica"]
+  },
+  {
+    "id": 47116,
+    "parent_id": 47100,
+    "value": "Geologia",
+    "synonyms": ["Geologia"]
+  },
+  {
+    "id": 47118,
+    "parent_id": 47100,
+    "value": "Idrologia",
+    "synonyms": ["Idrologia"]
+  },
+  {
+    "id": 47148,
+    "parent_id": 47100,
+    "value": "Ingegneria",
+    "synonyms": ["Ingegneria"]
+  },
+  {
+    "id": 47149,
+    "parent_id": 47100,
+    "value": "Innovazione",
+    "synonyms": ["Cambiamento", "Mutamento"]
+  },
+  {
+    "id": 47137,
+    "parent_id": 47100,
+    "value": "Matematica",
+    "synonyms": ["Esatta", "Numerica"]
+  },
+  {
+    "id": 47146,
+    "parent_id": 47100,
+    "value": "Scienza",
+    "synonyms": ["Cognizione", "Conoscenza"]
+  },
+  {
+    "id": 47145,
+    "parent_id": 47100,
+    "value": "Statistica",
+    "synonyms": ["Calcolo", "Campionamento"]
+  },
+  {
+    "id": 47138,
+    "parent_id": 47100,
+    "value": "Storia naturale",
+    "synonyms": ["Chiaro", "Comune"]
+  },
+  {
+    "id": 47147,
+    "parent_id": 47100,
+    "value": "Tecnica",
+    "synonyms": ["Abilità", "Arte"]
+  },
+  {
+    "id": 47144,
+    "parent_id": 47100,
+    "value": "Tecnologie Varie",
+    "synonyms": ["Tecnologie Varie"]
+  },
+  {
+    "id": 47136,
+    "parent_id": 47100,
+    "value": "Zoologia",
+    "synonyms": ["Zoologia"]
+  },
+  {
+    "id": 49188,
+    "parent_id": 49100,
+    "value": "Alpinismo/Free Climbing",
+    "synonyms": ["Alpinismo", "Free Climbing"]
+  },
+  {
+    "id": 49138,
+    "parent_id": 49100,
+    "value": "Arti Marziali",
+    "synonyms": ["Arti Marziali"]
+  },
+  {
+    "id": 49104,
+    "parent_id": 49100,
+    "value": "Atletica",
+    "synonyms": ["Educazione fisica", "Ginnastica"]
+  },
+  {
+    "id": 49193,
+    "parent_id": 49100,
+    "value": "Attrezzature sportive",
+    "synonyms": ["Attrezzature sportive"]
+  },
+  {
+    "id": 49142,
+    "parent_id": 49100,
+    "value": "Automobilismo sportivo/Formula 1",
+    "synonyms": ["Automobilismo sportivo", "Formula 1"]
+  },
+  {
+    "id": 49106,
+    "parent_id": 49100,
+    "value": "Baseball",
+    "synonyms": ["Baseball"]
+  },
+  {
+    "id": 49110,
+    "parent_id": 49100,
+    "value": "Body building",
+    "synonyms": ["Body building"]
+  },
+  {
+    "id": 49194,
+    "parent_id": 49100,
+    "value": "Caccia/Pesca",
+    "synonyms": ["Battuta", "Cattura"]
+  },
+  {
+    "id": 49126,
+    "parent_id": 49100,
+    "value": "Calcio",
+    "synonyms": ["Football", "Colpo"]
+  },
+  {
+    "id": 49114,
+    "parent_id": 49100,
+    "value": "Canoa",
+    "synonyms": ["Canotto", "Kayak"]
+  },
+  {
+    "id": 49155,
+    "parent_id": 49100,
+    "value": "Canottaggio",
+    "synonyms": ["Canottaggio"]
+  },
+  {
+    "id": 49118,
+    "parent_id": 49100,
+    "value": "Ciclismo",
+    "synonyms": ["Ciclismo"]
+  },
+  {
+    "id": 49189,
+    "parent_id": 49100,
+    "value": "Deltaplano e parapendio",
+    "synonyms": ["Deltaplano e parapendio"]
+  },
+  {
+    "id": 49190,
+    "parent_id": 49100,
+    "value": "Equitazione",
+    "synonyms": ["Equitazione"]
+  },
+  {
+    "id": 49186,
+    "parent_id": 49100,
+    "value": "Golf",
+    "synonyms": ["Golfino", "Maglia"]
+  },
+  {
+    "id": 49143,
+    "parent_id": 49100,
+    "value": "MOTO GP",
+    "synonyms": ["MOTO GP"]
+  },
+  {
+    "id": 49183,
+    "parent_id": 49100,
+    "value": "Nautica/Vela",
+    "synonyms": ["Marineria", "Navigazione"]
+  },
+  {
+    "id": 49170,
+    "parent_id": 49100,
+    "value": "Nuoto e tuffi",
+    "synonyms": ["Nuoto e tuffi"]
+  },
+  {
+    "id": 49146,
+    "parent_id": 49100,
+    "value": "Olimpiadi",
+    "synonyms": ["Olimpiadi"]
+  },
+  {
+    "id": 49196,
+    "parent_id": 49100,
+    "value": "Outdoor",
+    "synonyms": ["Outdoor"]
+  },
+  {
+    "id": 49107,
+    "parent_id": 49100,
+    "value": "Pallacanestro",
+    "synonyms": ["Pallacanestro"]
+  },
+  {
+    "id": 49174,
+    "parent_id": 49100,
+    "value": "Pallavolo",
+    "synonyms": ["Pallavolo"]
+  },
+  {
+    "id": 49137,
+    "parent_id": 49100,
+    "value": "Pattinaggio su ghiaccio",
+    "synonyms": ["Congelato", "Gelato"]
+  },
+  {
+    "id": 49112,
+    "parent_id": 49100,
+    "value": "Pugilato",
+    "synonyms": ["Boxe"]
+  },
+  {
+    "id": 49157,
+    "parent_id": 49100,
+    "value": "Rugby",
+    "synonyms": ["Rugby"]
+  },
+  {
+    "id": 49161,
+    "parent_id": 49100,
+    "value": "Sci - Sci alpinismo - Snowboard",
+    "synonyms": ["Sci", "Sci alpinismo"]
+  },
+  {
+    "id": 49187,
+    "parent_id": 49100,
+    "value": "Sport",
+    "synonyms": ["Attività fisica", "Divertimento"]
+  },
+  {
+    "id": 49175,
+    "parent_id": 49100,
+    "value": "Sport acquatici",
+    "synonyms": ["Sport acquatici"]
+  },
+  {
+    "id": 49122,
+    "parent_id": 49100,
+    "value": "Sport estremi",
+    "synonyms": ["Sport estremi"]
+  },
+  {
+    "id": 49184,
+    "parent_id": 49100,
+    "value": "Sport per disabili/Paralimpiadi",
+    "synonyms": ["Sport per disabili", "Paralimpiadi"]
+  },
+  {
+    "id": 49169,
+    "parent_id": 49100,
+    "value": "Squash",
+    "synonyms": ["Squash"]
+  },
+  {
+    "id": 49182,
+    "parent_id": 49100,
+    "value": "Superbike",
+    "synonyms": ["Superbike"]
+  },
+  {
+    "id": 49185,
+    "parent_id": 49100,
+    "value": "Tennis",
+    "synonyms": ["Tennis"]
+  },
+  {
+    "id": 49195,
+    "parent_id": 49100,
+    "value": "Trekking",
+    "synonyms": ["Trekking"]
+  },
+  {
+    "id": 50109,
+    "parent_id": 50100,
+    "value": "Tecnologia satellitare",
+    "synonyms": ["Tecnologia satellitare"]
+  },
+  {
+    "id": 50112,
+    "parent_id": 50100,
+    "value": "Telecomunicazioni",
+    "synonyms": ["Telecomunicazioni"]
+  },
+  {
+    "id": 50111,
+    "parent_id": 50100,
+    "value": "Telefonia e Varie",
+    "synonyms": ["Telefonia e Varie"]
+  },
+  {
+    "id": 51009,
+    "parent_id": 51000,
+    "value": "Architettura",
+    "synonyms": ["Costruzione", "Edificio"]
+  },
+  {
+    "id": 51003,
+    "parent_id": 51000,
+    "value": "Architettura del paesaggio",
+    "synonyms": ["Ambiente", "Aspetto"]
+  },
+  {
+    "id": 51008,
+    "parent_id": 51000,
+    "value": "Bioarchitettura",
+    "synonyms": ["Bioarchitettura"]
+  },
+  {
+    "id": 51011,
+    "parent_id": 51000,
+    "value": "Ingegneria Civile",
+    "synonyms": ["Civico", "Borghese"]
+  },
+  {
+    "id": 51010,
+    "parent_id": 51000,
+    "value": "Urbanistica",
+    "synonyms": ["Urbanistica"]
+  },
+  {
+    "id": 51108,
+    "parent_id": 51100,
+    "value": "Aeronautica/Aviazione",
+    "synonyms": ["Aviazione", "Aeronautica"]
+  },
+  {
+    "id": 51105,
+    "parent_id": 51100,
+    "value": "Compagnie aeree e trasporto aereo",
+    "synonyms": ["Aeriforme", "Etereo"]
+  },
+  {
+    "id": 51176,
+    "parent_id": 51100,
+    "value": "Mobilità sostenibile",
+    "synonyms": ["Affrontabile", "Difendibile"]
+  },
+  {
+    "id": 51167,
+    "parent_id": 51100,
+    "value": "Trasporto e spedizione merci",
+    "synonyms": ["Trasporto e spedizione merci"]
+  },
+  {
+    "id": 51154,
+    "parent_id": 51100,
+    "value": "Trasporto ferroviario",
+    "synonyms": ["Trasporto ferroviario"]
+  },
+  {
+    "id": 51125,
+    "parent_id": 51100,
+    "value": "Trasporto marittimo",
+    "synonyms": ["Costiero", "Marinaro"]
+  },
+  {
+    "id": 51153,
+    "parent_id": 51100,
+    "value": "Trasporto pubblico",
+    "synonyms": ["Collettivo", "Comune"]
+  },
+  {
+    "id": 51156,
+    "parent_id": 51100,
+    "value": "Trasporto su strada",
+    "synonyms": ["Cammino", "Carreggiata"]
+  },
+  {
+    "id": 51175,
+    "parent_id": 51100,
+    "value": "Viabilità",
+    "synonyms": ["Percorribilità", "Transitabilità"]
+  },
+  {
+    "id": 81002,
+    "parent_id": 81000,
+    "value": "Automazione",
+    "synonyms": ["Automatizzazione", "Informatizzazione"]
+  },
+  {
+    "id": 81003,
+    "parent_id": 81000,
+    "value": "Cibernetica",
+    "synonyms": ["Cibernetica"]
+  },
+  {
+    "id": 81005,
+    "parent_id": 81000,
+    "value": "Misurazioni e strumenti",
+    "synonyms": ["Misurazioni e strumenti"]
+  },
+  {
+    "id": 81006,
+    "parent_id": 81000,
+    "value": "Robotica",
+    "synonyms": ["Robotica"]
+  },
+  {
+    "id": 91002,
+    "parent_id": 91000,
+    "value": "Bellezza",
+    "synonyms": ["Amenità", "Gradevolezza"]
+  },
+  {
+    "id": 91003,
+    "parent_id": 91000,
+    "value": "Cosmesi",
+    "synonyms": ["Cosmesi"]
+  },
+  {
+    "id": 91004,
+    "parent_id": 91000,
+    "value": "Cura dei capelli",
+    "synonyms": ["Cura dei capelli"]
+  },
+  {
+    "id": 91005,
+    "parent_id": 91000,
+    "value": "Medicina estetica",
+    "synonyms": ["Armonia", "Avvenenza"]
+  },
+  {
+    "id": 33106,
+    "parent_id": 94082,
+    "value": "Agriturismo",
+    "synonyms": ["Agriturismo"]
+  },
+  {
+    "id": 96105,
+    "parent_id": 94082,
+    "value": "Camping",
+    "synonyms": ["Camping"]
+  },
+  {
+    "id": 96102,
+    "parent_id": 94082,
+    "value": "Fiere",
+    "synonyms": ["Fiere"]
+  },
+  {
+    "id": 96101,
+    "parent_id": 94082,
+    "value": "Turismo Congressuale",
+    "synonyms": ["Turismo Congressuale"]
+  },
+  {
+    "id": 96103,
+    "parent_id": 94082,
+    "value": "Turismo Consapevole",
+    "synonyms": ["Avvertito", "Avvisato"]
+  },
+  {
+    "id": 96104,
+    "parent_id": 94082,
+    "value": "Viaggi e Turismo",
+    "synonyms": ["Escursionismo", "Viaggi"]
+  },
+  {
+    "id": 95103,
+    "parent_id": 95100,
+    "value": "Accessori per automobili e motocicli",
+    "synonyms": ["Accessori per automobili e motocicli"]
+  },
+  {
+    "id": 95101,
+    "parent_id": 95100,
+    "value": "Auto/Automotive",
+    "synonyms": ["Automezzo", "Automobile"]
+  },
+  {
+    "id": 95104,
+    "parent_id": 95100,
+    "value": "Camper e Caravan",
+    "synonyms": ["Carovana", "Carrozzone"]
+  },
+  {
+    "id": 95102,
+    "parent_id": 95100,
+    "value": "Moto",
+    "synonyms": ["Atto", "Gesto"]
+  },
+  {
+    "id": 95106,
+    "parent_id": 95100,
+    "value": "Motori",
+    "synonyms": ["Motori"]
+  },
+  {
+    "id": 95105,
+    "parent_id": 95100,
+    "value": "Veicoli elettrici",
+    "synonyms": ["Veicoli elettrici"]
+  },
+  {
+    "id": 95204,
+    "parent_id": 95200,
+    "value": "Fotografia",
+    "synonyms": ["Istantanea", "Scatto"]
+  },
+  {
+    "id": 95201,
+    "parent_id": 95200,
+    "value": "Fotografia digitale",
+    "synonyms": ["Fotografia digitale"]
+  },
+  {
+    "id": 95202,
+    "parent_id": 95200,
+    "value": "Fotografia naturalistica e reportage",
+    "synonyms": ["Inchiesta", "Informativa"]
+  },
+  {
+    "id": 95203,
+    "parent_id": 95200,
+    "value": "Ottica",
+    "synonyms": ["Angolatura", "Angolazione"]
+  },
+  {
+    "id": 95301,
+    "parent_id": 95300,
+    "value": "Mercato del lavoro",
+    "synonyms": ["Attività", "Compito"]
+  },
+  {
+    "id": 95305,
+    "parent_id": 95300,
+    "value": "Previdenza",
+    "synonyms": ["Accortezza", "Cautela"]
+  },
+  {
+    "id": 95303,
+    "parent_id": 95300,
+    "value": "Sindacale",
+    "synonyms": ["Sindacale"]
+  },
+  {
+    "id": 95302,
+    "parent_id": 95300,
+    "value": "Telelavoro",
+    "synonyms": ["Telelavoro"]
+  },
+  {
+    "id": 95403,
+    "parent_id": 95400,
+    "value": "Alberghi, Hotels",
+    "synonyms": ["Alberghi", "Hotels"]
+  },
+  {
+    "id": 95404,
+    "parent_id": 95400,
+    "value": "Bar e pub",
+    "synonyms": ["Bar", "Birreria"]
+  },
+  {
+    "id": 95407,
+    "parent_id": 95400,
+    "value": "Catering",
+    "synonyms": ["Catering"]
+  },
+  {
+    "id": 95405,
+    "parent_id": 95400,
+    "value": "Ristorazione",
+    "synonyms": ["Ristorazione"]
+  },
+  {
+    "id": 95406,
+    "parent_id": 95400,
+    "value": "Villaggi vacanze",
+    "synonyms": ["Villaggi vacanze"]
+  },
+  {
+    "id": 95509,
+    "parent_id": 95500,
+    "value": "Affari sociali",
+    "synonyms": ["Affari sociali"]
+  },
+  {
+    "id": 95605,
+    "parent_id": 95500,
+    "value": "Argomenti per Adulti",
+    "synonyms": ["Argomenti per Adulti"]
+  },
+  {
+    "id": 95523,
+    "parent_id": 95500,
+    "value": "Associazioni/Professionisti",
+    "synonyms": ["Associazioni", "Professionisti"]
+  },
+  {
+    "id": 95526,
+    "parent_id": 95500,
+    "value": "Astrologia",
+    "synonyms": [
+      "Divinazione",
+      "Oroscopia",
+      "Arte divinatoria",
+      "Strologia",
+      "Vaticinio",
+      "Profezia",
+      "Pseudoscienza"
+    ]
+  },
+  {
+    "id": 95528,
+    "parent_id": 95500,
+    "value": "Costume",
+    "synonyms": ["Abitudine", "Consuetudine"]
+  },
+  {
+    "id": 95603,
+    "parent_id": 95500,
+    "value": "Dipendenze",
+    "synonyms": ["Dipendenze"]
+  },
+  {
+    "id": 95504,
+    "parent_id": 95500,
+    "value": "Diritti civili/Diritti umani",
+    "synonyms": ["Diritti civili", "Diritti umani"]
+  },
+  {
+    "id": 95604,
+    "parent_id": 95500,
+    "value": "Disabilità",
+    "synonyms": ["Handicap", "Inabilità"]
+  },
+  {
+    "id": 95502,
+    "parent_id": 95500,
+    "value": "Emigrazione",
+    "synonyms": ["Esodo", "Espatrio"]
+  },
+  {
+    "id": 95519,
+    "parent_id": 95500,
+    "value": "Esoterismo",
+    "synonyms": ["Esoterismo"]
+  },
+  {
+    "id": 95503,
+    "parent_id": 95500,
+    "value": "Etica/Bioetica",
+    "synonyms": ["Comportamento", "Condotta"]
+  },
+  {
+    "id": 95512,
+    "parent_id": 95500,
+    "value": "Famiglia",
+    "synonyms": ["Congregazione", "Ordine"]
+  },
+  {
+    "id": 95520,
+    "parent_id": 95500,
+    "value": "Giovani",
+    "synonyms": ["Giovani"]
+  },
+  {
+    "id": 95506,
+    "parent_id": 95500,
+    "value": "Immigrazione",
+    "synonyms": ["Immigrazione"]
+  },
+  {
+    "id": 95521,
+    "parent_id": 95500,
+    "value": "Infanzia",
+    "synonyms": ["Fanciullezza", "Puerizia"]
+  },
+  {
+    "id": 95507,
+    "parent_id": 95500,
+    "value": "LGBTQIA+",
+    "synonyms": ["LGBTQIA"]
+  },
+  {
+    "id": 95515,
+    "parent_id": 95500,
+    "value": "Mafia",
+    "synonyms": ["Camorra", "Cosca"]
+  },
+  {
+    "id": 95514,
+    "parent_id": 95500,
+    "value": "Narcotraffico",
+    "synonyms": ["Narcotraffico"]
+  },
+  {
+    "id": 95508,
+    "parent_id": 95500,
+    "value": "Parità di genere/Femminismo/Pari opportunità",
+    "synonyms": ["Circostanza", "Comodità"]
+  },
+  {
+    "id": 95517,
+    "parent_id": 95500,
+    "value": "Religione",
+    "synonyms": ["Credo", "Culto"]
+  },
+  {
+    "id": 95527,
+    "parent_id": 95500,
+    "value": "Satira",
+    "synonyms": ["Caricatura", "Critica"]
+  },
+  {
+    "id": 95510,
+    "parent_id": 95500,
+    "value": "Scuola/Istruzione",
+    "synonyms": ["Collegio", "Edificio scolastico"]
+  },
+  {
+    "id": 95525,
+    "parent_id": 95500,
+    "value": "Società",
+    "synonyms": ["Associazione", "Collettività"]
+  },
+  {
+    "id": 95524,
+    "parent_id": 95500,
+    "value": "Sociologia",
+    "synonyms": ["Sociologia"]
+  },
+  {
+    "id": 95505,
+    "parent_id": 95500,
+    "value": "Spiritualità",
+    "synonyms": ["Devozione", "Religiosità"]
+  },
+  {
+    "id": 95518,
+    "parent_id": 95500,
+    "value": "Terza età",
+    "synonyms": ["Anni", "Generazione"]
+  },
+  {
+    "id": 95511,
+    "parent_id": 95500,
+    "value": "Terzo Mondo",
+    "synonyms": ["Immacolato", "Innocente"]
+  },
+  {
+    "id": 95522,
+    "parent_id": 95500,
+    "value": "Università",
+    "synonyms": ["Accademia", "Associazione"]
+  },
+  {
+    "id": 95516,
+    "parent_id": 95500,
+    "value": "Volontariato/Solidarietà/Non profit",
+    "synonyms": ["Aiuto", "Appoggio"]
+  },
+  {
+    "id": 95704,
+    "parent_id": 95700,
+    "value": "Elettronica",
+    "synonyms": ["Elettronica"]
+  },
+  {
+    "id": 95702,
+    "parent_id": 95700,
+    "value": "Hi Fi/Hi Fi Car",
+    "synonyms": ["Hi Fi", "Hi Fi Car"]
+  },
+  {
+    "id": 95703,
+    "parent_id": 95700,
+    "value": "Hi tech",
+    "synonyms": ["Hi tech"]
+  },
+  {
+    "id": 95701,
+    "parent_id": 95700,
+    "value": "Home Theater",
+    "synonyms": ["Home Theater"]
+  },
+  {
+    "id": 95705,
+    "parent_id": 95700,
+    "value": "Video",
+    "synonyms": ["Filmato", "Monitor"]
+  },
+  {
+    "id": 95804,
+    "parent_id": 95800,
+    "value": "Beni di consumo",
+    "synonyms": ["Impiego", "Uso"]
+  },
+  {
+    "id": 95803,
+    "parent_id": 95800,
+    "value": "Commercio",
+    "synonyms": ["Compravendita", "Scambio"]
+  },
+  {
+    "id": 95801,
+    "parent_id": 95800,
+    "value": "Commercio internazionale",
+    "synonyms": ["Cosmopolita", "Mondiale"]
+  },
+  {
+    "id": 95802,
+    "parent_id": 95800,
+    "value": "Grande distribuzione",
+    "synonyms": ["Dislocazione", "Elargizione"]
+  },
+  {
+    "id": 95805,
+    "parent_id": 95800,
+    "value": "Pubblico Esercizio/Vendita al dettaglio",
+    "synonyms": ["Minuzia", "Particolare"]
+  },
+  {
+    "id": 95902,
+    "parent_id": 95900,
+    "value": "Formazione professionale",
+    "synonyms": ["Competente", "Lavorativo"]
+  },
+  {
+    "id": 95901,
+    "parent_id": 95900,
+    "value": "Gestione dei rischi",
+    "synonyms": ["Gestione dei rischi"]
+  },
+  {
+    "id": 95904,
+    "parent_id": 95900,
+    "value": "Management",
+    "synonyms": ["Amministrazione", "Direzione"]
+  },
+  {
+    "id": 95903,
+    "parent_id": 95900,
+    "value": "Organizzazione Aziendale",
+    "synonyms": ["Organizzazione Aziendale"]
+  },
+  {
+    "id": 95905,
+    "parent_id": 95900,
+    "value": "Risorse Umane",
+    "synonyms": ["Risorse Umane"]
+  },
+  {
+    "id": 99003,
+    "parent_id": 96000,
+    "value": "Annunci Economici",
+    "synonyms": ["Annunci Economici"]
+  },
+  {
+    "id": 99006,
+    "parent_id": 96000,
+    "value": "Attualità",
+    "synonyms": ["Moda", "Modernità"]
+  },
+  {
+    "id": 99007,
+    "parent_id": 96000,
+    "value": "Attualità Informazioni Regionali/Locali",
+    "synonyms": ["Attualità Informazioni Regionali", "Locali"]
+  },
+  {
+    "id": 96001,
+    "parent_id": 96000,
+    "value": "Cronaca Bianca",
+    "synonyms": ["Cronaca Bianca"]
+  },
+  {
+    "id": 96002,
+    "parent_id": 96000,
+    "value": "Cronaca Giudiziaria",
+    "synonyms": ["Cronaca Giudiziaria"]
+  },
+  {
+    "id": 96005,
+    "parent_id": 96000,
+    "value": "Cronaca Internazionale/Esteri",
+    "synonyms": ["Cronaca Internazionale", "Esteri"]
+  },
+  {
+    "id": 96006,
+    "parent_id": 96000,
+    "value": "Cronaca Locale",
+    "synonyms": ["Caratteristico", "Folcloristico"]
+  },
+  {
+    "id": 96007,
+    "parent_id": 96000,
+    "value": "Cronaca Nazionale",
+    "synonyms": ["Interno", "Statale"]
+  },
+  {
+    "id": 96003,
+    "parent_id": 96000,
+    "value": "Cronaca Nera",
+    "synonyms": ["Cronaca Nera"]
+  },
+  {
+    "id": 96004,
+    "parent_id": 96000,
+    "value": "Cronaca Parlamentare",
+    "synonyms": ["Assembleare", "Camerale"]
+  },
+  {
+    "id": 99005,
+    "parent_id": 96000,
+    "value": "Cronaca Rosa / Gossip",
+    "synonyms": ["Cronaca Rosa", "Gossip"]
+  },
+  {
+    "id": 99008,
+    "parent_id": 96000,
+    "value": "Inchieste/Reportage",
+    "synonyms": ["Inchiesta", "Informativa"]
+  },
+  {
+    "id": 99004,
+    "parent_id": 96000,
+    "value": "News",
+    "synonyms": ["News"]
+  },
+  {
+    "id": 96010,
+    "parent_id": 96000,
+    "value": "Provincia",
+    "synonyms": ["Circondario", "Circoscrizione"]
+  },
+  {
+    "id": 96008,
+    "parent_id": 96000,
+    "value": "Servizi Speciali",
+    "synonyms": ["Servizi Speciali"]
+  }
+]

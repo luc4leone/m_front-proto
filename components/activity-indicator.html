@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>activity-indicator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./activity-indicator.css" />
+  <link rel="stylesheet" href="./link.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>activity-indicator</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Indicatore attività uff stampa (es. spedizioni):</p>
+      <div class="showcase__display">
+        <div class="activity-indicator">
+          <h3 class="activity-indicator__title">Spedizioni</h3>
+          <div class="activity-indicator__list">
+            <div class="activity-indicator__row">
+              <div class="activity-indicator__label">
+                <span id="link-spedizioni"></span>
+              </div>
+              <div class="activity-indicator__value">5</div>
+            </div>
+            <div class="activity-indicator__row">
+              <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ email inviate</div>
+              <div class="activity-indicator__value">1539</div>
+            </div>
+            <div class="activity-indicator__row">
+              <div class="activity-indicator__label activity-indicator__label--indent-2">⎿ aperte</div>
+              <div class="activity-indicator__value">345 (18%)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+  <script type="module">
+    import { render as renderLink } from './link.js';
+    document.getElementById('link-spedizioni').outerHTML =
+      renderLink({ href: '#', label: 'nuove spedizioni' });
+  </script>
+</body>
+</html>

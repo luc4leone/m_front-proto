@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox component</title>
+  <link rel="stylesheet" href="../../../../../css/reset.css">
+  <link rel="stylesheet" href="../../../tokens.css">
+  <link rel="stylesheet" href="checkbox.css">
+  <style>
+    body { font-family: var(--font-sans); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!--
+    def Checkbox {text, font-size, font-weight, color, font-family, accent-color, size, gap}
+
+    defaults:
+      font-size:    text-base      → var(--text-base)      = 1rem
+      font-weight:  font-normal    → var(--font-normal)    = 400
+      color:        text-grey-500  → var(--text-grey-500)  = #555
+      font-family:  font-sans      → var(--font-sans)      = Inter, sans-serif
+      accent-color: text-blue-500  → var(--text-blue-500)  = #3b82f6
+      size:         browser default
+      gap:          gap-4          → var(--gap-4)           = 1rem
+  -->
+
+  <!-- [Checkbox text="Accetta i termini"] — tutti i valori default -->
+  <label class="checkbox">
+    <input type="checkbox">
+    Accetta i termini
+  </label>
+
+  <!-- [Checkbox text="Ricordami" font-medium] -->
+  <label class="checkbox" style="font-weight: var(--font-medium);">
+    <input type="checkbox">
+    Ricordami
+  </label>
+
+  <!-- [Checkbox text="Selezionato" checked] — stato, non prop estetica -->
+  <label class="checkbox">
+    <input type="checkbox" checked>
+    Selezionato
+  </label>
+
+</body>
+</html>

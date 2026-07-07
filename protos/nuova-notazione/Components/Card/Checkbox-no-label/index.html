@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox-no-label component</title>
+  <link rel="stylesheet" href="../../../../../css/reset.css">
+  <link rel="stylesheet" href="../../../tokens.css">
+  <link rel="stylesheet" href="checkbox-no-label.css">
+  <style>
+    body { font-family: var(--font-sans); padding: 2rem; display: flex; gap: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!--
+    def Checkbox variant Checkbox-no-label {
+      // variante senza label
+    }
+
+    note: senza testo le prop tipografiche e gap non si applicano.
+    overrides rispetto a Checkbox: struttura ridotta a solo <input>, niente wrapper <label>.
+    accent-color: text-blue-500 → var(--text-blue-500) = #3b82f6
+  -->
+
+  <!-- [Checkbox-no-label] -->
+  <input type="checkbox" class="checkbox-no-label">
+
+  <!-- [Checkbox-no-label checked] — stato -->
+  <input type="checkbox" class="checkbox-no-label" checked>
+
+</body>
+</html>

@@ -1,0 +1,3398 @@
+{
+  "meta": {
+    "sort": "p_az",
+    "fromPage": 651,
+    "toPage": 663,
+    "totalItems": 126
+  },
+  "items": [
+    {
+      "id": 5428,
+      "name": "VOLLEYBALL.IT",
+      "hq_branch_id": 5773,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        16123,
+        49174,
+        99004
+      ],
+      "mddr_annotations": "Testata giornalistica, online dal 2000, dedicata alla PALLAVOLO e al BEACHVOLLEY .Nel 2021 oltre 8.000.000 di visite (1.928.000 visitatori unici) 12.000.000 page consultate - fonte google analytics. Da dicembre 2024 anche su App si Apple Store e Play Store: Volleyball.it+",
+      "contact_details": [
+        {
+          "id": 50586,
+          "type": "email",
+          "value": "comunicati@volleyball.it"
+        }
+      ]
+    },
+    {
+      "id": 6503,
+      "name": "VOLLEYNEWS.IT",
+      "hq_branch_id": 6809,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        49174
+      ],
+      "mddr_annotations": "Tutte le notizie dal mondo del volley",
+      "contact_details": [
+        {
+          "id": 54656,
+          "type": "email",
+          "value": "redazione@volleynews.it"
+        }
+      ]
+    },
+    {
+      "id": 4118,
+      "name": "VOLO LIBERO NOTIZIARIO F.I.V.L.",
+      "hq_branch_id": 4525,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        49189
+      ],
+      "mddr_annotations": "Mensile di informazione sul volo libero in deltaplano a parapendio",
+      "contact_details": [
+        {
+          "id": 44570,
+          "type": "phone",
+          "value": "+39011744991"
+        },
+        {
+          "id": 44571,
+          "type": "email",
+          "value": "fivl@fivl.it"
+        },
+        {
+          "id": 44572,
+          "type": "email",
+          "value": "redazione.vololibero@fivl.it"
+        }
+      ]
+    },
+    {
+      "id": 5429,
+      "name": "VOLOGRATIS.ORG",
+      "hq_branch_id": 5774,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        96104
+      ],
+      "mddr_annotations": "Blog di Viaggi, Turismo, spunti per viaggi low cost",
+      "contact_details": [
+        {
+          "id": 50589,
+          "type": "email",
+          "value": "info@vologratis.org"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "name": "VOLUME",
+      "hq_branch_id": 57,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        99006,
+        99008
+      ],
+      "mddr_annotations": "Libro-rivista realizzato con Feltrinelli di racconti, storie e reportage fotografici che in ogni suo numero si focalizzerà su un tema, cercando di comprenderlo moltiplicando i punti di vista e le sensibilità - Distribuito nelle libreria e online sul sito di Feltrinelli e Amazon",
+      "contact_details": [
+        {
+          "id": 57870,
+          "type": "email",
+          "value": "info@choramedia.com"
+        }
+      ]
+    },
+    {
+      "id": 5430,
+      "name": "VORREI.ORG  La Rivista che vorrei",
+      "hq_branch_id": 5775,
+      "coverage_id": 4,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        23104,
+        23114
+      ],
+      "mddr_annotations": "Social magazine no profit di cultura  ambiente e politica - Testata giornalistica registrata presso il Tribunale di Monza, n. 1927 del 24/9/2008",
+      "contact_details": [
+        {
+          "id": 50591,
+          "type": "email",
+          "value": "info@vorrei.org"
+        }
+      ]
+    },
+    {
+      "id": 5511,
+      "name": "VOTO10.IT",
+      "hq_branch_id": 5852,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        22112
+      ],
+      "mddr_annotations": "Il nuovo punto di riferimento sul cinema.",
+      "contact_details": [
+        {
+          "id": 50924,
+          "type": "email",
+          "value": "redazione@voto10.it"
+        }
+      ]
+    },
+    {
+      "id": 4828,
+      "name": "VOX",
+      "hq_branch_id": 5206,
+      "coverage_id": 1,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 44,
+      "outlet_subjects": [
+        10126,
+        22113,
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Germania )",
+      "contact_details": [
+        {
+          "id": 48279,
+          "type": "phone",
+          "value": "+393514446867"
+        }
+      ]
+    },
+    {
+      "id": 3549,
+      "name": "VOYAGER",
+      "hq_branch_id": 1407,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        11026,
+        13158,
+        13160,
+        23115,
+        96104
+      ],
+      "mddr_annotations": "Settore turismo: Itinerari Italia ed Esteri, Enogastronomia, Cultura: Arte, Artigiano, Spettacolo, Accoglienza, cammini: Itinerari e Ambiente, News. Portfolio, Video",
+      "contact_details": [
+        {
+          "id": 41099,
+          "type": "phone",
+          "value": "+39051306112"
+        },
+        {
+          "id": 41100,
+          "type": "email",
+          "value": "voyager@edihouse.it"
+        },
+        {
+          "id": 41101,
+          "type": "email",
+          "value": "info@edihouse.it"
+        }
+      ]
+    },
+    {
+      "id": 1016,
+      "name": "VOZPÓPULI.COM",
+      "hq_branch_id": 874,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96007,
+        99004
+      ],
+      "mddr_annotations": "Noticias de ultima hora y actualidad ",
+      "contact_details": [
+        {
+          "id": 1776,
+          "type": "email",
+          "value": "vozpopuli@vozpopuli.com"
+        },
+        {
+          "id": 1777,
+          "type": "phone",
+          "value": "+34913185940"
+        }
+      ]
+    },
+    {
+      "id": 2758,
+      "name": "VVQ - Vigne Vini e Qualità",
+      "hq_branch_id": 3254,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        13160,
+        31055
+      ],
+      "mddr_annotations": "EX VIGNEVINI - 8 n. all'anno - Enologia / Viticoltura",
+      "contact_details": [
+        {
+          "id": 25715,
+          "type": "phone",
+          "value": "+3902390901"
+        }
+      ]
+    },
+    {
+      "id": 3994,
+      "name": "W&V",
+      "hq_branch_id": 4406,
+      "coverage_id": 1,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        11001,
+        11026,
+        11027,
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Germania )",
+      "contact_details": [
+        {
+          "id": 43940,
+          "type": "phone",
+          "value": "+393514446867"
+        }
+      ]
+    },
+    {
+      "id": 3976,
+      "name": "WAFA AGENZIA DI STAMPA PALESTINESE",
+      "hq_branch_id": 4388,
+      "coverage_id": 1,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 1,
+      "outlet_subjects": [
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Palestina )",
+      "contact_details": [
+        {
+          "id": 43891,
+          "type": "email",
+          "value": "wafaroma@yahoo.it"
+        },
+        {
+          "id": 43892,
+          "type": "phone",
+          "value": "+393514446867"
+        }
+      ]
+    },
+    {
+      "id": 4301,
+      "name": "WALL STREET ITALIA",
+      "hq_branch_id": 1197,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        26127,
+        26162
+      ],
+      "mddr_annotations": "Ex F MAGAZINE",
+      "contact_details": [
+        {
+          "id": 45523,
+          "type": "phone",
+          "value": "+390264741406"
+        },
+        {
+          "id": 45524,
+          "type": "email",
+          "value": "info@browneditore.it"
+        }
+      ]
+    },
+    {
+      "id": 6164,
+      "name": "WALLNEWS24.IT",
+      "hq_branch_id": 6477,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Si occupa di tutto quello che accade nelle regioni Abruzzo e Marche ",
+      "contact_details": [
+        {
+          "id": 53398,
+          "type": "phone",
+          "value": "+393391660392"
+        },
+        {
+          "id": 53399,
+          "type": "email",
+          "value": "redazione@wallnews24.it"
+        }
+      ]
+    },
+    {
+      "id": 3934,
+      "name": "WALLSTREETITALIA.COM",
+      "hq_branch_id": 4349,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        26164,
+        26165,
+        26166
+      ],
+      "mddr_annotations": "WSI è il punto di riferimento in tempo reale per tutti coloro che vogliono comprendere economia, mercati e attualità in un'ottica globale",
+      "contact_details": [
+        {
+          "id": 43464,
+          "type": "email",
+          "value": "redazione@wallstreetitalia.com"
+        },
+        {
+          "id": 43465,
+          "type": "phone",
+          "value": "+39026773581"
+        }
+      ]
+    },
+    {
+      "id": 4356,
+      "name": "WANTED IN ROME",
+      "hq_branch_id": 4758,
+      "coverage_id": 4,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        22113,
+        99007
+      ],
+      "mddr_annotations": "Eventi della città di Roma    -   Testata in inglese",
+      "contact_details": [
+        {
+          "id": 45758,
+          "type": "email",
+          "value": "editorial@wantedinrome.com"
+        },
+        {
+          "id": 45759,
+          "type": "email",
+          "value": "info@wantedinrome.com"
+        }
+      ]
+    },
+    {
+      "id": 5431,
+      "name": "WATERGAS.IT",
+      "hq_branch_id": 5776,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        27107,
+        27123,
+        27125,
+        27127
+      ],
+      "mddr_annotations": "Online sul settore acqua e ambiente, gas metano, energia, oil & gas",
+      "contact_details": [
+        {
+          "id": 50593,
+          "type": "email",
+          "value": "info@watergas.it"
+        },
+        {
+          "id": 50594,
+          "type": "email",
+          "value": "redazione@watergas.it"
+        },
+        {
+          "id": 50595,
+          "type": "phone",
+          "value": "+390645471111"
+        }
+      ]
+    },
+    {
+      "id": 6514,
+      "name": "WAVE Smart Mobility Magazine",
+      "hq_branch_id": 6820,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 500,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        51167,
+        51176,
+        95101
+      ],
+      "mddr_annotations": "Approfondimenti su mondo trasporti e spedizione merci, Mobilità sostenibile,Automotive",
+      "contact_details": [
+        {
+          "id": 54704,
+          "type": "phone",
+          "value": "+3906164169604"
+        },
+        {
+          "id": 54705,
+          "type": "email",
+          "value": "info@corelations.it"
+        }
+      ]
+    },
+    {
+      "id": 6662,
+      "name": "WE ROBOTS",
+      "hq_branch_id": 6956,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        12158,
+        81002,
+        81006
+      ],
+      "mddr_annotations": " Robot industriali, collaborativi e di servizio per l'industria - La testata cartacea è sfogliabile anche sul sito - ",
+      "contact_details": [
+        {
+          "id": 55257,
+          "type": "phone",
+          "value": "+390249517731"
+        },
+        {
+          "id": 55258,
+          "type": "phone",
+          "value": "+390249517730"
+        },
+        {
+          "id": 55259,
+          "type": "email",
+          "value": "info@openfactory.eu"
+        }
+      ]
+    },
+    {
+      "id": 6097,
+      "name": "WE VEG",
+      "hq_branch_id": 6415,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        13151,
+        13158
+      ],
+      "mddr_annotations": "Cucina vegana - Realizzazione editoriale a cura di Lunasia - In uscita il 30 dei mesi dispari",
+      "contact_details": [
+        {
+          "id": 53173,
+          "type": "phone",
+          "value": "+3902924321"
+        },
+        {
+          "id": 53174,
+          "type": "email",
+          "value": "redazione@cottoecrudo.it"
+        },
+        {
+          "id": 53175,
+          "type": "email",
+          "value": "weveg@cottoecrudo.it"
+        }
+      ]
+    },
+    {
+      "id": 6568,
+      "name": "WE WEALTH",
+      "hq_branch_id": 6869,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        26163,
+        26166,
+        95305
+      ],
+      "mddr_annotations": "Mensile dedicato allo sviluppo dei temi legati al mondo della gestione patrimoniale; si rivolge direttamente a tutta la filiera degli operatori che operano nell’advisory di prodotti e servizi finanziari: Wealth Manager, Private Banker, Family Office, Asset Manager, Broker, commercialisti, notai e avvocati",
+      "contact_details": [
+        {
+          "id": 54912,
+          "type": "phone",
+          "value": "+390243980676"
+        },
+        {
+          "id": 54913,
+          "type": "email",
+          "value": "info@we-wealth.com"
+        }
+      ]
+    },
+    {
+      "id": 4243,
+      "name": "WE – WORLD ENERGY",
+      "hq_branch_id": 4648,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        27107,
+        27112,
+        27127
+      ],
+      "mddr_annotations": "EX OIL - Energia: aspetti geopolitici - 2 edizioni in italiano e inglese -",
+      "contact_details": [
+        {
+          "id": 45216,
+          "type": "phone",
+          "value": "+390651996385"
+        },
+        {
+          "id": 45217,
+          "type": "phone",
+          "value": "+390659822894"
+        },
+        {
+          "id": 45218,
+          "type": "phone",
+          "value": "+390659824702"
+        }
+      ]
+    },
+    {
+      "id": 7137,
+      "name": "WE:LL.IT",
+      "hq_branch_id": 7398,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        95403
+      ],
+      "mddr_annotations": "Uno sguardo panoramico sull'ospitalità. Un insieme di esperienze autorevoli e know-how del settore. Autorizzazione del Tribunale di Rimini n. 3/2017 del 25/3/2017 ",
+      "contact_details": [
+        {
+          "id": 56873,
+          "type": "phone",
+          "value": "+39054157474"
+        },
+        {
+          "id": 56874,
+          "type": "email",
+          "value": "redazione@wellmagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 632,
+      "name": "WEAREBABYNERD.BLOGSPOT.COM",
+      "hq_branch_id": 547,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        33112,
+        95521
+      ],
+      "mddr_annotations": "Blog dei bambini nerd, allevati da mamme e papà nerd.",
+      "contact_details": [
+        {
+          "id": 55408,
+          "type": "email",
+          "value": "sdcpressit@gmail.com"
+        },
+        {
+          "id": 55409,
+          "type": "phone",
+          "value": "+393667450840"
+        }
+      ]
+    },
+    {
+      "id": 5949,
+      "name": "WEBITMAG.IT",
+      "hq_branch_id": 6272,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160,
+        96104
+      ],
+      "mddr_annotations": "Notizie su turismo e tecnologia",
+      "contact_details": [
+        {
+          "id": 52595,
+          "type": "email",
+          "value": "redazione@webitmag.it"
+        },
+        {
+          "id": 52596,
+          "type": "phone",
+          "value": "+393495995268"
+        }
+      ]
+    },
+    {
+      "id": 7229,
+      "name": "WEBLOMBARDIA.INFO",
+      "hq_branch_id": 7485,
+      "coverage_id": 4,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        17131,
+        17137,
+        22113
+      ],
+      "mddr_annotations": "Arte, cultura & spettacolo in Lombardia",
+      "contact_details": [
+        {
+          "id": 57160,
+          "type": "email",
+          "value": "weblombardia@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 6689,
+      "name": "WEBMAGAZINE24.IT",
+      "hq_branch_id": 6981,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        99006
+      ],
+      "mddr_annotations": "Cronaca, politica, sport, tecnologia, gossip, scienza, cultura e spettacolo.",
+      "contact_details": [
+        {
+          "id": 55352,
+          "type": "email",
+          "value": "info@webmagazine24.it"
+        }
+      ]
+    },
+    {
+      "id": 4808,
+      "name": "WEBMARTE.TV",
+      "hq_branch_id": 5186,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Notizie e informazioni online sui fatti di politica, cronaca, sport e attualità in Sicilia",
+      "contact_details": [
+        {
+          "id": 48218,
+          "type": "phone",
+          "value": "+390931584403"
+        },
+        {
+          "id": 48219,
+          "type": "email",
+          "value": "redazione@webmarte.tv"
+        }
+      ]
+    },
+    {
+      "id": 5432,
+      "name": "WEBNEWS.IT",
+      "hq_branch_id": 5777,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        16109,
+        16136,
+        16145,
+        47149
+      ],
+      "mddr_annotations": "Il giornale online che racconta quotidianamente l'innovazione e l’attualità tecnologica e i prodotti Hi-Tech",
+      "contact_details": [
+        {
+          "id": 50597,
+          "type": "email",
+          "value": "redazione@webnews.it"
+        }
+      ]
+    },
+    {
+      "id": 6801,
+      "name": "WEBSALUTE.IT",
+      "hq_branch_id": 7082,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        29207,
+        29208,
+        29214
+      ],
+      "mddr_annotations": "La sana informazione corre sul web - Tribunale di Vicenza Iscrizione N. 2869/2020 del 10/2020 in data 31 agosto 2020",
+      "contact_details": [
+        {
+          "id": 55790,
+          "type": "phone",
+          "value": "+393895109678"
+        },
+        {
+          "id": 55791,
+          "type": "email",
+          "value": "redazione@websalute.it"
+        }
+      ]
+    },
+    {
+      "id": 4941,
+      "name": "WEBTVPUGLIA.IT",
+      "hq_branch_id": 5309,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        23115,
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Testata giornalistica online e Web TV on demand  - Promozione del Territorio, Documentari - TG Giornaliero e Istituzionale - Campo d'azione: tutta la Regione Puglia  -  Fiere regionali, nazionali e internazionali  - Informazioni su Commissione Europea - Testata giornalistica Web TV iscritta al Centro Media Regionale della Puglia – R.O.C. N° 23895/ del 23/10/2013 – Tribunale di Bari 09/01/2013 – Num. R.G. 4428/2008 – Num. Reg. Stampa 37 - 50.000 visite (in totale) al giorno -  Sede operativa: Via Walter Tobagi 12 - Turi (BA)\r\n",
+      "contact_details": [
+        {
+          "id": 48822,
+          "type": "email",
+          "value": "webtvpuglia@libero.it"
+        },
+        {
+          "id": 48823,
+          "type": "phone",
+          "value": "+393288132266"
+        }
+      ]
+    },
+    {
+      "id": 6469,
+      "name": "WEDDINGFASHIONBLOG.COM",
+      "hq_branch_id": 6776,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        11028,
+        13158,
+        13160,
+        14001,
+        25133,
+        25137,
+        31120,
+        91003,
+        93412,
+        96104
+      ],
+      "mddr_annotations": "Blog di  Accessori, Bellezza, Abiti, Inspiration, Location, Real Wedding, Moda, Mondo Sposi",
+      "contact_details": [
+        {
+          "id": 54515,
+          "type": "email",
+          "value": "info@weddingfashionblog.com"
+        }
+      ]
+    },
+    {
+      "id": 6561,
+      "name": "WEEKEND PREMIUM",
+      "hq_branch_id": 6862,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        95101,
+        96104
+      ],
+      "mddr_annotations": "Bimestrale di viaggi, enogastronomia per il weekend distribuito negli alberghi e nelle agenzie viaggi con una rubrica denominata \"Weekend car\" -   weekendpremium.it e' la versione online della testata che si  presenta come un sito vivo e attivo aggiornato quotidianamente sulle ultime tendenze di viaggio - email generica di redazione non disponibile",
+      "contact_details": [
+        {
+          "id": 54883,
+          "type": "phone",
+          "value": "+39023450719"
+        }
+      ]
+    },
+    {
+      "id": 215,
+      "name": "WELFARE OGGI",
+      "hq_branch_id": 187,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        41125,
+        95304
+      ],
+      "mddr_annotations": "Servizi sociali, terzo settore - 4 numeri l'anno",
+      "contact_details": [
+        {
+          "id": 52865,
+          "type": "phone",
+          "value": "+390541628111"
+        },
+        {
+          "id": 52866,
+          "type": "email",
+          "value": "maggioliadv@maggioli.it"
+        }
+      ]
+    },
+    {
+      "id": 4850,
+      "name": "WELFARENETWORK.IT",
+      "hq_branch_id": 5223,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        17137,
+        41126,
+        95525
+      ],
+      "mddr_annotations": "Notizie, appuntamenti,discussioni e documenti relativi al mondo della politica, della cultura e della società.",
+      "contact_details": [
+        {
+          "id": 48384,
+          "type": "phone",
+          "value": "+39335773661"
+        },
+        {
+          "id": 48385,
+          "type": "email",
+          "value": "direttore@welfarenetwork.it"
+        }
+      ]
+    },
+    {
+      "id": 7359,
+      "name": "WELLMAGAZINE.IT",
+      "hq_branch_id": 7610,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        95403,
+        95405,
+        96104
+      ],
+      "mddr_annotations": "Testata digitale di hospitality marketing, turismo, ristorazione ",
+      "contact_details": [
+        {
+          "id": 57539,
+          "type": "phone",
+          "value": "+39054157474"
+        },
+        {
+          "id": 57540,
+          "type": "email",
+          "value": "redazione@wellmagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 5433,
+      "name": "WELLME.IT",
+      "hq_branch_id": 5778,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13159,
+        29206,
+        29207,
+        29208
+      ],
+      "mddr_annotations": "Testata di informazione on line su tematiche legate al benessere, alla bellezza e alla salute, un magazine utile a fornire gli strumenti necessari per migliorare il benessere di chi legge.",
+      "contact_details": [
+        {
+          "id": 50598,
+          "type": "phone",
+          "value": "+393931559413"
+        },
+        {
+          "id": 50599,
+          "type": "email",
+          "value": "redazione@wellme.it"
+        },
+        {
+          "id": 50600,
+          "type": "phone",
+          "value": "+390669421011"
+        }
+      ]
+    },
+    {
+      "id": 3430,
+      "name": "WELLNESS DESIGN",
+      "hq_branch_id": 3878,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11148,
+        31115,
+        51009
+      ],
+      "mddr_annotations": "Progettazione e Gestione Spa,Centri Benessere,Arredo Urbano,Impianti Sportivi,Fitness,Piscine,Hotel,Parchi Tematici e Cinema Multisala - esiste anche una newsletter-  4 numeri con uscite a: gennaio, maggio, settembre (linee guida progettazione SPA), novembre",
+      "contact_details": [
+        {
+          "id": 40120,
+          "type": "phone",
+          "value": "+39029007430"
+        },
+        {
+          "id": 40121,
+          "type": "email",
+          "value": "progetto@wellness-design.info"
+        },
+        {
+          "id": 40122,
+          "type": "email",
+          "value": "progetto@inn.it"
+        }
+      ]
+    },
+    {
+      "id": 6703,
+      "name": "WHAT-U.COM",
+      "hq_branch_id": 6993,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        95528,
+        99006
+      ],
+      "mddr_annotations": "Attualità, cronaca italiana, estera, economia, moda, spettacolo... per il piacere di farlo e di informare!",
+      "contact_details": [
+        {
+          "id": 55407,
+          "type": "email",
+          "value": "what-u@what-u.com"
+        }
+      ]
+    },
+    {
+      "id": 6276,
+      "name": "WHEELSMAG.IT",
+      "hq_branch_id": 6589,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        49142,
+        95101,
+        95102
+      ],
+      "mddr_annotations": "Auto - Moto - Rally",
+      "contact_details": []
+    },
+    {
+      "id": 2052,
+      "name": "WHITE IBIZA",
+      "hq_branch_id": 2472,
+      "coverage_id": 2,
+      "frequency_id": 1,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        26168,
+        96104
+      ],
+      "mddr_annotations": "La Ibiza que amas, de la mano de expertos en quienes confías.",
+      "contact_details": [
+        {
+          "id": 12376,
+          "type": "email",
+          "value": "editor@white-ibiza.com"
+        },
+        {
+          "id": 12377,
+          "type": "email",
+          "value": "contact@white-ibiza.com"
+        },
+        {
+          "id": 12378,
+          "type": "email",
+          "value": "info@white-ibiza.com"
+        }
+      ]
+    },
+    {
+      "id": 3822,
+      "name": "WHITE SPOSA",
+      "hq_branch_id": 4246,
+      "coverage_id": 2,
+      "frequency_id": 24,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        25135,
+        25137
+      ],
+      "mddr_annotations": "Moda sposi- Date di Uscita: 15 dicembre-15 maggio-15 settembre",
+      "contact_details": [
+        {
+          "id": 42818,
+          "type": "phone",
+          "value": "+390245487309"
+        },
+        {
+          "id": 42819,
+          "type": "email",
+          "value": "white@whitemagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 3995,
+      "name": "WIENER ZEITUNG.AT",
+      "hq_branch_id": 4407,
+      "coverage_id": 1,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Austria)",
+      "contact_details": [
+        {
+          "id": 43943,
+          "type": "phone",
+          "value": "+393514446867"
+        }
+      ]
+    },
+    {
+      "id": 3683,
+      "name": "WIN MAGAZINE",
+      "hq_branch_id": 4118,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        94113
+      ],
+      "mddr_annotations": "La rivista si occupa dell'ambiente operativo Microsoft Windows e programmi ad esso connessi.",
+      "contact_details": [
+        {
+          "id": 41915,
+          "type": "phone",
+          "value": "+3902924321"
+        },
+        {
+          "id": 41916,
+          "type": "email",
+          "value": "win@sprea.it"
+        }
+      ]
+    },
+    {
+      "id": 4416,
+      "name": "WIND NEWS MAGAZINE",
+      "hq_branch_id": 4817,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        49175
+      ],
+      "mddr_annotations": "Il magazine di windsurf italiano",
+      "contact_details": [
+        {
+          "id": 45995,
+          "type": "phone",
+          "value": "+39019823535"
+        },
+        {
+          "id": 45996,
+          "type": "email",
+          "value": "windnews@sabatelli.it"
+        },
+        {
+          "id": 45997,
+          "type": "email",
+          "value": "editore@sabatelli.it"
+        }
+      ]
+    },
+    {
+      "id": 6085,
+      "name": "WINE CHANNEL TV",
+      "hq_branch_id": 6403,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 43,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Wine Channel è un ponte di collegamento tra Italia e Cina con il canale ufficiale WeChat 19Pindao che promuove il vino italiano in Cina",
+      "contact_details": [
+        {
+          "id": 53137,
+          "type": "phone",
+          "value": "+390857998800"
+        },
+        {
+          "id": 53138,
+          "type": "email",
+          "value": "redazione@winechannel.it"
+        },
+        {
+          "id": 53139,
+          "type": "email",
+          "value": "info@winechannel.it"
+        }
+      ]
+    },
+    {
+      "id": 7386,
+      "name": "WINEANDAFFINE.COM",
+      "hq_branch_id": 7635,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        11028,
+        13158,
+        13160,
+        23115
+      ],
+      "mddr_annotations": "Esperienze in campo enogastronomico, di territori, personaggi e eventi. - Testata registrata al Tribunale di Milano Pubblico Registro Stampa n. 14577/2024 del 13 gennaio 2025",
+      "contact_details": [
+        {
+          "id": 57619,
+          "type": "email",
+          "value": "staff@wineandaffine.com"
+        }
+      ]
+    },
+    {
+      "id": 6803,
+      "name": "WINEANDTHECITY.IT",
+      "hq_branch_id": 7084,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "Quotidiano di attualità, enogastronomia, lifestyle registrato presso il Tribunale di Napoli al n. 13/2020",
+      "contact_details": [
+        {
+          "id": 55798,
+          "type": "phone",
+          "value": "+39081681505"
+        },
+        {
+          "id": 55799,
+          "type": "email",
+          "value": "redazione@wineandthecity.it"
+        }
+      ]
+    },
+    {
+      "id": 7239,
+      "name": "WINEANDTRAVELMAGAZINE.IT",
+      "hq_branch_id": 7494,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "luogo” di incontro che aggrega tutti coloro che hanno in comune la medesima grande passione per il vino, i viaggi, l’uomo e le sue storie.",
+      "contact_details": [
+        {
+          "id": 57179,
+          "type": "phone",
+          "value": "+393313491605"
+        },
+        {
+          "id": 57180,
+          "type": "phone",
+          "value": "+390514070125"
+        },
+        {
+          "id": 57181,
+          "type": "email",
+          "value": "segreteria@thecirclehub.it"
+        }
+      ]
+    },
+    {
+      "id": 630,
+      "name": "WINEBLOGROLL.COM",
+      "hq_branch_id": 545,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Articoli e recensioni del WineLover Francesco Saverio Russo, abbinati alla rassegna stampa dei migliori Wine Blogs italiani ed internazionali",
+      "contact_details": [
+        {
+          "id": 54677,
+          "type": "email",
+          "value": "wineblogroll@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 6770,
+      "name": "WINECOUTURE",
+      "hq_branch_id": 7056,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Testata giornalistica nata per offrire approfondimenti e informazione di qualità sul vino e quanto gli ruota attorno - Registrazione presso il Tribunale di Milano n. 12 del 21 gennaio 2020 - disponibile anche in formato online - Esiste anche la newsletter settimanale a cura della redazione - 6 numeri l'anno",
+      "contact_details": [
+        {
+          "id": 55683,
+          "type": "email",
+          "value": "info@nelsonsrl.com"
+        },
+        {
+          "id": 55684,
+          "type": "phone",
+          "value": "+390284076127"
+        }
+      ]
+    },
+    {
+      "id": 6780,
+      "name": "WINECOUTURE.IT",
+      "hq_branch_id": 7056,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Testata giornalistica online nata per offrire approfondimenti e informazione di qualità sul vino e quanto gli ruota attorno - Registrazione presso il Tribunale di Milano n. 12 del 21 gennaio 2020 - disponibile anche in formato cartaceo bimestrale",
+      "contact_details": [
+        {
+          "id": 55683,
+          "type": "email",
+          "value": "info@nelsonsrl.com"
+        },
+        {
+          "id": 55684,
+          "type": "phone",
+          "value": "+390284076127"
+        }
+      ]
+    },
+    {
+      "id": 7141,
+      "name": "WINEMAG.IT",
+      "hq_branch_id": 7402,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13103,
+        13145,
+        13158,
+        13160,
+        14001,
+        96104
+      ],
+      "mddr_annotations": "Wine magazine, wine news e guida vini italiani e internazionali",
+      "contact_details": [
+        {
+          "id": 56889,
+          "type": "email",
+          "value": "redazione@winemag.it"
+        }
+      ]
+    },
+    {
+      "id": 1227,
+      "name": "WINEMERIDIAN.COM",
+      "hq_branch_id": 1075,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "Web magazine che supporta il vino nel mondo",
+      "contact_details": [
+        {
+          "id": 52632,
+          "type": "phone",
+          "value": "+393485727501"
+        },
+        {
+          "id": 52633,
+          "type": "email",
+          "value": "redazione@winemeridian.com"
+        },
+        {
+          "id": 52634,
+          "type": "phone",
+          "value": "+390459781873"
+        }
+      ]
+    },
+    {
+      "id": 4549,
+      "name": "WINENEWS.IT",
+      "hq_branch_id": 4943,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160,
+        31056,
+        33106
+      ],
+      "mddr_annotations": "Agenzia quotidiana di comunicazione sul mondo del wine & food, on line dal 1 maggio 2000. La Prima di WineNews: newsletter quotidiana - Italian Weekly Winenews: newsletter settimanale in inglese - I vini di Winenews: appunti di critica enologica settimanale - I Quaderni di WineNews: appunti di critica enologica di 12 territori italiani del vino tra i più importanti, mensile ",
+      "contact_details": [
+        {
+          "id": 46710,
+          "type": "phone",
+          "value": "+390577848609"
+        },
+        {
+          "id": 46711,
+          "type": "email",
+          "value": "info@winenews.it"
+        }
+      ]
+    },
+    {
+      "id": 7231,
+      "name": "WINEROOTS.IT",
+      "hq_branch_id": 7486,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Portale dedicato alle storie che girano attorno e dentro un calice di vino. Dalla vigna alla bottiglia da portare a tavola, tutto l'impegno e l'esperienza della filiera rivive attraverso le parole degli autori.",
+      "contact_details": [
+        {
+          "id": 57162,
+          "type": "email",
+          "value": "winerootsit@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 5435,
+      "name": "WINESURF.IT",
+      "hq_branch_id": 5780,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "Giornale online di Enogastronomia",
+      "contact_details": [
+        {
+          "id": 50606,
+          "type": "phone",
+          "value": "+390577981652"
+        },
+        {
+          "id": 50607,
+          "type": "email",
+          "value": "info@winesurf.it"
+        },
+        {
+          "id": 50608,
+          "type": "email",
+          "value": "redazione@winesurf.it"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "name": "WINETALESMAGAZINE.COM",
+      "hq_branch_id": 53,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Il magazine di riferimento nel mondo del vino e dei Winelovers",
+      "contact_details": [
+        {
+          "id": 57859,
+          "type": "phone",
+          "value": "+393357211154"
+        },
+        {
+          "id": 57860,
+          "type": "email",
+          "value": "ivan.vellucci@winetalesmagazine.com"
+        }
+      ]
+    },
+    {
+      "id": 4921,
+      "name": "WINETASTE.IT",
+      "hq_branch_id": 5290,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Webmagazine dove vengono approfondite le tematiche legate al mondo del vino ",
+      "contact_details": [
+        {
+          "id": 48737,
+          "type": "email",
+          "value": "rgatti1906@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 4254,
+      "name": "WIRED",
+      "hq_branch_id": 4659,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        47144,
+        47149,
+        95704
+      ],
+      "mddr_annotations": "Attualità, internet, mobile, scienza, economia e altro - Stessa redazione del sito",
+      "contact_details": [
+        {
+          "id": 45270,
+          "type": "phone",
+          "value": "+39028563000"
+        },
+        {
+          "id": 45271,
+          "type": "phone",
+          "value": "+390285613356"
+        },
+        {
+          "id": 45272,
+          "type": "email",
+          "value": "elotto@condenast.it"
+        }
+      ]
+    },
+    {
+      "id": 5436,
+      "name": "WISESOCIETY.IT",
+      "hq_branch_id": 5781,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        14001,
+        23104,
+        29207,
+        29208
+      ],
+      "mddr_annotations": "Magazine online sul benessere e soluzioni per vivere meglio.",
+      "contact_details": [
+        {
+          "id": 50610,
+          "type": "phone",
+          "value": "+390245471407"
+        },
+        {
+          "id": 50611,
+          "type": "email",
+          "value": "redazione@wisesociety.it"
+        }
+      ]
+    },
+    {
+      "id": 4752,
+      "name": "WITALYMAG.COM",
+      "hq_branch_id": 5136,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        13158,
+        13160,
+        14001
+      ],
+      "mddr_annotations": "Blog Cibo, vini, lifestyle e eventi ",
+      "contact_details": [
+        {
+          "id": 47966,
+          "type": "phone",
+          "value": "+393356410256"
+        },
+        {
+          "id": 47967,
+          "type": "email",
+          "value": "luigi@luigicremona.it"
+        },
+        {
+          "id": 47968,
+          "type": "phone",
+          "value": "+393428629707"
+        },
+        {
+          "id": 47969,
+          "type": "email",
+          "value": "redazione@witaly.it"
+        }
+      ]
+    },
+    {
+      "id": 4807,
+      "name": "WOMAN & BRIDE",
+      "hq_branch_id": 3024,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        25133,
+        25135,
+        25137
+      ],
+      "mddr_annotations": "Moda sposi - Luxury Fashion & Wedding – Magazine Bilingue Italiano/Inglese - Altri siti: http://womanbrideblog.com/  - http://justmantopclass.com/",
+      "contact_details": [
+        {
+          "id": 24506,
+          "type": "phone",
+          "value": "+393483803956"
+        },
+        {
+          "id": 24507,
+          "type": "email",
+          "value": "info@womanbride.it"
+        }
+      ]
+    },
+    {
+      "id": 2468,
+      "name": "WOMAN & BRIDE.IT",
+      "hq_branch_id": 3024,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        25133,
+        25137
+      ],
+      "mddr_annotations": "Moda sposi - Luxury Fashion & Wedding – Magazine Bilingue Italiano/Inglese - Altri sito: http://justmantopclass.com/",
+      "contact_details": [
+        {
+          "id": 24506,
+          "type": "phone",
+          "value": "+393483803956"
+        },
+        {
+          "id": 24507,
+          "type": "email",
+          "value": "info@womanbride.it"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "WOMAN MADAME FIGARO",
+      "hq_branch_id": 60,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 148000,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        25133,
+        25137,
+        99001
+      ],
+      "mddr_annotations": "Revista de moda, belleza, actualidad y tendencias.",
+      "contact_details": [
+        {
+          "id": 105,
+          "type": "email",
+          "value": "woman@woman.es"
+        },
+        {
+          "id": 106,
+          "type": "phone",
+          "value": "+34934846600"
+        }
+      ]
+    },
+    {
+      "id": 4498,
+      "name": "WOMENEWS.NET",
+      "hq_branch_id": 4895,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        95504,
+        95508,
+        95509
+      ],
+      "mddr_annotations": "Testata online dell'Associazione Il Paese delle Donne che lavora da anni per informare sui temi legati alla condizione e diritti delle donne.\r\nPolitica ed Attualità. ",
+      "contact_details": [
+        {
+          "id": 46493,
+          "type": "email",
+          "value": "redazione@womenews.net"
+        },
+        {
+          "id": 46494,
+          "type": "phone",
+          "value": "+393470336462"
+        },
+        {
+          "id": 46495,
+          "type": "email",
+          "value": "paesedelledonne@libero.it"
+        }
+      ]
+    },
+    {
+      "id": 6386,
+      "name": "WONDER CORTINA",
+      "hq_branch_id": 6695,
+      "coverage_id": 4,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        96104
+      ],
+      "mddr_annotations": "Turismo d'èlite: offerta sportiva, mondana e culinaria di Cortina - 2 edizioni in versione bilingue italiano/inglese: Summer&Winter - Distribuito solo sul territorio Ampezzano nei 57 resort del Territorio e nelle più prestigiose residenze di Cortina. - ",
+      "contact_details": [
+        {
+          "id": 54175,
+          "type": "email",
+          "value": "info@platinummedialab.com"
+        }
+      ]
+    },
+    {
+      "id": 6800,
+      "name": "WONDERNETMAG.COM",
+      "hq_branch_id": 7081,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        14001,
+        25137
+      ],
+      "mddr_annotations": "Magazine online dove trovi tutte le news su moda, shopping, bellezza, lifestyle, attualità e spettacolo.",
+      "contact_details": [
+        {
+          "id": 55787,
+          "type": "email",
+          "value": "redazione@wondernetmag.com"
+        },
+        {
+          "id": 55788,
+          "type": "phone",
+          "value": "+390492701000"
+        }
+      ]
+    },
+    {
+      "id": 7330,
+      "name": "WORDNEWS.IT",
+      "hq_branch_id": 7582,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        95515,
+        99006,
+        99008
+      ],
+      "mddr_annotations": "Testata giornalistica on-line indipendente e irriverente di informazione ed inchieste - Tribunale di Roma (Aut. n. 11/2023 del 19/01/23) ",
+      "contact_details": [
+        {
+          "id": 57405,
+          "type": "email",
+          "value": "redazione@wordnews.it"
+        }
+      ]
+    },
+    {
+      "id": 6467,
+      "name": "WORLD FURNITURE – INTERNATIONAL MARKETS REVIEW",
+      "hq_branch_id": 6774,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        31121
+      ],
+      "mddr_annotations": "La rivista è in lingua inglese e offre contributi sui mercati internazionali del mobile e dell'arredamento, domanda e offerta, vendita al dettaglio e consumi, commercio, schede paese, sistemi competitivi, eventi internazionali, fiere ed esposizioni.",
+      "contact_details": [
+        {
+          "id": 54509,
+          "type": "email",
+          "value": "csil@csilmilano.com"
+        },
+        {
+          "id": 54510,
+          "type": "phone",
+          "value": "+3902796630"
+        }
+      ]
+    },
+    {
+      "id": 6330,
+      "name": "WORLDEXCELLENCE.IT",
+      "hq_branch_id": 6640,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        26163,
+        26165,
+        26166
+      ],
+      "mddr_annotations": "Finanza, assicurazioni e imprese nella sfida globale - Le news per i CEO ed i CFO di successo",
+      "contact_details": [
+        {
+          "id": 53981,
+          "type": "phone",
+          "value": "+390287386306"
+        },
+        {
+          "id": 53982,
+          "type": "email",
+          "value": "press@lefonti.it"
+        },
+        {
+          "id": 53983,
+          "type": "email",
+          "value": "redazione@lefonti.it"
+        }
+      ]
+    },
+    {
+      "id": 5780,
+      "name": "WORLDWINEPASSION.IT",
+      "hq_branch_id": 6112,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "Una Passione per il mondo Enogastronomico",
+      "contact_details": [
+        {
+          "id": 51970,
+          "type": "email",
+          "value": "augusto.gentilli@worldwinepassion.it"
+        }
+      ]
+    },
+    {
+      "id": 4576,
+      "name": "WU MAGAZINE",
+      "hq_branch_id": 4970,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        22112,
+        37122
+      ],
+      "mddr_annotations": "Personaggi, musica, cinema, eventi e lifestyle, moda designer - Free Press - Si può trovare in oltre 650 location selezionate a Milano, Torino, Bologna, Rimini, Lignano, Pordenone, Trieste, Firenze, Perugia, Roma, Napoli e Palermo.",
+      "contact_details": [
+        {
+          "id": 46910,
+          "type": "phone",
+          "value": "+390245491091"
+        },
+        {
+          "id": 46911,
+          "type": "phone",
+          "value": "+390289072469"
+        },
+        {
+          "id": 46912,
+          "type": "email",
+          "value": "info@wumagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 2991,
+      "name": "WWD.COM",
+      "hq_branch_id": 3471,
+      "coverage_id": 1,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        25137,
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Stati Uniti ) - In Lingua Inglese - Le mail hanno tutte il criterio ncognome@wwd.com ",
+      "contact_details": [
+        {
+          "id": 26324,
+          "type": "phone",
+          "value": "+39027223361"
+        },
+        {
+          "id": 26325,
+          "type": "email",
+          "value": "press@wwd.com"
+        }
+      ]
+    },
+    {
+      "id": 6755,
+      "name": "XL GIORNALE",
+      "hq_branch_id": 7043,
+      "coverage_id": 4,
+      "frequency_id": 26,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        99007
+      ],
+      "mddr_annotations": "Quindicinale free press - Attualità sul territorio ad est di Roma - Iscr. Tribunale di Roma 403/98 del 6 agosto 1998",
+      "contact_details": [
+        {
+          "id": 55615,
+          "type": "phone",
+          "value": "+390774336714"
+        },
+        {
+          "id": 55616,
+          "type": "email",
+          "value": "xlgiornale@tritype.it"
+        }
+      ]
+    },
+    {
+      "id": 1753,
+      "name": "XL SEMANAL",
+      "hq_branch_id": 2179,
+      "coverage_id": 2,
+      "frequency_id": 30,
+      "circulation": 1200000,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        14001,
+        99006
+      ],
+      "mddr_annotations": "Suplemento dominical XL Semanal.",
+      "contact_details": [
+        {
+          "id": 10983,
+          "type": "email",
+          "value": "xlsemanal@tallerdeeditores.com"
+        },
+        {
+          "id": 10984,
+          "type": "phone",
+          "value": "+3491 3421400"
+        }
+      ]
+    },
+    {
+      "id": 3565,
+      "name": "XYLON",
+      "hq_branch_id": 4003,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 4000,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        12158,
+        21122,
+        31120,
+        31121,
+        47144
+      ],
+      "mddr_annotations": "Bimestrale di tecnologia, commercio e artigianato del legno - Stessa redazione per Xylon International, bimestrale in inglese - 6 n. all'anno - ",
+      "contact_details": [
+        {
+          "id": 41222,
+          "type": "phone",
+          "value": "+390289210200"
+        },
+        {
+          "id": 41223,
+          "type": "email",
+          "value": "info@xylon.it"
+        }
+      ]
+    },
+    {
+      "id": 3734,
+      "name": "XYLON INTERNATIONAL",
+      "hq_branch_id": 4165,
+      "coverage_id": 2,
+      "frequency_id": 24,
+      "circulation": 0,
+      "printed_copies": 6000,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11149,
+        47144,
+        95803
+      ],
+      "mddr_annotations": "Dedicato a tutti i settori della tecnologia e delle forniture per l'industria, commercio e e artigianato del legno. - In lingua inglese - Stessa redazione Xylon",
+      "contact_details": [
+        {
+          "id": 42257,
+          "type": "phone",
+          "value": "+390289210200"
+        },
+        {
+          "id": 42258,
+          "type": "email",
+          "value": "info@xylon.it"
+        }
+      ]
+    },
+    {
+      "id": 6335,
+      "name": "YACHTDIGEST.COM",
+      "hq_branch_id": 6645,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        49183
+      ],
+      "mddr_annotations": "Portale web dedicato al mondo della nautica da diporto. - Testata registrata al Tribunale di Milano n.341 del 4/12/2015.",
+      "contact_details": [
+        {
+          "id": 54011,
+          "type": "phone",
+          "value": "+39025062456"
+        },
+        {
+          "id": 54012,
+          "type": "email",
+          "value": "info@theiym.com"
+        }
+      ]
+    },
+    {
+      "id": 4256,
+      "name": "YACHTING & LIVING CAPRI",
+      "hq_branch_id": 4661,
+      "coverage_id": 4,
+      "frequency_id": 1,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        11028,
+        14001,
+        49183
+      ],
+      "mddr_annotations": "Rivista che racconta gli appuntamenti sportivi e sociali più significativi della stagione a Capri, Ischia  e nel Golfo di Napoli in collaborazione con lo Yacht Club Capri - Esce 1 volta l'anno d'estate",
+      "contact_details": [
+        {
+          "id": 45287,
+          "type": "email",
+          "value": "info@pseeditore.it"
+        },
+        {
+          "id": 45288,
+          "type": "email",
+          "value": "redazione@pseeditore.it"
+        },
+        {
+          "id": 45289,
+          "type": "phone",
+          "value": "+390286453627"
+        },
+        {
+          "id": 45290,
+          "type": "phone",
+          "value": "+390280299091"
+        }
+      ]
+    },
+    {
+      "id": 3990,
+      "name": "YLEISRADIO TV",
+      "hq_branch_id": 4402,
+      "coverage_id": 1,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 44,
+      "outlet_subjects": [
+        99004
+      ],
+      "mddr_annotations": "(Nazione sede testata : Finlandia )",
+      "contact_details": [
+        {
+          "id": 43930,
+          "type": "phone",
+          "value": "+393514446867"
+        }
+      ]
+    },
+    {
+      "id": 4035,
+      "name": "YOGA-MAGAZINE.IT",
+      "hq_branch_id": 4446,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        29104,
+        29206,
+        29207,
+        29208
+      ],
+      "mddr_annotations": "Yoga, Meditazione, Spiritualità, Salute, Gli autori che scrivono sul portale non sono giornalisti ma professionisti del settore che lavorano gratuitamente ",
+      "contact_details": [
+        {
+          "id": 44068,
+          "type": "email",
+          "value": "info@yoga-magazine.it"
+        }
+      ]
+    },
+    {
+      "id": 889,
+      "name": "YOROKOBU",
+      "hq_branch_id": 761,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 10000,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        17131,
+        17140,
+        47149
+      ],
+      "mddr_annotations": "Publicación sobre creatividad, innovación y diseño ",
+      "contact_details": [
+        {
+          "id": 1540,
+          "type": "email",
+          "value": "yorokobu@yorokobu.es"
+        },
+        {
+          "id": 1541,
+          "type": "phone",
+          "value": "+34914 157 283"
+        }
+      ]
+    },
+    {
+      "id": 6900,
+      "name": "YOUBUILD",
+      "hq_branch_id": 7177,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11114,
+        11148,
+        51009
+      ],
+      "mddr_annotations": "YouBuild è il bimestrale di architettura tecnica per l’industria delle costruzioni: una rivista sul progettare, costruire e riqualificare in modo sostenibile edifici, infrastrutture città e territorio, anche demolendo e ricostruendo. Grande attenzione è posta all’innovazione del processo costruttivo e alla digitalizzazione del cantiere e delle imprese. Ma anche alla sicurezza, al lavoro e all’evoluzione delle professioni tecniche - 6 numeri l'anno",
+      "contact_details": [
+        {
+          "id": 56206,
+          "type": "phone",
+          "value": "+390247761275"
+        },
+        {
+          "id": 56207,
+          "type": "email",
+          "value": "info@vgambinoeditore.it"
+        }
+      ]
+    },
+    {
+      "id": 4460,
+      "name": "YOUMARK.IT",
+      "hq_branch_id": 4859,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        11026,
+        11027,
+        16160
+      ],
+      "mddr_annotations": "Marketing, comunicazione e multimedialità -Redazione contattabile solo via email",
+      "contact_details": [
+        {
+          "id": 46246,
+          "type": "email",
+          "value": "info@youmark.it"
+        }
+      ]
+    },
+    {
+      "id": 5802,
+      "name": "YOUMOVIES.IT",
+      "hq_branch_id": 6134,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        22112
+      ],
+      "mddr_annotations": "Sito dedicato al mondo del cinema",
+      "contact_details": [
+        {
+          "id": 52032,
+          "type": "email",
+          "value": "redazione@youmovies.it"
+        }
+      ]
+    },
+    {
+      "id": 5470,
+      "name": "YOUNGCLASSIC",
+      "hq_branch_id": 5811,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        33152,
+        95101
+      ],
+      "mddr_annotations": "Macchine da collezione - youngtimer/autoclassiche . Sede Legale: Via Fiume 24, 00144 Roma Telefono 0652999029",
+      "contact_details": [
+        {
+          "id": 50771,
+          "type": "email",
+          "value": "redazione@youngclassic.aci.it"
+        }
+      ]
+    },
+    {
+      "id": 4532,
+      "name": "YOUTRADE",
+      "hq_branch_id": 4927,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11148,
+        95803
+      ],
+      "mddr_annotations": "Tendenze e Attualità dell'industria edile - 10 numeri l'anno - Altro sito:http://www.constructionb2b.it/ ",
+      "contact_details": [
+        {
+          "id": 46635,
+          "type": "phone",
+          "value": "+390247761275"
+        },
+        {
+          "id": 46636,
+          "type": "email",
+          "value": "info@vgambinoeditore.it"
+        }
+      ]
+    },
+    {
+      "id": 6376,
+      "name": "YOUWINEMAGAZINE.IT",
+      "hq_branch_id": 6685,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        13160
+      ],
+      "mddr_annotations": "Blog sul mondo del vino di Alberto Grasso",
+      "contact_details": [
+        {
+          "id": 54142,
+          "type": "email",
+          "value": "alberto.grasso@youwinemagazine.it"
+        },
+        {
+          "id": 54143,
+          "type": "email",
+          "value": "redazione@youwinemagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 7317,
+      "name": "YTALI.COM",
+      "hq_branch_id": 7569,
+      "coverage_id": 4,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        17137,
+        41126,
+        99007
+      ],
+      "mddr_annotations": "Un magazine online di cultura e politica con base a Venezia, città del mondo, alle cui vicende dedica particolare attenzione. - Testata giornalistica registrata presso il Tribunale di Venezia n. 4/2015 il 21 settembre 2015. ",
+      "contact_details": [
+        {
+          "id": 57370,
+          "type": "email",
+          "value": "redazione@ytali.com"
+        }
+      ]
+    },
+    {
+      "id": 3949,
+      "name": "ZAFFERANO MAGAZINE",
+      "hq_branch_id": 4363,
+      "coverage_id": 2,
+      "frequency_id": 24,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        13158,
+        13160
+      ],
+      "mddr_annotations": "Ristorazione e Gastronomia",
+      "contact_details": [
+        {
+          "id": 43567,
+          "type": "phone",
+          "value": "+390499620565"
+        },
+        {
+          "id": 43568,
+          "type": "email",
+          "value": "info@zafferano.org"
+        },
+        {
+          "id": 43569,
+          "type": "email",
+          "value": "info@studioverde.it"
+        }
+      ]
+    },
+    {
+      "id": 4929,
+      "name": "ZAGUFASHION.COM",
+      "hq_branch_id": 5298,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        14001,
+        25133,
+        25137,
+        91003
+      ],
+      "mddr_annotations": "Fashion, Beauty, Lifestyle",
+      "contact_details": [
+        {
+          "id": 48755,
+          "type": "email",
+          "value": "cocovalentina@yahoo.it"
+        },
+        {
+          "id": 48756,
+          "type": "email",
+          "value": "vale.zagu@yahoo.com"
+        }
+      ]
+    },
+    {
+      "id": 5863,
+      "name": "ZAI.NET",
+      "hq_branch_id": 6192,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        95520
+      ],
+      "mddr_annotations": "L'unica rivista scritta dai ragazzi per i ragazzi: idee, fatti, parole, sogni e bisogni di una generazione e forse più. - 9 n. l'anno - Altre redazioni: Genova: Corso Gastaldi 16124 GE - tel. 010.8936284 - 010.8937769  email: redazione.liguria@zai.net. Roma: Via Nazionale 5, 00184 Roma - tel.06.47881106 email: redazione.roma@zai.net - distribuito ogni mese nelle scuole superiori italiane",
+      "contact_details": [
+        {
+          "id": 52249,
+          "type": "email",
+          "value": "redazione@zai.net"
+        }
+      ]
+    },
+    {
+      "id": 6470,
+      "name": "ZAMPOTTA PET BUSINESS",
+      "hq_branch_id": 6777,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        33154
+      ],
+      "mddr_annotations": "Magazine mensile di informazione per operatori del settore dei prodotti e dei servizi dedicati agli animali da compagnia. - Con il magazine vengono periodicamente distribuite guide monografiche di approfondimento",
+      "contact_details": [
+        {
+          "id": 54518,
+          "type": "phone",
+          "value": "+39031301059"
+        },
+        {
+          "id": 54519,
+          "type": "email",
+          "value": "info@zampottapetbusiness.com"
+        }
+      ]
+    },
+    {
+      "id": 4822,
+      "name": "ZAZOOM.IT",
+      "hq_branch_id": 5200,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        99006
+      ],
+      "mddr_annotations": "Zazoom it è un Network Divulgativo. Social news, Social Bookmarking e portale di Giornalismo Partecipativo",
+      "contact_details": [
+        {
+          "id": 48263,
+          "type": "email",
+          "value": "info@zazoom.it"
+        }
+      ]
+    },
+    {
+      "id": 5437,
+      "name": "ZENAZONE.IT",
+      "hq_branch_id": 5782,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        11028,
+        13158,
+        17137,
+        23115,
+        26169,
+        49187,
+        96104
+      ],
+      "mddr_annotations": "Attualita', eventi ed appuntamenti a Genova e provincia - Testata giornalistica online Tribunale di Genova (n.01/2007)",
+      "contact_details": [
+        {
+          "id": 50612,
+          "type": "phone",
+          "value": "+390103198091"
+        },
+        {
+          "id": 50613,
+          "type": "email",
+          "value": "info@zenazone.it"
+        }
+      ]
+    },
+    {
+      "id": 7308,
+      "name": "ZERKALO SPETTACOLO.COM",
+      "hq_branch_id": 7560,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        11028,
+        22113
+      ],
+      "mddr_annotations": "Periodico online di spettacoli ed eventi registrato al tribunale di Roma n.160/2018",
+      "contact_details": [
+        {
+          "id": 57346,
+          "type": "email",
+          "value": "robpun82@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 3483,
+      "name": "ZERO SOTTO ZERO",
+      "hq_branch_id": 3928,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        31124
+      ],
+      "mddr_annotations": "Settore del Freddo: refrigerazione commerciale e industriale",
+      "contact_details": [
+        {
+          "id": 40516,
+          "type": "phone",
+          "value": "+3902390901"
+        }
+      ]
+    },
+    {
+      "id": 5438,
+      "name": "ZEROGRADINORD.NET",
+      "hq_branch_id": 5783,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        49183
+      ],
+      "mddr_annotations": "Quotidiano on-line dedicato al mondo della vela e delle regate. ",
+      "contact_details": [
+        {
+          "id": 50616,
+          "type": "phone",
+          "value": "+393663421743"
+        },
+        {
+          "id": 50617,
+          "type": "email",
+          "value": "info@zerogradinord.it"
+        }
+      ]
+    },
+    {
+      "id": 4911,
+      "name": "ZEROSETTE.IT",
+      "hq_branch_id": 5281,
+      "coverage_id": 4,
+      "frequency_id": 26,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Il portale d'informazione di Parma e Provincia . Free Press quindicinale scaricabile dal sito",
+      "contact_details": [
+        {
+          "id": 48628,
+          "type": "phone",
+          "value": "+393356190400"
+        },
+        {
+          "id": 48629,
+          "type": "email",
+          "value": "redazione@zerosette.it"
+        }
+      ]
+    },
+    {
+      "id": 2686,
+      "name": "ZEROUNO",
+      "hq_branch_id": 1198,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        16106
+      ],
+      "mddr_annotations": "Punto di riferimento dei CIO in Italia per l'analisi, l'approfondimento e l'aggiornamento dell'evoluzione Ict applicata all'organizzazione e al business di impresa  -",
+      "contact_details": [
+        {
+          "id": 25521,
+          "type": "email",
+          "value": "redazione@zerounoweb.it"
+        },
+        {
+          "id": 25522,
+          "type": "phone",
+          "value": "+393441872448"
+        }
+      ]
+    },
+    {
+      "id": 5439,
+      "name": "ZEROVENTIQUATTRO.IT",
+      "hq_branch_id": 5784,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        12157,
+        12158,
+        23104,
+        26165,
+        47149
+      ],
+      "mddr_annotations": "Portale di Informazione dedicato al Business, alle Imprese e al Territorio",
+      "contact_details": [
+        {
+          "id": 50619,
+          "type": "phone",
+          "value": "+393203185383"
+        },
+        {
+          "id": 50620,
+          "type": "email",
+          "value": "redazione@zeroventiquattro.it"
+        }
+      ]
+    },
+    {
+      "id": 3299,
+      "name": "ZETA",
+      "hq_branch_id": 3757,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11027,
+        17122,
+        17130,
+        17131,
+        17133,
+        17137,
+        95204
+      ],
+      "mddr_annotations": "RIVISTA INTERNAZIONALE DI POESIA ED ARTI VISIVE - 2 n. l'anno ma e' possibile che le uscite subiscano delle variazioni ",
+      "contact_details": [
+        {
+          "id": 27134,
+          "type": "phone",
+          "value": "+390432699390"
+        }
+      ]
+    },
+    {
+      "id": 3287,
+      "name": "ZETT GIORNALE DELLA DOMENICA",
+      "hq_branch_id": 3746,
+      "coverage_id": 4,
+      "frequency_id": 30,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Esce la domenica. Alle notizie sul mondo e alla cronaca del territorio del Sudtirolo, affianca pagine di attualità sugli avvenimenti più importanti della settimana.",
+      "contact_details": [
+        {
+          "id": 27091,
+          "type": "phone",
+          "value": "+390471925500"
+        },
+        {
+          "id": 27092,
+          "type": "email",
+          "value": "zett@athesia.it"
+        }
+      ]
+    },
+    {
+      "id": 2113,
+      "name": "ZEUSI",
+      "hq_branch_id": 2552,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        17104
+      ],
+      "mddr_annotations": "Arte e Cultura Contemporanea - Rivista progettata dall'istituto di storia dell’arte dell’accademia di belle arti di Napoli",
+      "contact_details": [
+        {
+          "id": 53350,
+          "type": "phone",
+          "value": "+39081441887"
+        },
+        {
+          "id": 53351,
+          "type": "email",
+          "value": "info@arte-m.net"
+        }
+      ]
+    },
+    {
+      "id": 207,
+      "name": "ZEUSNEWS.IT",
+      "hq_branch_id": 179,
+      "coverage_id": 2,
+      "frequency_id": 2,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 62,
+      "outlet_subjects": [
+        16109,
+        16136,
+        16145,
+        94112
+      ],
+      "mddr_annotations": "Zeus News è un notiziario dedicato a quanto avviene nel mondo di Internet, dell'informatica, delle nuove tecnologie e della telefonia fissa e mobile",
+      "contact_details": [
+        {
+          "id": 50622,
+          "type": "email",
+          "value": "press@zeusnews.com"
+        },
+        {
+          "id": 50623,
+          "type": "phone",
+          "value": "+390245486360"
+        }
+      ]
+    },
+    {
+      "id": 1031,
+      "name": "ZIGZAG DIGITAL.COM",
+      "hq_branch_id": 889,
+      "coverage_id": 4,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "La web de información de Pinto, Ciempozuelos, San Martín de la Vega, Valdemoro, Parla y Madrid Sur.",
+      "contact_details": [
+        {
+          "id": 1807,
+          "type": "email",
+          "value": "info@zigzagdigital.com"
+        },
+        {
+          "id": 1808,
+          "type": "phone",
+          "value": "+34916928888"
+        }
+      ]
+    },
+    {
+      "id": 5440,
+      "name": "ZIPNEWS.IT",
+      "hq_branch_id": 5785,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Zipnews.it è un giornale on line, aggiornato in tempo reale con le notizie dal Piemonte, in particolare da Torino, Asti e Cuneo - Periodico quotidiano zipnews.it Reg. Tribunale di Torino il 27/12/2006 al n. 94/6027",
+      "contact_details": [
+        {
+          "id": 50624,
+          "type": "phone",
+          "value": "+390115611726"
+        },
+        {
+          "id": 50625,
+          "type": "email",
+          "value": "redazione@zipnews.it"
+        }
+      ]
+    },
+    {
+      "id": 6295,
+      "name": "ZMEDIA.IT",
+      "hq_branch_id": 6608,
+      "coverage_id": 4,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Zmedia è una testata giornalistica online indipendente, nata con l’obiettivo di offrire un’informazione puntuale, approfondita e libera da condizionamenti.",
+      "contact_details": [
+        {
+          "id": 53871,
+          "type": "email",
+          "value": "redazione@zmedia.it"
+        }
+      ]
+    },
+    {
+      "id": 839,
+      "name": "ZOEMAGAZINE.NET",
+      "hq_branch_id": 716,
+      "coverage_id": 2,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        25133,
+        25137
+      ],
+      "mddr_annotations": "Online di moda in lingua inglese - Registrazione Testata giornalistica online del Tribunale di Palermo n. 14 del 10/07/2002",
+      "contact_details": [
+        {
+          "id": 51105,
+          "type": "phone",
+          "value": "+390912741420"
+        },
+        {
+          "id": 51106,
+          "type": "email",
+          "value": "zoemagazine.italy@gmail.com"
+        }
+      ]
+    },
+    {
+      "id": 5749,
+      "name": "ZONALOCALE.IT",
+      "hq_branch_id": 6082,
+      "coverage_id": 4,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        99007
+      ],
+      "mddr_annotations": "Notizie di Vasto, San Salvo e Val di Sangro - Registrazione presso il tribunale di Vasto n°134 del 20/09/2012",
+      "contact_details": [
+        {
+          "id": 51841,
+          "type": "email",
+          "value": "redazione@zonalocale.it"
+        }
+      ]
+    },
+    {
+      "id": 4412,
+      "name": "ZOOM ON FASHION TRENDS",
+      "hq_branch_id": 4814,
+      "coverage_id": 2,
+      "frequency_id": 29,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        25127,
+        25137,
+        25138
+      ],
+      "mddr_annotations": "Strumento di lavoro nel corso della costruzione della collezione.",
+      "contact_details": [
+        {
+          "id": 45982,
+          "type": "phone",
+          "value": "+390516389561"
+        },
+        {
+          "id": 45983,
+          "type": "email",
+          "value": "info@nuovalibra.com"
+        }
+      ]
+    },
+    {
+      "id": 7120,
+      "name": "ZOOM24.IT",
+      "hq_branch_id": 7383,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Dentro la Calabria. Notizie, foto e video in tempo reale con la tempestività di un'agenzia",
+      "contact_details": [
+        {
+          "id": 56821,
+          "type": "phone",
+          "value": "+39096343975"
+        },
+        {
+          "id": 56822,
+          "type": "email",
+          "value": "redazione@zoom24.it"
+        }
+      ]
+    },
+    {
+      "id": 5528,
+      "name": "ZOOMSUD.IT",
+      "hq_branch_id": 5868,
+      "coverage_id": 4,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        99007
+      ],
+      "mddr_annotations": "Quotidiano di informazione online della Calabria - Email generica non disponibile",
+      "contact_details": [
+        {
+          "id": 50999,
+          "type": "email",
+          "value": "redazione@zoomsud.it"
+        }
+      ]
+    },
+    {
+      "id": 4360,
+      "name": "ZOOTECNICA RIVISTA AVICOLA",
+      "hq_branch_id": 4762,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        31012,
+        31058
+      ],
+      "mddr_annotations": "Avicoltura Scientifica e Tecnologia di Allevamento -In lingua Inglese e italiana - 11 numeri l'anno",
+      "contact_details": [
+        {
+          "id": 45769,
+          "type": "email",
+          "value": "zootecnica@zootecnica.it"
+        },
+        {
+          "id": 45770,
+          "type": "phone",
+          "value": "+390550107041"
+        }
+      ]
+    },
+    {
+      "id": 4728,
+      "name": "ZZAP!",
+      "hq_branch_id": 5113,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        16107
+      ],
+      "mddr_annotations": "Si occupano di videogiochi e sistemi di gioco vintage",
+      "contact_details": [
+        {
+          "id": 47860,
+          "type": "email",
+          "value": "contatti@zzapmagazine.it"
+        }
+      ]
+    },
+    {
+      "id": 3192,
+      "name": "d LA REPUBBLICA (LA REPUBBLICA)",
+      "hq_branch_id": 3658,
+      "coverage_id": 2,
+      "frequency_id": 30,
+      "circulation": 129606,
+      "printed_copies": 106798,
+      "media_type_id": 54,
+      "outlet_subjects": [
+        14001,
+        25137,
+        99001,
+        99006
+      ],
+      "mddr_annotations": "News di attualità, moda, amore, casa e cucina. Esce il sabato. Si vende esclusivamente con La Repubblica - ESISTE ALTRA SCHEDA PER IL SITO: D.IT (LA REPUBBLICA)",
+      "contact_details": [
+        {
+          "id": 26847,
+          "type": "email",
+          "value": "d.magazine@repubblica.it"
+        },
+        {
+          "id": 26848,
+          "type": "phone",
+          "value": "+3902480986301"
+        }
+      ]
+    },
+    {
+      "id": 3520,
+      "name": "e20",
+      "hq_branch_id": 2949,
+      "coverage_id": 2,
+      "frequency_id": 31,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        11001,
+        11025,
+        11027
+      ],
+      "mddr_annotations": "Il primo giornale di eventi e sponsorizzazioni - Periodico E20 e Quotidiano online E20EXPRESS.IT",
+      "contact_details": [
+        {
+          "id": 24297,
+          "type": "phone",
+          "value": "+390249766316"
+        },
+        {
+          "id": 24298,
+          "type": "phone",
+          "value": "+390249766300"
+        },
+        {
+          "id": 24299,
+          "type": "email",
+          "value": "e20@adcgroup.it"
+        }
+      ]
+    },
+    {
+      "id": 2390,
+      "name": "e20EXPRESS.IT",
+      "hq_branch_id": 2949,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        11001,
+        11027
+      ],
+      "mddr_annotations": "Il primo giornale di eventi e sponsorizzazioni  -   Periodico Bimestrale E20 e Quotidiano online E20EXPRESS.IT ",
+      "contact_details": [
+        {
+          "id": 24297,
+          "type": "phone",
+          "value": "+390249766316"
+        },
+        {
+          "id": 24298,
+          "type": "phone",
+          "value": "+390249766300"
+        },
+        {
+          "id": 24299,
+          "type": "email",
+          "value": "e20@adcgroup.it"
+        }
+      ]
+    },
+    {
+      "id": 6733,
+      "name": "iMEAT GIORNALE",
+      "hq_branch_id": 7021,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        13117,
+        13158,
+        13160,
+        95405
+      ],
+      "mddr_annotations": "Magazine che si rivolge alle macellerie/gastronomie con spazio dedicato ai vini",
+      "contact_details": [
+        {
+          "id": 55523,
+          "type": "phone",
+          "value": "+390331518056"
+        },
+        {
+          "id": 55524,
+          "type": "email",
+          "value": "info@imeat.it"
+        }
+      ]
+    },
+    {
+      "id": 7020,
+      "name": "weArch",
+      "hq_branch_id": 7288,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        17137,
+        51009
+      ],
+      "mddr_annotations": "Sito web di architettura e cultura - ISSN 2611-8777 - 131.712 utenti attivi / 202.306 visualizzazioni negli ultimi 12 mesi (dati Google Analytics)",
+      "contact_details": [
+        {
+          "id": 56579,
+          "type": "email",
+          "value": "redazione@wearch.eu"
+        }
+      ]
+    },
+    {
+      "id": 1521,
+      "name": "ÁREAVISUAL.ORG",
+      "hq_branch_id": 1866,
+      "coverage_id": 2,
+      "frequency_id": 28,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        10103,
+        10126,
+        22112
+      ],
+      "mddr_annotations": "Comunidad de profesionales del audiovisual y directivos de las televisiones iberoamericanas. Se pueden publicar notas de prensa sin pasar por la redacción. www.areavisual.org-.cat ",
+      "contact_details": [
+        {
+          "id": 9436,
+          "type": "email",
+          "value": "areavisual.org@gmail.com"
+        },
+        {
+          "id": 9437,
+          "type": "email",
+          "value": "areavisual@areavisual.com"
+        },
+        {
+          "id": 9438,
+          "type": "email",
+          "value": "areavisual4@gmail.com"
+        },
+        {
+          "id": 9439,
+          "type": "phone",
+          "value": "+34932375411"
+        }
+      ]
+    },
+    {
+      "id": 7197,
+      "name": "ÈNORDEST.IT",
+      "hq_branch_id": 7455,
+      "coverage_id": 4,
+      "frequency_id": null,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 61,
+      "outlet_subjects": [
+        96006,
+        99007
+      ],
+      "mddr_annotations": "Tutti i giorni alla scoperta del Triveneto con le notizie, le proposte, la gente, le aziende, la terra e le eccellenze. éNordEst è una Testata giornalistica registrata presso il Tribunale di Venezia n. 17/2011, iscrizione al ROC 30954",
+      "contact_details": [
+        {
+          "id": 57060,
+          "type": "email",
+          "value": "info@enordest.it"
+        },
+        {
+          "id": 57061,
+          "type": "phone",
+          "value": "+390415725873"
+        }
+      ]
+    },
+    {
+      "id": 4408,
+      "name": "ÈUREKA!",
+      "hq_branch_id": 4810,
+      "coverage_id": 2,
+      "frequency_id": 3,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 52,
+      "outlet_subjects": [
+        27127,
+        47149,
+        81002
+      ],
+      "mddr_annotations": "Automazione, Strumentazione, Trasformazione digitale, Energia - La testata cartacea è sfogliabile anche sul sito https://www.tecnelab.it/riviste/eureka - Altro sito: http://www.openfactory.eu",
+      "contact_details": [
+        {
+          "id": 45954,
+          "type": "phone",
+          "value": "+390249517731"
+        },
+        {
+          "id": 45955,
+          "type": "email",
+          "value": "info@openfactory.eu"
+        },
+        {
+          "id": 45956,
+          "type": "phone",
+          "value": "+390249517730"
+        }
+      ]
+    },
+    {
+      "id": 1292,
+      "name": "ÜALÀ",
+      "hq_branch_id": 1126,
+      "coverage_id": 2,
+      "frequency_id": 7,
+      "circulation": 0,
+      "printed_copies": 0,
+      "media_type_id": 51,
+      "outlet_subjects": [
+        33156
+      ],
+      "mddr_annotations": "Revista de ocio y cultura de Alicante y Elche",
+      "contact_details": [
+        {
+          "id": 2274,
+          "type": "email",
+          "value": "redaccion@revistauala.com"
+        },
+        {
+          "id": 2275,
+          "type": "phone",
+          "value": "+34965201763"
+        }
+      ]
+    }
+  ]
+}

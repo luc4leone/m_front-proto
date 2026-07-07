@@ -1,0 +1,4 @@
+.card-label {
+  font-size: var(--text-sm);
+  color: var(--text-zinc-500);
+}

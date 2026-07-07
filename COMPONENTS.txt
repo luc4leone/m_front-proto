@@ -1,0 +1,51 @@
+# Components
+
+## Text
+
+def Text {text, font-size, font-weight, color, font-family, text-transform, font-style, line-height}
+
+defaults:
+  font-size:      text-base   → var(--text-base)
+  font-weight:    font-normal → var(--font-normal)
+  color:          text-grey-500 → var(--text-zinc-500)
+  font-family:    font-sans   → var(--font-sans)
+  text-transform: normal-case → none
+  font-style:     not-italic  → var(--not-italic)
+  line-height:    leading-5   → var(--leading-5)
+
+def Link {text, font-size, font-weight, color, font-family, text-transform, font-style, line-height, text-decoration-thickness, text-decoration-style, text-decoration-color, text-decoration-line}
+
+defaults:
+  font-size:                text-base        → var(--text-base)
+  font-weight:              font-normal      → var(--font-normal)
+  color:                    text-blue-500    → var(--text-blue-500)
+  font-family:              font-sans        → var(--font-sans)
+  text-transform:           normal-case      → none
+  font-style:               not-italic       → var(--not-italic)
+  line-height:              leading-5        → var(--leading-5)
+  text-decoration-line:     underline        → var(--underline)
+  text-decoration-style:    solid            → var(--solid)
+  text-decoration-thickness: decoration-auto → var(--decoration-auto)
+  text-decoration-color:    decoration-inherit → var(--decoration-inherit)
+}
+
+## Icon
+
+def Icon {icon, size, color}
+
+defaults:
+  size:  h-6 w-6
+  color: text-zinc-500
+
+
+
+
+## Item-link
+def Item-link: è un [Link font-hand]
+
+## Item-head
+def Item-head: è row gap-8 [Icon][Text text-lg font-hand font-semibold]
+
+## Index-item
+def Index-item: è stack gap-12 [Item-head][Item-link]
+

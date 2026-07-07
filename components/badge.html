@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badge</title>
+  <meta name="description" content="Componente badge." />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="showcase.css" />
+  <link rel="stylesheet" href="badge.css" />
+  <link rel="stylesheet" href="badge-with-led.css" />
+</head>
+<body>
+
+  <div class="showcase">
+    <h1>badge</h1>
+
+    <div class="showcase__cases">
+
+    <div class="showcase__case">
+      <p>Stato predefinito. Nota che on mouse over non c'è alcun effetto e il cursore non diventa "text"</p>
+      <div class="showcase__display">
+        <span class="badge">12 articoli</span>
+      </div>
+    </div>
+
+    <div class="showcase__case">
+      <p>Con led verde:</p>
+      <div class="showcase__display">
+        <span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>aperto</span>
+      </div>
+    </div>
+
+    <div class="showcase__case">
+      <p>Con led rosso:</p>
+      <div class="showcase__display">
+        <span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--red" aria-hidden="true"></span>errore</span>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

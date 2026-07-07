@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>chip</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="showcase.css" />
+  <link rel="stylesheet" href="chip.css" />
+</head>
+<body>
+
+  <div class="showcase">
+    <h1>chip</h1>
+
+    <div class="showcase__cases">
+
+      <div class="showcase__case">
+        <p>Default — label con pulsante di rimozione:</p>
+        <div class="showcase__display">
+          <span class="chip">
+            Categoria A
+            <button type="button" class="chip__remove" aria-label="Rimuovi">
+              <img src="../assets/icons/delete.svg" alt="" />
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="showcase__case">
+        <p>Con led, attivo</p>
+        <div class="showcase__display">
+          <span class="chip chip--attivo">
+            <span class="chip__body">
+              <span class="chip__led"></span>
+              attivo
+            </span>
+            <button type="button" class="chip__remove" aria-label="Rimuovi">
+              <img src="../assets/icons/delete.svg" alt="" />
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="showcase__case">
+        <p>Con led, non attivo:</p>
+        <div class="showcase__display">
+          <span class="chip">
+            <span class="chip__body">
+              <span class="chip__led"></span>
+              non attivo
+            </span>
+            <button type="button" class="chip__remove" aria-label="Rimuovi">
+              <img src="../assets/icons/delete.svg" alt="" />
+            </button>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

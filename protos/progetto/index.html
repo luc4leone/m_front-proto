@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progetto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="
+      this.onload = null;
+      this.rel = 'stylesheet';
+    "
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <link rel="stylesheet" href="../../components/badge.css" />
+  <link rel="stylesheet" href="../../components/meta-item.css" />
+  <link rel="stylesheet" href="../../components/form-elements.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
+  <link rel="stylesheet" href="../../components/tabs.css" />
+  <link rel="stylesheet" href="../../components/stats.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    <aside class="app-layout__sidebar">
+      <div id="sidebar"></div>
+    </aside>
+
+    <main class="app-layout__main">
+      <div class="project-view">
+        <header class="project-header">
+          <div class="project-header__top">
+            <div class="project-header__title-edit" data-project-title>
+              <h1 class="project-header__title">Progetto Draghi</h1>
+              <input
+                class="project-header__title-input"
+                type="text"
+                value="Progetto Draghi"
+                aria-label="Titolo progetto"
+              />
+            </div>
+            <div class="project-header__actions" aria-label="Azioni progetto">
+
+            <div class="project-header__share">
+              <span class="project-header__status">
+                <img src="../../assets/icons/lock.svg" alt="" aria-hidden="true" />
+                progetto privato
+              </span>
+              <button type="button" class="action-link" id="edit-collaborators-btn">
+                <span class="action-link__icon" aria-hidden="true">
+                  <img src="../../assets/icons/edit.svg" alt="" />
+                </span>
+                <span class="action-link__label">modifica</span>
+              </button>
+            </div>
+
+              <button type="button" class="action-link" id="invite-guest-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/share.svg" alt="" /></span>
+                <span class="action-link__label">invita ospite</span>
+              </button>
+              <button type="button" class="action-link" id="send-report-btn">
+                <span class="action-link__icon" aria-hidden="true">
+                  <img src="../../assets/icons/send_report.svg" alt="" />
+                </span>
+                <span class="action-link__label">invia report</span>
+              </button>
+            </div>
+          </div>
+
+          <dl class="meta" aria-label="Metadati progetto">
+            <div class="meta__item">
+              <dt class="meta__label">Ultima modifica</dt>
+              <dd class="meta__value">17/6/2025</dd>
+            </div>
+            <div class="meta__item">
+              <dt class="meta__label">Autore</dt>
+              <dd class="meta__value">Fabio</dd>
+            </div>
+            <div class="meta__group">
+              <div class="meta__item">
+                <dt class="meta__label">Ospite</dt>
+                <dd class="meta__value">Ilaria</dd>
+              </div>
+            </div>
+          </dl>
+        </header>
+
+        <div class="project-view__body">
+          <div id="section-tabs"></div>
+          <div id="tab-content"></div>
+
+          <div id="press-releases-content">
+          <!-- PRESS RELEASE 1 (3 blocchi metadati+statistiche) -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Il Politecnico di Torino premia Draghi</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">21/6/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="701" data-base="701">701</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="682" data-base="682">682</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="19" data-percent="2.78">19</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="81" data-percent="11.9">81</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="19" data-base="19">19</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">24/6/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="712" data-base="712">712</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="695" data-base="695">695</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="34" data-percent="4.89">34</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="78" data-percent="11.2">78</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="17" data-base="17">17</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">28/6/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="730" data-base="730">730</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="710" data-base="710">710</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="42" data-percent="5.92">42</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="65" data-percent="9.15">65</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="20" data-base="20">20</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Corriere della Sera</div><h4 class="article-card__title"><a href="#">Draghi sei inarrestabile!</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">21/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Corriere della Sera</div><h4 class="article-card__title"><a href="#">Draghi sempre il primo della classe boooh!</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">21/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Il Politecnico celebra Draghi: un esempio per i giovani</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">22/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Premio a Draghi, Torino rende omaggio all'economista</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">22/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">Draghi al Poli: "L'Europa riparta dalla ricerca"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">23/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Draghi riceve la laurea honoris causa</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">23/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">Torino premia Draghi tra gli applausi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">24/6/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Onorificenza al Politecnico per Mario Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">24/6/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- PRESS RELEASE 2 (3 blocchi metadati+statistiche) -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Draghi vince il Premio Nazionale per l'Innovazione</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">3/7/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="820" data-base="820">820</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="798" data-base="798">798</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="56" data-percent="7.02">56</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="92" data-percent="11.5">92</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="22" data-base="22">22</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">5/7/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="835" data-base="835">835</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="810" data-base="810">810</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="61" data-percent="7.53">61</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="88" data-percent="10.9">88</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="25" data-base="25">25</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">8/7/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="850" data-base="850">850</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="829" data-base="829">829</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="73" data-percent="8.80">73</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="75" data-percent="9.05">75</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="21" data-base="21">21</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">Premio Innovazione 2025: riconoscimento a Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">4/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Draghi tra i protagonisti dell'innovazione italiana</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">4/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Corriere della Sera</div><h4 class="article-card__title"><a href="#">Mario Draghi riceve il Premio Nazionale Innovazione</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">5/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Il discorso di Draghi: "Innovare o restare indietro"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">5/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Draghi premiato: l'Italia che guarda al futuro</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">6/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">Un premio al merito: Draghi e la ricerca</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">6/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Draghi: "L'innovazione è un dovere civile"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">7/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Libero</div><h4 class="article-card__title"><a href="#">Riconoscimento nazionale per Mario Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">8/7/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- PRESS RELEASE 3 -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Nuova partnership tra Draghi e il MIT</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">15/7/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="645" data-base="645">645</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="628" data-base="628">628</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="41" data-percent="6.53">41</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="59" data-percent="9.39">59</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="17" data-base="17">17</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Corriere della Sera</div><h4 class="article-card__title"><a href="#">Accordo Draghi-MIT: ricerca senza confini</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">16/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Draghi firma l'intesa con Boston</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">16/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">MIT-Draghi: ponte tra Italia e USA</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">17/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Nasce il network Draghi-MIT</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">17/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Draghi: "Il MIT è un modello da seguire"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">18/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">Cooperazione accademica: l'annuncio di Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">18/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Scienza e politica: il patto Draghi-MIT</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">19/7/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Libero</div><h4 class="article-card__title"><a href="#">Draghi vola a Boston per la firma</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">19/7/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- PRESS RELEASE 4 -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Draghi lancia la Fondazione per la Ricerca</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">2/8/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="580" data-base="580">580</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="561" data-base="561">561</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="33" data-percent="5.88">33</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="47" data-percent="8.38">47</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="19" data-base="19">19</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Corriere della Sera</div><h4 class="article-card__title"><a href="#">Nasce la Fondazione Draghi per la Ricerca</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">3/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Draghi investe nella scienza: ecco la sua fondazione</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">3/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">Fondazione Draghi: 50 milioni per i giovani ricercatori</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">4/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Draghi: "La ricerca è il futuro del Paese"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">4/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Una nuova fondazione per sostenere la scienza italiana</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">5/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">La visione di Draghi: investire nei talenti</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">5/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Draghi apre la Fondazione: via ai primi bandi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">6/8/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Libero</div><h4 class="article-card__title"><a href="#">Fondazione Draghi, un'operazione da 50 milioni</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">6/8/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- PRESS RELEASE 5 -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Il convegno annuale Draghi apre le iscrizioni</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">10/9/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="920" data-base="920">920</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="895" data-base="895">895</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="88" data-percent="9.83">88</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="102" data-percent="11.4">102</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="25" data-base="25">25</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Corriere della Sera</div><h4 class="article-card__title"><a href="#">Al via il convegno Draghi: tutti gli ospiti</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">11/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Convegno Draghi: iscrizioni aperte fino a ottobre</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">11/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">Economia e futuro al convegno Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">12/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Il programma completo del convegno Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">12/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Draghi annuncia i temi del convegno 2025</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">13/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">Convegno Draghi: si parla di lavoro e giovani</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">13/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Tutti i relatori del convegno Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">14/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Libero</div><h4 class="article-card__title"><a href="#">Draghi chiama a raccolta economisti e policy maker</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">14/9/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- PRESS RELEASE 6 -->
+          <section class="press-release" aria-label="Comunicati">
+            <div class="press-release__header">
+              <h3>
+                <a href="#">Draghi ottiene il riconoscimento europeo per la leadership</a>
+              </h3>
+              <button type="button" class="press-release__toggle" aria-expanded="true" aria-label="Mostra/nascondi contenuto">
+                <img src="../../assets/icons/arrow_drop_down.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="press-release__body">
+              <dl class="meta press-release__collapsible" aria-label="Metadati comunicato">
+                <div class="meta__item">
+                  <dt class="meta__label">Spedito il</dt>
+                  <dd class="meta__value">28/9/2025</dd>
+                </div>
+              </dl>
+              <div class="stats stats--inline press-release__collapsible" aria-label="Statistiche comunicato" data-stats-toggle>
+                <div class="meta__item meta__item--inverted">
+                  <span class="meta__label">destinatari</span>
+                  <span class="meta__value" data-raw="1024" data-base="1024">1024</span>
+                </div>
+                <div class="stats__group">
+                  <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                    <span class="meta__label">ricevute</span>
+                    <span class="meta__value" data-raw="998" data-base="998">998</span>
+                  </div>
+                  <span class="stats__details">(</span>
+                  <div class="stats__subgroup">
+                    <div class="meta__item meta__item--with-led meta__item--with-led-success">
+                      <span class="meta__label">aperte</span>
+                      <span class="meta__value" data-raw="112" data-percent="11.2">112</span>
+                    </div>
+                    <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                      <span class="meta__label">chiuse</span>
+                      <span class="meta__value" data-raw="134" data-percent="13.4">134</span>
+                    </div>
+                  </div>
+                  <span class="stats__details">)</span>
+                </div>
+                <span class="stats__separator">|</span>
+                <div class="meta__item meta__item--with-led meta__item--with-led-error">
+                  <span class="meta__label">errori</span>
+                  <span class="meta__value" data-raw="26" data-base="26">26</span>
+                </div>
+                <button type="button" class="action-link stats__toggle" data-toggle-btn>
+                  <span class="action-link__label">%</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="articles" aria-label="Articoli">
+            <div class="articles__header press-release__collapsible">
+              <h3>Articoli pubblicati</h3>
+              <span class="badge" aria-label="8 articoli">8</span>
+            </div>
+            <div class="articles__list press-release__collapsible">
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Corriere della Sera</div><h4 class="article-card__title"><a href="#">Bruxelles premia Draghi: "Figura chiave per l'Europa"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">29/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Repubblica</div><h4 class="article-card__title"><a href="#">Riconoscimento UE: Draghi tra i grandi leader</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">29/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Sole 24 Ore</div><h4 class="article-card__title"><a href="#">Draghi celebrato a Bruxelles per la sua visione</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">30/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">La Stampa</div><h4 class="article-card__title"><a href="#">Il Parlamento europeo applaude Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">30/9/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Messaggero</div><h4 class="article-card__title"><a href="#">Onorificenza UE per Mario Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">1/10/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Avvenire</div><h4 class="article-card__title"><a href="#">Draghi: "L'Europa ha bisogno di unità"</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">1/10/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Il Fatto Quotidiano</div><h4 class="article-card__title"><a href="#">Standing ovation a Bruxelles per Draghi</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">2/10/2025</dd></div></dl></article>
+              <article class="article-card" aria-label="Articolo"><div class="article-card__top"><div class="article-card__heading"><div class="article-card__publisher">Libero</div><h4 class="article-card__title"><a href="#">Draghi riceve la medaglia europea alla leadership</a></h4></div><button type="button" class="action-link"><span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/delete.svg" alt="" /></span><span class="action-link__label">rimuovi</span></button></div><dl class="meta" aria-label="Metadati articolo"><div class="meta__item"><dt class="meta__label">Data di pubblicazione</dt><dd class="meta__value">2/10/2025</dd></div></dl></article>
+            </div>
+            <div class="articles__actions press-release__collapsible" aria-label="Azioni articoli">
+              <button type="button" class="action-link js-add-article-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/add.svg" alt="" /></span>
+                <span class="action-link__label">aggiungi articolo</span>
+              </button>
+            </div>
+          </section>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="article-modal"></div>
+  <div id="report-modal"></div>
+  <div id="collaborator-modal"></div>
+  <div id="invite-guest-modal"></div>
+
+  <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>

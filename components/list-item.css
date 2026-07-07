@@ -1,0 +1,32 @@
+.list-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.list-item__header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  min-width: 0;
+}
+
+.list-item__header .link {
+  flex: 0 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item__header .badge {
+  flex-shrink: 0;
+}
+
+.list-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-16);
+}

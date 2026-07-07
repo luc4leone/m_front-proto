@@ -1,0 +1,66 @@
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.meta__item {
+  display: inline-flex;
+  gap: var(--space-8);
+  align-items: baseline;
+}
+
+.meta__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.meta__label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-400);
+}
+
+.meta__value {
+  color: var(--color-text);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-600);
+}
+
+.meta__item--label-medium .meta__label {
+  font-weight: var(--fw-500);
+}
+
+.meta__item--inverted {
+  flex-direction: row-reverse;
+}
+
+.meta__item--with-led {
+  --meta-led-color: var(--color-success);
+}
+
+.meta__item--with-led::before {
+  content: "";
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background-color: var(--meta-led-color);
+}
+
+.meta__item--with-led .meta__value {
+  order: 1;
+}
+
+.meta__item--with-led .meta__label {
+  order: 2;
+}
+
+.meta__item--with-led-success {
+  --meta-led-color: var(--color-success);
+}
+
+.meta__item--with-led-error {
+  --meta-led-color: var(--color-error);
+}

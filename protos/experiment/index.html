@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../components/titolo.css" />
+  <link rel="stylesheet" href="../../components/badge.css" />
+  <link rel="stylesheet" href="../../components/link.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font);
+      font-size: var(--fs-16);
+      color: var(--color-text);
+      background-color: var(--color-background);
+    }
+
+    .canvas {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: radial-gradient(circle, var(--color-border-strong) 1px, transparent 1px);
+      background-size: var(--space-24) var(--space-24);
+    }
+
+    .widget {
+      position: absolute;
+      background: var(--color-background);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--space-4);
+      padding: var(--space-16);
+      cursor: grab;
+      transition: box-shadow 120ms ease;
+    }
+
+    .widget.is-dragging {
+      cursor: grabbing;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+
+    [contenteditable] {
+      outline: none;
+      cursor: text;
+    }
+
+    [contenteditable]:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+      border-radius: var(--space-2);
+    }
+
+    /* Guide lines */
+    .guide {
+      position: absolute;
+      background: var(--color-primary);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    .guide--h {
+      left: 0; right: 0;
+      height: 1px;
+    }
+
+    .guide--v {
+      top: 0; bottom: 0;
+      width: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas" id="canvas">
+    <div id="guides"></div>
+  </div>
+
+  <script type="module">
+    import { render as renderLink } from '../../components/link.js';
+
+    const canvas  = document.getElementById('canvas');
+    const guidesEl = document.getElementById('guides');
+    const THRESHOLD = 8;
+    let topZ = 10;
+
+    // ── Widgets ────────────────────────────────────────────────────────
+    const widgets = [
+      { html: '<h2 class="titolo titolo--sezione">Titolo di sezione</h2>', left: 80,  top: 80  },
+      { html: '<span class="badge">42</span>',                             left: 360, top: 80  },
+      { html: renderLink({ href: '#', label: 'testo del link' }),          left: 80,  top: 240 },
+      { html: '<a href="#" class="action-link action-link--primary">nuova lista</a>', left: 360, top: 240 },
+    ];
+
+    widgets.forEach(({ html, left, top }) => {
+      const widget = document.createElement('div');
+      widget.className = 'widget';
+      widget.style.left = left + 'px';
+      widget.style.top  = top  + 'px';
+      widget.innerHTML  = `<div class="widget__content">${html}</div>`;
+      canvas.appendChild(widget);
+
+      widget.querySelectorAll('h2, .badge, .link, .action-link').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+        el.setAttribute('spellcheck', 'false');
+      });
+
+      widget.addEventListener('keydown', e => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+
+      makeDraggable(widget);
+    });
+
+    // ── Alignment helpers ──────────────────────────────────────────────
+    function edges(el) {
+      const l = el.offsetLeft,  t = el.offsetTop;
+      const w = el.offsetWidth, h = el.offsetHeight;
+      return { l, t, w, h, r: l + w, cx: l + w / 2, b: t + h, cy: t + h / 2 };
+    }
+
+    function computeAlignment(dragged) {
+      const d = edges(dragged);
+      const others = [...canvas.querySelectorAll('.widget')].filter(w => w !== dragged);
+      const guides = [];
+      let snapX = null, snapY = null;
+
+      for (const other of others) {
+        const o = edges(other);
+
+        // Horizontal guides (Y axis): 9 top/center/bottom combinations
+        const hPairs = [
+          [d.t,  o.t,  o.t              ],  // top → top
+          [d.t,  o.cy, o.cy             ],  // top → center
+          [d.t,  o.b,  o.b              ],  // top → bottom
+          [d.cy, o.t,  o.t  - d.h / 2  ],  // center → top
+          [d.cy, o.cy, o.cy - d.h / 2  ],  // center → center
+          [d.cy, o.b,  o.b  - d.h / 2  ],  // center → bottom
+          [d.b,  o.t,  o.t  - d.h      ],  // bottom → top
+          [d.b,  o.cy, o.cy - d.h      ],  // bottom → center
+          [d.b,  o.b,  o.b  - d.h      ],  // bottom → bottom
+        ];
+
+        for (const [dEdge, oEdge, snap] of hPairs) {
+          if (Math.abs(dEdge - oEdge) < THRESHOLD) {
+            guides.push({ axis: 'h', pos: oEdge });
+            if (snapY === null) snapY = snap;
+            break;
+          }
+        }
+
+        // Vertical guides (X axis): 9 left/center/right combinations
+        const vPairs = [
+          [d.l,  o.l,  o.l              ],
+          [d.l,  o.cx, o.cx             ],
+          [d.l,  o.r,  o.r              ],
+          [d.cx, o.l,  o.l  - d.w / 2  ],
+          [d.cx, o.cx, o.cx - d.w / 2  ],
+          [d.cx, o.r,  o.r  - d.w / 2  ],
+          [d.r,  o.l,  o.l  - d.w      ],
+          [d.r,  o.cx, o.cx - d.w      ],
+          [d.r,  o.r,  o.r  - d.w      ],
+        ];
+
+        for (const [dEdge, oEdge, snap] of vPairs) {
+          if (Math.abs(dEdge - oEdge) < THRESHOLD) {
+            guides.push({ axis: 'v', pos: oEdge });
+            if (snapX === null) snapX = snap;
+            break;
+          }
+        }
+      }
+
+      return { guides, snapX, snapY };
+    }
+
+    function showGuides(guides) {
+      guidesEl.innerHTML = guides.map(({ axis, pos }) =>
+        axis === 'h'
+          ? `<div class="guide guide--h" style="top:${pos}px"></div>`
+          : `<div class="guide guide--v" style="left:${pos}px"></div>`
+      ).join('');
+    }
+
+    function clearGuides() {
+      guidesEl.innerHTML = '';
+    }
+
+    // ── Drag ───────────────────────────────────────────────────────────
+    function makeDraggable(el) {
+      let pendingSnap = { x: null, y: null };
+
+      el.addEventListener('mousedown', (e) => {
+        if (e.target.closest('[contenteditable]')) return;
+        e.preventDefault();
+
+        const rect = el.getBoundingClientRect();
+        const offX = e.clientX - rect.left;
+        const offY = e.clientY - rect.top;
+
+        el.style.zIndex = ++topZ;
+        el.classList.add('is-dragging');
+
+        const onMove = (e) => {
+          el.style.left = (e.clientX - offX) + 'px';
+          el.style.top  = (e.clientY - offY) + 'px';
+
+          const { guides, snapX, snapY } = computeAlignment(el);
+          pendingSnap = { x: snapX, y: snapY };
+          showGuides(guides);
+        };
+
+        const onUp = () => {
+          el.classList.remove('is-dragging');
+          clearGuides();
+          if (pendingSnap.x !== null) el.style.left = pendingSnap.x + 'px';
+          if (pendingSnap.y !== null) el.style.top  = pendingSnap.y + 'px';
+          pendingSnap = { x: null, y: null };
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup',  onUp);
+        };
+
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup',  onUp);
+      });
+    }
+  </script>
+</body>
+</html>

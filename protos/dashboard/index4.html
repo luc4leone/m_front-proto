@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../components/titolo.css" />
+  <link rel="stylesheet" href="../../components/button3.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <link rel="stylesheet" href="../../components/badge.css" />
+  <link rel="stylesheet" href="../../components/link.css" />
+  <link rel="stylesheet" href="../../components/tabs.css" />
+  <link rel="stylesheet" href="../../components/form-elements.css" />
+  <link rel="stylesheet" href="../../components/meta-item.css" />
+  <link rel="stylesheet" href="../../components/list-item.css" />
+  <link rel="stylesheet" href="../../components/todo-item.css" />
+  <link rel="stylesheet" href="../../components/activity-indicator.css" />
+  <link rel="stylesheet" href="../../components/limit-indicator-v2.css" />
+  <link rel="stylesheet" href="../../components/dashboard-section.css" />
+  <style>
+    /* ── Dashboard view layout ─────────────────────────────────────── */
+
+    .dashboard-view {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    /* ── Subscription limits ───────────────────────────────────────── */
+
+    .subscription-limits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      padding-bottom: var(--space-16);
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+
+    .subscription-limits__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .subscription-limits__row {
+      display: flex;
+      align-items: center;
+    }
+
+    .subscription-limits__item {
+      flex: 1;
+      padding: 0 var(--space-16);
+    }
+
+    .subscription-limits__item:first-child { padding-left: 0; }
+
+    .subscription-limits__item:not(:last-child) {
+      border-right: var(--border-width) solid var(--color-border-strong);
+    }
+
+    /* ── Dashboard sections 3×2 grid (40/40/20) ────────────────────── */
+
+    .dashboard-sections-grid {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr;
+      gap: 0;
+    }
+
+    /* Per-cell padding around separators */
+    .dashboard-sections-grid > section:nth-child(1) { padding: 0 var(--space-24) var(--space-24) 0; }
+    .dashboard-sections-grid > section:nth-child(2) { padding: 0 var(--space-24) var(--space-24) var(--space-24); }
+    .dashboard-sections-grid > section:nth-child(3) { padding: 0 0 var(--space-24) var(--space-24); }
+    .dashboard-sections-grid > section:nth-child(4) { padding: var(--space-24) var(--space-24) 0 0; }
+    .dashboard-sections-grid > section:nth-child(5) { padding: var(--space-24) 0 0 var(--space-24); }
+
+    /* Pseudo-elementi per separatori che non si toccano al centro */
+    .dashboard-sections-grid > section { position: relative; }
+
+    /* Separatore verticale col 1-2 — riga 1: si ferma prima del bordo riga 1-2 */
+    .dashboard-sections-grid > section:nth-child(1)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: var(--space-12);
+      width: var(--border-width);
+      background-color: var(--color-border);
+    }
+    /* Separatore verticale col 1-2 — riga 2: parte dopo il bordo riga 1-2 */
+    .dashboard-sections-grid > section:nth-child(4)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: var(--space-12); bottom: 0;
+      width: var(--border-width);
+      background-color: var(--color-border);
+    }
+    /* Separatore verticale col 2-3 — riga 1 sola (col 3 vuota in riga 2) */
+    .dashboard-sections-grid > section:nth-child(2)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: var(--space-12);
+      width: var(--border-width);
+      background-color: var(--color-border);
+    }
+    /* Separatore orizzontale riga 1-2 — tratto col 1 */
+    .dashboard-sections-grid > section:nth-child(1)::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: var(--space-12);
+      height: var(--border-width);
+      background-color: var(--color-border);
+    }
+    /* Separatore orizzontale riga 1-2 — tratto col 2 */
+    .dashboard-sections-grid > section:nth-child(2)::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: var(--space-12); right: var(--space-12);
+      height: var(--border-width);
+      background-color: var(--color-border);
+    }
+    /* Separatore orizzontale riga 1-2 — tratto col 3 */
+    .dashboard-sections-grid > section:nth-child(3)::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: var(--space-12); right: 0;
+      height: var(--border-width);
+      background-color: var(--color-border);
+    }
+
+    /* Titoli sezione: fs-18, colore testo pieno */
+    .dashboard-view .titolo--sezione,
+    .side-panel .titolo--sezione {
+      font-size: var(--fs-18);
+      color: var(--color-text);
+    }
+
+    /* CS main tabs: solo font-size, colori lasciati al componente (muted/attivo) */
+    .dashboard-sections-grid #cs-main-tabs .tabs__tab {
+      font-size: var(--fs-18);
+    }
+
+    .list-item__header .link {
+      font-size: var(--fs-16) !important;
+    }
+
+    .meta__label {
+      font-weight: var(--fw-500);
+    }
+
+    /* Compact spacing overrides — context-only, components untouched */
+    .dashboard-sections-grid .dashboard-section {
+      gap: var(--space-12);
+    }
+
+    .dashboard-sections-grid .dashboard-section__list {
+      gap: var(--space-12);
+      max-height: 280px;
+      overflow-y: auto;
+      background:
+        linear-gradient(var(--color-background) 30%, transparent) top    / 100% 32px local  no-repeat,
+        linear-gradient(transparent, var(--color-background) 70%) bottom / 100% 32px local  no-repeat,
+        radial-gradient(farthest-side at 50% 0,    rgba(0,0,0,.1), transparent) top    / 100% 12px scroll no-repeat,
+        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.1), transparent) bottom / 100% 12px scroll no-repeat;
+      background-color: var(--color-background);
+    }
+
+
+    /* ── Keep / bookmark ──────────────────────────────────────────── */
+
+    /* Left gutter for the keep icon — same on header and meta so both rows align */
+    .dashboard-sections-grid .list-item__header,
+    #ml-panel .list-item__header {
+      position: relative;
+      /*padding-left: calc(var(--space-16) + var(--space-6));*/
+      justify-content: flex-start;
+      gap: var(--space-16);
+    }
+
+    .dashboard-sections-grid .list-item__meta,
+    #ml-panel .list-item__meta {
+      /*padding-left: calc(var(--space-16) + var(--space-6));*/
+    }
+
+    .list-item__keep {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      color: var(--color-text-muted);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150), color var(--transition-150);
+    }
+
+    .list-item__header:hover .list-item__keep {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .list-item__keep:hover { color: var(--color-text); }
+
+    .list-item__keep svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .sidebar__item--bookmark {
+      position: relative;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-6);
+    }
+
+    .sidebar__item--bookmark .sidebar__icon { flex-shrink: 0; }
+
+    .sidebar__item--bookmark .sidebar__icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .sidebar__item--bookmark .sidebar__label {
+      font-style: italic;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__bookmark-remove {
+      position: absolute;
+      top: 2px; right: 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150);
+    }
+
+    .sidebar__item--bookmark:hover .sidebar__bookmark-remove {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar__bookmark-remove svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── Mailing Lists side panel ─────────────────────────────────── */
+
+    .side-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.25);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150);
+    }
+    .side-panel-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-panel {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: calc(var(--sidebar-width) + (100vw - var(--sidebar-width)) / 2);
+      background: var(--color-background);
+      border-right: var(--border-width) solid var(--color-border);
+      z-index: 101;
+      transform: translateX(-100%);
+      transition: transform 250ms ease;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-24);
+      gap: var(--space-16);
+      overflow-y: auto;
+    }
+    .side-panel.is-open {
+      transform: translateX(0);
+    }
+
+    /* ── Activity section ──────────────────────────────────────────── */
+
+    .activity-section {
+      margin-top: auto;
+      padding-top: var(--space-16);
+      border-top: var(--border-width) solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .activity-section__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .activity-section__header-spacer { flex: 1; }
+
+    .activity-section__indicators {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-32);
+    }
+
+    .activity-section__indicators .activity-indicator { flex: 1; }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <aside class="app-layout__sidebar">
+      <div id="sidebar"></div>
+    </aside>
+
+    <main class="app-layout__main">
+      <div class="dashboard-view">
+
+        <!-- ── 1. Limiti abbonamento ──────────────────────────────── -->
+        <section class="subscription-limits">
+          <div class="subscription-limits__header">
+            <h2 class="titolo titolo--sezione">Limiti abbonamento</h2>
+            <button type="button" class="action-link">acquista</button>
+          </div>
+          <div class="subscription-limits__row">
+            <div class="subscription-limits__item">
+              <div class="limit-indicator">
+                <span class="limit-indicator__label">spedizioni</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="--consumption:50;width:50%"></div></div>
+                <span class="limit-indicator__value">50k/100k</span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator">
+                <span class="limit-indicator__label">esportazioni</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="--consumption:90;width:90%"></div></div>
+                <span class="limit-indicator__value">90k/100k</span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator">
+                <span class="limit-indicator__label">mailing list</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="--consumption:30;width:30%"></div></div>
+                <span class="limit-indicator__value">300/1k</span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator">
+                <span class="limit-indicator__label">progetti</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="--consumption:20;width:20%"></div></div>
+                <span class="limit-indicator__value">20/100</span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator">
+                <span class="limit-indicator__label">ospiti</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="--consumption:20;width:20%"></div></div>
+                <span class="limit-indicator__value">20/100</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── 2. Griglia 4 sezioni ───────────────────────────────── -->
+        <div class="dashboard-sections-grid">
+
+          <!-- Spedizioni -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div class="dashboard-section__header-group">
+                <div class="dashboard-section__header-left">
+                  <h2 class="titolo titolo--sezione">Spedizioni</h2>
+                  <span class="badge">22</span>
+                </div>
+                <span id="sp-link-vedi-tutte"></span>
+              </div>
+              <button type="button" class="btn btn--primary">nuova spedizione</button>
+            </div>
+            <div class="dashboard-section__toolbar">
+              <input type="text" class="form__input form__input--compact" placeholder="cerca spedizione..." style="flex:1 1 280px" />
+            </div>
+            <div id="sp-filter-tabs"></div>
+            <div class="dashboard-section__list" id="sp-list"></div>
+          </section>
+
+          <!-- Comunicati -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div class="dashboard-section__header-group">
+                <div class="dashboard-section__header-left">
+                  <h2 class="titolo titolo--sezione">Comunicati</h2>
+                  <span class="badge">23</span>
+                </div>
+                <span id="co-link-vedi-tutti"></span>
+              </div>
+              <button type="button" class="btn btn--primary">nuovo comunicato</button>
+            </div>
+            <div class="dashboard-section__toolbar">
+              <input type="text" class="form__input form__input--compact" placeholder="cerca comunicato..." style="flex:1 1 280px" />
+            </div>
+            <div id="co-filter-tabs"></div>
+            <div class="dashboard-section__list" id="co-list"></div>
+          </section>
+
+          <!-- Rassegne -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div class="dashboard-section__header-group">
+                <div class="dashboard-section__header-left">
+                  <h2 class="titolo titolo--sezione">Rassegne</h2>
+                  <span class="badge">3</span>
+                </div>
+                <span id="pg-link-vedi-tutti"></span>
+              </div>
+              <button type="button" class="btn btn--primary">nuovo progetto</button>
+            </div>
+            <div class="dashboard-section__toolbar">
+              <input type="text" class="form__input form__input--compact" placeholder="cerca progetto..." style="flex:1 1 280px" />
+            </div>
+            <nav class="tabs" data-tabs role="tablist" aria-label="Filtro progetti" id="pg-tabs">
+              <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+              <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+              <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+              <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+            </nav>
+            <div class="dashboard-section__list" id="pg-list"></div>
+          </section>
+
+          <!-- Da fare -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div class="dashboard-section__header-group">
+                <div class="dashboard-section__header-left">
+                  <h2 class="titolo titolo--sezione">Da fare</h2>
+                  <span class="badge">4</span>
+                </div>
+                <span id="td-link-vedi-tutti"></span>
+              </div>
+              <div class="dashboard-section__header-actions">
+                <button type="button" class="action-link">lista</button>
+                <button type="button" class="action-link">cal</button>
+                <button type="button" class="btn btn--primary">nuovo todo</button>
+              </div>
+            </div>
+            <div class="dashboard-section__toolbar">
+              <input type="text" class="form__input form__input--compact" placeholder="cerca todo" style="flex:1 1 280px" />
+            </div>
+            <nav class="tabs" data-tabs role="tablist" aria-label="Filtro todos" id="td-tabs">
+              <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+              <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+              <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+              <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+            </nav>
+            <div class="dashboard-section__list" id="td-list"></div>
+          </section>
+
+          <!-- Mailing Lists -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div class="dashboard-section__header-group">
+                <div class="dashboard-section__header-left">
+                  <h2 class="titolo titolo--sezione">Mailing Lists</h2>
+                  <span class="badge">199</span>
+                </div>
+                <span id="ml-link-vedi-tutte"></span>
+              </div>
+              <button type="button" class="btn btn--primary">nuova lista</button>
+            </div>
+            <div class="dashboard-section__toolbar">
+              <input type="text" class="form__input form__input--compact" placeholder="cerca mailing list" style="flex:1 1 120px" />
+            </div>
+            <nav class="tabs" data-tabs role="tablist" aria-label="Filtro liste" id="ml-tabs">
+              <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+              <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+              <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+              <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+            </nav>
+            <div class="dashboard-section__list" id="ml-list"></div>
+          </section>
+
+        </div>
+
+        <!-- ── 3. Attività ufficio stampa ────────────────────────── -->
+        <section class="activity-section">
+          <div class="activity-section__header">
+            <h2 class="titolo titolo--sezione">Attività Ufficio Stampa</h2>
+            <div id="activity-team-tabs"></div>
+            <div class="activity-section__header-spacer"></div>
+            <div id="activity-period-tabs"></div>
+          </div>
+          <div class="activity-section__indicators">
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Spedizioni</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuove-spedizioni"></span></div>
+                  <div class="activity-indicator__value">5</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ email inviate</div>
+                  <div class="activity-indicator__value">1539</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-2">⎿ aperte</div>
+                  <div class="activity-indicator__value">345 (18%)</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Mailing Lists</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-liste-modificate"></span></div>
+                  <div class="activity-indicator__value">18</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ create</div>
+                  <div class="activity-indicator__value">12</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Progetti</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuovi-progetti"></span></div>
+                  <div class="activity-indicator__value">1</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ rassegne</div>
+                  <div class="activity-indicator__value">1</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-2">⎿ articoli</div>
+                  <div class="activity-indicator__value">4</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Comunicati</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuovi-comunicati"></span></div>
+                  <div class="activity-indicator__value">5</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Todos</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label">nuovi todo</div>
+                  <div class="activity-indicator__value">15</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label">fatti</div>
+                  <div class="activity-indicator__value">8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ── Mailing Lists side panel ──────────────────────────────── -->
+  <div class="side-panel-backdrop" id="ml-panel-backdrop"></div>
+  <aside class="side-panel" id="ml-panel" role="dialog" aria-modal="true" aria-labelledby="ml-panel-title">
+    <div class="dashboard-section__header">
+      <div class="dashboard-section__header-group">
+        <div class="dashboard-section__header-left">
+          <h2 class="titolo titolo--sezione" id="ml-panel-title">Mailing Lists</h2>
+          <span class="badge">199</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn--primary">nuova lista</button>
+    </div>
+    <div class="dashboard-section__toolbar">
+      <input type="text" class="form__input form__input--compact" placeholder="cerca mailing list" style="flex:1 1 120px" />
+      <div class="form__select-wrapper" style="flex:0 0 220px">
+        <select class="form__select form__select--compact">
+          <option>ordina per nome (a-z)</option>
+          <option>ordina per data</option>
+        </select>
+      </div>
+    </div>
+    <nav class="tabs" data-tabs role="tablist" aria-label="Filtro liste" id="ml-panel-tabs">
+      <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+      <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+      <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+      <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+    </nav>
+    <div class="dashboard-section__list" id="ml-panel-list"></div>
+  </aside>
+
+  <script type="module">
+    import { render as renderSidebar, init as initSidebar } from '../../components/sidebar.js';
+    import { render as renderTabs, init as initTabs } from '../../components/tabs.js';
+    import { render as renderLink } from '../../components/link.js';
+    import { render as renderListItem } from '../../components/list-item.js';
+    import { render as renderTodoItem } from '../../components/todo-item.js';
+
+    // ── Keep / bookmark SVGs ───────────────────────────────────────────
+    const KEEP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false"><path d="M640-760v280l68 68q6 6 9 13.5t3 15.5v23q0 17-11.5 28.5T680-320H520v234q0 17-11.5 28.5T480-46q-17 0-28.5-11.5T440-86v-234H280q-17 0-28.5-11.5T240-360v-23q0-8 3-15.5t9-13.5l68-68v-280q-17 0-28.5-11.5T280-800q0-17 11.5-28.5T320-840h320q17 0 28.5 11.5T680-800q0 17-11.5 28.5T640-760ZM354-400h252l-46-46v-314H400v314l-46 46Zm126 0Z" fill="currentColor"/></svg>`;
+    const CLOSE_SMALL_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false"><path d="M480-424 364-308q-11 11-28 11t-28-11q-11-11-11-28t11-28l116-116-116-115q-11-11-11-28t11-28q11-11 28-11t28 11l116 116 115-116q11-11 28-11t28 11q12 12 12 28.5T651-595L535-480l116 116q11 11 11 28t-11 28q-12 12-28.5 12T595-308L480-424Z" fill="currentColor"/></svg>`;
+
+    function addKeepButtons(listEl) {
+      listEl.querySelectorAll('.list-item__header').forEach(header => {
+        const titleLink = header.querySelector('.link');
+        if (!titleLink) return;
+        const keepBtn = document.createElement('button');
+        keepBtn.type = 'button';
+        keepBtn.className = 'list-item__keep';
+        keepBtn.setAttribute('aria-label', 'Aggiungi ai preferiti');
+        keepBtn.innerHTML = KEEP_SVG;
+        header.prepend(keepBtn);
+        keepBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          addBookmark(titleLink.textContent.trim());
+        });
+      });
+    }
+
+    function addBookmark(label) {
+      const sidebar = sidebarEl.querySelector('[data-sidebar]');
+      const exists = [...sidebar.querySelectorAll('.sidebar__item--bookmark .sidebar__label')]
+        .some(el => el.textContent.trim() === label);
+      if (exists) return;
+      const item = document.createElement('a');
+      item.href = '#';
+      item.className = 'sidebar__item sidebar__item--bookmark';
+      item.innerHTML = `
+        <span class="sidebar__icon" aria-hidden="true">${KEEP_SVG}</span>
+        <span class="sidebar__label">${label}</span>
+        <button type="button" class="sidebar__bookmark-remove" aria-label="Rimuovi preferito">${CLOSE_SMALL_SVG}</button>
+      `;
+      item.addEventListener('click', e => e.preventDefault());
+      item.querySelector('.sidebar__bookmark-remove').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        item.remove();
+      });
+      sidebar.querySelector('.sidebar__separator').insertAdjacentElement('afterend', item);
+    }
+
+    // ── Sidebar ────────────────────────────────────────────────────────
+    const sidebarEl = document.getElementById('sidebar');
+    sidebarEl.innerHTML = renderSidebar({
+      activeId: 'dashboard',
+      items: [
+        { id: 'dashboard', icon: '../../assets/icons/M_.svg', href: '#', label: 'dashboard' },
+        { id: 'banca-dati', icon: '../../assets/icons/filter.svg', href: '#', label: 'banca dati' },
+        { type: 'separator' },
+        { type: 'spacer' },
+        { type: 'separator' },
+        { id: 'notifiche', icon: '../../assets/icons/notification.svg', href: '#', label: 'notifiche' },
+        { id: 'account', icon: '../../assets/icons/account.svg', href: '#', label: 'account' },
+        { type: 'separator' },
+        { id: 'theme', type: 'toggle', icon: '../../assets/icons/light_mode.svg', iconDark: '../../assets/icons/dark_mode.svg' },
+      ],
+    });
+    initSidebar(sidebarEl.querySelector('[data-sidebar]'));
+
+    // ── Mailing Lists ──────────────────────────────────────────────────
+    const mlItems = [
+      { category: 'rosa', title: { href: '#', label: "Studi sull'abitare" },
+        chips: ['6 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 27 }, { label: 'Testate', value: 4 }] }, { label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Rassegna economica' },
+        chips: ['3 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 15 }, { label: 'Testate', value: 8 }] }, { label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'margherita', title: { href: '#', label: 'Sport locale' },
+        meta: [{ group: [{ label: 'Giornalisti', value: 9 }, { label: 'Testate', value: 2 }] }, { label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'rosa', title: { href: '#', label: 'Comunicati energia' },
+        meta: [{ group: [{ label: 'Giornalisti', value: 44 }, { label: 'Testate', value: 11 }] }, { label: 'Modificata il', value: '16-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Tech & innovazione' },
+        chips: ['1 giornalista suggerito'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 6 }, { label: 'Testate', value: 3 }] }, { label: 'Modificata il', value: '15-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    const mlVediTutteSpan = document.getElementById('ml-link-vedi-tutte');
+    mlVediTutteSpan.innerHTML = renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
+    mlVediTutteSpan.querySelector('.link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('ml-panel').classList.add('is-open');
+      document.getElementById('ml-panel-backdrop').classList.add('is-open');
+    });
+    document.getElementById('ml-panel-backdrop').addEventListener('click', () => {
+      document.getElementById('ml-panel').classList.remove('is-open');
+      document.getElementById('ml-panel-backdrop').classList.remove('is-open');
+    });
+
+    document.getElementById('ml-list').innerHTML = mlItems.map(renderListItem).join('');
+    addKeepButtons(document.getElementById('ml-list'));
+    const mlListEls = document.querySelectorAll('#ml-list .list-item');
+    initTabs(document.getElementById('ml-tabs'), {
+      onTabChange: (id) => mlListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    const mlPanelItems = [
+      ...mlItems,
+      { category: 'margherita', title: { href: '#', label: 'Ufficio stampa istituzionale' }, links: [],
+        meta: [{ group: [{ label: 'Giornalisti', value: 33 }, { label: 'Testate', value: 7 }] }, { label: 'Modificata il', value: '14-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'rosa', title: { href: '#', label: 'Media nazionali' }, chips: ['5 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 78 }, { label: 'Testate', value: 15 }] }, { label: 'Modificata il', value: '13-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Startup & venture' }, links: [],
+        meta: [{ group: [{ label: 'Giornalisti', value: 22 }, { label: 'Testate', value: 5 }] }, { label: 'Modificata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    document.getElementById('ml-panel-list').innerHTML = mlPanelItems.map(renderListItem).join('');
+    addKeepButtons(document.getElementById('ml-panel-list'));
+    const mlPanelListEls = document.querySelectorAll('#ml-panel-list .list-item');
+    initTabs(document.getElementById('ml-panel-tabs'), {
+      onTabChange: (id) => mlPanelListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Progetti ───────────────────────────────────────────────────────
+    const pgItems = [
+      { category: 'rosa', title: { href: '#', label: 'Progetto Draghi' },
+        chips: ['2 articoli suggeriti'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 2, inverted: true }, { label: 'Articoli', value: 18, inverted: true }] }] },
+      { category: 'iris', title: { href: '#', label: 'Rassegna economica' },
+        meta: [{ group: [{ label: 'Spedizioni', value: 5, inverted: true }, { label: 'Articoli', value: 32, inverted: true }] }] },
+      { category: 'margherita', title: { href: '#', label: 'Sport locale' },
+        chips: ['1 articolo suggerito'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 1, inverted: true }, { label: 'Articoli', value: 7, inverted: true }] }] },
+      { category: 'iris', title: { href: '#', label: 'Bilancio sostenibilità' },
+        meta: [{ group: [{ label: 'Spedizioni', value: 3, inverted: true }, { label: 'Articoli', value: 12, inverted: true }] }] },
+      { category: 'rosa', title: { href: '#', label: 'Lancio prodotto Q3' },
+        chips: ['4 articoli suggeriti'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 0, inverted: true }, { label: 'Articoli', value: 5, inverted: true }] }] },
+    ];
+    document.getElementById('pg-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    document.getElementById('pg-list').innerHTML = pgItems.map(renderListItem).join('');
+    const pgListEls = document.querySelectorAll('#pg-list .list-item');
+    initTabs(document.getElementById('pg-tabs'), {
+      onTabChange: (id) => pgListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Spedizioni ─────────────────────────────────────────────────────
+    const spItems = [
+      { category: 'rosa', title: { href: '#', label: 'Invito convegno abitare' }, badge: 'in corso', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'iris', title: { href: '#', label: 'Newsletter economia Q1' }, badge: 'conclusa', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'margherita', title: { href: '#', label: 'Risultati campionato' }, badge: 'programmata', links: [],
+        meta: [{ group: [{ label: 'Programmata il', value: '25-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
+      { category: 'rosa', title: { href: '#', label: 'Assemblea azionisti 2026' }, badge: 'conclusa', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '14-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'iris', title: { href: '#', label: 'Report Q1 sostenibilità' }, badge: 'in corso', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+    ];
+    document.getElementById('sp-link-vedi-tutte').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
+    const spFilterHost = document.getElementById('sp-filter-tabs');
+    spFilterHost.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutti' }, { id: 'rosa', label: 'rosa' }, { id: 'iris', label: 'iris' }, { id: 'margherita', label: 'margherita' }],
+      activeId: 'tutti',
+    });
+    document.getElementById('sp-list').innerHTML = spItems.map(renderListItem).join('');
+    const spListEls = document.querySelectorAll('#sp-list .list-item');
+    initTabs(spFilterHost.querySelector('[data-tabs]'), {
+      onTabChange: (id) => spListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Comunicati ─────────────────────────────────────────────────────
+    const coItems = [
+      { category: 'bozza', title: { href: '#', label: 'CS - Mario Draghi riceve il premio "Uomo dell\'anno"' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'spedito', title: { href: '#', label: 'Analisi mercati Q2' }, badge: 'spedito', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'bozza', title: { href: '#', label: 'Torneo regionale' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
+      { category: 'spedito', title: { href: '#', label: 'Apertura nuovo centro ricerche' }, badge: 'spedito', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '16-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'bozza', title: { href: '#', label: 'Risultati semestrale 2026' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '15-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+    ];
+    document.getElementById('co-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    const coFilterHost = document.getElementById('co-filter-tabs');
+    coFilterHost.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutti' }, { id: 'spedito', label: 'spedito' }, { id: 'bozza', label: 'bozza' }],
+      activeId: 'tutti',
+    });
+    document.getElementById('co-list').innerHTML = coItems.map(renderListItem).join('');
+    const coListEls = document.querySelectorAll('#co-list .list-item');
+    initTabs(coFilterHost.querySelector('[data-tabs]'), {
+      onTabChange: (id) => coListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Todos ──────────────────────────────────────────────────────────
+    const tdItems = [
+      { category: 'iris', label: 'scrivi follow up a Sara', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'margherita', label: 'chiama Serena', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'iris', label: 'mail a Paola', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'rosa', label: 'report a Giada', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', label: 'fai rassegna progetto "Draghi"', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    document.getElementById('td-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    document.getElementById('td-list').innerHTML = tdItems.map(renderTodoItem).join('');
+    const tdListEls = document.querySelectorAll('#td-list .todo-item');
+    initTabs(document.getElementById('td-tabs'), {
+      onTabChange: (id) => tdListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Activity section ───────────────────────────────────────────────
+    const teamTabsEl = document.getElementById('activity-team-tabs');
+    teamTabsEl.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutti' }, { id: 'rosa', label: 'rosa' }, { id: 'iris', label: 'iris' }, { id: 'margherita', label: 'margherita' }],
+      activeId: 'tutti',
+    });
+    initTabs(teamTabsEl.querySelector('[data-tabs]'));
+
+    const periodTabsEl = document.getElementById('activity-period-tabs');
+    periodTabsEl.innerHTML = renderTabs({
+      tabs: [{ id: '7g', label: '7g' }, { id: '15g', label: '15g' }, { id: '30g', label: '30g' }],
+      activeId: '7g', variant: 'highlight',
+    });
+    initTabs(periodTabsEl.querySelector('[data-tabs]'));
+
+    document.getElementById('link-nuove-spedizioni').outerHTML = renderLink({ href: '#', label: 'nuove spedizioni' });
+    document.getElementById('link-liste-modificate').outerHTML = renderLink({ href: '#', label: 'liste modificate' });
+    document.getElementById('link-nuovi-progetti').outerHTML = renderLink({ href: '#', label: 'nuovi progetti' });
+    document.getElementById('link-nuovi-comunicati').outerHTML = renderLink({ href: '#', label: 'nuovi comunicati' });
+  </script>
+
+</body>
+</html>

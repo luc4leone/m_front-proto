@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Componenti UI</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body {
+        padding: 24px;
+      }
+      .components-page {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .component {
+        border: 1px solid var(--grey-200);
+        border-radius: 12px;
+        padding: 16px;
+        background: var(--white);
+        margin-bottom: 16px;
+      }
+      .component-title {
+        margin: 0 0 12px 0;
+        font-size: var(--fs-xl);
+        font-weight: 800;
+      }
+      .component-subtitle {
+        margin: 16px 0 8px 0;
+        font-size: var(--fs-md);
+        font-weight: 800;
+      }
+      .preview {
+        border: 1px dashed var(--grey-200);
+        border-radius: 10px;
+        padding: 12px;
+        background: var(--grey-025);
+      }
+      pre {
+        background: var(--grey-025);
+        border: 1px solid var(--grey-200);
+        border-radius: 10px;
+        padding: 12px;
+        overflow: auto;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="components-page">
+      <h1 class="main-title" style="margin: 0 0 16px 0">Componenti UI</h1>
+
+      <section class="component" id="link">
+        <h2 class="component-title">Link</h2>
+
+        <div class="component-subtitle">preview</div>
+        <div class="preview" style="display: flex; gap: 16px; flex-wrap: wrap">
+          <a href="#" class="c-link c-link--nav">link di navigazione</a>
+          <a href="#" class="c-link c-link--action">azione (button-like)</a>
+        </div>
+
+        <div class="component-subtitle">markup</div>
+        <pre><code>&lt;a href=&quot;#&quot; class=&quot;c-link c-link--nav&quot;&gt;link di navigazione&lt;/a&gt;
+&lt;a href=&quot;#&quot; class=&quot;c-link c-link--action&quot;&gt;azione (button-like)&lt;/a&gt;
+</code></pre>
+      </section>
+
+      <section class="component" id="pill">
+        <h2 class="component-title">Contatore (pill)</h2>
+
+        <div class="component-subtitle">preview</div>
+        <div class="preview" style="display: flex; gap: 16px; flex-wrap: wrap">
+          <span class="c-pill">1</span>
+          <span class="c-pill">12</span>
+          <span class="c-pill">999</span>
+        </div>
+
+        <div class="component-subtitle">markup</div>
+        <pre><code>&lt;span class=&quot;c-pill&quot;&gt;12&lt;/span&gt;
+</code></pre>
+      </section>
+
+      <section class="component" id="split-button">
+        <h2 class="component-title">Split Button</h2>
+
+        <div class="component-subtitle">preview</div>
+        <div class="preview" style="display: flex; gap: 16px; flex-wrap: wrap">
+          <span class="c-split-button" id="mySplit" data-split-button>
+            <button
+              type="button"
+              class="c-split-button__main c-link c-link--nav"
+              data-split-action="primary"
+            >
+              azione principale
+            </button>
+            <button
+              type="button"
+              class="c-split-button__toggle"
+              data-split-toggle
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span class="c-split-button__arrow" aria-hidden="true"></span>
+            </button>
+            <div
+              class="dropdown-list c-split-button__menu"
+              data-split-menu
+              role="listbox"
+              aria-hidden="true"
+            >
+              <div class="dropdown-results">
+                <div class="dropdown-item" role="option">
+                  <a
+                    href="#"
+                    class="c-link c-link--nav"
+                    data-split-action="opt-1"
+                    >opzione 1</a
+                  >
+                </div>
+                <div class="dropdown-item" role="option">
+                  <a
+                    href="#"
+                    class="c-link c-link--nav"
+                    data-split-action="opt-2"
+                    >opzione 2</a
+                  >
+                </div>
+              </div>
+            </div>
+          </span>
+
+          <span
+            class="c-split-button c-split-button--menu-left"
+            id="mySplitLeft"
+            data-split-button
+          >
+            <button
+              type="button"
+              class="c-split-button__main c-link c-link--nav"
+              data-split-action="primary"
+            >
+              menu a sinistra
+            </button>
+            <button
+              type="button"
+              class="c-split-button__toggle"
+              data-split-toggle
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span class="c-split-button__arrow" aria-hidden="true"></span>
+            </button>
+            <div
+              class="dropdown-list c-split-button__menu"
+              data-split-menu
+              role="listbox"
+              aria-hidden="true"
+            >
+              <div class="dropdown-results">
+                <div class="dropdown-item" role="option">
+                  <a
+                    href="#"
+                    class="c-link c-link--nav"
+                    data-split-action="opt-1"
+                    >opzione 1</a
+                  >
+                </div>
+                <div class="dropdown-item" role="option">
+                  <a
+                    href="#"
+                    class="c-link c-link--nav"
+                    data-split-action="opt-2"
+                    >opzione 2</a
+                  >
+                </div>
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <div class="component-subtitle">markup</div>
+        <pre><code>&lt;span class=&quot;c-split-button&quot; data-split-button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;c-split-button__main c-link c-link--nav&quot; data-split-action=&quot;primary&quot;&gt;
+    azione principale
+  &lt;/button&gt;
+  &lt;button type=&quot;button&quot; class=&quot;c-split-button__toggle&quot; data-split-toggle aria-haspopup=&quot;listbox&quot; aria-expanded=&quot;false&quot;&gt;
+    &lt;span class=&quot;c-split-button__arrow&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;dropdown-list c-split-button__menu&quot; data-split-menu role=&quot;listbox&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;div class=&quot;dropdown-results&quot;&gt;
+      &lt;div class=&quot;dropdown-item&quot; role=&quot;option&quot;&gt;
+        &lt;a href=&quot;#&quot; class=&quot;c-link c-link--nav&quot; data-split-action=&quot;opt-1&quot;&gt;opzione 1&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/span&gt;
+</code></pre>
+
+        <div class="component-subtitle">js</div>
+        <pre><code>document.getElementById("mySplit").addEventListener("split-button-action", (e) =&gt; {
+  console.log(e.detail.action);
+});
+</code></pre>
+      </section>
+    </div>
+
+    <script>
+      function initSplitButtons() {
+        const splitButtons = document.querySelectorAll("[data-split-button]");
+        for (const split of splitButtons) {
+          const toggle = split.querySelector("[data-split-toggle]");
+          const menu = split.querySelector("[data-split-menu]");
+          if (!toggle || !menu) continue;
+
+          function closeMenu() {
+            if (!menu.classList.contains("show")) return;
+            menu.classList.remove("show");
+            menu.setAttribute("aria-hidden", "true");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+
+          function toggleMenu() {
+            const isOpen = menu.classList.contains("show");
+            if (isOpen) {
+              closeMenu();
+            } else {
+              menu.classList.add("show");
+              menu.setAttribute("aria-hidden", "false");
+              toggle.setAttribute("aria-expanded", "true");
+            }
+          }
+
+          toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+          });
+
+          document.addEventListener(
+            "click",
+            (e) => {
+              if (!menu.classList.contains("show")) return;
+              const t = e.target;
+              if (split.contains(t)) return;
+              closeMenu();
+            },
+            true
+          );
+
+          document.addEventListener(
+            "keydown",
+            (e) => {
+              if (e.key !== "Escape") return;
+              if (!menu.classList.contains("show")) return;
+              e.preventDefault();
+              e.stopPropagation();
+              closeMenu();
+            },
+            true
+          );
+
+          split.addEventListener("click", (e) => {
+            const actionEl = e.target.closest("[data-split-action]");
+            if (!actionEl) return;
+            if (!split.contains(actionEl)) return;
+
+            const action = actionEl.getAttribute("data-split-action");
+            if (!action) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu();
+
+            split.dispatchEvent(
+              new CustomEvent("split-button-action", {
+                detail: { action },
+                bubbles: true,
+              })
+            );
+          });
+        }
+      }
+
+      initSplitButtons();
+
+      const mySplit = document.getElementById("mySplit");
+      if (mySplit) {
+        mySplit.addEventListener("split-button-action", (e) => {
+          console.log(e.detail.action);
+        });
+      }
+
+      const mySplitLeft = document.getElementById("mySplitLeft");
+      if (mySplitLeft) {
+        mySplitLeft.addEventListener("split-button-action", (e) => {
+          console.log(e.detail.action);
+        });
+      }
+    </script>
+  </body>
+</html>

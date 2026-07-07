@@ -1,0 +1,5 @@
+.checkbox-no-label {
+  appearance: auto;
+  accent-color: var(--text-blue-500);
+  cursor: pointer;
+}

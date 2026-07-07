@@ -1,0 +1,62 @@
+/* chip.css */
+
+.chip {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: var(--space-16);
+  padding: var(--space-4) var(--space-12) var(--space-4) var(--space-12);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+  background-color: var(--grey-200);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+.chip__body {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.chip__led {
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: var(--radius-full);
+  background-color: var(--white);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.chip--attivo {
+  background-color: var(--grey-300);
+}
+
+.chip--attivo .chip__led {
+  background-color: var(--green-500);
+}
+
+.chip__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  border-radius: var(--radius-full);
+  transition: opacity var(--transition-150);
+}
+
+.chip__remove:hover {
+  opacity: 0.6;
+}
+
+.chip__remove img {
+  width: var(--space-16);
+  height: var(--space-16);
+  display: block;
+}

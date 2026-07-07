@@ -1,0 +1,13 @@
+.link {
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-blue-500);
+  font-family: var(--font-sans);
+  text-transform: none;
+  font-style: var(--not-italic);
+  line-height: var(--leading-5);
+  text-decoration-line: var(--underline);
+  text-decoration-style: var(--solid);
+  text-decoration-thickness: var(--decoration-auto);
+  text-decoration-color: var(--decoration-inherit);
+}

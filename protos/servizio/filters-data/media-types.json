@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "parent_id": 1,
+    "value": "Agenzie Stampa"
+  },
+  {
+    "id": 10,
+    "parent_id": 50,
+    "value": "Quotidiani"
+  },
+  {
+    "id": 30,
+    "parent_id": null,
+    "value": "Radio"
+  },
+  {
+    "id": 34,
+    "parent_id": 30,
+    "value": "News \/ GR"
+  },
+  {
+    "id": 35,
+    "parent_id": 30,
+    "value": "Trasmissioni Radio"
+  },
+  {
+    "id": 40,
+    "parent_id": null,
+    "value": "TV"
+  },
+  {
+    "id": 43,
+    "parent_id": 40,
+    "value": "Canali Tematici"
+  },
+  {
+    "id": 44,
+    "parent_id": 40,
+    "value": "News \/ TG"
+  },
+  {
+    "id": 45,
+    "parent_id": 40,
+    "value": "Programmi TV"
+  },
+  {
+    "id": 50,
+    "parent_id": null,
+    "value": "Carta Stampata"
+  },
+  {
+    "id": 51,
+    "parent_id": 50,
+    "value": "Periodici al Pubblico (Riviste)"
+  },
+  {
+    "id": 52,
+    "parent_id": 50,
+    "value": "Periodici di Categoria"
+  },
+  {
+    "id": 54,
+    "parent_id": 50,
+    "value": "Supplementi"
+  },
+  {
+    "id": 60,
+    "parent_id": null,
+    "value": "On-Line"
+  },
+  {
+    "id": 61,
+    "parent_id": 60,
+    "value": "On-Line News"
+  },
+  {
+    "id": 62,
+    "parent_id": 60,
+    "value": "Blog"
+  }
+]

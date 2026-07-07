@@ -1,0 +1,50 @@
+/* theme-default.css
+   Personalità visiva del progetto. Cambia questo file (o sostituiscilo
+   con un altro tema) per cambiare l'aspetto dell'intera UI senza toccare
+   i componenti.
+*/
+
+:root {
+  /* Colori */
+  --color-primary:        var(--blue-500);
+  --color-primary-subtle: var(--blue-300);
+  --color-primary-dark:   var(--blue-800);
+
+  --color-error:          var(--red-600);
+  --color-error-subtle:   #fff5f5;
+  --color-success:        var(--green-500);
+  --color-success-subtle: #ebfbee;
+  --color-warning:        var(--yellow-200);
+  
+  /* Testo */
+  --color-text:         var(--grey-900);
+  --color-text-strong:  var(--grey-950);
+  --color-text-muted:   var(--grey-650);
+  --color-text-inverse: var(--white);
+  
+  /* Superfici e sfondi */
+  --color-background:     var(--grey-050);
+  --color-surface:        var(--white);
+  --color-surface-raised: var(--grey-080);
+
+  /* Bordi */
+  --color-border:        var(--grey-200);
+  --color-border-strong: var(--grey-300);
+  --border-radius:       var(--radius-1);
+  --border-width:        var(--border-width-1);
+
+  /* Tipografia */
+  --font: var(--font-family);
+
+
+  /* Form */
+  --input-height: var(--height-input-44);
+
+  /* Sidebar */
+  --sidebar-width:                  112px;
+  --color-sidebar-bg:               var(--blue-800);
+  --color-sidebar-item-text:        var(--white);
+  --color-sidebar-item-active-bg:   var(--yellow-200);
+  --color-sidebar-item-active-text: var(--grey-900);
+  --color-sidebar-item-hover-bg:    var(--white-alpha-12);
+}

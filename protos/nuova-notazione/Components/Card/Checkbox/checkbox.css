@@ -1,0 +1,15 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-4);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  color: var(--text-grey-500);
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.checkbox input[type="checkbox"] {
+  appearance: auto;
+  accent-color: var(--text-blue-500);
+}

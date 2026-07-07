@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Filtrabile - Breadcrumb</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ffffff 0%, #eeeeee 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .container {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: fit-content;
+        width: 100%;
+      }
+
+      .layout {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .left-col {
+        width: 420px;
+        max-width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .right-col {
+        flex: 0 0 auto;
+        width: max-content;
+      }
+
+      .synonyms-panel {
+        border: 1px solid #e6e6e6;
+        border-radius: 10px;
+        padding: 14px;
+        background: #fafafa;
+        max-height: 520px;
+        overflow: auto;
+        width: max-content;
+      }
+
+      .synonyms-title {
+        font-size: 14px;
+        font-weight: 800;
+        color: #555;
+        margin: 0 0 8px 0;
+      }
+
+      .synonyms-filter {
+        font-size: 14px;
+        font-weight: 700;
+        color: #555;
+        margin: 10px 0 4px 0;
+      }
+
+      .synonyms-term {
+        font-size: 13px;
+        color: #555;
+        margin: 2px 0;
+        padding-left: 18px; /* indent dei sinonimi */
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 24px;
+      }
+
+      .field-label {
+        display: block;
+        margin: 0 0 8px 2px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #555;
+      }
+
+      .autocomplete-inline {
+        position: absolute;
+        pointer-events: none;
+        white-space: nowrap;
+        display: none;
+        transform: none;
+      }
+
+      .autocomplete-inline.show {
+        display: inline-flex;
+        align-items: baseline;
+      }
+
+      .autocomplete-suffix {
+        color: #aaa;
+        font-size: 16px;
+      }
+
+      .autocomplete-tip {
+        margin-left: 8px;
+        color: #777;
+        font-size: 12px;
+      }
+
+      .dropdown-container {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .dropdown-input {
+        width: 100%;
+        padding: 8px 40px 8px 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        background: white;
+        outline: none;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+        cursor: text;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+        position: relative;
+      }
+
+      .dropdown-input:focus {
+        border-color: #888;
+        box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.1);
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        margin: 4px;
+        border-radius: 999px;
+        background: #e9e9e9;
+        color: #333;
+        font-size: 13px;
+        line-height: 1;
+        user-select: none;
+        gap: 6px;
+      }
+
+      .chip-remove {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .chip-remove:hover {
+        color: #333;
+      }
+
+      .chip-text-input {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 6px 0;
+        margin: 0;
+        background: transparent;
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .dropdown-arrow {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 8px solid #666;
+        transition: transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .dropdown-arrow.rotated {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .dropdown-clear {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .dropdown-clear:hover {
+        background-color: #999;
+      }
+
+      .dropdown-clear.show {
+        display: flex;
+      }
+
+      .dropdown-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+        max-height: 500px;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dropdown-suggestions {
+        flex-shrink: 0;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 6px;
+        background-color: #f9f9f9;
+        max-height: 220px;
+        overflow-y: auto;
+        min-height: 0;
+      }
+
+      /* Quando non ci sono suggeriti, non mostrare "spazio vuoto" */
+      .dropdown-suggestions:empty {
+        display: none;
+        border-bottom: 0;
+        padding-bottom: 0;
+        max-height: 0;
+      }
+
+      .dropdown-section-title {
+        padding: 10px 15px 6px 15px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .related-label {
+        font-style: italic;
+      }
+
+      .dropdown-results {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 80px;
+      }
+
+      .dropdown-list.show {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+
+      .dropdown-footer {
+        flex-shrink: 0;
+        border-top: 1px solid #e0e0e0;
+        background: white;
+        padding: 8px 12px;
+        text-align: right;
+        border-radius: 0 0 8px 8px;
+      }
+
+      .close-dropdown-link {
+        font-size: 13px;
+        color: #007bff;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none;
+      }
+
+      .close-dropdown-link:hover {
+        text-decoration: underline;
+      }
+
+      .keycap {
+        margin-left: 8px;
+        padding: 2px 6px;
+        border-radius: 6px;
+        border: 1px solid #cfcfcf;
+        background: #f2f2f2;
+        color: #666;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1.2;
+        box-shadow: 0 1px 0 #e6e6e6;
+        pointer-events: none; /* solo visuale */
+      }
+
+      .dropdown-item {
+        padding: 12px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .breadcrumb-parent {
+        color: #777;
+      }
+
+      .breadcrumb-sep {
+        color: #aaa;
+        padding: 0 6px;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f0f0f0;
+      }
+
+      .dropdown-item.selected {
+        background-color: #f0f0f0;
+        color: inherit;
+      }
+
+      .dropdown-checkbox {
+        flex-shrink: 0;
+      }
+
+      .dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .no-results {
+        padding: 15px;
+        text-align: center;
+        color: #999;
+        font-style: italic;
+      }
+
+      /* Scrollbar personalizzata */
+      .dropdown-list::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .dropdown-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .dropdown-list::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+      }
+
+      .dropdown-list::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+      }
+
+      /* Evidenziazione del testo cercato */
+      .highlight {
+        background-color: yellow;
+        padding: 1px 2px;
+        border-radius: 2px;
+        font-weight: normal;
+      }
+
+      /* Dialog per creare nuovo progetto */
+      .dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+
+      .dialog-overlay.show {
+        display: flex;
+      }
+
+      .dialog {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+        animation: dialogSlideIn 0.3s ease;
+      }
+
+      @keyframes dialogSlideIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .dialog-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+      }
+
+      .dialog-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+        padding: 5px;
+        line-height: 1;
+      }
+
+      .dialog-close:hover {
+        color: #666;
+      }
+
+      .dialog-input-container {
+        margin-bottom: 20px;
+      }
+
+      .dialog-input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+      }
+
+      .dialog-input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      }
+
+      .dialog-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      .dialog-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 500;
+      }
+
+      .dialog-btn-primary {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .dialog-btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      .dialog-btn-secondary {
+        background-color: #6c757d;
+        color: white;
+      }
+
+      .dialog-btn-secondary:hover {
+        background-color: #545b62;
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+        .container {
+          margin: 10px;
+          padding: 20px;
+        }
+
+        .layout {
+          flex-direction: column;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        .dialog {
+          margin: 20px;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="layout">
+        <div class="left-col">
+          <div class="dropdown-container">
+            <label class="field-label" for="dropdownInput"
+              >Servizio giornalistico</label
+            >
+            <div class="dropdown-input" id="dropdownInputWrapper">
+              <div id="chipContainer"></div>
+              <input
+                type="text"
+                class="chip-text-input"
+                id="dropdownInput"
+                autocomplete="off"
+              />
+              <div
+                class="autocomplete-inline"
+                id="autocompleteInline"
+                aria-hidden="true"
+              >
+                <span
+                  class="autocomplete-suffix"
+                  id="autocompleteSuffix"
+                ></span>
+                <span class="autocomplete-tip" id="autocompleteTip"></span>
+              </div>
+              <div class="dropdown-arrow" id="dropdownArrow"></div>
+              <div class="dropdown-clear" id="dropdownClear">×</div>
+            </div>
+            <div class="dropdown-list" id="dropdownList">
+              <div class="dropdown-suggestions" id="dropdownSuggestions"></div>
+              <div class="dropdown-results" id="dropdownResults"></div>
+              <div class="dropdown-footer">
+                <a href="#" class="close-dropdown-link" id="closeDropdownLink"
+                  >chiudi tendina</a
+                ><button
+                  type="button"
+                  class="keycap"
+                  aria-hidden="true"
+                  tabindex="-1"
+                >
+                  ESC
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="synonyms-panel" id="synonymsPanel"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog per creare nuovo progetto -->
+    <div class="dialog-overlay" id="dialogOverlay">
+      <div class="dialog">
+        <button class="dialog-close" id="dialogClose">×</button>
+        <div class="dialog-title">Crea Nuovo Progetto</div>
+        <div class="dialog-input-container">
+          <input
+            type="text"
+            class="dialog-input"
+            id="dialogInput"
+            placeholder="Inserisci il nome del progetto..."
+          />
+        </div>
+        <div class="dialog-buttons">
+          <button class="dialog-btn dialog-btn-secondary" id="dialogCancel">
+            Annulla
+          </button>
+          <button class="dialog-btn dialog-btn-primary" id="dialogOk">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class FilterableDropdown {
+        constructor(inputId, options = []) {
+          this.input = document.getElementById(inputId);
+          this.inputWrapper = document.getElementById("dropdownInputWrapper");
+          this.chipContainer = document.getElementById("chipContainer");
+          this.autocompleteInline =
+            document.getElementById("autocompleteInline");
+          this.autocompleteSuffix =
+            document.getElementById("autocompleteSuffix");
+          this.autocompleteTip = document.getElementById("autocompleteTip");
+          this.arrow = document.getElementById("dropdownArrow");
+          this.clear = document.getElementById("dropdownClear");
+          this.list = document.getElementById("dropdownList");
+          this.closeLink = document.getElementById("closeDropdownLink");
+          this.suggestions = document.getElementById("dropdownSuggestions");
+          this.results = document.getElementById("dropdownResults");
+
+          // Dialog elements
+          this.dialogOverlay = document.getElementById("dialogOverlay");
+          this.dialogInput = document.getElementById("dialogInput");
+          this.dialogClose = document.getElementById("dialogClose");
+          this.dialogCancel = document.getElementById("dialogCancel");
+          this.dialogOk = document.getElementById("dialogOk");
+
+          this.originalOptions = options;
+          this.filteredOptions = [...options];
+          this.selectedValues = new Set();
+          this.strongMatchOptions = new Set();
+          this.matchRank = new Map();
+          this.visibleOptions = [...options];
+          this.isOpen = false;
+          this.selectedIndex = -1;
+
+          this.parents = ["ALIMENTARI E BEVANDE", "AGRICOLTURA E ZOOTECNICA"];
+
+          this.childrenByParent = {
+            "ALIMENTARI E BEVANDE": [
+              "Birra",
+              "Tè e Caffè",
+              "Dolciumi",
+              "Igiene alimentare",
+              "Industria alimentare",
+              "Latte e latticini",
+              "Alimenti biologici",
+              "Bevande",
+              "Liquori",
+              "Vegetarianesimo",
+              "Distribuzione automatica",
+              "Cucina e gastronomia",
+              "Alimentazione",
+              "Vini ed Enologia",
+            ],
+            "AGRICOLTURA E ZOOTECNICA": [
+              "Agroalimentare",
+              "Politica agraria",
+              "Zootecnica e Allevamento",
+              "Agricoltura biologica",
+              "Viticoltura",
+              "Agricoltura",
+              "Foreste",
+              "Veterinaria",
+            ],
+          };
+
+          this.optionToParent = {};
+          for (const p of this.parents) {
+            for (const child of this.childrenByParent[p] || []) {
+              this.optionToParent[child] = p;
+            }
+          }
+
+          this.relatedMap = {};
+
+          this.autocompleteMap = {};
+
+          this.keywordToFiltersMap = {};
+
+          const synonymsByFilter = {
+            Birra: ["Birra artigianale", "Bevanda brassicola"],
+            "Tè e Caffè": [
+              "Bevande calde",
+              "Infusi e caffetteria",
+              "Bevande stimolanti",
+            ],
+            Dolciumi: [
+              "Dolci",
+              "Caramelle",
+              "Confetteria",
+              "Prodotti zuccherini",
+            ],
+            "Igiene alimentare": [
+              "Sicurezza alimentare",
+              "Sanità degli alimenti",
+              "Controllo igienico-sanitario",
+            ],
+            "Industria alimentare": [
+              "Settore alimentare",
+              "Industria agroalimentare",
+              "Comparto alimentare",
+            ],
+            "Latte e latticini": [
+              "Prodotti caseari",
+              "Derivati del latte",
+              "Lattiero-caseario",
+            ],
+            "Alimenti biologici": [
+              "Cibi biologici",
+              "Prodotti bio",
+              "Alimenti da agricoltura biologica",
+            ],
+            Bevande: ["Drink", "Bibite", "Bevande analcoliche"],
+            Liquori: ["Distillati", "Alcolici", "Bevande spiritose"],
+            Vegetarianesimo: [
+              "Alimentazione vegetariana",
+              "Dieta vegetariana",
+              "Scelta vegetariana",
+            ],
+            "Distribuzione automatica": [
+              "Vending",
+              "Vendita automatizzata",
+              "Distributori automatici",
+            ],
+            "Cucina e gastronomia": [
+              "Arte culinaria",
+              "Gastronomia",
+              "Tradizione culinaria",
+            ],
+            Alimentazione: ["Nutrizione", "Dieta", "Regime alimentare"],
+            "Vini ed Enologia": [
+              "Vitivinicoltura",
+              "Cultura del vino",
+              "Settore enologico",
+            ],
+            Agroalimentare: [
+              "Settore agroalimentare",
+              "Filiera agroalimentare",
+            ],
+            "Politica agraria": ["Politiche agricole", "Governance agricola"],
+            "Zootecnica e Allevamento": [
+              "Allevamento animale",
+              "Produzione zootecnica",
+              "Scienze zootecniche",
+            ],
+            "Agricoltura biologica": [
+              "Coltivazione biologica",
+              "Agricoltura eco-sostenibile",
+              "Agricoltura organica",
+            ],
+            Viticoltura: ["Coltivazione della vite", "Produzione vitivinicola"],
+            Agricoltura: [
+              "Coltivazione",
+              "Attività agricola",
+              "Produzione agricola",
+            ],
+            Foreste: ["Bosco", "Aree forestali", "Patrimonio forestale"],
+            Veterinaria: ["Medicina veterinaria", "Scienze veterinarie"],
+          };
+
+          // Lista termini autocompletabili (sinonimi) per completamento a prefisso
+          this.autocompleteTerms = new Set();
+
+          for (const [filter, syns] of Object.entries(synonymsByFilter)) {
+            for (const syn of syns) {
+              const key = (syn || "").trim().toLowerCase();
+              if (!key) continue;
+              if (!this.keywordToFiltersMap[key]) {
+                this.keywordToFiltersMap[key] = [filter];
+              } else if (!this.keywordToFiltersMap[key].includes(filter)) {
+                this.keywordToFiltersMap[key].push(filter);
+              }
+
+              // abilita anche l'autocomplete per i sinonimi
+              this.autocompleteTerms.add(key);
+            }
+          }
+
+          this.renderSynonymsPanel(synonymsByFilter);
+
+          this.init();
+        }
+
+        init() {
+          this.renderList();
+          this.bindEvents();
+          this.updateClearVisibility();
+        }
+
+        bindEvents() {
+          // Click sull'area input: toggle apri/chiudi
+          this.inputWrapper.addEventListener("click", () => {
+            this.input.focus();
+            this.toggle();
+          });
+
+          // Input per filtrare
+          this.input.addEventListener("input", (e) => {
+            this.filterOptions(e.target.value);
+            this.updateAutocompleteHint(e.target.value);
+            if (!this.isOpen) {
+              this.open();
+            }
+            this.selectedIndex = -1;
+          });
+
+          // Navigazione con tastiera
+          this.input.addEventListener("keydown", (e) => {
+            this.handleKeyboard(e);
+          });
+
+          // Click sulla X per reset
+          this.clear.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.resetSelection();
+          });
+
+          // Chiudi quando si clicca fuori da input + tendina
+          // Nota: usiamo pointerdown per evitare che un rerender durante il click
+          // renda e.target "fuori" (es. selezione checkbox che ricrea la lista).
+          document.addEventListener("pointerdown", (e) => {
+            if (
+              !this.inputWrapper.contains(e.target) &&
+              !this.list.contains(e.target) &&
+              !this.clear.contains(e.target) &&
+              !this.dialogOverlay.contains(e.target)
+            ) {
+              this.close();
+            }
+          });
+
+          // Link "chiudi tendina"
+          if (this.closeLink) {
+            this.closeLink.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              this.close();
+            });
+          }
+
+          // Dialog events
+          this.dialogClose.addEventListener("click", () => {
+            this.closeDialog();
+          });
+
+          this.dialogCancel.addEventListener("click", () => {
+            this.closeDialog();
+          });
+
+          this.dialogOk.addEventListener("click", () => {
+            this.handleDialogOk();
+          });
+
+          this.dialogInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              this.handleDialogOk();
+            } else if (e.key === "Escape") {
+              this.closeDialog();
+            }
+          });
+
+          // Chiudi dialog cliccando sull'overlay
+          this.dialogOverlay.addEventListener("click", (e) => {
+            if (e.target === this.dialogOverlay) {
+              this.closeDialog();
+            }
+          });
+        }
+
+        filterOptions(query) {
+          const q = (query || "").trim().toLowerCase();
+          const includeSet = new Set();
+          const strongSet = new Set();
+          const rank = new Map();
+
+          // Per query corte (< 3) non filtriamo: evitiamo rumore e falsi positivi.
+          if (q.length < 3) {
+            this.filteredOptions = [...this.originalOptions];
+            this.strongMatchOptions = new Set();
+            this.matchRank = new Map();
+            this.renderList();
+            return;
+          }
+
+          if (!q) {
+            this.filteredOptions = [...this.originalOptions];
+            this.strongMatchOptions = new Set();
+            this.matchRank = new Map();
+            this.renderList();
+            return;
+          }
+
+          // 1) Match "forte" sul nome filtro: prefisso su inizio di QUALSIASI parola.
+          for (const option of this.originalOptions) {
+            const optionLower = option.toLowerCase();
+
+            const tokens = optionLower.split(/\s+/).filter(Boolean);
+            const strongMatch = tokens.some((t) => t.startsWith(q));
+
+            if (strongMatch) {
+              includeSet.add(option);
+              strongSet.add(option);
+              rank.set(option, 0);
+            }
+          }
+
+          // 2) Match "forte" tramite sinonimi: prefisso su inizio di QUALSIASI parola del sinonimo.
+          // Se matcha, includi il/i filtro/i collegati e assegna rank dopo al match diretto.
+          if (q.length >= 3) {
+            for (const term of this.autocompleteTerms || []) {
+              const words = String(term).split(/\s+/).filter(Boolean);
+              if (words.some((w) => w.startsWith(q))) {
+                const mapped = this.keywordToFiltersMap[term] || [];
+                for (const filter of mapped) {
+                  includeSet.add(filter);
+                  strongSet.add(filter);
+                  if (!rank.has(filter)) {
+                    rank.set(filter, 1);
+                  }
+                }
+              }
+            }
+          }
+
+          this.filteredOptions = this.originalOptions.filter((opt) =>
+            includeSet.has(opt)
+          );
+          this.strongMatchOptions = strongSet;
+          this.matchRank = rank;
+          this.renderList();
+        }
+
+        getAutocompleteSuggestion(query) {
+          const q = (query || "").trim().toLowerCase();
+          if (!q) return null;
+
+          // 1) mapping esplicito (es. sol -> soldi)
+          const mapped = this.autocompleteMap[q];
+          if (mapped) {
+            const suffix = mapped.slice(q.length);
+            if (!suffix) return null;
+            return { full: mapped, suffix };
+          }
+
+          // 2) completamento a prefisso sui termini (sinonimi)
+          // evita suggerimenti troppo aggressivi su query cortissime
+          if (q.length < 3) return null;
+
+          const candidates = [];
+          for (const term of this.autocompleteTerms || []) {
+            if (term.startsWith(q) && term.length > q.length) {
+              candidates.push(term);
+            }
+          }
+          if (candidates.length === 0) return null;
+
+          candidates.sort(
+            (a, b) => a.length - b.length || a.localeCompare(b, "it")
+          );
+          const full = candidates[0];
+          const suffix = full.slice(q.length);
+          if (!suffix) return null;
+          return { full, suffix };
+        }
+
+        measureTextWidth(text, element) {
+          const canvas =
+            this._measureCanvas ||
+            (this._measureCanvas = document.createElement("canvas"));
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return 0;
+
+          const cs = window.getComputedStyle(element);
+          ctx.font = `${cs.fontStyle} ${cs.fontVariant} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+          const metrics = ctx.measureText(text);
+          let width = metrics.width || 0;
+
+          const letterSpacing = parseFloat(cs.letterSpacing || "0");
+          if (
+            !Number.isNaN(letterSpacing) &&
+            letterSpacing !== 0 &&
+            text.length > 1
+          ) {
+            width += (text.length - 1) * letterSpacing;
+          }
+          return width;
+        }
+
+        updateAutocompleteHint(query) {
+          const suggestion = this.getAutocompleteSuggestion(query);
+          const caretAtEnd =
+            this.input.selectionStart === this.input.value.length &&
+            this.input.selectionEnd === this.input.value.length;
+
+          if (!this.isOpen || !suggestion || !caretAtEnd) {
+            this.autocompleteSuffix.textContent = "";
+            this.autocompleteTip.textContent = "";
+            this.autocompleteInline.classList.remove("show");
+            return;
+          }
+
+          // Contenuto
+          this.autocompleteSuffix.textContent = suggestion.suffix;
+          this.autocompleteTip.textContent = "";
+
+          // Posizionamento: subito dopo il testo digitato nell'input
+          const left =
+            this.input.offsetLeft +
+            this.measureTextWidth(this.input.value, this.input);
+          const cs = window.getComputedStyle(this.input);
+          const paddingTop = parseFloat(cs.paddingTop || "0") || 0;
+          const fontSize = parseFloat(cs.fontSize || "16") || 16;
+          const lineHeight =
+            cs.lineHeight === "normal"
+              ? fontSize * 1.2
+              : parseFloat(cs.lineHeight || `${fontSize * 1.2}`) ||
+                fontSize * 1.2;
+          const lineOffset = Math.max(0, (lineHeight - fontSize) / 2);
+          const top = this.input.offsetTop + paddingTop + lineOffset - 2.75;
+          this.autocompleteInline.style.left = `${left}px`;
+          this.autocompleteInline.style.top = `${top}px`;
+          this.autocompleteInline.classList.add("show");
+        }
+
+        renderSynonymsPanel(synonymsByFilter) {
+          const panel = document.getElementById("synonymsPanel");
+          if (!panel) return;
+
+          panel.innerHTML = "";
+
+          const title = document.createElement("div");
+          title.className = "synonyms-title";
+          title.textContent = "TERMINI COLLEGATI";
+          panel.appendChild(title);
+
+          const filters = Object.keys(synonymsByFilter || {}).sort((a, b) =>
+            a.localeCompare(b, "it", { sensitivity: "base" })
+          );
+
+          for (const filter of filters) {
+            const filterEl = document.createElement("div");
+            filterEl.className = "synonyms-filter";
+            filterEl.textContent = filter;
+            panel.appendChild(filterEl);
+
+            const terms = synonymsByFilter[filter] || [];
+            for (const term of terms) {
+              const termEl = document.createElement("div");
+              termEl.className = "synonyms-term";
+              termEl.textContent = term;
+              panel.appendChild(termEl);
+            }
+          }
+        }
+
+        renderRelatedPanel() {
+          const panel = document.getElementById("relatedPanel");
+          if (!panel) return;
+
+          panel.innerHTML = "";
+
+          const keys = Object.keys(this.relatedMap || {}).sort((a, b) =>
+            a.localeCompare(b, "it", { sensitivity: "base" })
+          );
+
+          const seenPairs = new Set();
+          const pairs = [];
+
+          for (const k of keys) {
+            const v = this.relatedMap[k];
+            if (!v) continue;
+            const a = String(k);
+            const b = String(v);
+            const pairKey = [a, b]
+              .sort((x, y) => x.localeCompare(y, "it"))
+              .join("||");
+            if (seenPairs.has(pairKey)) continue;
+            seenPairs.add(pairKey);
+            pairs.push([a, b]);
+          }
+
+          // Ordina i pair per il primo elemento (poi secondo)
+          pairs.sort(
+            (p1, p2) =>
+              p1[0].localeCompare(p2[0], "it", { sensitivity: "base" }) ||
+              p1[1].localeCompare(p2[1], "it", { sensitivity: "base" })
+          );
+
+          for (const [filter, related] of pairs) {
+            const filterEl = document.createElement("div");
+            filterEl.className = "synonyms-filter";
+            filterEl.textContent = filter;
+            panel.appendChild(filterEl);
+
+            const termEl = document.createElement("div");
+            termEl.className = "synonyms-term";
+            termEl.textContent = related;
+            panel.appendChild(termEl);
+          }
+        }
+
+        // Funzione per evidenziare il testo cercato
+        highlightSearchText(text, searchTerm) {
+          if (!searchTerm || searchTerm.trim() === "") {
+            return text;
+          }
+
+          const regex = new RegExp(
+            `(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+            "gi"
+          );
+          return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        renderList() {
+          // Pulisci i contenitori
+          this.results.innerHTML = "";
+          this.suggestions.innerHTML = "";
+
+          // In questa variante mostriamo un'unica lista (nei risultati). La sezione suggeriti resta vuota.
+
+          // Sezione "Correlati" basata sulla query corrente
+          const query = this.input.value.trim();
+          const q = query.toLowerCase();
+          const showSuggestions = q.length >= 3;
+
+          const filteredSet = new Set(this.filteredOptions);
+
+          const suggestionsSet = new Set();
+
+          if (showSuggestions) {
+            const filteredSet = new Set(this.filteredOptions);
+
+            // 1) Suggerimenti "da keyword" (es. soldi → Economia) anche senza match
+            const kwSuggestions = this.keywordToFiltersMap[q] || [];
+            for (const opt of kwSuggestions) {
+              if (opt && !filteredSet.has(opt)) {
+                suggestionsSet.add(opt);
+              }
+            }
+
+            // 2) Suggerisci correlati delle voci matchate (e/o selezionate).
+            const strongOrSelected = new Set([
+              ...Array.from(this.selectedValues),
+              ...Array.from(this.strongMatchOptions || []),
+            ]);
+
+            for (const opt of strongOrSelected) {
+              const related = this.relatedMap[opt];
+              if (related && !filteredSet.has(related)) {
+                suggestionsSet.add(related);
+              }
+            }
+          }
+
+          const suggestions = Array.from(suggestionsSet)
+            .filter(
+              (opt) =>
+                this.originalOptions.includes(opt) && !filteredSet.has(opt)
+            )
+            .sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
+
+          const matched = [...this.filteredOptions].sort((a, b) => {
+            const ra = this.matchRank?.get(a) ?? 99;
+            const rb = this.matchRank?.get(b) ?? 99;
+            return ra - rb || a.localeCompare(b, "it", { sensitivity: "base" });
+          });
+
+          this.visibleOptions = [...matched, ...suggestions];
+
+          // Mostra i risultati filtrati nell'area scrollabile
+          this.visibleOptions.forEach((option, index) => {
+            const item = document.createElement("div");
+            item.className = "dropdown-item";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "dropdown-checkbox";
+            checkbox.checked = this.selectedValues.has(option);
+
+            const label = document.createElement("span");
+            const parent = this.optionToParent?.[option];
+            if (parent) {
+              const parentEl = document.createElement("span");
+              parentEl.className = "breadcrumb-parent";
+              parentEl.textContent = parent;
+
+              const sepEl = document.createElement("span");
+              sepEl.className = "breadcrumb-sep";
+              sepEl.textContent = "›";
+
+              const childEl = document.createElement("span");
+              childEl.textContent = option;
+
+              label.appendChild(parentEl);
+              label.appendChild(sepEl);
+              label.appendChild(childEl);
+            } else {
+              label.textContent = option;
+            }
+
+            item.dataset.index = index;
+
+            if (this.selectedValues.has(option)) {
+              item.classList.add("selected");
+            }
+
+            checkbox.addEventListener("click", (e) => {
+              e.stopPropagation();
+            });
+            checkbox.addEventListener("change", (e) => {
+              e.stopPropagation();
+              this.toggleOption(option);
+            });
+
+            item.addEventListener("click", (e) => {
+              e.stopPropagation();
+              this.toggleOption(option);
+            });
+
+            item.appendChild(checkbox);
+            item.appendChild(label);
+            this.results.appendChild(item);
+          });
+        }
+
+        toggleOption(option) {
+          if (this.selectedValues.has(option)) {
+            this.selectedValues.delete(option);
+          } else {
+            this.selectedValues.add(option);
+          }
+          this.renderChips();
+          this.renderList();
+          this.updateClearVisibility();
+          this.input.focus();
+        }
+
+        renderChips() {
+          this.chipContainer.innerHTML = "";
+          for (const value of this.selectedValues) {
+            const chip = document.createElement("span");
+            chip.className = "chip";
+
+            const text = document.createElement("span");
+            text.textContent = value;
+
+            const removeBtn = document.createElement("button");
+            removeBtn.type = "button";
+            removeBtn.className = "chip-remove";
+            removeBtn.setAttribute("aria-label", `Rimuovi ${value}`);
+            removeBtn.textContent = "×";
+            removeBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              this.selectedValues.delete(value);
+              this.renderChips();
+              this.renderList();
+              this.updateClearVisibility();
+              this.input.focus();
+            });
+
+            chip.appendChild(text);
+            chip.appendChild(removeBtn);
+            this.chipContainer.appendChild(chip);
+          }
+        }
+
+        resetSelection() {
+          this.selectedValues.clear();
+          this.input.value = "";
+          this.filteredOptions = [...this.originalOptions];
+          this.renderChips();
+          this.updateAutocompleteHint("");
+          this.close();
+          this.renderList();
+          this.updateClearVisibility();
+        }
+
+        updateClearVisibility() {
+          if (this.selectedValues.size > 0) {
+            this.clear.classList.add("show");
+            this.arrow.style.display = "none";
+          } else {
+            this.clear.classList.remove("show");
+            this.arrow.style.display = "block";
+          }
+        }
+
+        handleKeyboard(e) {
+          // TAB: accetta l'autocomplete (es. sol -> soldi)
+          if (e.key === "Tab") {
+            const suggestion = this.getAutocompleteSuggestion(this.input.value);
+            if (suggestion) {
+              e.preventDefault();
+              this.input.value = suggestion.full;
+              this.filterOptions(this.input.value);
+              this.updateAutocompleteHint(this.input.value);
+              if (!this.isOpen) {
+                this.open();
+              }
+              this.selectedIndex = -1;
+              return;
+            }
+          }
+
+          // Backspace: se non c'è testo, rimuovi l'ultimo chip selezionato
+          if (
+            e.key === "Backspace" &&
+            this.input.value === "" &&
+            this.selectedValues.size > 0
+          ) {
+            e.preventDefault();
+            const last = Array.from(this.selectedValues).pop();
+            if (last) {
+              this.selectedValues.delete(last);
+              this.renderChips();
+              this.renderList();
+              this.updateClearVisibility();
+            }
+            return;
+          }
+
+          if (!this.isOpen && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+            e.preventDefault();
+            this.open();
+            return;
+          }
+
+          if (!this.isOpen) return;
+          const totalItems = (this.visibleOptions || []).length;
+
+          switch (e.key) {
+            case "ArrowDown":
+              e.preventDefault();
+              this.selectedIndex = Math.min(
+                this.selectedIndex + 1,
+                totalItems - 1
+              );
+              this.highlightItem();
+              break;
+
+            case "ArrowUp":
+              e.preventDefault();
+              this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
+              this.highlightItem();
+              break;
+
+            case "Enter":
+              e.preventDefault();
+              if (this.selectedIndex >= 0) {
+                const option = (this.visibleOptions || [])[this.selectedIndex];
+                if (option) {
+                  this.toggleOption(option);
+                }
+              }
+              break;
+
+            case "Escape":
+              e.preventDefault();
+              this.close();
+              break;
+          }
+        }
+
+        highlightItem() {
+          const resultsItems = this.results.querySelectorAll(".dropdown-item");
+
+          // Resetta tutti gli stili
+          resultsItems.forEach((item, index) => {
+            item.style.backgroundColor = "";
+          });
+
+          // Evidenzia l'elemento selezionato
+          if (
+            this.selectedIndex >= 0 &&
+            this.selectedIndex < resultsItems.length
+          ) {
+            // Elemento nei risultati
+            resultsItems[this.selectedIndex].style.backgroundColor = "#f0f0f0";
+            resultsItems[this.selectedIndex].scrollIntoView({
+              block: "nearest",
+            });
+          }
+        }
+
+        open() {
+          this.isOpen = true;
+          this.filterOptions(this.input.value);
+          this.updateAutocompleteHint(this.input.value);
+          this.selectedIndex = -1;
+
+          this.list.classList.add("show");
+          this.arrow.classList.add("rotated");
+          this.inputWrapper.style.borderRadius = "8px 8px 0 0";
+        }
+
+        close() {
+          this.isOpen = false;
+          this.list.classList.remove("show");
+          this.arrow.classList.remove("rotated");
+          this.inputWrapper.style.borderRadius = "8px";
+          this.selectedIndex = -1;
+          this.updateAutocompleteHint("");
+        }
+
+        toggle() {
+          if (this.isOpen) {
+            this.close();
+          } else {
+            this.open();
+          }
+        }
+
+        // Dialog methods
+        openDialog() {
+          this.dialogOverlay.classList.add("show");
+          this.dialogInput.value = "";
+          // Focus sull'input della dialog dopo un piccolo delay per l'animazione
+          setTimeout(() => {
+            this.dialogInput.focus();
+          }, 100);
+        }
+
+        closeDialog() {
+          this.dialogOverlay.classList.remove("show");
+          this.dialogInput.value = "";
+        }
+
+        handleDialogOk() {
+          const projectName = this.dialogInput.value.trim();
+          if (projectName) {
+            this.saveNewProject(projectName);
+            this.closeDialog();
+          }
+        }
+
+        // Metodo per salvare un nuovo progetto
+        saveNewProject(projectName) {
+          if (projectName && !this.originalOptions.includes(projectName)) {
+            // Trova la posizione corretta per inserire il nuovo elemento in ordine alfabetico
+            let insertIndex = 0;
+            for (let i = 0; i < this.originalOptions.length; i++) {
+              if (
+                this.originalOptions[i].toLowerCase() >
+                projectName.toLowerCase()
+              ) {
+                insertIndex = i;
+                break;
+              }
+              insertIndex = i + 1;
+            }
+
+            // Inserisci il nuovo elemento nella posizione corretta
+            this.originalOptions.splice(insertIndex, 0, projectName);
+            this.filteredOptions = [...this.originalOptions];
+
+            // (Feature non usata in questa pagina) - manteniamo la lista aggiornata
+            this.renderList();
+          }
+        }
+
+        // Metodi pubblici per gestire le opzioni
+        addOption(option) {
+          if (!this.originalOptions.includes(option)) {
+            this.originalOptions.push(option);
+            this.filteredOptions = [...this.originalOptions];
+            this.renderList();
+          }
+        }
+
+        removeOption(option) {
+          this.originalOptions = this.originalOptions.filter(
+            (opt) => opt !== option
+          );
+          this.filteredOptions = [...this.originalOptions];
+          this.renderList();
+        }
+
+        setOptions(options) {
+          this.originalOptions = options;
+          this.filteredOptions = [...options];
+          this.renderList();
+        }
+      }
+
+      // Dati di esempio - qui puoi inserire i tuoi 80 elementi
+      const sampleOptions = [
+        "Birra",
+        "Tè e Caffè",
+        "Dolciumi",
+        "Igiene alimentare",
+        "Industria alimentare",
+        "Latte e latticini",
+        "Alimenti biologici",
+        "Bevande",
+        "Liquori",
+        "Vegetarianesimo",
+        "Distribuzione automatica",
+        "Cucina e gastronomia",
+        "Alimentazione",
+        "Vini ed Enologia",
+        "Agroalimentare",
+        "Politica agraria",
+        "Zootecnica e Allevamento",
+        "Agricoltura biologica",
+        "Viticoltura",
+        "Agricoltura",
+        "Foreste",
+        "Veterinaria",
+      ];
+
+      // Ordina alfabeticamente
+      sampleOptions.sort((a, b) =>
+        a.localeCompare(b, "it", { sensitivity: "base" })
+      );
+
+      // Inizializza la dropdown
+      const dropdown = new FilterableDropdown("dropdownInput", sampleOptions);
+      dropdown.updateAutocompleteHint("");
+
+      // Esempio di come aggiungere opzioni dinamicamente
+      // dropdown.addOption('Nuova Opzione');
+
+      // Esempio di come cambiare tutte le opzioni
+      // dropdown.setOptions(['Opzione 1', 'Opzione 2', 'Opzione 3']);
+    </script>
+  </body>
+</html>

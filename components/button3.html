@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>button3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./button3.css" />
+  <style>
+    .states {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-16);
+      flex-wrap: wrap;
+    }
+    .state {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-8);
+    }
+    .state__label {
+      font-family: var(--font-hand);
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>button3</h1>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <p>Primary button — stroke grey-500, fill nulla, shadow come spessore. Hover: fill leggero. Active: il bottone scende di 3px e lo spessore si riduce a 1px.</p>
+        <div class="showcase__display">
+          <div class="states">
+            <div class="state">
+              <button type="button" class="btn btn--primary">salva</button>
+              <span class="state__label">default</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-hover">salva</button>
+              <span class="state__label">hover</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-active">salva</button>
+              <span class="state__label">active</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-focus">salva</button>
+              <span class="state__label">focus</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary" disabled>salva</button>
+              <span class="state__label">disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <p>Primary button con icona + testo:</p>
+        <div class="showcase__display">
+          <div class="states">
+            <div class="state">
+              <button type="button" class="btn btn--primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M440-440H240q-17 0-28.5-11.5T200-480q0-17 11.5-28.5T240-520h200v-200q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720v200h200q17 0 28.5 11.5T760-480q0 17-11.5 28.5T720-440H520v200q0 17-11.5 28.5T480-200q-17 0-28.5-11.5T440-240v-200Z"/></svg>
+                nuovo progetto
+              </button>
+              <span class="state__label">default</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-hover">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M440-440H240q-17 0-28.5-11.5T200-480q0-17 11.5-28.5T240-520h200v-200q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720v200h200q17 0 28.5 11.5T760-480q0 17-11.5 28.5T720-440H520v200q0 17-11.5 28.5T480-200q-17 0-28.5-11.5T440-240v-200Z"/></svg>
+                nuovo progetto
+              </button>
+              <span class="state__label">hover</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M440-440H240q-17 0-28.5-11.5T200-480q0-17 11.5-28.5T240-520h200v-200q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720v200h200q17 0 28.5 11.5T760-480q0 17-11.5 28.5T720-440H520v200q0 17-11.5 28.5T480-200q-17 0-28.5-11.5T440-240v-200Z"/></svg>
+                nuovo progetto
+              </button>
+              <span class="state__label">active</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M440-440H240q-17 0-28.5-11.5T200-480q0-17 11.5-28.5T240-520h200v-200q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720v200h200q17 0 28.5 11.5T760-480q0 17-11.5 28.5T720-440H520v200q0 17-11.5 28.5T480-200q-17 0-28.5-11.5T440-240v-200Z"/></svg>
+                nuovo progetto
+              </button>
+              <span class="state__label">disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

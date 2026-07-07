@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>limit-indicator v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./limit-indicator-v2.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>limit-indicator v2</h1>
+    <p>Indicatore con colore dinamico (verde → rosso) basato sul consumo</p>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Spedizioni — 50k su 100k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">spedizioni</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="--consumption: 50; width: 50%;"></div>
+          </div>
+          <span class="limit-indicator__value">50k/100k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Esportazioni — 80k su 100k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">esportazioni</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="--consumption: 80; width: 80%;"></div>
+          </div>
+          <span class="limit-indicator__value">80k/100k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Mailing list — 20k su 50k utilizzate:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">mailing list</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="--consumption: 40; width: 40%;"></div>
+          </div>
+          <span class="limit-indicator__value">20k/50k</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Progetti — limite completamente utilizzato:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">progetti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="--consumption: 100; width: 100%;"></div>
+          </div>
+          <span class="limit-indicator__value">10/10</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Ospiti — nessun utilizzo:</p>
+      <div class="showcase__display">
+        <div class="limit-indicator">
+          <span class="limit-indicator__label">ospiti</span>
+          <div class="limit-indicator__bar">
+            <div class="limit-indicator__progress" style="--consumption: 0; width: 0%;"></div>
+          </div>
+          <span class="limit-indicator__value">0/5</span>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

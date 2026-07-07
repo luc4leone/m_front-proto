@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nav prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="./components.css" />
+  <style>
+    .app-layout__main { padding: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <aside class="app-layout__sidebar">
+      <div id="sidebar"></div>
+    </aside>
+
+    <main class="app-layout__main" id="main-content">
+
+      <!-- dashboard view -->
+      <div id="view-dashboard" class="n-col-layout">
+
+        <!-- col 1: tab progetti -->
+        <div class="n-col">
+          <div class="n-col-content">
+            <button class="n-tab n-tab--active" data-tab="progetto-1">progetto 1</button>
+            <button class="n-tab" data-tab="progetto-2">progetto 2</button>
+          </div>
+        </div>
+
+        <!-- col 2: mailing lists -->
+        <div class="n-col">
+          <div class="n-col-content">
+            <div class="n-row">
+              <h2 class="n-h2">Mailing lists</h2>
+              <a href="#" class="n-link">vedi tutte</a>
+              <button class="n-btn">nuova lista</button>
+            </div>
+            <div class="n-list">
+              <a href="#" class="n-link">lista 1</a>
+              <a href="#" class="n-link">lista 2</a>
+              <a href="#" class="n-link">lista 3</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- col 3: spedizioni -->
+        <div class="n-col">
+          <div class="n-col-content">
+            <div class="n-row">
+              <h2 class="n-h2">Spedizioni</h2>
+              <a href="#" class="n-link">vedi tutte</a>
+              <button class="n-btn">nuova spedizione</button>
+            </div>
+            <div class="n-list">
+              <a href="#" class="n-link">Spedizione 1</a>
+              <a href="#" class="n-link">Spedizione 2</a>
+              <a href="#" class="n-link">Spedizione 3</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- col 4–6 (vuote) -->
+        <div class="n-col"></div>
+        <div class="n-col"></div>
+        <div class="n-col"></div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script type="module">
+    import { render as renderSidebar, init as initSidebar } from '../../components/sidebar.js';
+
+    const sidebarEl = document.getElementById('sidebar');
+    sidebarEl.innerHTML = renderSidebar({
+      activeId: 'dashboard',
+      items: [
+        { id: 'dashboard',  icon: '../../assets/icons/M_.svg',           href: '#', label: 'dashboard' },
+        { id: 'banca-dati', icon: '../../assets/icons/filter.svg',       href: '#', label: 'banca dati' },
+        { type: 'separator' },
+        { type: 'spacer' },
+        { type: 'separator' },
+        { id: 'notifiche',  icon: '../../assets/icons/notification.svg', href: '#', label: 'notifiche' },
+        { id: 'account',    icon: '../../assets/icons/account.svg',      href: '#', label: 'account' },
+        { type: 'separator' },
+        { id: 'theme', type: 'toggle',
+          icon:     '../../assets/icons/light_mode.svg',
+          iconDark: '../../assets/icons/dark_mode.svg' },
+      ],
+    });
+
+    const views = {
+      dashboard: document.getElementById('view-dashboard'),
+    };
+
+    function showView(id) {
+      const main = document.getElementById('main-content');
+      const view = views[id];
+      if (view) {
+        main.innerHTML = '';
+        main.appendChild(view);
+      } else {
+        main.innerHTML = `<div style="padding:var(--space-24);color:var(--color-text-muted)">${id}</div>`;
+      }
+    }
+
+    initSidebar(sidebarEl.querySelector('[data-sidebar]'), {
+      onNavigate: showView,
+    });
+
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('n-tab--active'));
+        btn.classList.add('n-tab--active');
+      });
+    });
+  </script>
+
+</body>
+</html>

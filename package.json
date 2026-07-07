@@ -1,0 +1,23 @@
+{
+  "name": "proto-template",
+  "version": "1.0.0",
+  "description": "Template repo per costruire prototipi",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:watch": "playwright test --watch",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "start": "serve . -p 3000",
+    "snapshot": "node scripts/snapshot.js",
+    "history": "serve docs -p 4000 --no-clipboard"
+  },
+  "keywords": [],
+  "author": "Luca",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "serve": "^14.2.6"
+  }
+}

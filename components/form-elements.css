@@ -1,0 +1,262 @@
+/* form-elements.css
+   Stili per elementi di form: input, select, textarea, checkbox, label.
+   Usa esclusivamente variabili da tokens.css e theme-default.css.
+*/
+
+/* ────────────────────────────────────────────────────────────────────────────
+   FORM CONTAINER & FIELD STRUCTURE
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.form__field--link {
+  align-items: flex-end;
+}
+
+.form__field--checkbox {
+  flex-direction: row;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   LABEL
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__label {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-500);
+  color: var(--color-text);
+  line-height: var(--line-height-14);
+}
+
+.form__required {
+  color: var(--color-primary);
+}
+
+.form__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.form__help-text {
+  font-size: var(--fs-14);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-16);
+}
+
+.form__label-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: var(--fw-600);
+}
+
+.form__label-link:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   INPUT
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__input {
+  height: var(--input-height);
+  padding: 0 var(--space-12);
+  font-family: var(--font);
+  font-size: var(--fs-16);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--border-radius);
+  transition: border-color var(--transition-150), box-shadow var(--transition-150);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--border-width-2) var(--color-primary-subtle);
+}
+
+.form__input::placeholder {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-400);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.form__input--compact {
+  height: auto;
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--fs-14);
+}
+
+.form__input--readonly {
+  background-color: var(--grey-100);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.form__input--readonly:hover {
+  cursor: not-allowed;
+}
+
+.form__input--readonly:focus {
+  border-color: var(--color-border-strong);
+  box-shadow: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   SELECT
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__select-wrapper {
+  position: relative;
+}
+
+.form__select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: var(--space-12);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--color-text);
+  pointer-events: none;
+}
+
+.form__select {
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--space-12);
+  padding-right: var(--space-32);
+  font-family: var(--font);
+  font-size: var(--fs-16);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  appearance: none;
+  transition: border-color var(--transition-150), box-shadow var(--transition-150);
+}
+
+.form__select--compact {
+  height: auto;
+  padding: var(--space-8) var(--space-12);
+  padding-right: var(--space-32);
+  font-size: var(--fs-14);
+}
+
+.form__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--border-width-2) var(--color-primary-subtle);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   TEXTAREA
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__textarea {
+  width: 100%;
+  padding: var(--space-12);
+  font-family: var(--font);
+  font-size: var(--fs-16);
+  line-height: var(--line-height-16);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--border-radius);
+  resize: vertical;
+  transition: border-color var(--transition-150), box-shadow var(--transition-150);
+}
+
+.form__textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--border-width-2) var(--color-primary-subtle);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   CHECKBOX
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  cursor: pointer;
+}
+
+.form__checkbox {
+  width: var(--space-20);
+  height: var(--space-20);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-2);
+  background-color: var(--color-surface);
+  cursor: pointer;
+  appearance: none;
+  transition: border-color var(--transition-150), background-color var(--transition-150);
+}
+
+.form__checkbox:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form__checkbox:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--border-width-2) var(--color-primary-subtle);
+}
+
+.form__checkbox-text {
+  font-size: var(--fs-16);
+  color: var(--color-text);
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   FORM LINK (helper link inline)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__link {
+  font-size: var(--fs-14);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.form__link:hover {
+  text-decoration: underline;
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   FORM ACTIONS
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.form__actions {
+  display: flex;
+  gap: var(--space-24);
+  padding-top: var(--space-8);
+}

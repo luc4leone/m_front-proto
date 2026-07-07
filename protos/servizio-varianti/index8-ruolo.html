@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototipo 8 - Ruolo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #333;
+      }
+
+      .page {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 380px;
+        border-right: 1px solid #e6e6e6;
+        background: #fafafa;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .main {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .main-title {
+        font-size: 18px;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+      }
+
+      .dropdown-container {
+        width: 100%;
+        position: relative;
+      }
+
+      .field-label {
+        display: inline-block;
+        margin: 0 0 8px 2px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .dropdown-input {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 8px 40px 8px 12px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        background: white;
+        cursor: text;
+        position: relative;
+        box-sizing: border-box;
+      }
+
+      #chipContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid #d8d8d8;
+        background: #f7f7f7;
+        font-size: 13px;
+      }
+
+      .chip-remove {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 1;
+        color: #666;
+      }
+
+      .chip-text-input {
+        border: 0;
+        outline: none;
+        font-size: 14px;
+        min-width: 60px;
+        flex: 1;
+        padding: 4px 2px;
+      }
+
+      .autocomplete-inline {
+        position: absolute;
+        pointer-events: none;
+        white-space: nowrap;
+        display: none;
+        transform: none;
+      }
+
+      .autocomplete-inline.show {
+        display: inline-flex;
+        align-items: baseline;
+      }
+
+      .autocomplete-suffix {
+        color: #aaa;
+        font-size: 16px;
+      }
+
+      .autocomplete-tip {
+        margin-left: 8px;
+        color: #777;
+        font-size: 12px;
+      }
+
+      .dropdown-arrow {
+        position: absolute;
+        right: 12px;
+        top: 14px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 8px solid #888;
+        transition: transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .dropdown-arrow.rotated {
+        transform: rotate(180deg);
+      }
+
+      .dropdown-clear {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .dropdown-clear:hover {
+        background-color: #999;
+      }
+
+      .dropdown-clear.show {
+        display: flex;
+      }
+
+      .dropdown-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+        overflow: hidden;
+        max-height: 500px;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .dropdown-list.show {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+      }
+
+      .dropdown-suggestions {
+        flex-shrink: 0;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 6px;
+        background-color: #f9f9f9;
+        max-height: 160px;
+        overflow-y: auto;
+        min-height: 0;
+      }
+
+      .dropdown-suggestions:empty {
+        display: none;
+        border-bottom: 0;
+        padding-bottom: 0;
+        max-height: 0;
+      }
+
+      .dropdown-results {
+        max-height: 360px;
+        overflow-y: auto;
+      }
+
+      .dropdown-footer {
+        border-top: 1px solid #e0e0e0;
+        background: white;
+        padding: 8px 12px;
+        text-align: right;
+      }
+
+      .close-dropdown-link {
+        font-size: 13px;
+        color: #007bff;
+        font-weight: 400;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none;
+      }
+
+      .close-dropdown-link:hover {
+        text-decoration: underline;
+      }
+
+      .keycap {
+        margin-left: 8px;
+        padding: 2px 6px;
+        border-radius: 6px;
+        border: 1px solid #cfcfcf;
+        background: #f2f2f2;
+        color: #666;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 1.2;
+        box-shadow: 0 1px 0 #e6e6e6;
+        pointer-events: none;
+      }
+
+      .dropdown-item {
+        padding: 12px 15px;
+        cursor: pointer;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dropdown-item:hover {
+        background-color: #f0f0f0;
+      }
+
+      .dropdown-item.selected {
+        background-color: #f0f0f0;
+        color: inherit;
+      }
+
+      .dropdown-item.child-item {
+        padding-left: 30px;
+      }
+
+      .dropdown-checkbox {
+        flex-shrink: 0;
+      }
+
+      .dropdown-group {
+        padding: 10px 15px 6px 15px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .dropdown-group .close-dropdown-link {
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      .no-results {
+        padding: 15px;
+        text-align: center;
+        color: #999;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <div class="dropdown-container">
+          <label class="field-label" for="dropdownInput">Ruolo</label>
+          <div class="dropdown-input" id="dropdownInputWrapper">
+            <div id="chipContainer"></div>
+            <input
+              type="text"
+              class="chip-text-input"
+              id="dropdownInput"
+              autocomplete="off"
+            />
+            <div
+              class="autocomplete-inline"
+              id="autocompleteInline"
+              aria-hidden="true"
+            >
+              <span class="autocomplete-suffix" id="autocompleteSuffix"></span>
+              <span class="autocomplete-tip" id="autocompleteTip"></span>
+            </div>
+            <div class="dropdown-arrow" id="dropdownArrow"></div>
+            <div class="dropdown-clear" id="dropdownClear">×</div>
+          </div>
+          <div class="dropdown-list" id="dropdownList">
+            <div class="dropdown-suggestions" id="dropdownSuggestions"></div>
+            <div class="dropdown-results" id="dropdownResults"></div>
+            <div class="dropdown-footer">
+              <a href="#" class="close-dropdown-link" id="closeDropdownLink"
+                >chiudi tendina</a
+              >
+              <button
+                type="button"
+                class="keycap"
+                aria-hidden="true"
+                tabindex="-1"
+              >
+                ESC
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <h1 class="main-title">Index 8</h1>
+        <div id="debugSelected"></div>
+      </main>
+    </div>
+
+    <script>
+      class FilterableDropdown {
+        constructor(inputId, options = []) {
+          this.input = document.getElementById(inputId);
+          this.inputWrapper = document.getElementById("dropdownInputWrapper");
+          this.container = this.input?.closest(".dropdown-container");
+          this.label = this.container?.querySelector(
+            'label.field-label[for="dropdownInput"]'
+          );
+          this.chipContainer = document.getElementById("chipContainer");
+          this.autocompleteInline =
+            document.getElementById("autocompleteInline");
+          this.autocompleteSuffix =
+            document.getElementById("autocompleteSuffix");
+          this.autocompleteTip = document.getElementById("autocompleteTip");
+          this.arrow = document.getElementById("dropdownArrow");
+          this.clear = document.getElementById("dropdownClear");
+          this.list = document.getElementById("dropdownList");
+          this.closeLink = document.getElementById("closeDropdownLink");
+          this.suggestions = document.getElementById("dropdownSuggestions");
+          this.results = document.getElementById("dropdownResults");
+
+          this.originalOptions = options;
+          this.filteredOptions = [...options];
+          this.selectedValues = new Set();
+          this.strongMatchOptions = new Set();
+          this.matchRank = new Map();
+          this.visibleOptions = [...options];
+          this.isOpen = false;
+          this.selectedIndex = -1;
+
+          this.baseInputWrapperHeight = null;
+
+          this.ignoreWrapperClick = false;
+          this.expandedParents = new Set();
+
+          this.parents = [
+            "DIREZIONE",
+            "COORDINAMENTO REDAZIONALE",
+            "REDAZIONE",
+            "CONTRIBUTORI / AUTORI ESTERNI",
+            "PRODUZIONE & SUPPORTO",
+          ];
+
+          this.childrenByParent = {
+            DIREZIONE: [
+              "Direttore responsabile",
+              "Direttore editoriale",
+              "Condirettore",
+              "Vicedirettore",
+            ],
+            "COORDINAMENTO REDAZIONALE": [
+              "Responsabile redazione",
+              "Vice responsabile di redazione",
+              "Capo redattore centrale",
+              "Vice capo redattore centrale",
+              "Capo redattore",
+              "Vice capo redattore",
+              "Capo servizio",
+              "Vice capo servizio",
+              "Responsabile servizi speciali",
+              "Capo area",
+              "Capocronista",
+            ],
+            REDAZIONE: [
+              "Redattore",
+              "Inviato",
+              "Corrispondente",
+              "Editorialista",
+              "Web Editor",
+            ],
+            "CONTRIBUTORI / AUTORI ESTERNI": [
+              "Collaboratore",
+              "Autore",
+              "Blogger",
+              "Curatore",
+            ],
+            "PRODUZIONE & SUPPORTO": [
+              "Produttore esecutivo",
+              "Art director",
+              "Consulente editoriale",
+              "Responsabile segreteria redazione",
+              "Segreteria redazione",
+              "Segreteria direzione",
+              "Assistente",
+              "Praticante",
+            ],
+          };
+
+          this.optionToParent = {};
+          for (const p of this.parents) {
+            for (const child of this.childrenByParent[p] || []) {
+              this.optionToParent[child] = p;
+            }
+          }
+
+          this.relatedMap = {};
+          this.autocompleteMap = {};
+          this.keywordToFiltersMap = {};
+
+          const synonymsByFilter = {
+            Birra: ["Birra artigianale", "Bevanda brassicola"],
+            "Tè e Caffè": [
+              "Bevande calde",
+              "Infusi e caffetteria",
+              "Bevande stimolanti",
+            ],
+            Dolciumi: [
+              "Dolci",
+              "Caramelle",
+              "Confetteria",
+              "Prodotti zuccherini",
+            ],
+            "Igiene alimentare": [
+              "Sicurezza alimentare",
+              "Sanità degli alimenti",
+              "Controllo igienico-sanitario",
+            ],
+            "Industria alimentare": [
+              "Settore alimentare",
+              "Industria agroalimentare",
+              "Comparto alimentare",
+            ],
+            "Latte e latticini": [
+              "Prodotti caseari",
+              "Derivati del latte",
+              "Lattiero-caseario",
+            ],
+            "Alimenti biologici": [
+              "Cibi biologici",
+              "Prodotti bio",
+              "Alimenti da agricoltura biologica",
+            ],
+            Bevande: ["Drink", "Bibite", "Bevande analcoliche"],
+            Liquori: ["Distillati", "Alcolici", "Bevande spiritose"],
+            Vegetarianesimo: [
+              "Alimentazione vegetariana",
+              "Dieta vegetariana",
+              "Scelta vegetariana",
+            ],
+            "Distribuzione automatica": [
+              "Vending",
+              "Vendita automatizzata",
+              "Distributori automatici",
+            ],
+            "Cucina e gastronomia": [
+              "Arte culinaria",
+              "Gastronomia",
+              "Tradizione culinaria",
+            ],
+            Alimentazione: ["Nutrizione", "Dieta", "Regime alimentare"],
+            "Vini ed Enologia": [
+              "Vitivinicoltura",
+              "Cultura del vino",
+              "Settore enologico",
+            ],
+            Agroalimentare: [
+              "Settore agroalimentare",
+              "Filiera agroalimentare",
+            ],
+            "Politica agraria": ["Politiche agricole", "Governance agricola"],
+            "Zootecnica e Allevamento": [
+              "Allevamento animale",
+              "Produzione zootecnica",
+              "Scienze zootecniche",
+            ],
+            "Agricoltura biologica": [
+              "Coltivazione biologica",
+              "Agricoltura eco-sostenibile",
+              "Agricoltura organica",
+            ],
+            Viticoltura: ["Coltivazione della vite", "Produzione vitivinicola"],
+            Agricoltura: [
+              "Coltivazione",
+              "Attività agricola",
+              "Produzione agricola",
+            ],
+            Foreste: ["Bosco", "Aree forestali", "Patrimonio forestale"],
+            Veterinaria: ["Medicina veterinaria", "Scienze veterinarie"],
+
+            "Ingegneria informatica": [
+              "Informatica ingegneristica",
+              "Ingegneria del software e dei sistemi",
+            ],
+            "Giochi e videogame": ["Videogiochi", "Gaming"],
+            "Computer grafica 3D": ["Grafica tridimensionale", "CG 3D"],
+            "Hardware informatico": [
+              "Componenti hardware",
+              "Dispositivi informatici",
+            ],
+            "Home entertainment per PC": [
+              "Intrattenimento digitale per PC",
+              "Multimedia per computer",
+            ],
+            "Editoria elettronica": [
+              "Editoria digitale",
+              "Pubblicazione digitale",
+            ],
+            "App, smartphone, Android, iOS": [
+              "Applicazioni mobili",
+              "Mobile app",
+              "Ecosistema mobile",
+            ],
+            Software: ["Programmi", "Applicativi"],
+            "Sicurezza dei sistemi": [
+              "Sicurezza informatica",
+              "Protezione dei sistemi",
+            ],
+            "Reti informatiche": [
+              "Network informatici",
+              "Infrastrutture di rete",
+            ],
+            "Sicurezza delle informazioni": [
+              "Protezione dei dati",
+              "Information security",
+            ],
+            "Web design": ["Design web", "Progettazione grafica web"],
+            "Progettazione siti web": [
+              "Sviluppo web",
+              "Realizzazione siti web",
+            ],
+            Multimedialità: ["Contenuti multimediali", "Media digitali"],
+            "Web e Social Network": [
+              "Web e social media",
+              "Piattaforme online",
+            ],
+            "Information Technology": [
+              "Tecnologia dell’informazione",
+              "IT",
+              "Tecnologie informatiche",
+            ],
+
+            "Arte Contemporanea": [
+              "Arte moderna (uso comune, non accademico)",
+              "Produzione artistica contemporanea",
+            ],
+            "Libri per bambini": [
+              "Letteratura per l’infanzia",
+              "Libri per ragazzi",
+            ],
+            Narrativa: ["Prosa", "Narrativa di finzione"],
+            Letteratura: ["Produzione letteraria", "Opere letterarie"],
+            "Arti Grafiche": ["Grafica", "Arti visive applicate"],
+            Poesia: ["Produzione poetica", "Versi"],
+            Filosofia: ["Pensiero filosofico", "Speculazione filosofica"],
+            Arte: ["Espressione artistica", "Arti visive"],
+            "Libri e editoria": ["Editoria", "Pubblicazioni"],
+            Mostre: ["Esposizioni", "Rassegne"],
+            "Mercato d'arte e aste": ["Compravendita d’arte", "Aste d’arte"],
+            Storia: ["Scienze storiche", "Ricerca storica"],
+            Geografia: ["Scienze geografiche", "Studio del territorio"],
+            Cultura: ["Patrimonio culturale", "Attività culturali"],
+            Antiquariato: ["Mercato antiquario", "Beni antichi"],
+            Archeologia: ["Ricerca archeologica", "Scavi archeologici"],
+            Disegno: ["Arte del disegno", "Disegno artistico"],
+            Pittura: ["Arte pittorica", "Pittura artistica"],
+            Scultura: ["Arte scultorea", "Scultura artistica"],
+            Restauro: ["Conservazione", "Recupero artistico"],
+            "Musei e beni culturali": [
+              "Patrimonio museale",
+              "Beni storico-culturali",
+            ],
+          };
+
+          this.autocompleteTerms = new Set();
+          for (const [filter, syns] of Object.entries(synonymsByFilter)) {
+            for (const syn of syns) {
+              const key = (syn || "").trim().toLowerCase();
+              if (!key) continue;
+              if (!this.keywordToFiltersMap[key]) {
+                this.keywordToFiltersMap[key] = [filter];
+              } else if (!this.keywordToFiltersMap[key].includes(filter)) {
+                this.keywordToFiltersMap[key].push(filter);
+              }
+              this.autocompleteTerms.add(key);
+            }
+          }
+
+          this.init();
+        }
+
+        init() {
+          this.renderList();
+          this.bindEvents();
+          this.updateClearVisibility();
+
+          if (this.baseInputWrapperHeight == null) {
+            this.baseInputWrapperHeight = this.inputWrapper?.offsetHeight || 0;
+          }
+        }
+
+        bindEvents() {
+          this.inputWrapper.addEventListener("click", () => {
+            if (this.ignoreWrapperClick) {
+              this.ignoreWrapperClick = false;
+              return;
+            }
+            this.input.focus();
+            this.toggle();
+          });
+
+          if (this.label) {
+            this.label.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              this.ignoreWrapperClick = true;
+              setTimeout(() => {
+                this.ignoreWrapperClick = false;
+              }, 0);
+
+              if (this.isOpen) {
+                this.close();
+              } else {
+                this.open();
+                this.input.focus();
+              }
+            });
+          }
+
+          this.input.addEventListener("input", (e) => {
+            this.filterOptions(e.target.value);
+            this.updateAutocompleteHint(e.target.value);
+            if (!this.isOpen) {
+              this.open();
+            }
+            this.selectedIndex = -1;
+          });
+
+          this.input.addEventListener("keydown", (e) => {
+            this.handleKeyboard(e);
+          });
+
+          this.clear.addEventListener("click", (e) => {
+            e.stopPropagation();
+            this.resetSelection();
+          });
+
+          this.onDocumentKeyDown = (e) => {
+            if (e.key === "Escape" && this.isOpen) {
+              e.preventDefault();
+              e.stopPropagation();
+              this.close();
+            }
+          };
+
+          document.addEventListener("keydown", this.onDocumentKeyDown, true);
+
+          document.addEventListener("pointerdown", (e) => {
+            const container = this.container || this.inputWrapper;
+            if (!container.contains(e.target)) {
+              this.close();
+            }
+          });
+
+          if (this.closeLink) {
+            this.closeLink.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              this.close();
+            });
+          }
+        }
+
+        filterOptions(query) {
+          const q = (query || "").trim().toLowerCase();
+          const includeSet = new Set();
+          const strongSet = new Set();
+          const rank = new Map();
+
+          if (q.length < 3) {
+            this.filteredOptions = [...this.originalOptions];
+            this.strongMatchOptions = new Set();
+            this.matchRank = new Map();
+            this.renderList();
+            return;
+          }
+
+          if (!q) {
+            this.filteredOptions = [...this.originalOptions];
+            this.strongMatchOptions = new Set();
+            this.matchRank = new Map();
+            this.renderList();
+            return;
+          }
+
+          for (const option of this.originalOptions) {
+            const optionLower = option.toLowerCase();
+            const tokens = optionLower.split(/\s+/).filter(Boolean);
+            const strongMatch = tokens.some((t) => t.startsWith(q));
+
+            if (strongMatch) {
+              includeSet.add(option);
+              strongSet.add(option);
+              rank.set(option, 0);
+            }
+          }
+
+          if (q.length >= 3) {
+            for (const term of this.autocompleteTerms || []) {
+              const words = String(term).split(/\s+/).filter(Boolean);
+              if (words.some((w) => w.startsWith(q))) {
+                const mapped = this.keywordToFiltersMap[term] || [];
+                for (const filter of mapped) {
+                  includeSet.add(filter);
+                  strongSet.add(filter);
+                  if (!rank.has(filter)) {
+                    rank.set(filter, 1);
+                  }
+                }
+              }
+            }
+          }
+
+          this.filteredOptions = this.originalOptions.filter((opt) =>
+            includeSet.has(opt)
+          );
+          this.strongMatchOptions = strongSet;
+          this.matchRank = rank;
+          this.renderList();
+        }
+
+        getAutocompleteSuggestion(query) {
+          const q = (query || "").trim().toLowerCase();
+          if (!q) return null;
+
+          const mapped = this.autocompleteMap[q];
+          if (mapped) {
+            const suffix = mapped.slice(q.length);
+            if (!suffix) return null;
+            return { full: mapped, suffix };
+          }
+
+          if (q.length < 3) return null;
+
+          const candidates = [];
+          for (const term of this.autocompleteTerms || []) {
+            if (term.startsWith(q) && term.length > q.length) {
+              candidates.push(term);
+            }
+          }
+          if (candidates.length === 0) return null;
+
+          candidates.sort(
+            (a, b) => a.length - b.length || a.localeCompare(b, "it")
+          );
+          const full = candidates[0];
+          const suffix = full.slice(q.length);
+          if (!suffix) return null;
+          return { full, suffix };
+        }
+
+        measureTextWidth(text, element) {
+          const canvas =
+            this._measureCanvas ||
+            (this._measureCanvas = document.createElement("canvas"));
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return 0;
+
+          const cs = window.getComputedStyle(element);
+          ctx.font = `${cs.fontStyle} ${cs.fontVariant} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+          const metrics = ctx.measureText(text);
+          let width = metrics.width || 0;
+
+          const letterSpacing = parseFloat(cs.letterSpacing || "0");
+          if (
+            !Number.isNaN(letterSpacing) &&
+            letterSpacing != 0 &&
+            text.length > 1
+          ) {
+            width += (text.length - 1) * letterSpacing;
+          }
+          return width;
+        }
+
+        updateAutocompleteHint(query) {
+          const suggestion = this.getAutocompleteSuggestion(query);
+          const caretAtEnd =
+            this.input.selectionStart === this.input.value.length &&
+            this.input.selectionEnd === this.input.value.length;
+
+          if (!this.isOpen || !suggestion || !caretAtEnd) {
+            this.autocompleteSuffix.textContent = "";
+            this.autocompleteTip.textContent = "";
+            this.autocompleteInline.classList.remove("show");
+            return;
+          }
+
+          this.autocompleteSuffix.textContent = suggestion.suffix;
+          this.autocompleteTip.textContent = "";
+
+          const left =
+            this.input.offsetLeft +
+            this.measureTextWidth(this.input.value, this.input);
+          const cs = window.getComputedStyle(this.input);
+          const paddingTop = parseFloat(cs.paddingTop || "0") || 0;
+          const fontSize = parseFloat(cs.fontSize || "16") || 16;
+          const lineHeight =
+            cs.lineHeight === "normal"
+              ? fontSize * 1.2
+              : parseFloat(cs.lineHeight || `${fontSize * 1.2}`) ||
+                fontSize * 1.2;
+          const lineOffset = Math.max(0, (lineHeight - fontSize) / 2);
+          const top = this.input.offsetTop + paddingTop + lineOffset - 2.75;
+          this.autocompleteInline.style.left = `${left}px`;
+          this.autocompleteInline.style.top = `${top}px`;
+          this.autocompleteInline.classList.add("show");
+        }
+
+        renderList() {
+          this.results.innerHTML = "";
+          this.suggestions.innerHTML = "";
+
+          const query = this.input.value.trim();
+          const q = query.toLowerCase();
+          const isFiltered = q.length >= 3;
+
+          if (!isFiltered) {
+            this.expandedParents?.clear();
+          }
+
+          const suggestionsSet = new Set();
+          const filteredSet = new Set(this.filteredOptions);
+          const showSuggestions = q.length >= 3;
+
+          if (showSuggestions) {
+            const kwSuggestions = this.keywordToFiltersMap[q] || [];
+            for (const opt of kwSuggestions) {
+              if (opt && !filteredSet.has(opt)) {
+                suggestionsSet.add(opt);
+              }
+            }
+
+            const strongOrSelected = new Set([
+              ...Array.from(this.selectedValues),
+              ...Array.from(this.strongMatchOptions || []),
+            ]);
+
+            for (const opt of strongOrSelected) {
+              const related = this.relatedMap[opt];
+              if (related && !filteredSet.has(related)) {
+                suggestionsSet.add(related);
+              }
+            }
+          }
+
+          const suggestions = Array.from(suggestionsSet)
+            .filter(
+              (opt) =>
+                this.originalOptions.includes(opt) && !filteredSet.has(opt)
+            )
+            .sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
+
+          const matched = [...this.filteredOptions].sort((a, b) => {
+            const ra = this.matchRank?.get(a) ?? 99;
+            const rb = this.matchRank?.get(b) ?? 99;
+            return ra - rb || a.localeCompare(b, "it", { sensitivity: "base" });
+          });
+
+          const visible = [...matched, ...suggestions];
+          const childrenByParentVisible = new Map();
+          for (const opt of visible) {
+            const parent = this.optionToParent[opt];
+            if (!parent) continue;
+            if (!childrenByParentVisible.has(parent)) {
+              childrenByParentVisible.set(parent, []);
+            }
+            childrenByParentVisible.get(parent).push(opt);
+          }
+
+          const parentsWithChildren = Array.from(childrenByParentVisible.keys())
+            .filter((p) => (childrenByParentVisible.get(p) || []).length > 0)
+            .sort((p1, p2) => {
+              const c1 = childrenByParentVisible.get(p1) || [];
+              const c2 = childrenByParentVisible.get(p2) || [];
+              const best1 = c1.reduce(
+                (acc, x) => Math.min(acc, this.matchRank?.get(x) ?? 99),
+                99
+              );
+              const best2 = c2.reduce(
+                (acc, x) => Math.min(acc, this.matchRank?.get(x) ?? 99),
+                99
+              );
+              return (
+                best1 - best2 ||
+                p1.localeCompare(p2, "it", { sensitivity: "base" })
+              );
+            });
+
+          this.visibleOptions = [];
+
+          if (parentsWithChildren.length === 0) {
+            const empty = document.createElement("div");
+            empty.className = "no-results";
+            empty.textContent = "Nessun risultato";
+            this.results.appendChild(empty);
+            return;
+          }
+
+          for (const p of parentsWithChildren) {
+            const group = document.createElement("div");
+            group.className = "dropdown-group";
+
+            const groupLabel = document.createElement("span");
+            groupLabel.textContent = p;
+            group.appendChild(groupLabel);
+
+            if (isFiltered) {
+              const showAllLink = document.createElement("a");
+              showAllLink.href = "#";
+              showAllLink.className = "close-dropdown-link";
+              showAllLink.textContent = this.expandedParents.has(p)
+                ? "mostra meno"
+                : "mostra tutti";
+              showAllLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (this.expandedParents.has(p)) {
+                  this.expandedParents.delete(p);
+                } else {
+                  this.expandedParents.add(p);
+                }
+                this.renderList();
+                this.input.focus();
+              });
+              group.appendChild(showAllLink);
+            }
+
+            this.results.appendChild(group);
+
+            const visibleChildren = (childrenByParentVisible.get(p) || []).sort(
+              (a, b) => a.localeCompare(b, "it", { sensitivity: "base" })
+            );
+
+            let childrenToRender = visibleChildren;
+            if (isFiltered && this.expandedParents.has(p)) {
+              const allChildren = [...(this.childrenByParent?.[p] || [])].sort(
+                (a, b) => a.localeCompare(b, "it", { sensitivity: "base" })
+              );
+              const inVisible = new Set(visibleChildren);
+              const extra = allChildren.filter((c) => !inVisible.has(c));
+              childrenToRender = [...visibleChildren, ...extra];
+            }
+
+            childrenToRender.forEach((option) => {
+              const index = this.visibleOptions.length;
+              this.visibleOptions.push(option);
+
+              const item = document.createElement("div");
+              item.className = "dropdown-item child-item";
+              item.dataset.index = String(index);
+
+              const checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.className = "dropdown-checkbox";
+              checkbox.checked = this.selectedValues.has(option);
+
+              const label = document.createElement("span");
+              label.textContent = option;
+
+              if (this.selectedValues.has(option)) {
+                item.classList.add("selected");
+              }
+
+              checkbox.addEventListener("click", (e) => {
+                e.stopPropagation();
+              });
+              checkbox.addEventListener("change", (e) => {
+                e.stopPropagation();
+                this.toggleOption(option);
+              });
+              item.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.toggleOption(option);
+              });
+
+              item.appendChild(checkbox);
+              item.appendChild(label);
+              this.results.appendChild(item);
+            });
+          }
+        }
+
+        handleKeyboard(e) {
+          if (e.key === "Tab") {
+            const suggestion = this.getAutocompleteSuggestion(this.input.value);
+            if (suggestion) {
+              e.preventDefault();
+              this.input.value = suggestion.full;
+              this.filterOptions(this.input.value);
+              this.updateAutocompleteHint(this.input.value);
+              if (!this.isOpen) {
+                this.open();
+              }
+              this.selectedIndex = -1;
+              return;
+            }
+          }
+
+          if (
+            e.key === "Backspace" &&
+            this.input.value === "" &&
+            this.selectedValues.size > 0
+          ) {
+            e.preventDefault();
+            const last = Array.from(this.selectedValues).pop();
+            if (last) {
+              this.selectedValues.delete(last);
+              this.renderChips();
+              this.renderList();
+              this.updateClearVisibility();
+              if (typeof this.onSelectionChange === "function") {
+                this.onSelectionChange(Array.from(this.selectedValues));
+              }
+            }
+            return;
+          }
+
+          if (!this.isOpen && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+            e.preventDefault();
+            this.open();
+            return;
+          }
+
+          if (!this.isOpen) return;
+          const totalItems = (this.visibleOptions || []).length;
+
+          switch (e.key) {
+            case "ArrowDown":
+              e.preventDefault();
+              this.selectedIndex = Math.min(
+                this.selectedIndex + 1,
+                totalItems - 1
+              );
+              break;
+            case "ArrowUp":
+              e.preventDefault();
+              this.selectedIndex = Math.max(this.selectedIndex - 1, 0);
+              break;
+            case "Enter":
+              e.preventDefault();
+              if (this.selectedIndex >= 0) {
+                const option = (this.visibleOptions || [])[this.selectedIndex];
+                if (option) {
+                  this.toggleOption(option);
+                }
+              }
+              break;
+            case "Escape":
+              e.preventDefault();
+              this.close();
+              break;
+          }
+        }
+
+        toggleOption(option) {
+          if (this.selectedValues.has(option)) {
+            this.selectedValues.delete(option);
+          } else {
+            this.selectedValues.add(option);
+          }
+          this.renderChips();
+          this.renderList();
+          this.updateClearVisibility();
+          if (typeof this.onSelectionChange === "function") {
+            this.onSelectionChange(Array.from(this.selectedValues));
+          }
+        }
+
+        renderChips() {
+          this.chipContainer.innerHTML = "";
+          for (const value of Array.from(this.selectedValues)) {
+            const chip = document.createElement("span");
+            chip.className = "chip";
+
+            const text = document.createElement("span");
+            text.textContent = value;
+
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "chip-remove";
+            remove.textContent = "×";
+            remove.addEventListener("click", (e) => {
+              e.stopPropagation();
+              this.selectedValues.delete(value);
+              this.renderChips();
+              this.renderList();
+              this.updateClearVisibility();
+              if (typeof this.onSelectionChange === "function") {
+                this.onSelectionChange(Array.from(this.selectedValues));
+              }
+            });
+
+            chip.appendChild(text);
+            chip.appendChild(remove);
+            this.chipContainer.appendChild(chip);
+          }
+        }
+
+        resetSelection() {
+          this.selectedValues.clear();
+          this.input.value = "";
+          this.filterOptions("");
+          this.updateAutocompleteHint("");
+          this.renderChips();
+          this.updateClearVisibility();
+          if (typeof this.onSelectionChange === "function") {
+            this.onSelectionChange(Array.from(this.selectedValues));
+          }
+        }
+
+        updateClearVisibility() {
+          const base = this.baseInputWrapperHeight || 0;
+          const current = this.inputWrapper?.offsetHeight || 0;
+          const isMultiLine = base > 0 && current > base + 6;
+
+          if (this.selectedValues.size > 0) {
+            this.clear.classList.add("show");
+
+            if (isMultiLine) {
+              this.arrow.style.display = "block";
+              this.arrow.style.right = "12px";
+            } else {
+              this.arrow.style.display = "none";
+              this.arrow.style.right = "12px";
+            }
+          } else {
+            this.clear.classList.remove("show");
+            this.arrow.style.display = "block";
+            this.arrow.style.right = "12px";
+          }
+        }
+
+        open() {
+          this.isOpen = true;
+          this.updateAutocompleteHint(this.input.value);
+          this.selectedIndex = -1;
+
+          this.list.classList.add("show");
+          this.arrow.classList.add("rotated");
+          this.inputWrapper.style.borderRadius = "8px 8px 0 0";
+        }
+
+        close() {
+          this.isOpen = false;
+          this.list.classList.remove("show");
+          this.arrow.classList.remove("rotated");
+          this.inputWrapper.style.borderRadius = "8px";
+          this.selectedIndex = -1;
+          this.updateAutocompleteHint("");
+        }
+
+        toggle() {
+          if (this.isOpen) {
+            this.close();
+          } else {
+            this.open();
+          }
+        }
+      }
+
+      const ROLES_BY_PARENT = {
+        DIREZIONE: [
+          "Direttore responsabile",
+          "Direttore editoriale",
+          "Condirettore",
+          "Vicedirettore",
+        ],
+        "COORDINAMENTO REDAZIONALE": [
+          "Responsabile redazione",
+          "Vice responsabile di redazione",
+          "Capo redattore centrale",
+          "Vice capo redattore centrale",
+          "Capo redattore",
+          "Vice capo redattore",
+          "Capo servizio",
+          "Vice capo servizio",
+          "Responsabile servizi speciali",
+          "Capo area",
+          "Capocronista",
+        ],
+        REDAZIONE: [
+          "Redattore",
+          "Inviato",
+          "Corrispondente",
+          "Editorialista",
+          "Web Editor",
+        ],
+        "CONTRIBUTORI / AUTORI ESTERNI": [
+          "Collaboratore",
+          "Autore",
+          "Blogger",
+          "Curatore",
+        ],
+        "PRODUZIONE & SUPPORTO": [
+          "Produttore esecutivo",
+          "Art director",
+          "Consulente editoriale",
+          "Responsabile segreteria redazione",
+          "Segreteria redazione",
+          "Segreteria direzione",
+          "Assistente",
+          "Praticante",
+        ],
+      };
+
+      const sampleOptions = Object.values(ROLES_BY_PARENT)
+        .flat()
+        .sort((a, b) => a.localeCompare(b, "it", { sensitivity: "base" }));
+
+      const dropdown = new FilterableDropdown("dropdownInput", sampleOptions);
+      dropdown.updateAutocompleteHint("");
+
+      const debugSelected = document.getElementById("debugSelected");
+      dropdown.onSelectionChange = () => {
+        const selected = Array.from(dropdown.selectedValues || []);
+        debugSelected.textContent = selected.length
+          ? `Selezionati: ${selected.join(", ")}`
+          : "Selezionati: (nessuno)";
+      };
+
+      dropdown.onSelectionChange();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+[
+  {
+    "id": 2,
+    "value": "Aperiodico",
+    "days": 0
+  },
+  {
+    "id": 28,
+    "value": "Quotidiano",
+    "days": 1
+  },
+  {
+    "id": 33,
+    "value": "Trisettimanale",
+    "days": 2
+  },
+  {
+    "id": 35,
+    "value": "Plurisettimanale",
+    "days": 2
+  },
+  {
+    "id": 5,
+    "value": "Bisettimanale",
+    "days": 3
+  },
+  {
+    "id": 30,
+    "value": "Settimanale",
+    "days": 7
+  },
+  {
+    "id": 25,
+    "value": "Quattordicinale",
+    "days": 14
+  },
+  {
+    "id": 26,
+    "value": "Quindicinale",
+    "days": 15
+  },
+  {
+    "id": 7,
+    "value": "Mensile",
+    "days": 30
+  },
+  {
+    "id": 3,
+    "value": "Bimestrale",
+    "days": 60
+  },
+  {
+    "id": 31,
+    "value": "Trimestrale",
+    "days": 90
+  },
+  {
+    "id": 24,
+    "value": "Quadrimestrale",
+    "days": 120
+  },
+  {
+    "id": 29,
+    "value": "Semestrale",
+    "days": 180
+  },
+  {
+    "id": 1,
+    "value": "Annuale",
+    "days": 365
+  },
+  {
+    "id": 34,
+    "value": "Quadriennale",
+    "days": 1460
+  }
+]

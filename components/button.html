@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>button</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="preload"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./button.css" />
+  <style>
+    .states {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-16);
+      flex-wrap: wrap;
+    }
+    .state {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-8);
+    }
+    .state__label {
+      font-family: var(--font-hand);
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>button</h1>
+
+    <div class="showcase__cases">
+
+      <!-- Primary -->
+      <section class="showcase__case">
+        <p>Primary button — azione principale, richiede attenzione.</p>
+        <div class="showcase__display">
+          <div class="states">
+            <div class="state">
+              <button type="button" class="btn btn--primary">salva</button>
+              <span class="state__label">default</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-hover">salva</button>
+              <span class="state__label">hover</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-active">salva</button>
+              <span class="state__label">active</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-focus">salva</button>
+              <span class="state__label">focus</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary" disabled>salva</button>
+              <span class="state__label">disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Secondary -->
+      <section class="showcase__case">
+        <p>Secondary button — azione secondaria o alternativa.</p>
+        <div class="showcase__display">
+          <div class="states">
+            <div class="state">
+              <button type="button" class="btn btn--secondary">annulla</button>
+              <span class="state__label">default</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--secondary is-hover">annulla</button>
+              <span class="state__label">hover</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--secondary is-active">annulla</button>
+              <span class="state__label">active</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--secondary is-focus">annulla</button>
+              <span class="state__label">focus</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--secondary" disabled>annulla</button>
+              <span class="state__label">disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coppia in contesto -->
+      <section class="showcase__case">
+        <p>Uso tipico: primary e secondary affiancati in un form.</p>
+        <div class="showcase__display">
+          <div style="display:flex; gap: var(--space-12);">
+            <button type="submit" class="btn btn--primary">salva</button>
+            <button type="button" class="btn btn--secondary">annulla</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

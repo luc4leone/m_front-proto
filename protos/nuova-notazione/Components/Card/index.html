@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card component</title>
+  <link rel="stylesheet" href="../../../../../css/reset.css">
+
+  <link rel="stylesheet" href="../../tokens.css">
+  <link rel="stylesheet" href="../Text/text.css">
+  <link rel="stylesheet" href="../Link/link.css">
+  <link rel="stylesheet" href="Card-label/card-label.css">
+  <link rel="stylesheet" href="Card-value/card-value.css">
+  <link rel="stylesheet" href="Card-title/card-title.css">
+  <link rel="stylesheet" href="Checkbox-no-label/checkbox-no-label.css">
+  <link rel="stylesheet" href="card.css">
+  <style>
+    body {
+      font-family: var(--font-sans);
+      padding: 4rem;
+      background-color: var(--bg-zinc-50);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 360px 360px 360px;
+      gap: var(--gap-48);
+      align-items: start;
+    }
+    .card-cell {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-16);
+    }
+    .iter-note {
+      font-family: var(--font-hand);
+      font-size: var(--text-sm);
+      color: var(--text-grey-900);
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    stack gap-16:
+      grid 2-col 2-row row-gap-4 col-gap-8:
+        [Checkbox-no-label][Card-title]
+        []                 [Card-label]
+      grid 2-col 5-row row-gap-8 col-gap-16:
+        [Card-label text="Servizio"][Card-value text="Programmi radio"]
+        [Card-label text="Telefono"][Card-value text="+390270004150"]
+        [Card-label text="Email"][Card-value text="fabio.mazzoccola@mediaddress.eu"]
+        [Card-label text="Testate"][Card-value text="COPE - DEPORTES"]
+        [Card-label text="Note"][Card-value text="Notas de prensa a Isaac Fouto"]
+  -->
+
+  <div class="card-grid">
+
+    <!-- row 1 — col 1 -->
+    <div class="card-cell">
+      <div class="card">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Card label</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+    </div>
+    <!-- row 1 — col 2 -->
+    <div></div>
+    <!-- row 1 — col 3 -->
+    <div></div>
+
+    <!-- row 2 — col 1 -->
+    <div class="card-cell">
+      <div class="card">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Card label</p>
+        </div>
+        <div class="card__body card__body--label-right">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 2: allinea labels a destra</p>
+    </div>
+    <!-- row 2 — col 2 -->
+    <div></div>
+    <!-- row 2 — col 3 -->
+    <div></div>
+
+    <!-- row 3 — col 1 -->
+    <div class="card-cell">
+      <div class="card">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Card label</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 3: [Card-title font-bold]</p>
+    </div>
+    <!-- row 3 — col 2 -->
+    <div></div>
+    <!-- row 3 — col 3 -->
+    <div></div>
+
+    <!-- row 4 — col 1 -->
+    <div class="card-cell">
+      <div class="card card--bordered">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 4: [Card-title font-bold] + border + radius-2</p>
+    </div>
+    <!-- row 4 — col 2 -->
+    <div></div>
+    <!-- row 4 — col 3 -->
+    <div></div>
+
+    <!-- row 5 — col 1 -->
+    <div class="card-cell">
+      <div class="card card--bordered card--shadow-md">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 5: [Card-title font-bold] + border + radius-2 + shadow-md</p>
+    </div>
+    <!-- row 5 — col 2 -->
+    <div></div>
+    <!-- row 5 — col 3 -->
+    <div></div>
+
+    <!-- row 6 — col 1 -->
+    <div class="card-cell">
+      <div class="card card--shadow-md card--selectable">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 6: shadow senza border + bg body bg-zinc-50 + selected state</p>
+    </div>
+    <!-- row 6 — col 2 -->
+    <div class="card-cell">
+      <div class="card card--shadow-md card--hoverable">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 6.1: hover + checked → bg-zinc-100</p>
+    </div>
+    <!-- row 6 — col 3 -->
+    <div class="card-cell">
+      <label class="card card--shadow-md card--hoverable card--clickable">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </label>
+      <p class="iter-note">iterazione 6.2: click su superficie → selected state</p>
+    </div>
+
+    <!-- row 7 — col 1 -->
+    <div class="card-cell">
+      <div class="card card--shadow-md card--selectable-flat">
+        <div class="card__header">
+          <input type="checkbox" class="checkbox-no-label">
+          <a class="link card-title" style="font-weight: var(--font-bold);" href="#">Anna ABAD</a>
+          <span></span>
+          <p class="text card-label">Redattrice</p>
+        </div>
+        <div class="card__body card__body--value-medium">
+          <p class="text card-label">Servizio</p>
+          <p class="text card-value">Programmi radio</p>
+          <p class="text card-label">Telefono</p>
+          <p class="text card-value">+390270004150</p>
+          <p class="text card-label">Email</p>
+          <p class="text card-value">fabio.mazzoccola@mediaddress.eu</p>
+          <p class="text card-label">Testate</p>
+          <p class="text card-value">COPE - DEPORTES</p>
+          <p class="text card-label">Note</p>
+          <p class="text card-value">Notas de prensa a Isaac Fouto</p>
+        </div>
+      </div>
+      <p class="iter-note">iterazione 7: selected state senza shadow + font-medium su Card-value</p>
+    </div>
+    <!-- row 7 — col 2 -->
+    <div></div>
+    <!-- row 7 — col 3 -->
+    <div></div>
+
+  </div>
+
+</body>
+</html>
