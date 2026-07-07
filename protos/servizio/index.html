@@ -43,6 +43,10 @@
       })();
     </script>
     <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="../../components/step-badge.css" />
+    <link rel="stylesheet" href="../../components/count-pill.css" />
+    <link rel="stylesheet" href="../../components/blink-loader.css" />
+    <link rel="stylesheet" href="../../components/split-button.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -144,7 +148,7 @@
             <div class="sidebar-filters-scroll">
               <div id="shipmentRecipientsSection" style="display: none">
                 <div class="sidebar-section-title-row">
-                  <span class="c-step-badge is-done" aria-hidden="true">1</span>
+                  <span class="step-badge step-badge--done" aria-hidden="true">1</span>
                   <div class="sidebar-section-title">Destinatari</div>
                   <span class="pill" id="shipmentRecipientsCountPill">0</span>
                 </div>
@@ -265,7 +269,7 @@
                   class="shipment-ai-suggestions-row"
                   id="shipmentAiSuggestionsRow"
                 >
-                  <span class="c-step-badge is-warn" aria-hidden="true">5</span>
+                  <span class="step-badge step-badge--warn" aria-hidden="true">5</span>
                   <a
                     href="#"
                     class="c-link c-link--action"
@@ -277,7 +281,7 @@
                 <hr class="sidebar-separator" />
 
                 <div class="sidebar-section-title-row">
-                  <span class="c-step-badge is-done" aria-hidden="true">2</span>
+                  <span class="step-badge step-badge--done" aria-hidden="true">2</span>
                   <div class="sidebar-section-title">Comunicato stampa</div>
                   <a
                     href="#"
@@ -348,7 +352,7 @@
                   class="sidebar-section-title sidebar-section-title-with-step"
                   style="margin-top: 18px"
                 >
-                  <span class="c-step-badge is-done" aria-hidden="true">3</span>
+                  <span class="step-badge step-badge--done" aria-hidden="true">3</span>
                   <span>Mittente</span>
                 </div>
 
@@ -398,7 +402,7 @@
                   class="sidebar-section-title sidebar-section-title-with-step"
                   style="margin-top: 18px"
                 >
-                  <span class="c-step-badge" aria-hidden="true">6</span>
+                  <span class="step-badge" aria-hidden="true">6</span>
                   <span>Spedisci</span>
                 </div>
 
@@ -964,7 +968,7 @@
               class="shipment-optimize-recipients"
               id="shipmentOptimizeRecipients"
             >
-              <span class="c-step-badge is-warn" aria-hidden="true">5</span>
+              <span class="step-badge step-badge--warn" aria-hidden="true">5</span>
               <div class="shipment-optimize-recipients__box">
                 <span
                   class="shipment-optimize-recipients__icon"
@@ -1033,7 +1037,7 @@
                         aria-hidden="true"
                       ></span>
                       <span class="shipment-title-prefix-wrap">
-                        <span class="c-step-badge is-warn" aria-hidden="true"
+                        <span class="step-badge step-badge--warn" aria-hidden="true"
                           >4</span
                         >
                         <span
@@ -1353,8 +1357,8 @@
                   class="cards-loader-placeholder"
                   style="display: block; text-align: center; padding: 10px 0"
                 >
-                  <span class="c-blink-loader" aria-label="caricamento">
-                    M<span class="c-blink-loader__cursor">_</span>
+                  <span class="blink-loader" aria-label="caricamento">
+                    M<span class="blink-loader__cursor">_</span>
                   </span>
                 </div>
                 <div
@@ -1615,7 +1619,7 @@
                 >
                   <span class="selected-panel-actions-text">
                     in lista
-                    <span class="c-pill" id="selectedInListCount"></span>
+                    <span class="count-pill" id="selectedInListCount"></span>
                   </span>
                   <span class="sidebar-mode-separator" aria-hidden="true"
                     >•</span
@@ -1635,13 +1639,13 @@
                     svuota selezione
                   </a>
                   <span
-                    class="c-split-button"
+                    class="split-button"
                     id="selectedActionsSplit"
                     data-split-button
                   >
                     <button
                       type="button"
-                      class="c-split-button__main c-link c-link--nav"
+                      class="split-button__main c-link c-link--nav"
                       data-split-main
                       data-split-action="save-list"
                     >
@@ -1649,18 +1653,18 @@
                     </button>
                     <button
                       type="button"
-                      class="c-split-button__toggle"
+                      class="split-button__toggle"
                       data-split-toggle
                       aria-haspopup="listbox"
                       aria-expanded="false"
                     >
                       <span
-                        class="c-split-button__arrow"
+                        class="split-button__arrow"
                         aria-hidden="true"
                       ></span>
                     </button>
                     <div
-                      class="dropdown-list c-split-button__menu"
+                      class="split-button__menu"
                       data-split-menu
                       role="listbox"
                       aria-hidden="true"
@@ -10578,7 +10582,7 @@
 
         const removeFromListHtml =
           appState.view === "mailing-list"
-            ? `<button type="button" class="c-pill card-remove-from-list" data-remove-from-list-jid="${jid}" aria-label="rimuovi da lista">×</button>`
+            ? `<button type="button" class="count-pill card-remove-from-list" data-remove-from-list-jid="${jid}" aria-label="rimuovi da lista">×</button>`
             : "";
 
         const customizeComunicatoHtml = "";
@@ -10695,7 +10699,7 @@
               <span class="svc-change-badge__popover" data-svc-change-popover hidden>
                 <span class="svc-change-badge__arrow" aria-hidden="true"></span>
                 <span class="svc-change-badge__compare">${escapeHtml(j.originalServizio)} → ${escapeHtml(j.servizio)}</span>
-                <button type="button" class="c-pill card-remove-from-list svc-change-badge__remove" data-remove-from-list-jid="${jid}">rimuovi</button>
+                <button type="button" class="count-pill card-remove-from-list svc-change-badge__remove" data-remove-from-list-jid="${jid}">rimuovi</button>
               </span>
             </span>`;
         }
@@ -13789,26 +13793,26 @@
           titleActions.className = "journalist-sheet__title-actions";
 
           const split = document.createElement("span");
-          split.className = "c-split-button c-split-button--menu-left";
+          split.className = "split-button split-button--menu-left";
           split.setAttribute("data-split-button", "");
 
           const splitMain = document.createElement("button");
           splitMain.type = "button";
-          splitMain.className = "c-split-button__main c-link c-link--nav";
+          splitMain.className = "split-button__main c-link c-link--nav";
           splitMain.textContent = "aggiungi a lista";
           splitMain.setAttribute("data-split-action", "add-to-list");
 
           const splitToggle = document.createElement("button");
           splitToggle.type = "button";
-          splitToggle.className = "c-split-button__toggle";
+          splitToggle.className = "split-button__toggle";
           splitToggle.setAttribute("data-split-toggle", "");
           splitToggle.setAttribute("aria-haspopup", "listbox");
           splitToggle.setAttribute("aria-expanded", "false");
           splitToggle.innerHTML =
-            '<span class="c-split-button__arrow" aria-hidden="true"></span>';
+            '<span class="split-button__arrow" aria-hidden="true"></span>';
 
           const splitMenu = document.createElement("div");
-          splitMenu.className = "dropdown-list c-split-button__menu";
+          splitMenu.className = "split-button__menu";
           splitMenu.setAttribute("data-split-menu", "");
           splitMenu.setAttribute("role", "listbox");
           splitMenu.setAttribute("aria-hidden", "true");
@@ -15488,7 +15492,7 @@
               <li>
                 <div class="journalist-list__title-row">
                   <a href="#" class="c-link c-link--nav journalist-list__title">CS - Lancio nuova gamma SUV elettrici premium</a>
-                  <span class="c-pill">aperta</span>
+                  <span class="count-pill">aperta</span>
                 </div>
                 <div class="journalist-list__meta-row">
                   <span class="muted">Spedita il 8-5-2025</span>
@@ -15497,7 +15501,7 @@
               <li>
                 <div class="journalist-list__title-row">
                   <a href="#" class="c-link c-link--nav journalist-list__title">CS - Record vendite auto ibride nel primo trimestre 2025</a>
-                  <span class="c-pill">chiusa</span>
+                  <span class="count-pill">chiusa</span>
                 </div>
                 <div class="journalist-list__meta-row">
                   <span class="muted">Spedita il 15-3-2025</span>

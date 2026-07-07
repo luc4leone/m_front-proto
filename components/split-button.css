@@ -55,22 +55,30 @@
 }
 
 .split-button__menu {
-  display: none;
   position: absolute;
   right: 0;
   top: calc(100% + 4px);
   min-width: 220px;
   z-index: var(--z-100);
   background: var(--white);
-  border: 1px solid var(--grey-200);
   border-radius: var(--radius-2);
-  box-shadow: var(--shadow-12px);
-  flex-direction: column;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  box-shadow: none;
 }
 
-.split-button__menu.is-open {
-  display: flex;
+.split-button__menu.is-open,
+.split-button__menu.show {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  border: 1px solid var(--grey-200);
+  box-shadow: var(--shadow-12px);
 }
 
 .split-button--menu-left .split-button__menu {
