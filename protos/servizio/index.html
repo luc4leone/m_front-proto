@@ -42,36 +42,6 @@
         }
       })();
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="preload"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
     <link rel="stylesheet" href="tokens.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -140,14 +110,6 @@
           </a>
 
           <div class="nav-separator" aria-hidden="true"></div>
-
-          <a href="#" id="navThemeToggle" aria-label="tema scuro">
-            <span
-              class="nav-icon"
-              data-icon="dark_mode"
-              aria-hidden="true"
-            ></span>
-          </a>
         </nav>
       </aside>
       <div class="views" id="views">
@@ -2801,46 +2763,8 @@
         appState.ui.showHelp = true;
       }
 
-      function normalizeTheme(value) {
-        const v = String(value || "")
-          .trim()
-          .toLowerCase();
-        if (v === "dark") return "dark";
-        return "light";
-      }
-
       function normalizeId(value) {
         return String(value || "").trim();
-      }
-
-      if (typeof appState.ui.theme !== "string") {
-        appState.ui.theme = "light";
-      }
-
-      function applyTheme(theme) {
-        const next = normalizeTheme(theme);
-        document.body.dataset.theme = next;
-        const a = document.getElementById("navThemeToggle");
-        if (!a) return;
-        const icon = a.querySelector(".nav-icon");
-        if (icon) {
-          icon.setAttribute(
-            "data-icon",
-            next === "dark" ? "light_mode" : "dark_mode",
-          );
-        }
-        a.setAttribute(
-          "aria-label",
-          next === "dark" ? "tema chiaro" : "tema scuro",
-        );
-        a.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
-      }
-
-      function setTheme(theme) {
-        const next = normalizeTheme(theme);
-        appState.ui.theme = next;
-        applyTheme(next);
-        saveAppState(appState);
       }
 
       if (
@@ -2895,17 +2819,6 @@
 
       if (typeof appState.sortMode !== "string") {
         appState.sortMode = "name-asc";
-      }
-
-      applyTheme(appState.ui.theme);
-
-      const navThemeToggle = document.getElementById("navThemeToggle");
-      if (navThemeToggle) {
-        navThemeToggle.addEventListener("click", (e) => {
-          e.preventDefault();
-          const current = normalizeTheme(appState.ui.theme);
-          setTheme(current === "dark" ? "light" : "dark");
-        });
       }
 
       const cardsLoadMore = document.getElementById("cardsLoadMore");

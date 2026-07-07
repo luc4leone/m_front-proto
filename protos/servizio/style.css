@@ -44,41 +44,8 @@
   --dashboard-subtitle-link-gap: 8px;
 }
 
-body[data-theme="dark"] {
-  --white: hsl(219 18% 10%);
-  --grey-050: hsl(219 18% 12%);
-  --grey-080: hsl(219 18% 13%);
-  --grey-100: hsl(219 18% 15%);
-  --grey-200: hsl(219 16% 22%);
-  --grey-300: hsl(219 14% 30%);
-  --grey-500: hsl(219 12% 58%);
-  --grey-750: hsl(219 12% 70%);
-  --grey-800: hsl(219 12% 78%);
-  --grey-900: hsl(219 18% 92%);
-  --grey-950: hsl(219 20% 96%);
-
-  --blue-300: hsl(219 90% 94%);
-  --blue-500: hsl(219 90% 70%);
-  --blue-800: hsl(219 18% 12%);
-
-  --yellow-200: hsl(46 92% 62%);
-
-  --white-alpha-12: rgba(255, 255, 255, 0.08);
-  --white-alpha-22: rgba(255, 255, 255, 0.14);
-
-  --black-alpha-15: rgba(0, 0, 0, 0.35);
-  --black-alpha-18: rgba(0, 0, 0, 0.45);
-  --black-alpha-22: rgba(0, 0, 0, 0.55);
-  --black-alpha-35: rgba(0, 0, 0, 0.7);
-
-  --control-border: var(--grey-500);
-}
-
 body {
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, "Apple Color Emoji", "Segoe UI Emoji";*/
-  font-family: "Atkinson Hyperlegible Next", sans-serif;
-  font-family: "Schibsted Grotesk", sans-serif;
+  font-family: var(--font-family);
   margin: 0;
   padding: 0;
   background: var(--white);
