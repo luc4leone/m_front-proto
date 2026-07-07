@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>split-button</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./split-button.css" />
+</head>
+<body>
+  <main class="showcase">
+    <h1>split-button</h1>
+    <p>Bottone con azione principale e menu a tendina per azioni secondarie. Usa <code>render()</code> + <code>init()</code>.</p>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <h2>default — menu a destra</h2>
+        <div class="showcase__display" id="sb-default"></div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>menu a sinistra</h2>
+        <div class="showcase__display" id="sb-left"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <script type="module">
+    import { render, init } from './split-button.js';
+
+    const items = [
+      { label: "Aggiungi a spedizione esistente", value: "add-existing" },
+      { label: "Crea nuova spedizione", value: "new-shipment" },
+      { label: "Salva lista", value: "save-list" },
+    ];
+
+    const defaultEl = document.getElementById("sb-default");
+    defaultEl.innerHTML = render({ mainLabel: "Aggiungi a spedizione", mainHref: "#", items });
+    init(defaultEl.querySelector("[data-split-button]"), {
+      onMain: () => alert("Azione principale"),
+      onItem: (value) => alert(`Azione: ${value}`),
+    });
+
+    const leftEl = document.getElementById("sb-left");
+    leftEl.innerHTML = render({ mainLabel: "Aggiungi a lista", mainHref: "#", items, menuLeft: true });
+    init(leftEl.querySelector("[data-split-button]"), {
+      onMain: () => alert("Azione principale"),
+      onItem: (value) => alert(`Azione: ${value}`),
+    });
+  </script>
+</body>
+</html>

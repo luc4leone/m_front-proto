@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>step-badge</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./step-badge.css" />
+</head>
+<body>
+  <main class="showcase">
+    <h1>step-badge</h1>
+    <p>Badge numerato per step di un flusso. Tre varianti di stato.</p>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <h2>default — step in attesa</h2>
+        <div class="showcase__display">
+          <span class="step-badge">1</span>
+          <span class="step-badge">2</span>
+          <span class="step-badge">3</span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>done — step completato</h2>
+        <div class="showcase__display">
+          <span class="step-badge step-badge--done">1</span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>warn — step con avviso</h2>
+        <div class="showcase__display">
+          <span class="step-badge step-badge--warn">5</span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>in contesto — con label</h2>
+        <div class="showcase__display" style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:inline-flex;align-items:center;gap:10px;">
+            <span class="step-badge step-badge--done">1</span>
+            <span>Destinatari</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:10px;">
+            <span class="step-badge step-badge--done">2</span>
+            <span>Comunicato stampa</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:10px;">
+            <span class="step-badge">3</span>
+            <span>Data invio</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:10px;">
+            <span class="step-badge step-badge--warn">5</span>
+            <span>Suggerimenti AI</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

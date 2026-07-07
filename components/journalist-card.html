@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>journalist-card</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./journalist-card.css" />
+  <style>
+    .cards-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-12);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+    <h1>journalist-card</h1>
+    <p>Card giornalista. Il componente centrale della banca dati. Mostra nome, ruolo, e righe di dati (servizio, email, testate, note).</p>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <h2>card base</h2>
+        <div class="showcase__display" style="max-width:280px;" id="card-base"></div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>card selezionata</h2>
+        <div class="showcase__display" style="max-width:280px;" id="card-selected"></div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>griglia — più card</h2>
+        <div class="showcase__display">
+          <div class="cards-demo" id="cards-grid"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script type="module">
+    import { render, init } from './journalist-card.js';
+
+    const journalists = [
+      {
+        id: "1",
+        firstName: "Luca",
+        lastName: "Rinaldi",
+        role: "Giornalista",
+        rows: [
+          { label: "Servizio", value: "Politica" },
+          { label: "E-mail", value: "l.rinaldi@esempio.it" },
+          { label: "Testate", value: "Il Fatto Quotidiano" },
+        ],
+        note: "Contattato a gennaio per il lancio del prodotto.",
+      },
+      {
+        id: "2",
+        firstName: "Maria",
+        lastName: "Bianchi",
+        role: "Caporedattore",
+        rows: [
+          { label: "Servizio", value: "Economia" },
+          { label: "E-mail", value: "m.bianchi@corriere.it" },
+          { label: "Testate", value: "Corriere della Sera" },
+        ],
+        note: "",
+      },
+      {
+        id: "3",
+        firstName: "Paolo",
+        lastName: "Verdi",
+        role: "Corrispondente estero",
+        rows: [
+          { label: "Servizio", value: "Esteri" },
+          { label: "E-mail", value: "" },
+          { label: "Testate", value: "La Repubblica • ANSA" },
+        ],
+        note: "Nota molto lunga che supera le due righe e viene troncata con ellipsis per mantenere l'altezza fissa della card e non spezzare il layout.",
+      },
+    ];
+
+    // card base
+    const base = document.getElementById("card-base");
+    base.innerHTML = render(journalists[0]);
+    init(base.querySelector(".journalist-card"), {
+      onOpen: (id) => alert(`Apri scheda: ${id}`),
+      onSelect: (id, checked) => console.log("Select:", id, checked),
+    });
+
+    // card selezionata
+    const selected = document.getElementById("card-selected");
+    selected.innerHTML = render({ ...journalists[1], selected: true });
+
+    // griglia
+    const grid = document.getElementById("cards-grid");
+    grid.innerHTML = journalists.map(j => render(j)).join("");
+    grid.querySelectorAll(".journalist-card").forEach(el => {
+      init(el, {
+        onOpen: (id) => alert(`Apri scheda: ${id}`),
+        onSelect: (id, checked) => console.log("Select:", id, checked),
+      });
+    });
+  </script>
+</body>
+</html>
