@@ -699,31 +699,6 @@ body:not(.is-spedisci-lista-view) #shipmentOptimizeRecipients {
   background: var(--yellow-200);
 }
 
-.c-step-badge {
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  border: 2px solid var(--grey-900);
-  color: var(--grey-900);
-  font-size: var(--fs-md);
-  font-weight: 800;
-  flex: 0 0 auto;
-  background: var(--white);
-}
-
-.c-step-badge.is-done {
-  border-color: var(--grey-900);
-  background: rgba(34, 197, 94, 0.25);
-}
-
-.c-step-badge.is-warn {
-  border-color: var(--grey-900);
-  background: var(--yellow-200);
-}
-
 .sidebar-section-title-with-step {
   display: inline-flex;
   align-items: center;
@@ -1848,40 +1823,12 @@ body[data-active-view="filtra"] .card-remove-from-list {
   align-items: flex-start;
 }
 
-.c-blink-loader {
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 2em;
-}
-
 .cards-loader-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 72px;
   color: var(--grey-850);
-}
-
-.cards-loader-placeholder .c-blink-loader {
-  font-size: 1.25rem;
-  font-weight: var(--fw-600);
-  letter-spacing: 0.02em;
-}
-
-.c-blink-loader__cursor {
-  display: inline-block;
-  animation: blink 0.9s steps(1, end) infinite;
-}
-
-@keyframes blink {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
 }
 
 .card-top .card-role {
@@ -2143,17 +2090,6 @@ body.is-spedisci-lista-view .card-email-inline-wrap .card-email-select {
   background: var(--yellow-200);
   border-radius: 4px;
   padding: 0 2px;
-}
-
-.pill,
-.c-pill {
-  display: inline-block;
-  font-size: var(--fs-xs);
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: var(--grey-100);
-  border: 1px solid var(--grey-200);
-  color: var(--grey-900);
 }
 
 .dropdown-container {
@@ -3891,83 +3827,6 @@ body.is-shipment-email-spotlight #newPressPanelEmailHeaderTextarea {
 
 .selected-panel-actions-row--secondary {
   margin-top: 4px;
-}
-
-.c-split-button {
-  position: relative;
-  display: inline-flex;
-  flex: 0 0 auto;
-}
-
-.c-split-button__main,
-.c-split-button__toggle {
-  border: 1px solid var(--grey-200);
-  background: var(--white);
-  padding: 5px 10px;
-  line-height: 1.1;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--fs-md);
-  color: var(--grey-900);
-}
-
-.c-split-button__main {
-  border-right: 0;
-  border-radius: var(--border-radius-xs) 0px 0px var(--border-radius-xs);
-  font-weight: 500;
-  color: var(--blue-500);
-}
-
-.c-split-button__toggle {
-  border-radius: 0 var(--border-radius-xs) var(--border-radius-xs) 0;
-  padding: 5px 10px;
-}
-
-.c-split-button__main:hover,
-.c-split-button__toggle:hover {
-  border-color: var(--grey-300);
-}
-
-.c-split-button__main:focus,
-.c-split-button__toggle:focus {
-  outline: none;
-}
-
-.c-split-button__arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 6px solid var(--grey-500);
-  transition: transform 0.18s ease;
-  pointer-events: none;
-}
-
-.c-split-button__toggle[aria-expanded="true"] .c-split-button__arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-list.c-split-button__menu {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 4px);
-  min-width: 220px;
-  z-index: 60;
-}
-
-.c-split-button--menu-left .dropdown-list.c-split-button__menu {
-  left: 0;
-  right: auto;
-}
-
-.dropdown-list.c-split-button__menu .dropdown-item {
-  padding: 10px 12px;
-}
-
-.dropdown-list.c-split-button__menu .c-link--nav:hover,
-.dropdown-list.c-split-button__menu .dropdown-item:hover .c-link--nav {
-  text-decoration-thickness: 2px;
 }
 
 .selected-panel-title-row {
