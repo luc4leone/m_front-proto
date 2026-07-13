@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggiungi servizio — combobox</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <style>
+    body {
+      font-family: var(--font-family);
+      background: var(--color-background);
+      color: var(--color-text);
+      padding: var(--space-48) var(--space-40);
+      font-size: var(--fs-14);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: var(--space-24);
+      max-width: 400px;
+    }
+
+    /* ── section header ── */
+    .section-label {
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      display: block;
+      margin-bottom: var(--space-12);
+    }
+
+    /* ── servizi list ── */
+    .servizi-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .servizio-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      padding: var(--space-4) 0;
+    }
+
+    .servizio-item__name {
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    .servizio-item__remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      font-size: var(--fs-16);
+      line-height: 1;
+      padding: 0 var(--space-4);
+      display: flex;
+      align-items: center;
+    }
+
+    .servizio-item__remove:hover {
+      color: var(--color-error);
+    }
+
+    /* ── combobox ── */
+    .combobox-wrapper {
+      position: relative;
+    }
+
+    .combobox-input-row {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      transition: border-color 0.15s ease;
+    }
+
+    .combobox-input-row:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    }
+
+    .combobox-input {
+      flex: 1;
+      border: none;
+      padding: var(--space-8) var(--space-12);
+      font-family: inherit;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      background: transparent;
+      outline: none;
+    }
+
+    .combobox-input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .combobox-chevron {
+      padding: 0 var(--space-10);
+      color: var(--color-text-muted);
+      font-size: var(--fs-12);
+      pointer-events: none;
+      transition: transform 0.15s ease;
+    }
+
+    .combobox-wrapper.is-open .combobox-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ── dropdown panel ── */
+    .dropdown-panel {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-12px);
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .combobox-wrapper.is-open .dropdown-panel {
+      display: flex;
+    }
+
+    .dropdown-list {
+      overflow-y: auto;
+      max-height: 220px;
+    }
+
+    .dropdown-option {
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .dropdown-option:hover {
+      background: var(--grey-050);
+    }
+
+    .dropdown-option.is-selected {
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    .dropdown-option.is-selected::after {
+      content: "✓";
+      font-size: var(--fs-12);
+      color: var(--color-success);
+    }
+
+    .dropdown-empty {
+      padding: var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="section-label">Servizi</span>
+
+    <div class="servizi-list" id="serviziList"></div>
+
+    <div class="combobox-wrapper" id="comboboxWrapper">
+      <div class="combobox-input-row">
+        <input
+          class="combobox-input"
+          id="comboboxInput"
+          type="text"
+          placeholder="Cerca o aggiungi servizio…"
+          autocomplete="off"
+          role="combobox"
+          aria-expanded="false"
+          aria-autocomplete="list"
+        />
+        <span class="combobox-chevron" aria-hidden="true">▾</span>
+      </div>
+      <div class="dropdown-panel" id="dropdownPanel" role="listbox">
+        <div class="dropdown-list" id="dropdownList"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="max-width:400px; margin: var(--space-24) 0; border:none; border-top:1px solid var(--color-border);" />
+  <p style="max-width:400px; font-size:var(--fs-12); color:var(--color-text-muted);">scartato perché c'è layout shift</p>
+
+  <script>
+    const SERVIZI = [
+      "Aeronautica", "Agricoltura", "Ambiente", "Arte contemporanea", "Artigianato",
+      "Astronomia", "Atletica leggera", "Automobilismo", "Banche e finanza", "Baseball",
+      "Basket", "Benessere", "Calcio", "Cinematografia", "Ciclismo",
+      "Costume e società", "Criminalità organizzata", "Cronaca locale", "Cronaca nera", "Cultura",
+      "Design", "Difesa e sicurezza", "Diplomazia", "Diritto", "Economia",
+      "Editoria", "Energie rinnovabili", "Enogastronomia", "Esteri", "Famiglia e minori",
+      "Farmaceutica", "Filosofia", "Fisica", "Football americano", "Fotografia",
+      "Geopolitica", "Golf", "Hockey", "Immigrazione", "Imprenditoria",
+      "Industria automobilistica", "Informatica", "Innovazione tecnologica", "Intelligenza artificiale", "Internet e social media",
+      "Istruzione", "Lavoro e sindacati", "Letteratura", "Logistica", "Lusso e moda",
+      "Medicina", "Mercati finanziari", "Meteorologia", "Moda", "Motociclismo",
+      "Musica classica", "Musica pop e rock", "Narrativa", "Neuroscienze", "Nuoto",
+      "Olimpiadi", "Oncologia", "Pallavolo", "Pattinaggio", "Pesca",
+      "Politica estera", "Politica interna", "Proprietà intellettuale", "Psicologia", "Pubblica amministrazione",
+      "Rallye", "Real estate", "Religione", "Ricerca scientifica", "Rugby",
+      "Salute pubblica", "Sci alpino", "Sicurezza informatica", "Sindacati", "Skateboard",
+      "Social media", "Sociologia", "Space economy", "Sport invernali", "Startup",
+      "Storia", "Teatro", "Telecomunicazioni", "Tennis", "Terzo settore",
+      "Tiro a segno", "Trasporti", "Turismo", "TV e radio", "Urbanistica",
+      "Vela", "Viaggi e turismo", "Video games", "Volley", "Welfare"
+    ];
+
+    let selected = new Set(["Viaggi e turismo", "Calcio"]);
+
+    const serviziList = document.getElementById("serviziList");
+    const comboboxWrapper = document.getElementById("comboboxWrapper");
+    const comboboxInput = document.getElementById("comboboxInput");
+    const dropdownList = document.getElementById("dropdownList");
+
+    function renderServiziList() {
+      serviziList.innerHTML = "";
+      selected.forEach(name => {
+        const item = document.createElement("div");
+        item.className = "servizio-item";
+        item.innerHTML = `
+          <span class="servizio-item__name">${name}</span>
+          <button class="servizio-item__remove" data-name="${name}" title="Rimuovi">×</button>
+        `;
+        serviziList.appendChild(item);
+      });
+
+      serviziList.querySelectorAll(".servizio-item__remove").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selected.delete(btn.dataset.name);
+          renderServiziList();
+          renderDropdown(comboboxInput.value);
+        });
+      });
+    }
+
+    function renderDropdown(filter = "") {
+      const q = filter.toLowerCase().trim();
+      const matches = SERVIZI.filter(s => s.toLowerCase().includes(q));
+
+      dropdownList.innerHTML = "";
+
+      if (matches.length === 0) {
+        dropdownList.innerHTML = `<div class="dropdown-empty">Nessun risultato</div>`;
+        return;
+      }
+
+      matches.forEach(name => {
+        const opt = document.createElement("div");
+        opt.className = "dropdown-option" + (selected.has(name) ? " is-selected" : "");
+        opt.setAttribute("role", "option");
+        opt.textContent = name;
+        opt.addEventListener("mousedown", e => {
+          e.preventDefault(); // evita blur sull'input
+          if (selected.has(name)) return;
+          selected.add(name);
+          comboboxInput.value = "";
+          renderServiziList();
+          renderDropdown();
+        });
+        dropdownList.appendChild(opt);
+      });
+    }
+
+    function openDropdown() {
+      comboboxWrapper.classList.add("is-open");
+      comboboxInput.setAttribute("aria-expanded", "true");
+      renderDropdown(comboboxInput.value);
+    }
+
+    function closeDropdown() {
+      comboboxWrapper.classList.remove("is-open");
+      comboboxInput.setAttribute("aria-expanded", "false");
+    }
+
+    comboboxInput.addEventListener("focus", openDropdown);
+    comboboxInput.addEventListener("input", () => renderDropdown(comboboxInput.value));
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest("#comboboxWrapper")) closeDropdown();
+    });
+
+    renderServiziList();
+  </script>
+
+</body>
+</html>

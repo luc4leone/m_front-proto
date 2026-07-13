@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggiungi servizio — action link</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <style>
+    body {
+      font-family: var(--font-family);
+      background: var(--color-background);
+      color: var(--color-text);
+      padding: var(--space-48) var(--space-40);
+      font-size: var(--fs-14);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: var(--space-24);
+      max-width: 400px;
+    }
+
+    /* ── section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-12);
+    }
+
+    .section-label {
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+    }
+
+    /* ── servizi list ── */
+    .servizi-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-12);
+    }
+
+    .servizio-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      padding: var(--space-4) 0;
+    }
+
+    .servizio-item__name {
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    .servizio-item__remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      font-size: var(--fs-16);
+      line-height: 1;
+      padding: 0 var(--space-4);
+      display: flex;
+      align-items: center;
+    }
+
+    .servizio-item__remove:hover {
+      color: var(--color-error);
+    }
+
+    /* ── dropdown ── */
+    .dropdown-wrapper {
+      position: relative;
+    }
+
+    .dropdown-panel {
+      display: none;
+      flex-direction: column;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-12px);
+      overflow: hidden;
+      margin-top: var(--space-8);
+    }
+
+    .dropdown-panel.is-open {
+      display: flex;
+    }
+
+    .dropdown-search {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) var(--space-12);
+      font-family: inherit;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      outline: none;
+      background: var(--color-surface);
+    }
+
+    .dropdown-search::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .dropdown-list {
+      overflow-y: auto;
+      max-height: 220px;
+    }
+
+    .dropdown-option {
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-10);
+      user-select: none;
+    }
+
+    .dropdown-option:hover {
+      background: var(--grey-050);
+    }
+
+    .dropdown-option input[type="checkbox"] {
+      appearance: checkbox;
+      -webkit-appearance: checkbox;
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .dropdown-empty {
+      padding: var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="section-header">
+      <span class="section-label">Servizi</span>
+      <button class="action-link" id="toggleBtn" type="button">
+        + aggiungi servizio
+      </button>
+    </div>
+
+    <div class="servizi-list" id="serviziList"></div>
+
+    <div class="dropdown-wrapper">
+      <div class="dropdown-panel" id="dropdownPanel">
+        <input
+          class="dropdown-search"
+          id="searchInput"
+          type="text"
+          placeholder="Cerca servizio…"
+          autocomplete="off"
+        />
+        <div class="dropdown-list" id="dropdownList"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="max-width:400px; margin: var(--space-24) 0; border:none; border-top:1px solid var(--color-border);" />
+  <p style="max-width:400px; font-size:var(--fs-12); color:var(--color-text-muted);">scartato perché c'è layout shift on selection</p>
+
+  <script>
+    const SERVIZI = [
+      "Aeronautica", "Agricoltura", "Ambiente", "Arte contemporanea", "Artigianato",
+      "Astronomia", "Atletica leggera", "Automobilismo", "Banche e finanza", "Baseball",
+      "Basket", "Benessere", "Calcio", "Cinematografia", "Ciclismo",
+      "Costume e società", "Criminalità organizzata", "Cronaca locale", "Cronaca nera", "Cultura",
+      "Design", "Difesa e sicurezza", "Diplomazia", "Diritto", "Economia",
+      "Editoria", "Energie rinnovabili", "Enogastronomia", "Esteri", "Famiglia e minori",
+      "Farmaceutica", "Filosofia", "Fisica", "Football americano", "Fotografia",
+      "Geopolitica", "Golf", "Hockey", "Immigrazione", "Imprenditoria",
+      "Industria automobilistica", "Informatica", "Innovazione tecnologica", "Intelligenza artificiale", "Internet e social media",
+      "Istruzione", "Lavoro e sindacati", "Letteratura", "Logistica", "Lusso e moda",
+      "Medicina", "Mercati finanziari", "Meteorologia", "Moda", "Motociclismo",
+      "Musica classica", "Musica pop e rock", "Narrativa", "Neuroscienze", "Nuoto",
+      "Olimpiadi", "Oncologia", "Pallavolo", "Pattinaggio", "Pesca",
+      "Politica estera", "Politica interna", "Proprietà intellettuale", "Psicologia", "Pubblica amministrazione",
+      "Rallye", "Real estate", "Religione", "Ricerca scientifica", "Rugby",
+      "Salute pubblica", "Sci alpino", "Sicurezza informatica", "Sindacati", "Skateboard",
+      "Social media", "Sociologia", "Space economy", "Sport invernali", "Startup",
+      "Storia", "Teatro", "Telecomunicazioni", "Tennis", "Terzo settore",
+      "Tiro a segno", "Trasporti", "Turismo", "TV e radio", "Urbanistica",
+      "Vela", "Viaggi e turismo", "Video games", "Volley", "Welfare"
+    ];
+
+    let selected = new Set(["Viaggi e turismo", "Calcio"]);
+
+    const serviziList = document.getElementById("serviziList");
+    const dropdownPanel = document.getElementById("dropdownPanel");
+    const dropdownList = document.getElementById("dropdownList");
+    const searchInput = document.getElementById("searchInput");
+    const toggleBtn = document.getElementById("toggleBtn");
+
+    function renderServiziList() {
+      serviziList.innerHTML = "";
+      selected.forEach(name => {
+        const item = document.createElement("div");
+        item.className = "servizio-item";
+        item.innerHTML = `
+          <span class="servizio-item__name">${name}</span>
+          <button class="servizio-item__remove" data-name="${name}" title="Rimuovi">×</button>
+        `;
+        serviziList.appendChild(item);
+      });
+
+      serviziList.querySelectorAll(".servizio-item__remove").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selected.delete(btn.dataset.name);
+          renderServiziList();
+          renderDropdown(searchInput.value);
+        });
+      });
+    }
+
+    function renderDropdown(filter = "") {
+      const q = filter.toLowerCase().trim();
+      const matches = SERVIZI.filter(s => s.toLowerCase().includes(q));
+
+      dropdownList.innerHTML = "";
+
+      if (matches.length === 0) {
+        dropdownList.innerHTML = `<div class="dropdown-empty">Nessun risultato</div>`;
+        return;
+      }
+
+      matches.forEach(name => {
+        const isChecked = selected.has(name);
+        const opt = document.createElement("div");
+        opt.className = "dropdown-option";
+        opt.innerHTML = `<input type="checkbox" tabindex="-1" ${isChecked ? "checked" : ""} /><span>${name}</span>`;
+        opt.addEventListener("mousedown", e => {
+          e.preventDefault();
+          if (selected.has(name)) {
+            selected.delete(name);
+          } else {
+            selected.add(name);
+          }
+          renderServiziList();
+          renderDropdown(searchInput.value);
+        });
+        dropdownList.appendChild(opt);
+      });
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = dropdownPanel.classList.toggle("is-open");
+      if (isOpen) {
+        searchInput.value = "";
+        renderDropdown();
+        searchInput.focus();
+      }
+    });
+
+    searchInput.addEventListener("input", () => renderDropdown(searchInput.value));
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".dropdown-wrapper") && !e.target.closest("#toggleBtn")) {
+        dropdownPanel.classList.remove("is-open");
+      }
+    });
+
+    renderServiziList();
+  </script>
+
+</body>
+</html>
