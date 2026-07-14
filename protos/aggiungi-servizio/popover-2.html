@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aggiungi servizio — popover 2</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <style>
+    body {
+      font-family: var(--font-family);
+      background: var(--color-background);
+      color: var(--color-text);
+      padding: var(--space-48) var(--space-40);
+      font-size: var(--fs-14);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: var(--space-24);
+      max-width: 540px;
+    }
+
+    /* ── section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-24);
+      margin-bottom: var(--space-12);
+      overflow: visible;
+    }
+
+    .section-label {
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── anchor: slide animation ── */
+    .popover-anchor {
+      position: relative;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── toggle button (variante 2) ── */
+    .toggle-btn {
+      background: none;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--border-radius);
+      line-height: var(--line-height-16);
+      transition: background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .toggle-btn:hover {
+      color: var(--color-text-strong);
+      border-color: var(--color-border-strong);
+    }
+
+    .toggle-btn[aria-pressed="true"] {
+      background: var(--grey-100);
+      border-color: var(--color-border-strong);
+    }
+
+    /* ── servizi list ── */
+    .servizi-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .servizio-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+      padding: var(--space-4) 0;
+    }
+
+    .servizio-item__name {
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    .servizio-item__remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      font-size: var(--fs-16);
+      line-height: 1;
+      padding: 0 var(--space-4);
+      display: flex;
+      align-items: center;
+    }
+
+    .servizio-item__remove:hover {
+      color: var(--color-error);
+    }
+
+    /* ── popover panel ── */
+    .popover-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 260px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-12px);
+      overflow: hidden;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .popover-panel.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .popover-search {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-10) var(--space-12);
+      font-family: inherit;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      background: var(--color-surface);
+      outline: none;
+    }
+
+    .popover-search::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .popover-list {
+      overflow-y: auto;
+      max-height: 220px;
+    }
+
+    .popover-option {
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-10);
+      user-select: none;
+    }
+
+    .popover-option:hover {
+      background: var(--grey-050);
+    }
+
+    .popover-option input[type="checkbox"] {
+      appearance: checkbox;
+      -webkit-appearance: checkbox;
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .popover-empty {
+      padding: var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="section-header" id="sectionHeader">
+      <span class="section-label">Servizi</span>
+      <div class="popover-anchor" id="popoverAnchor">
+        <button
+          class="toggle-btn"
+          id="toggleBtn"
+          type="button"
+          aria-pressed="false"
+          aria-expanded="false"
+        >+ aggiungi servizio</button>
+        <div class="popover-panel" id="popoverPanel">
+          <input
+            class="popover-search"
+            id="searchInput"
+            type="text"
+            placeholder="Cerca servizio…"
+            autocomplete="off"
+          />
+          <div class="popover-list" id="popoverList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="servizi-list" id="serviziList"></div>
+  </div>
+
+  <script>
+    const SLIDE_DURATION = 320;
+    const POPOVER_DELAY  = 80;
+
+    const SERVIZI = [
+      "Aeronautica", "Agricoltura", "Ambiente", "Arte contemporanea", "Artigianato",
+      "Astronomia", "Atletica leggera", "Automobilismo", "Banche e finanza", "Baseball",
+      "Basket", "Benessere", "Calcio", "Cinematografia", "Ciclismo",
+      "Costume e società", "Criminalità organizzata", "Cronaca locale", "Cronaca nera", "Cultura",
+      "Design", "Difesa e sicurezza", "Diplomazia", "Diritto", "Economia",
+      "Editoria", "Energie rinnovabili", "Enogastronomia", "Esteri", "Famiglia e minori",
+      "Farmaceutica", "Filosofia", "Fisica", "Football americano", "Fotografia",
+      "Geopolitica", "Golf", "Hockey", "Immigrazione", "Imprenditoria",
+      "Industria automobilistica", "Informatica", "Innovazione tecnologica", "Intelligenza artificiale", "Internet e social media",
+      "Istruzione", "Lavoro e sindacati", "Letteratura", "Logistica", "Lusso e moda",
+      "Medicina", "Mercati finanziari", "Meteorologia", "Moda", "Motociclismo",
+      "Musica classica", "Musica pop e rock", "Narrativa", "Neuroscienze", "Nuoto",
+      "Olimpiadi", "Oncologia", "Pallavolo", "Pattinaggio", "Pesca",
+      "Politica estera", "Politica interna", "Proprietà intellettuale", "Psicologia", "Pubblica amministrazione",
+      "Rallye", "Real estate", "Religione", "Ricerca scientifica", "Rugby",
+      "Salute pubblica", "Sci alpino", "Sicurezza informatica", "Sindacati", "Skateboard",
+      "Social media", "Sociologia", "Space economy", "Sport invernali", "Startup",
+      "Storia", "Teatro", "Telecomunicazioni", "Tennis", "Terzo settore",
+      "Tiro a segno", "Trasporti", "Turismo", "TV e radio", "Urbanistica",
+      "Vela", "Viaggi e turismo", "Video games", "Volley", "Welfare"
+    ];
+
+    let selected = new Set(["Viaggi e turismo", "Calcio"]);
+    let isOpen = false;
+    let slideTimer = null;
+
+    const sectionHeader = document.getElementById("sectionHeader");
+    const popoverAnchor = document.getElementById("popoverAnchor");
+    const popoverPanel  = document.getElementById("popoverPanel");
+    const popoverList   = document.getElementById("popoverList");
+    const searchInput   = document.getElementById("searchInput");
+    const toggleBtn     = document.getElementById("toggleBtn");
+    const serviziList   = document.getElementById("serviziList");
+
+    function setToggleState(open) {
+      toggleBtn.setAttribute("aria-pressed", open);
+      toggleBtn.setAttribute("aria-expanded", open);
+      toggleBtn.textContent = open ? "× aggiungi servizio" : "+ aggiungi servizio";
+    }
+
+    function slideDistance() {
+      const headerRight = sectionHeader.getBoundingClientRect().right;
+      const anchorRight = popoverAnchor.getBoundingClientRect().right;
+      return headerRight - anchorRight;
+    }
+
+    function openPopover() {
+      isOpen = true;
+      clearTimeout(slideTimer);
+      setToggleState(true);
+      popoverAnchor.style.transform = `translateX(${slideDistance()}px)`;
+      slideTimer = setTimeout(() => {
+        searchInput.value = "";
+        renderPopover();
+        popoverPanel.classList.add("is-open");
+        searchInput.focus();
+      }, SLIDE_DURATION + POPOVER_DELAY);
+    }
+
+    function closePopover() {
+      isOpen = false;
+      clearTimeout(slideTimer);
+      setToggleState(false);
+      popoverPanel.classList.remove("is-open");
+      slideTimer = setTimeout(() => {
+        popoverAnchor.style.transform = "";
+      }, 80);
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      isOpen ? closePopover() : openPopover();
+    });
+
+    searchInput.addEventListener("input", () => renderPopover(searchInput.value));
+
+    document.addEventListener("click", e => {
+      if (isOpen && !e.target.closest("#popoverAnchor")) closePopover();
+    });
+
+    function renderServiziList() {
+      serviziList.innerHTML = "";
+      selected.forEach(name => {
+        const item = document.createElement("div");
+        item.className = "servizio-item";
+        item.innerHTML = `
+          <span class="servizio-item__name">${name}</span>
+          <button class="servizio-item__remove" data-name="${name}" title="Rimuovi">×</button>
+        `;
+        serviziList.appendChild(item);
+      });
+      serviziList.querySelectorAll(".servizio-item__remove").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selected.delete(btn.dataset.name);
+          renderServiziList();
+          renderPopover(searchInput.value);
+        });
+      });
+    }
+
+    function renderPopover(filter = "") {
+      const q = filter.toLowerCase().trim();
+      const matches = SERVIZI.filter(s => s.toLowerCase().includes(q));
+      popoverList.innerHTML = "";
+      if (matches.length === 0) {
+        popoverList.innerHTML = `<div class="popover-empty">Nessun risultato</div>`;
+        return;
+      }
+      matches.forEach(name => {
+        const opt = document.createElement("div");
+        opt.className = "popover-option";
+        opt.innerHTML = `<input type="checkbox" tabindex="-1" ${selected.has(name) ? "checked" : ""} /><span>${name}</span>`;
+        opt.addEventListener("mousedown", e => {
+          e.preventDefault();
+          selected.has(name) ? selected.delete(name) : selected.add(name);
+          renderServiziList();
+          renderPopover(searchInput.value);
+        });
+        popoverList.appendChild(opt);
+      });
+    }
+
+    renderServiziList();
+  </script>
+
+</body>
+</html>

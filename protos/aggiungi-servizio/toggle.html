@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toggle button — varianti</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <style>
+    body {
+      font-family: var(--font-family);
+      background: var(--color-background);
+      color: var(--color-text);
+      padding: var(--space-48) var(--space-40);
+      font-size: var(--fs-14);
+    }
+
+    /* ── layout ── */
+    .rows {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-40);
+      max-width: 400px;
+    }
+
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .row-label {
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── wrapper per il posizionamento della tendina ── */
+    .toggle-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ── tendina ── */
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 220px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-12px);
+      overflow: hidden;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+    }
+
+    .dropdown.is-open {
+      display: flex;
+    }
+
+    .dropdown-search {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-8) var(--space-12);
+      font-family: inherit;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      background: var(--color-surface);
+      outline: none;
+    }
+
+    .dropdown-search::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .dropdown-list {
+      overflow-y: auto;
+      max-height: 200px;
+    }
+
+    .dropdown-option {
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .dropdown-option:hover {
+      background: var(--grey-050);
+    }
+
+    /* ── variante 1: corrente ── */
+    .toggle-v1 {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-primary);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--border-radius);
+      transition: background 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .toggle-v1:hover {
+      color: var(--color-primary-dark);
+    }
+
+    .toggle-v1.is-open {
+      background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+      color: var(--color-primary-dark);
+    }
+
+    /* ── variante 2: testo colore, bordo su entrambi gli stati ── */
+    .toggle-v2 {
+      background: none;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--border-radius);
+      transition: background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .toggle-v2:hover {
+      color: var(--color-text-strong);
+      border-color: var(--color-border-strong);
+    }
+
+    .toggle-v2.is-open {
+      background: var(--grey-100);
+      border-color: var(--color-border-strong);
+    }
+
+    /* ── variante 3: chevron ── */
+    .toggle-v3 {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-primary);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--border-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-6);
+      white-space: nowrap;
+      transition: color 0.15s ease;
+    }
+
+    .toggle-v3:hover {
+      color: var(--color-primary-dark);
+    }
+
+    .toggle-v3__chevron {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid currentColor;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .toggle-v3.is-open .toggle-v3__chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rows">
+
+    <!-- riga 1 -->
+    <div class="row">
+      <span class="row-label">1</span>
+      <div class="toggle-wrapper" id="wrapper1">
+        <button class="toggle-v1" id="btn1" aria-pressed="false">+ aggiungi servizio</button>
+        <div class="dropdown" id="dropdown1">
+          <input class="dropdown-search" placeholder="Cerca…" autocomplete="off" />
+          <div class="dropdown-list" id="list1"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- riga 2 -->
+    <div class="row">
+      <span class="row-label">2</span>
+      <div class="toggle-wrapper" id="wrapper2">
+        <button class="toggle-v2" id="btn2" aria-pressed="false">+ aggiungi servizio</button>
+        <div class="dropdown" id="dropdown2">
+          <input class="dropdown-search" placeholder="Cerca…" autocomplete="off" />
+          <div class="dropdown-list" id="list2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- riga 3 -->
+    <div class="row">
+      <span class="row-label">3</span>
+      <div class="toggle-wrapper" id="wrapper3">
+        <button class="toggle-v3" id="btn3" aria-pressed="false">
+          <span class="toggle-v3__chevron"></span>aggiungi servizio
+        </button>
+        <div class="dropdown" id="dropdown3">
+          <input class="dropdown-search" placeholder="Cerca…" autocomplete="off" />
+          <div class="dropdown-list" id="list3"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const SERVIZI = [
+      "Aeronautica", "Agricoltura", "Ambiente", "Arte contemporanea", "Artigianato",
+      "Astronomia", "Atletica leggera", "Automobilismo", "Banche e finanza", "Baseball",
+      "Basket", "Benessere", "Calcio", "Cinematografia", "Ciclismo",
+      "Costume e società", "Criminalità organizzata", "Cronaca locale", "Cronaca nera", "Cultura"
+    ];
+
+    const rows = [
+      { btn: document.getElementById("btn1"), dropdown: document.getElementById("dropdown1"), list: document.getElementById("list1"), hasPrefix: true },
+      { btn: document.getElementById("btn2"), dropdown: document.getElementById("dropdown2"), list: document.getElementById("list2"), hasPrefix: true },
+      { btn: document.getElementById("btn3"), dropdown: document.getElementById("dropdown3"), list: document.getElementById("list3"), hasPrefix: false },
+    ];
+
+    function renderList(listEl) {
+      listEl.innerHTML = "";
+      SERVIZI.forEach(name => {
+        const opt = document.createElement("div");
+        opt.className = "dropdown-option";
+        opt.textContent = name;
+        listEl.appendChild(opt);
+      });
+    }
+
+    rows.forEach(({ btn, dropdown, list, hasPrefix }) => {
+      const searchInput = dropdown.querySelector(".dropdown-search");
+
+      function open() {
+        btn.classList.add("is-open");
+        btn.setAttribute("aria-pressed", "true");
+        dropdown.classList.add("is-open");
+        if (hasPrefix) btn.textContent = "× aggiungi servizio";
+        searchInput.value = "";
+        renderList(list);
+        searchInput.focus();
+      }
+
+      function close() {
+        btn.classList.remove("is-open");
+        btn.setAttribute("aria-pressed", "false");
+        dropdown.classList.remove("is-open");
+        if (hasPrefix) btn.textContent = "+ aggiungi servizio";
+      }
+
+      btn.addEventListener("click", () => {
+        btn.classList.contains("is-open") ? close() : open();
+      });
+
+      searchInput.addEventListener("input", () => {
+        const q = searchInput.value.toLowerCase();
+        list.innerHTML = "";
+        SERVIZI.filter(s => s.toLowerCase().includes(q)).forEach(name => {
+          const opt = document.createElement("div");
+          opt.className = "dropdown-option";
+          opt.textContent = name;
+          list.appendChild(opt);
+        });
+      });
+
+      document.addEventListener("click", e => {
+        if (!e.target.closest(`#${btn.id}`) && !e.target.closest(`#${dropdown.id}`)) {
+          close();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -7,78 +7,115 @@
   <meta name="description" content="Lista dei componenti disponibili." />
   <link rel="stylesheet" href="../css/reset.css" />
   <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
   <style>
-    @font-face {
-      font-family: "Excalifont";
-      src: url("../assets/font/Excalifont-Regular.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
     body {
-      font-family: "Excalifont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
-        sans-serif;
-      background-color: var(--color-background);
-      padding: var(--space-40);
-      color: #555;
-      font-size: var(--fs-18);
+      font-family: var(--font-family);
+      background: var(--color-background);
+      color: var(--color-text);
+      padding: var(--space-48) var(--space-40);
       line-height: var(--line-height-16);
     }
 
     h1 {
-      font-size: var(--fs-24);
-      line-height: var(--line-height-12);
+      font-size: var(--fs-36);
+      font-weight: var(--fw-700);
+      margin: 0 0 var(--space-48) 0;
+      color: var(--grey-950);
     }
 
-    ul li {
-      padding: 4px;
-    }
-    
-    .wrapper {
-      max-width: fit-content;
+    .index {
       display: flex;
       flex-direction: column;
       gap: var(--space-40);
+      max-width: 560px;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .section__title {
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--grey-650);
+    }
+
+    .section__links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      padding-left: var(--space-16);
+    }
+
+    .section__link {
+      font-size: var(--fs-14);
+      color: var(--color-primary);
+      text-decoration: underline;
+      font-weight: var(--fw-500);
+    }
+
+    .section__link:hover {
+      color: var(--color-primary-dark);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
     }
   </style>
-
 </head>
-
 <body>
 
-  <div class="wrapper">
   <h1>Elementi grafici</h1>
 
-  <ul>
-    <li><a href="action-link.html">action-link</a></li>
-    <li><a href="activity-indicator.html">activity-indicator</a></li>
-    <li><a href="badge.html">badge</a></li>
-    <li><a href="blink-loader.html">blink-loader</a></li>
-    <li><a href="button.html">button</a></li>
-    <li><a href="button2.html">button2</a></li>
-    <li><a href="button3.html">button3</a></li>
-    <li><a href="chip.html">chip</a></li>
-    <li><a href="count-pill.html">count-pill</a></li>
-    <li><a href="dashboard-section.html">dashboard-section</a></li>
-    <li><a href="form-elements.html">form-elements</a></li>
-    <li><a href="journalist-card.html">journalist-card</a></li>
-    <li><a href="limit-indicator.html">limit-indicator</a></li>
-    <li><a href="limit-indicator-v2.html">limit-indicator-v2</a></li>
-    <li><a href="link.html">link</a></li>
-    <li><a href="list-item.html">list-item</a></li>
-    <li><a href="meta-item.html">meta-item</a></li>
-    <li><a href="modal.html">modal</a></li>
-    <li><a href="sidebar.html">sidebar</a></li>
-    <li><a href="split-button.html">split-button</a></li>
-    <li><a href="step-badge.html">step-badge</a></li>
-    <li><a href="table.html">table</a></li>
-    <li><a href="tabs.html">tabs</a></li>
-    <li><a href="titolo.html">titolo</a></li>
-    <li><a href="todo-item.html">todo-item</a></li>
-  </ul>
-  </div>
+  <div class="index">
 
+    <section class="section">
+      <span class="section__title">Buttons</span>
+      <div class="section__links">
+        <a href="primary-button-v2.html" class="section__link">primary button v2</a>
+        <a href="action-link.html" class="section__link">seconday button</a>
+        <a href="link.html" class="section__link">link</a>
+        <a href="split-button.html" class="section__link">split button</a>
+        <a href="toggle-dropdown.html" class="section__link">toggle dropdown</a>
+        <!--<a href="button.html" class="section__link">button</a>-->
+        <!--<a href="button2.html" class="section__link">button2</a>-->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <span class="section__title">Altri</span>
+      <div class="section__links">
+        <a href="activity-indicator.html" class="section__link">activity-indicator</a>
+        <a href="badge.html" class="section__link">badge</a>
+        <a href="blink-loader.html" class="section__link">blink-loader</a>
+        <a href="chip.html" class="section__link">chip</a>
+        <a href="count-pill.html" class="section__link">count-pill</a>
+        <a href="dashboard-section.html" class="section__link">dashboard-section</a>
+        <a href="form-elements.html" class="section__link">form-elements</a>
+        <a href="journalist-card.html" class="section__link">journalist-card</a>
+        <a href="limit-indicator.html" class="section__link">limit-indicator</a>
+        <a href="limit-indicator-v2.html" class="section__link">limit-indicator-v2</a>
+        <a href="list-item.html" class="section__link">list-item</a>
+        <a href="meta-item.html" class="section__link">meta-item</a>
+        <a href="modal.html" class="section__link">modal</a>
+        <a href="sidebar.html" class="section__link">sidebar</a>
+        <a href="step-badge.html" class="section__link">step-badge</a>
+        <a href="table.html" class="section__link">table</a>
+        <a href="tabs.html" class="section__link">tabs</a>
+        <a href="titolo.html" class="section__link">titolo</a>
+        <a href="todo-item.html" class="section__link">todo-item</a>
+      </div>
+    </section>
+
+  </div>
 
 </body>
 </html>

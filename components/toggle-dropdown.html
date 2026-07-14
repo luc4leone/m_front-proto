@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>toggle dropdown</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <style>
+    .showcase {
+      font-family: var(--font-family);
+    }
+
+    /* ── wrapper per il posizionamento della tendina ── */
+    .toggle-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ── toggle button variante 2 ── */
+    .toggle-btn {
+      background: none;
+      border: 1px solid var(--grey-400);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--border-radius);
+      line-height: var(--line-height-16);
+      transition: background 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .toggle-btn:hover {
+      color: var(--color-text-strong);
+      border-color: var(--grey-500);
+    }
+
+    .toggle-btn.is-open {
+      background: var(--grey-100);
+      border-color: var(--grey-500);
+    }
+
+    /* ── tendina ── */
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 220px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-12px);
+      overflow: hidden;
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+    }
+
+    .dropdown.is-open {
+      display: flex;
+    }
+
+    .dropdown-search {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-8) var(--space-12);
+      font-family: inherit;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      background: var(--color-surface);
+      outline: none;
+    }
+
+    .dropdown-search::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .dropdown-list {
+      overflow-y: auto;
+      max-height: 200px;
+    }
+
+    .dropdown-option {
+      padding: var(--space-8) var(--space-12);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .dropdown-option:hover {
+      background: var(--grey-050);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>toggle dropdown</h1>
+
+    <div class="showcase__cases">
+      <section class="showcase__case">
+        <p>Esistono molte varianti della tendina.</p>
+        <div class="showcase__display">
+          <div class="toggle-wrapper">
+            <button class="toggle-btn" id="toggleBtn" aria-pressed="false">+ aggiungi servizio</button>
+            <div class="dropdown" id="dropdown">
+              <input class="dropdown-search" id="searchInput" placeholder="Cerca…" autocomplete="off" />
+              <div class="dropdown-list" id="dropdownList"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <script>
+    const SERVIZI = [
+      "Aeronautica", "Agricoltura", "Ambiente", "Arte contemporanea", "Artigianato",
+      "Astronomia", "Atletica leggera", "Automobilismo", "Banche e finanza", "Baseball",
+      "Basket", "Benessere", "Calcio", "Cinematografia", "Ciclismo",
+      "Costume e società", "Criminalità organizzata", "Cronaca locale", "Cronaca nera", "Cultura"
+    ];
+
+    const btn         = document.getElementById("toggleBtn");
+    const dropdown    = document.getElementById("dropdown");
+    const searchInput = document.getElementById("searchInput");
+    const list        = document.getElementById("dropdownList");
+
+    function renderList(filter = "") {
+      const q = filter.toLowerCase();
+      list.innerHTML = "";
+      SERVIZI.filter(s => s.toLowerCase().includes(q)).forEach(name => {
+        const opt = document.createElement("div");
+        opt.className = "dropdown-option";
+        opt.textContent = name;
+        list.appendChild(opt);
+      });
+    }
+
+    function open() {
+      btn.classList.add("is-open");
+      btn.setAttribute("aria-pressed", "true");
+      dropdown.classList.add("is-open");
+      btn.textContent = "× aggiungi servizio";
+      searchInput.value = "";
+      renderList();
+      searchInput.focus();
+    }
+
+    function close() {
+      btn.classList.remove("is-open");
+      btn.setAttribute("aria-pressed", "false");
+      dropdown.classList.remove("is-open");
+      btn.textContent = "+ aggiungi servizio";
+    }
+
+    btn.addEventListener("click", () => btn.classList.contains("is-open") ? close() : open());
+    searchInput.addEventListener("input", () => renderList(searchInput.value));
+    document.addEventListener("click", e => {
+      if (!e.target.closest("#toggleBtn") && !e.target.closest("#dropdown")) close();
+    });
+  </script>
+</body>
+</html>

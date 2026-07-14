@@ -82,6 +82,7 @@
       font-size: var(--fs-14);
       color: var(--color-primary);
       text-decoration: underline;
+      font-weight: var(--fw-500);
     }
 
     .sub-link:hover {
@@ -100,16 +101,36 @@
 
   <div class="index">
 
+    <!-- PROTO PRINCIPALI -->
+    <section class="section">
+      <span class="section__title">Viste principali</span>
+      <div class="section__links">
+        <div class="sub-links">
+          <a href="components/index.html" class="sub-link">componenti</a>
+
+          <a href="protos/servizio/index.html" class="sub-link">
+          banca dati
+          </a>
+          <a href="protos/dashboard/index5-tabs-overflow.html" class="sub-link">
+            dashboard (+ spedizione conclusa)
+          </a>
+          <a href="protos/dashboard/index-mobile.html" class="sub-link">mobile</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+
     <!-- BANCA DATI / SERVIZIO -->
     <section class="section">
-      <span class="section__title">Banca dati</span>
+      <span class="section__title">Studi: Banca dati</span>
       <div class="section__links">
-        <a href="protos/servizio/index.html" class="proto-link">
-          banca dati
-          <span class="proto-link__note">prototipo principale — filtra, dashboard, schede, spedizioni</span>
-        </a>
         <div class="sub-links">
-          <a href="protos/servizio-varianti/index.html" class="sub-link">varianti</a>
+          <a href="protos/servizio/index.html" class="sub-link">
+          banca dati
+          </a>
+          <a href="protos/servizio-varianti/index.html" class="sub-link">dropdown filtrabile</a>
           <a href="protos/servizio/public-comunicato.html" class="sub-link">comunicato pubblico</a>
           <a href="protos/banca-dati/index.html" class="sub-link">banca dati tabellare</a>
         </div>
@@ -120,13 +141,12 @@
 
     <!-- DASHBOARD -->
     <section class="section">
-      <span class="section__title">Dashboard</span>
+      <span class="section__title">Studi: Dashboard</span>
       <div class="section__links">
-        <a href="protos/dashboard/index5-tabs-overflow.html" class="proto-link">
-          dashboard
-          <span class="proto-link__note">con spedizione conclusa</span>
-        </a>
         <div class="sub-links">
+          <a href="protos/dashboard/index5-tabs-overflow.html" class="sub-link">
+            dashboard (+ spedizione conclusa)
+          </a>
           <a href="protos/dashboard/index.html" class="sub-link">v1</a>
           <a href="protos/dashboard/index2.html" class="sub-link">v2</a>
           <a href="protos/dashboard/index3.html" class="sub-link">v3</a>
@@ -140,10 +160,10 @@
 
     <!-- PROGETTO -->
     <section class="section">
-      <span class="section__title">Progetto</span>
+      <span class="section__title">Studi: Progetto</span>
       <div class="section__links">
-        <a href="protos/progetto/index.html" class="proto-link">progetto</a>
         <div class="sub-links">
+          <a href="protos/progetto/index.html" class="sub-link">progetto v1</a>
           <a href="protos/progetto/stats.html" class="sub-link">stats</a>
         </div>
       </div>
@@ -155,10 +175,9 @@
     <section class="section">
       <span class="section__title">Componenti</span>
       <div class="section__links">
-        <a href="components/index.html" class="proto-link">
-          libreria componenti
-          <span class="proto-link__note">showcase di tutti gli elementi UI</span>
-        </a>
+        <div class="sub-links">
+          <a href="components/index.html" class="sub-link">componenti</a>
+        </div>
       </div>
     </section>
 
@@ -166,11 +185,13 @@
 
     <!-- AGGIUNGI SERVIZIO -->
     <section class="section">
-      <span class="section__title">Aggiungi servizio</span>
+      <span class="section__title">Studi: Aggiungi servizio</span>
       <div class="section__links">
         <div class="sub-links">
           <a href="protos/aggiungi-servizio/action-link.html" class="sub-link">action link + dropdown</a>
           <a href="protos/aggiungi-servizio/popover.html" class="sub-link">popover ancorato</a>
+          <a href="protos/aggiungi-servizio/popover-2.html" class="sub-link">popover — toggle button</a>
+          <a href="protos/aggiungi-servizio/toggle.html" class="sub-link">toggle button — varianti</a>
           <a href="protos/aggiungi-servizio/combobox.html" class="sub-link">combobox sempre visibile</a>
           <a href="protos/aggiungi-servizio/combobox-2.html" class="sub-link">combobox on demand</a>
         </div>
@@ -180,6 +201,7 @@
     <hr />
 
     <!-- ALTRI -->
+     <!--
     <section class="section">
       <span class="section__title">Altri prototipi</span>
       <div class="section__links">
@@ -190,8 +212,10 @@
         </div>
       </div>
     </section>
+    -->
 
     <!-- SKETCHES -->
+     <!--
     <section class="section">
       <span class="section__title">Sketches</span>
       <div class="section__links">
@@ -202,6 +226,7 @@
         </div>
       </div>
     </section>
+    -->
 
   </div>
 

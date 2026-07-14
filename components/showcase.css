@@ -12,7 +12,7 @@ body {
 }
 
 .showcase {
-  font-family: "Excalifont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: Inter, "Excalifont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   font-size: var(--fs-16);
   line-height: var(--line-height-16);
   max-width: 640px;
@@ -31,7 +31,7 @@ body {
 .showcase h1 { font-size: var(--fs-24); }
 
 .showcase p {
-  font-size: var(--fs-18);
+  font-size: var(--fs-16);
   color: #555;
 }
 
