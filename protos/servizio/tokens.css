@@ -13,7 +13,13 @@
   --fs-2xl:  var(--fs-18);
   --fs-3xl:  var(--fs-20);
   --fs-4xl:  var(--fs-24);
-  --fs-5xl:  var(--fs-28);
+
+  /* Dimensioni legacy fuori scala — presenti in style.css ma mai
+     definite nel token condiviso. Valori letterali per riprodurre
+     l'intento originale (13px, 15px). Non usare in nuovo codice:
+     preferire sempre la scala di css/tokens.css. */
+  --fs-13: 0.8125rem;
+  --fs-15: 0.9375rem;
 
   /* font-weight */
   --fw-regular:   var(--fw-400);
@@ -21,7 +27,6 @@
   --fw-semibold:  var(--fw-600);
   --fw-bold:      var(--fw-700);
   --fw-extrabold: var(--fw-800);
-  --fw-black:     var(--fw-900);
 
   /* line-height */
   --lh-tight: var(--line-height-12);

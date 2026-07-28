@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida al sistema tipografico</title>
+
+  <!-- Carica i CSS reali del progetto: gli esempi qui sotto sono
+       renderizzati con i token effettivi, non con valori scritti a mano.
+       Se css/tokens.css cambia, questa pagina cambia con lui. -->
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../components/titolo.css" />
+  <link rel="stylesheet" href="../components/meta-item.css" />
+  <link rel="stylesheet" href="../components/badge.css" />
+
+  <style>
+    body {
+      background: var(--color-background);
+      padding: var(--space-48) var(--space-24) var(--space-96);
+    }
+
+    .doc {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-64);
+    }
+
+    .doc > header p {
+      color: var(--color-text-muted);
+      max-width: var(--paragraph-65);
+    }
+
+    .doc > header nav {
+      margin-top: var(--space-12);
+      font-size: var(--fs-14);
+    }
+
+    section > h2 {
+      margin-bottom: var(--space-8);
+    }
+
+    section > .section-note {
+      color: var(--color-text-muted);
+      font-size: var(--fs-14);
+      max-width: var(--paragraph-65);
+      margin-bottom: var(--space-24);
+    }
+
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      border-top: var(--border-width-1) solid var(--color-border);
+    }
+
+    .spec-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--space-24);
+      align-items: baseline;
+      padding: var(--space-16) 0;
+      border-bottom: var(--border-width-1) solid var(--color-border);
+    }
+
+    .spec-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .spec-meta code {
+      font-size: var(--fs-12);
+      color: var(--color-primary-dark);
+      font-family: "SF Mono", "JetBrains Mono", monospace;
+    }
+
+    .spec-meta .role {
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+    }
+
+    .spec-sample {
+      min-width: 0;
+      color: var(--color-text);
+    }
+
+    .swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-24);
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      min-width: 140px;
+    }
+
+    .swatch .chip {
+      height: var(--space-48);
+      border-radius: var(--radius-8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--fw-600);
+      border: var(--border-width-1) solid var(--color-border);
+    }
+
+    .swatch.inverse .chip {
+      background: var(--color-sidebar-bg);
+    }
+
+    .swatch code,
+    .swatch .role {
+      font-size: var(--fs-12);
+    }
+    .swatch code { color: var(--color-primary-dark); }
+    .swatch .role { color: var(--color-text-muted); }
+
+    .paragraph-demo {
+      border: var(--border-width-1) dashed var(--color-border-strong);
+      border-radius: var(--radius-4);
+      padding: var(--space-16);
+      margin-top: var(--space-8);
+    }
+
+    pre {
+      background: var(--grey-950);
+      color: var(--grey-080);
+      padding: var(--space-16);
+      border-radius: var(--radius-8);
+      overflow-x: auto;
+      font-size: var(--fs-12);
+      line-height: var(--line-height-14);
+    }
+
+    .composite {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-24);
+      align-items: start;
+      padding: var(--space-24) 0;
+      border-bottom: var(--border-width-1) solid var(--color-border);
+    }
+
+    .composite .live {
+      background: var(--color-surface);
+      border: var(--border-width-1) solid var(--color-border);
+      border-radius: var(--radius-8);
+      padding: var(--space-24);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    @media (max-width: 640px) {
+      .spec-row, .composite { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <header>
+      <p class="titolo titolo--pagina" style="margin-bottom: var(--space-8);">Guida al sistema tipografico</p>
+      <p>
+        Riferimento live dei token tipografici del progetto. Ogni esempio in
+        questa pagina è renderizzato caricando i veri file
+        <code>css/tokens.css</code>, <code>css/theme-default.css</code> e
+        <code>css/components.css</code> — non sono valori copiati a mano, quindi
+        questa pagina non può andare fuori sincrono con il codice reale.
+      </p>
+    </header>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Font family</h2>
+      <div class="spec-list">
+        <div class="spec-row">
+          <div class="spec-meta">
+            <code data-token="--font-family">--font-family</code>
+            <span class="role">testo UI, default su body</span>
+          </div>
+          <div class="spec-sample" style="font-family: var(--font-family); font-size: var(--fs-20);">
+            Aa Bb Cc — Il sistema tipografico usa Inter come font principale.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Scala dimensioni (font-size)</h2>
+      <p class="section-note">Ogni riga usa peso e colore di default: solo il font-size cambia.</p>
+      <div class="spec-list" id="fs-scale"></div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Pesi (font-weight)</h2>
+      <p class="section-note">Stessa frase, stesso font-size (<code>--fs-18</code>), solo il peso cambia.</p>
+      <div class="spec-list" id="fw-scale"></div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Altezze di riga (line-height)</h2>
+      <p class="section-note">Stesso paragrafo (<code>--fs-16</code>), solo l'interlinea cambia.</p>
+      <div class="spec-list" id="lh-scale"></div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Larghezza massima paragrafo</h2>
+      <p class="section-note"><code>components.css</code> applica <code>--paragraph-65</code> a ogni <code>&lt;p&gt;</code> di default (questa stessa pagina lo dimostra: i paragrafi sopra sono già limitati a 65ch).</p>
+      <div class="spec-list" id="paragraph-scale"></div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Colori del testo</h2>
+      <div class="swatch-row" id="color-scale"></div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Letter-spacing</h2>
+      <p class="section-note">Non tokenizzato: valori scritti a mano componente per componente, ma coerenti — più il testo è piccolo/maiuscolo, più aumenta lo spaziato.</p>
+      <div class="spec-list">
+        <div class="spec-row"><div class="spec-meta"><code>0.01em</code><span class="role">badge, chip</span></div><div class="spec-sample" style="letter-spacing:0.01em; text-transform:uppercase; font-weight:var(--fw-600);">Badge Label</div></div>
+        <div class="spec-row"><div class="spec-meta"><code>0.03em</code><span class="role">.titolo, tabs</span></div><div class="spec-sample" style="letter-spacing:0.03em; text-transform:uppercase; font-weight:var(--fw-600);">Eyebrow Label</div></div>
+        <div class="spec-row"><div class="spec-meta"><code>0.05em</code><span class="role">activity-indicator</span></div><div class="spec-sample" style="letter-spacing:0.05em; text-transform:uppercase; font-weight:var(--fw-600);">Wide Label</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="titolo titolo--sezione">Stili compositi — ruoli reali</h2>
+      <p class="section-note">Combinazioni di token già in uso nell'interfaccia. Copiare questi pattern per nuovi componenti, non improvvisare dimensioni/pesi.</p>
+
+      <div class="composite">
+        <div class="live">
+          <p class="titolo titolo--pagina">Titolo di pagina</p>
+          <p class="titolo titolo--sezione">Titolo di sezione</p>
+          <p class="titolo titolo--sotto-sezione">Sotto-sezione</p>
+          <p class="titolo titolo--sotto-sotto-sezione">Livello più annidato</p>
+        </div>
+        <pre>.titolo {
+  font-weight: var(--fw-800);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: var(--line-height-12);
+}
+.titolo--pagina { font-size: var(--fs-24); }
+.titolo--sezione { font-size: var(--fs-20); }
+.titolo--sotto-sezione { font-size: var(--fs-16); }
+.titolo--sotto-sotto-sezione { font-size: var(--fs-14); }</pre>
+      </div>
+
+      <div class="composite">
+        <div class="live">
+          <h1>Heading h1</h1>
+          <h2>Heading h2</h2>
+          <h3>Heading h3</h3>
+        </div>
+        <pre>h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-12);
+  font-weight: var(--fw-600);
+  color: var(--color-text);
+}
+h1 { font-size: var(--fs-24); }
+h2 { font-size: var(--fs-20); }
+h3 { font-size: var(--fs-18); }</pre>
+      </div>
+
+      <div class="composite">
+        <div class="live">
+          <div class="meta">
+            <span class="meta__item">
+              <span class="meta__label">Stato:</span>
+              <span class="meta__value">In corso</span>
+            </span>
+          </div>
+        </div>
+        <pre>.meta__label {
+  color: var(--color-text-muted);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-400);
+}
+.meta__value {
+  color: var(--color-text);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-600);
+}</pre>
+      </div>
+
+      <div class="composite">
+        <div class="live">
+          <span class="badge">Badge</span>
+        </div>
+        <pre>.badge {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}</pre>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Legge i valori reali dalle custom property caricate — le etichette
+    // sotto non sono mai scritte a mano, quindi non possono disallinearsi
+    // da tokens.css.
+    const root = getComputedStyle(document.documentElement);
+
+    function tokenLabel(name) {
+      const raw = root.getPropertyValue(name).trim();
+      const remMatch = raw.match(/^(-?[\d.]+)rem$/);
+      if (remMatch) {
+        const px = Math.round(parseFloat(remMatch[1]) * 16 * 100) / 100;
+        return `${name}: ${raw} (${px}px)`;
+      }
+      return `${name}: ${raw}`;
+    }
+
+    const fsScale = [
+      ["--fs-12", "label, caption"],
+      ["--fs-14", "testo secondario"],
+      ["--fs-16", "testo corpo (base)"],
+      ["--fs-18", "testo enfatizzato"],
+      ["--fs-20", "titoletti"],
+      ["--fs-22", "poco usato"],
+      ["--fs-24", "titolo sezione"],
+      ["--fs-30", "titolo pagina"],
+      ["--fs-36", "hero"],
+    ];
+    const fsContainer = document.getElementById("fs-scale");
+    fsScale.forEach(([token, role]) => {
+      const row = document.createElement("div");
+      row.className = "spec-row";
+      row.innerHTML = `
+        <div class="spec-meta">
+          <code>${tokenLabel(token)}</code>
+          <span class="role">${role}</span>
+        </div>
+        <div class="spec-sample" style="font-size:var(${token})">Aa Bb Cc — Testo di esempio</div>`;
+      fsContainer.appendChild(row);
+    });
+
+    const fwScale = [
+      ["--fw-400", "testo corpo, default"],
+      ["--fw-500", "enfasi leggera"],
+      ["--fw-600", "titoli, valori, badge"],
+      ["--fw-700", "enfasi forte"],
+      ["--fw-800", "label maiuscole / eyebrow"],
+    ];
+    const fwContainer = document.getElementById("fw-scale");
+    fwScale.forEach(([token, role]) => {
+      const row = document.createElement("div");
+      row.className = "spec-row";
+      row.innerHTML = `
+        <div class="spec-meta">
+          <code>${tokenLabel(token)}</code>
+          <span class="role">${role}</span>
+        </div>
+        <div class="spec-sample" style="font-size:var(--fs-18); font-weight:var(${token})">Il rapido volpe salta sopra il cane pigro</div>`;
+      fwContainer.appendChild(row);
+    });
+
+    const lhScale = [
+      ["--line-height-12", "titoli, label compatte"],
+      ["--line-height-14", "sottotitoli, label"],
+      ["--line-height-16", "testo corpo (default)"],
+      ["--line-height-18", "testo lungo, articoli"],
+    ];
+    const lhContainer = document.getElementById("lh-scale");
+    const lhSample = "Questo è un paragrafo di esempio usato per mostrare come cambia lo spazio verticale tra le righe al variare del token di line-height, mantenendo fisso il font-size.";
+    lhScale.forEach(([token, role]) => {
+      const row = document.createElement("div");
+      row.className = "spec-row";
+      row.innerHTML = `
+        <div class="spec-meta">
+          <code>${tokenLabel(token)}</code>
+          <span class="role">${role}</span>
+        </div>
+        <div class="spec-sample" style="font-size:var(--fs-16); line-height:var(${token}); max-width:50ch">${lhSample}</div>`;
+      lhContainer.appendChild(row);
+    });
+
+    const paragraphScale = ["--paragraph-40", "--paragraph-65", "--paragraph-80"];
+    const paraContainer = document.getElementById("paragraph-scale");
+    const paraSample = "Testo segnaposto ripetuto per mostrare dove va a capo la riga alla larghezza massima definita dal token. Testo segnaposto ripetuto per mostrare dove va a capo la riga.";
+    paragraphScale.forEach((token) => {
+      const row = document.createElement("div");
+      row.className = "spec-row";
+      row.innerHTML = `
+        <div class="spec-meta">
+          <code>${tokenLabel(token)}</code>
+        </div>
+        <div class="paragraph-demo" style="max-width:var(${token})">${paraSample}</div>`;
+      paraContainer.appendChild(row);
+    });
+
+    const colorScale = [
+      ["--color-text", "testo di default", false],
+      ["--color-text-strong", "più contrasto/enfasi", false],
+      ["--color-text-muted", "testo secondario, label", false],
+      ["--color-text-inverse", "testo su sfondo scuro", true],
+    ];
+    const colorContainer = document.getElementById("color-scale");
+    colorScale.forEach(([token, role, inverse]) => {
+      const swatch = document.createElement("div");
+      swatch.className = "swatch" + (inverse ? " inverse" : "");
+      swatch.innerHTML = `
+        <div class="chip" style="color:var(${token})">Aa</div>
+        <code>${tokenLabel(token)}</code>
+        <span class="role">${role}</span>`;
+      colorContainer.appendChild(swatch);
+    });
+  </script>
+</body>
+</html>
