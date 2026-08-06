@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>todo-item</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./form-elements.css" />
+  <link rel="stylesheet" href="./action-link.css" />
+  <link rel="stylesheet" href="./meta-item.css" />
+  <link rel="stylesheet" href="./todo-item.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>todo-item</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Todo da fare:</p>
+      <div class="showcase__display" id="case-todo"></div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Todo completato (label muted, checkbox spuntata):</p>
+      <div class="showcase__display" id="case-done"></div>
+    </section>
+
+
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render } from './todo-item.js';
+
+    const meta = [
+      { label: 'Modificata il', value: '19-5-2026' },
+      { label: 'Da', value: '@iris' },
+    ];
+
+    document.getElementById('case-todo').innerHTML =
+      render({ label: 'scrivi follow up a Sara', done: false, meta });
+
+    document.getElementById('case-done').innerHTML =
+      render({ label: 'chiama Serena', done: true, meta: [
+        { label: 'Modificata il', value: '19-5-2026' },
+        { label: 'Da', value: '@margherita' },
+      ]});
+  </script>
+</body>
+</html>

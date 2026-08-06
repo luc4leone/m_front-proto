@@ -1,0 +1,117 @@
+.split-button {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.split-button__main,
+.split-button__toggle {
+  border: 1px solid var(--grey-400);
+  background: none;
+  padding: var(--space-4) var(--space-8);
+
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-600);
+  color: var(--color-text);
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.split-button__main {
+  border-right: 0;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  text-decoration: none;
+}
+
+.split-button__toggle {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.split-button__main:hover,
+.split-button__toggle:hover {
+  color: var(--color-text-strong);
+  border-color: var(--grey-500);
+}
+
+.split-button__toggle:hover .split-button__arrow {
+  border-top-color: var(--color-text-strong);
+}
+
+.split-button__toggle[aria-expanded="true"] {
+  background: var(--grey-100);
+  border-color: var(--grey-500);
+}
+
+.split-button__main:focus,
+.split-button__toggle:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.split-button__arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--color-text);
+  transition: transform var(--transition-150);
+  pointer-events: none;
+}
+
+.split-button__toggle[aria-expanded="true"] .split-button__arrow {
+  transform: rotate(180deg);
+}
+
+.split-button__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  min-width: 220px;
+  z-index: var(--z-100);
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  box-shadow: none;
+}
+
+.split-button__menu.is-open,
+.split-button__menu.show {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-12px);
+}
+
+.split-button--menu-left .split-button__menu {
+  left: 0;
+  right: auto;
+}
+
+.split-button__menu-item {
+  display: block;
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--fs-14);
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.split-button__menu-item:hover {
+  background: var(--grey-050);
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>table</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./form-elements.css" />
+  <link rel="stylesheet" href="./badge.css" />
+  <link rel="stylesheet" href="./table.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>table</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Tabella con checkbox, colonna sortable e chip:</p>
+      <div class="showcase__display" id="table-display"></div>
+    </section>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render } from './table.js';
+
+    const rows = [
+      { name: 'Valerio SAMMARCO', email: 'vsammarco@entespettacolo.org', outlets: 'CINEMEDIA, RIVISTA DEL CINEMATOGRAFO, CINEMATOGRAFO.IT', list: 'Lista Giornalisti Jazz' },
+      { name: 'Marco Bianchi', email: 'mbianchi@example.org', outlets: 'LA STAMPA, REPUBBLICA', list: 'Lista Nazionale' },
+    ];
+
+    document.getElementById('table-display').innerHTML = render({
+      columns: [
+        { key: 'select', checkbox: true, label: '' },
+        { key: 'name', label: 'Giornalista', sortable: true, sortDirection: 'asc', cellRenderer: (value, row) => `<strong>${value}</strong><p>${row.email}</p>` },
+        { key: 'outlets', label: 'Testate' },
+        { key: 'list', label: 'Mailing list', cellRenderer: (value) => `<span class="badge">${value}</span>` },
+      ],
+      rows,
+    });
+  </script>
+</body>
+</html>

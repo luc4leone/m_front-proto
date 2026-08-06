@@ -1,0 +1,137 @@
+.journalist-card {
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-2);
+  box-sizing: border-box;
+  padding: var(--space-8) var(--space-12);
+  background: var(--white);
+  box-shadow: var(--shadow-3px);
+  position: relative;
+  container-type: inline-size;
+}
+
+.journalist-card:hover {
+  background: var(--grey-050);
+  cursor: pointer;
+}
+
+.journalist-card.is-selected {
+  background: var(--grey-050);
+}
+
+/* ── top ─────────────────────────────────────────────────── */
+
+.journalist-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.journalist-card__name-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: var(--space-8);
+  row-gap: var(--space-2);
+  align-items: center;
+  min-width: 0;
+}
+
+.journalist-card__select {
+  margin: 0;
+}
+
+.journalist-card__name-link {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--color-primary);
+  text-decoration: underline;
+  display: inline-flex;
+  max-width: 100%;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.journalist-card__name {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-600);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.journalist-card__first-name {
+  flex: 0 0 auto;
+}
+
+.journalist-card__last-name {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journalist-card__role {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: var(--fs-14);
+  color: var(--grey-750);
+  margin: 0;
+}
+
+/* ── rows ────────────────────────────────────────────────── */
+
+.journalist-card__row {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: var(--space-8);
+  font-size: var(--fs-14);
+  padding: var(--space-4) 0;
+  align-items: baseline;
+}
+
+.journalist-card__label {
+  color: var(--grey-750);
+  font-size: var(--fs-12);
+}
+
+.journalist-card__value {
+  color: var(--grey-950);
+  word-break: break-word;
+}
+
+.journalist-card__note {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: var(--line-height-14);
+  min-height: calc(2 * var(--line-height-14) * 1em);
+  color: var(--grey-950);
+}
+
+/* ── remove button (visible in mailing-list view) ────────── */
+
+.journalist-card__remove {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-12px);
+  user-select: none;
+  line-height: 1;
+  font-size: var(--fs-12);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--grey-100);
+  border: 1px solid var(--grey-200);
+  color: var(--grey-900);
+}

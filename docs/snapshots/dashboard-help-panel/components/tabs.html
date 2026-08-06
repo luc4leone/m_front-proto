@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tabs</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./tabs.css" />
+  <link rel="stylesheet" href="./badge.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>tabs</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Tabs con primo tab attivo:</p>
+      <div class="showcase__display">
+        <nav class="tabs" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="banca" role="tab" aria-selected="true">banca dati</button>
+          <button type="button" class="tabs__tab" data-tab-id="archivio" role="tab" aria-selected="false">archivio</button>
+          <button type="button" class="tabs__tab" data-tab-id="campagne" role="tab" aria-selected="false">campagne</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs con tab centrale attivo:</p>
+      <div class="showcase__display">
+        <nav class="tabs" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab" data-tab-id="banca" role="tab" aria-selected="false">banca dati</button>
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="archivio" role="tab" aria-selected="true">archivio</button>
+          <button type="button" class="tabs__tab" data-tab-id="campagne" role="tab" aria-selected="false">campagne</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs interattivi (clicca per cambiare):</p>
+      <div class="showcase__display">
+        <nav class="tabs" data-tabs role="tablist" aria-label="Navigazione sezioni" id="interactive-tabs">
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="banca" role="tab" aria-selected="true">banca dati</button>
+          <button type="button" class="tabs__tab" data-tab-id="archivio" role="tab" aria-selected="false">archivio</button>
+          <button type="button" class="tabs__tab" data-tab-id="campagne" role="tab" aria-selected="false">campagne</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs large (variante .tabs--large):</p>
+      <div class="showcase__display">
+        <nav class="tabs tabs--large" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="rassegna" role="tab" aria-selected="true">rassegna stampa</button>
+          <button type="button" class="tabs__tab" data-tab-id="reports" role="tab" aria-selected="false">reports inviati</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs highlight (variante .tabs--highlight):</p>
+      <div class="showcase__display">
+        <nav class="tabs tabs--highlight" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="banca" role="tab" aria-selected="true">banca dati</button>
+          <button type="button" class="tabs__tab" data-tab-id="archivio" role="tab" aria-selected="false">archivio</button>
+          <button type="button" class="tabs__tab" data-tab-id="campagne" role="tab" aria-selected="false">campagne</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs large highlight (variante .tabs--large-highlight):</p>
+      <div class="showcase__display">
+        <nav class="tabs tabs--large-highlight" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="rassegna" role="tab" aria-selected="true">rassegna stampa</button>
+          <button type="button" class="tabs__tab" data-tab-id="reports" role="tab" aria-selected="false">reports inviati</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs large highlight con badge (variante .tabs--large-highlight + badge):</p>
+      <div class="showcase__display" id="tabs-badge-display"></div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs titolo highlight con badge — usato come intestazione di sezione (variante .tabs--highlight + .tabs--titolo):</p>
+      <div class="showcase__display" id="tabs-titolo-display"></div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Tabs underline (variante .tabs--underline):</p>
+      <div class="showcase__display">
+        <nav class="tabs tabs--underline" data-tabs role="tablist" aria-label="Navigazione sezioni">
+          <button type="button" class="tabs__tab" data-tab-id="ai-mode" role="tab" aria-selected="false">AI Mode</button>
+          <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">Tutti</button>
+          <button type="button" class="tabs__tab" data-tab-id="immagini" role="tab" aria-selected="false">Immagini</button>
+          <button type="button" class="tabs__tab" data-tab-id="video" role="tab" aria-selected="false">Video</button>
+          <button type="button" class="tabs__tab" data-tab-id="video-brevi" role="tab" aria-selected="false">Video brevi</button>
+          <button type="button" class="tabs__tab" data-tab-id="notizie" role="tab" aria-selected="false">Notizie</button>
+        </nav>
+      </div>
+    </section>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render, init } from './tabs.js';
+    
+    const tabsElement = document.getElementById('interactive-tabs');
+    init(tabsElement, {
+      onTabChange: (tabId) => {
+        console.log('Tab changed to:', tabId);
+      }
+    });
+
+    const badgeDisplay = document.getElementById('tabs-badge-display');
+    badgeDisplay.innerHTML = render({
+      tabs: [
+        { id: 'comunicati', label: 'Comunicati', badge: 5 },
+        { id: 'spedizioni', label: 'Spedizioni', badge: 8 },
+      ],
+      activeId: 'comunicati',
+      variant: 'large-highlight',
+    });
+    init(badgeDisplay.querySelector('[data-tabs]'));
+
+    const titoloDisplay = document.getElementById('tabs-titolo-display');
+    titoloDisplay.innerHTML = render({
+      tabs: [
+        { id: 'comunicati', label: 'Comunicati', badge: 23 },
+        { id: 'spedizioni', label: 'Spedizioni', badge: 22 },
+      ],
+      activeId: 'comunicati',
+      variant: ['highlight', 'titolo'],
+    });
+    init(titoloDisplay.querySelector('[data-tabs]'));
+  </script>
+</body>
+</html>

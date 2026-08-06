@@ -1,0 +1,22 @@
+.step-badge {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--grey-900);
+  color: var(--grey-900);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-800);
+  flex: 0 0 auto;
+  background: var(--white);
+}
+
+.step-badge--done {
+  background: rgba(34, 197, 94, 0.25);
+}
+
+.step-badge--warn {
+  background: var(--yellow-200);
+}

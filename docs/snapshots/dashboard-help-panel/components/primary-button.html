@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>primary button</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./primary-button.css" />
+  <style>
+    .showcase {
+      font-family: var(--font-family);
+    }
+
+    .states {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-16);
+      flex-wrap: wrap;
+    }
+
+    .state {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-8);
+    }
+
+    .state__label {
+      font-family: var(--font-family);
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>primary button</h1>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <div class="showcase__display">
+          <div class="states">
+            <div class="state">
+              <button type="button" class="btn btn--primary">salva</button>
+              <span class="state__label">default</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-hover">salva</button>
+              <span class="state__label">hover</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-active">salva</button>
+              <span class="state__label">active</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary is-focus">salva</button>
+              <span class="state__label">focus</span>
+            </div>
+            <div class="state">
+              <button type="button" class="btn btn--primary" disabled>salva</button>
+              <span class="state__label">disabled</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+</body>
+</html>

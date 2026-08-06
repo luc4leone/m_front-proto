@@ -1,0 +1,52 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-6) var(--space-12);
+  font-family: var(--font);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-14);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    background-color var(--transition-150),
+    box-shadow var(--transition-150),
+    transform var(--transition-150);
+}
+
+/* ── Primary ───────────────────────────────────────────────────────── */
+
+.btn--primary {
+  background-color: transparent;
+  border: var(--border-width-2) solid var(--grey-700);
+  color: var(--grey-800);
+  box-shadow: 0 2px 0 var(--grey-700);
+}
+
+.btn--primary:hover,
+.btn--primary.is-hover {
+  background-color: var(--grey-100);
+}
+
+.btn--primary:active,
+.btn--primary.is-active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--grey-700);
+}
+
+.btn--primary:focus-visible,
+.btn--primary.is-focus {
+  outline: none;
+  box-shadow: 0 2px 0 var(--grey-600), 0 0 0 var(--border-width-2) var(--grey-300);
+}
+
+.btn--primary:disabled,
+.btn--primary[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

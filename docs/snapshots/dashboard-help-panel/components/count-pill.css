@@ -1,0 +1,10 @@
+.count-pill {
+  display: inline-block;
+  font-size: var(--fs-12);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--grey-100);
+  border: 1px solid var(--grey-200);
+  color: var(--grey-900);
+  line-height: 1;
+}

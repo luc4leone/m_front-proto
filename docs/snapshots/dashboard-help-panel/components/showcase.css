@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Excalifont";
+  src: url("../assets/font/Excalifont-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-color: var(--color-background);
+  padding: var(--space-40);
+}
+
+.showcase {
+  font-family: Inter, "Excalifont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: var(--fs-16);
+  line-height: var(--line-height-16);
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+}
+
+.showcase h1, .showcase h2, .showcase h3,
+.showcase h4, .showcase h5, .showcase h6 {
+  color: #555;
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+}
+
+.showcase h1 { font-size: var(--fs-24); }
+
+.showcase p {
+  font-size: var(--fs-16);
+  color: #555;
+}
+
+.showcase code {
+  font-size: 16px;;
+}
+
+.showcase__case {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.showcase__cases {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+}
+
+.showcase__display {
+  font-family: var(--font);
+  padding: var(--space-16) var(--space-20);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-4);
+}

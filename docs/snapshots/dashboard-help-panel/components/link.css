@@ -1,0 +1,11 @@
+.link {
+  font-size: var(--link-font-size, inherit);
+  font-weight: var(--fw-600);
+  color: var(--color-primary);
+  text-decoration: underline;
+  transition: color var(--transition-150);
+}
+
+.link:hover {
+  color: var(--color-primary-dark);
+}

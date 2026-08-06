@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>count-pill</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./count-pill.css" />
+</head>
+<body>
+  <main class="showcase">
+    <h1>count-pill</h1>
+    <p>Pill che mostra un conteggio. Usato per indicare quanti elementi sono selezionati, filtrati o presenti in una lista.</p>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <h2>varianti numeriche</h2>
+        <div class="showcase__display" style="display:flex;gap:8px;align-items:center;">
+          <span class="count-pill">0</span>
+          <span class="count-pill">3</span>
+          <span class="count-pill">12</span>
+          <span class="count-pill">147</span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>in contesto — titolo sezione con contatore</h2>
+        <div class="showcase__display" style="display:flex;align-items:center;gap:8px;">
+          <span style="font-weight:600;">Selezionati</span>
+          <span class="count-pill" id="demo-pill">0</span>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;">
+          <button onclick="const p=document.getElementById('demo-pill');p.textContent=Math.max(0,+p.textContent-1)" style="padding:4px 10px;cursor:pointer;">−</button>
+          <button onclick="const p=document.getElementById('demo-pill');p.textContent=+p.textContent+1" style="padding:4px 10px;cursor:pointer;">+</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

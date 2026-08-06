@@ -1,0 +1,37 @@
+.titolo {
+  font-weight: var(--fw-800);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: var(--line-height-12);
+}
+
+.titolo--pagina {
+  font-size: var(--fs-24);
+}
+
+.titolo--sezione {
+  font-size: var(--fs-20);
+}
+
+.titolo--sotto-sezione {
+  font-size: var(--fs-16);
+}
+
+.titolo--sotto-sotto-sezione {
+  font-size: var(--fs-14);
+}
+
+/* Override showcase.css h1-h6 styles */
+.showcase h1.titolo,
+.showcase h2.titolo,
+.showcase h3.titolo,
+.showcase h4.titolo {
+  font-weight: var(--fw-800);
+  color: var(--color-text-muted);
+}
+
+.showcase h1.titolo--pagina { font-size: var(--fs-24); }
+.showcase h2.titolo--sezione { font-size: var(--fs-20); }
+.showcase h3.titolo--sotto-sezione { font-size: var(--fs-16); }
+.showcase h4.titolo--sotto-sotto-sezione { font-size: var(--fs-14); }

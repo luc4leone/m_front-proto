@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modal</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./action-link.css" />
+  <link rel="stylesheet" href="./modal.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>modal</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>Modal base con titolo, sottotitolo e bottone di chiusura:</p>
+      <div class="showcase__display">
+        <div class="modal" style="position: static; margin: 0;">
+          <div class="modal__header">
+            <div>
+              <h2 class="modal__title">Titolo del modal</h2>
+              <p class="modal__subtitle">Sottotitolo o descrizione del modal</p>
+            </div>
+            <button type="button" class="modal__close" aria-label="Chiudi">&times;</button>
+          </div>
+          <p>Contenuto del modal...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Modal con overlay visibile (simulato):</p>
+      <div class="showcase__display" style="position: relative; height: 200px; overflow: hidden;">
+        <div class="modal__overlay is-visible" style="position: absolute;">
+          <div class="modal" style="margin: auto;">
+            <div class="modal__header">
+              <div>
+                <h2 class="modal__title">Conferma azione</h2>
+                <p class="modal__subtitle">Sei sicuro di voler procedere?</p>
+              </div>
+              <button type="button" class="modal__close" aria-label="Chiudi">&times;</button>
+            </div>
+            <p>Il contenuto della dialog apparire qui.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase__case">
+      <p>Modal interattivo: clicca il button per aprire</p>
+      <div class="showcase__display">
+        <button type="button" class="action-link" id="open-modal-btn">
+          <span class="action-link__icon" aria-hidden="true">
+            <img src="../assets/icons/add.svg" alt="" />
+          </span>
+          <span class="action-link__label">apri modale</span>
+        </button>
+      </div>
+    </section>
+
+    </div>
+
+    <div class="modal__overlay" id="demo-modal-overlay" style="font-family: var(--font);">
+      <div class="modal" style="margin: auto;">
+        <div class="modal__header">
+          <div>
+            <h2 class="modal__title">Modale di esempio</h2>
+            <p class="modal__subtitle">Questo modal si apre e si chiude</p>
+          </div>
+          <button type="button" class="modal__close" id="close-modal-btn" aria-label="Chiudi">&times;</button>
+        </div>
+        <p>Contenuto del modale interattivo.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const openBtn = document.getElementById('open-modal-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const overlay = document.getElementById('demo-modal-overlay');
+
+    openBtn.addEventListener('click', () => {
+      overlay.classList.add('is-visible');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.classList.remove('is-visible');
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('is-visible');
+      }
+    });
+  </script>
+</body>
+</html>

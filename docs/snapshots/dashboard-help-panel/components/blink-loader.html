@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>blink-loader</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./blink-loader.css" />
+</head>
+<body>
+  <main class="showcase">
+    <h1>blink-loader</h1>
+    <p>Indicatore di caricamento inline. Il cursore lampeggia con animazione CSS. La dimensione eredita dal contesto (font-size: inherit).</p>
+
+    <div class="showcase__cases">
+
+      <section class="showcase__case">
+        <h2>dimensione small (12px)</h2>
+        <div class="showcase__display" style="font-size:var(--fs-12);">
+          <span class="blink-loader">M<span class="blink-loader__cursor">_</span></span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>dimensione base (16px)</h2>
+        <div class="showcase__display" style="font-size:var(--fs-16);">
+          <span class="blink-loader">M<span class="blink-loader__cursor">_</span></span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>dimensione large (20px)</h2>
+        <div class="showcase__display" style="font-size:var(--fs-20);">
+          <span class="blink-loader">M<span class="blink-loader__cursor">_</span></span>
+        </div>
+      </section>
+
+      <section class="showcase__case">
+        <h2>in contesto — placeholder cards</h2>
+        <div class="showcase__display" style="display:flex;align-items:center;justify-content:center;min-height:72px;font-size:var(--fs-18);">
+          <span class="blink-loader">M<span class="blink-loader__cursor">_</span></span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.badge-with-led {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-600);
+  line-height: var(--line-height-12);
+  color: var(--color-text);
+  background-color: var(--grey-200);
+  border-radius: var(--radius-full);
+  cursor: default;
+  user-select: none;
+  letter-spacing: 0.01em;
+}
+
+.badge-with-led__led {
+  width: var(--space-8);
+  height: var(--space-8);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  background-color: var(--grey-400);
+}
+
+.badge-with-led__led--green {
+  background-color: var(--green-500);
+}
+
+.badge-with-led__led--red {
+  background-color: var(--red-600);
+}

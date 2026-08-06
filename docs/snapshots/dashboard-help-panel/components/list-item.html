@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>list-item</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/theme-default.css" />
+  <link rel="stylesheet" href="./showcase.css" />
+  <link rel="stylesheet" href="./link.css" />
+  <link rel="stylesheet" href="./meta-item.css" />
+  <link rel="stylesheet" href="./list-item.css" />
+</head>
+<body>
+  <main class="showcase">
+
+    <h1>list-item</h1>
+
+    <div class="showcase__cases">
+
+    <section class="showcase__case">
+      <p>List item base (titolo link + meta sotto):</p>
+      <div class="showcase__display" id="case-base"></div>
+    </section>
+
+    <section class="showcase__case">
+      <p>List item con link azione a destra:</p>
+      <div class="showcase__display" id="case-with-link"></div>
+    </section>
+
+    </div>
+
+  </main>
+
+  <script type="module">
+    import { render } from './list-item.js';
+
+    const meta = [
+      { group: [{ label: 'Giornalisti', value: 27 }, { label: 'Testate', value: 4 }] },
+      { label: 'Modificata il', value: '19-5-2026' },
+      { label: 'Da', value: '@fabio' },
+    ];
+
+    document.getElementById('case-base').innerHTML = render({
+      title: { href: '#', label: "Studi sull'abitare" },
+      meta,
+    });
+
+    document.getElementById('case-with-link').innerHTML = render({
+      title: { href: '#', label: "Studi sull'abitare" },
+      links: [{ href: '#', label: '6 giornalisti suggeriti' }],
+      meta,
+    });
+  </script>
+</body>
+</html>

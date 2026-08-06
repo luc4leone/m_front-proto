@@ -1,0 +1,36 @@
+.limit-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  font-family: var(--font);
+  font-size: var(--fs-14);
+  color: var(--color-text);
+}
+
+.limit-indicator__label {
+  font-weight: var(--fw-500);
+  min-width: 6ch;
+}
+
+.limit-indicator__bar {
+  flex: 1;
+  height: var(--space-6);
+  background-color: var(--grey-300);
+  border-radius: var(--radius-2);
+  overflow: hidden;
+  position: relative;
+}
+
+.limit-indicator__progress {
+  height: 100%;
+  border-radius: var(--radius-2);
+  /* Colore dinamico da verde (120) a rosso (0) basato su --consumption (0-100) */
+  background-color: hsl(calc(120 - var(--consumption, 0) * 1.2) 70% 45%);
+}
+
+.limit-indicator__value {
+  font-weight: var(--fw-600);
+  color: var(--color-text-strong);
+  min-width: 4ch;
+  text-align: right;
+}

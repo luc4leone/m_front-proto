@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../components/titolo.css" />
+  <link rel="stylesheet" href="../../components/primary-button-v2.css" />
+  <link rel="stylesheet" href="../../components/action-link.css" />
+  <link rel="stylesheet" href="../../components/badge.css" />
+  <link rel="stylesheet" href="../../components/link.css" />
+  <link rel="stylesheet" href="../../components/tabs.css" />
+  <link rel="stylesheet" href="../../components/form-elements.css" />
+  <link rel="stylesheet" href="../../components/meta-item.css" />
+  <link rel="stylesheet" href="../../components/list-item.css" />
+  <link rel="stylesheet" href="../../components/todo-item.css" />
+  <link rel="stylesheet" href="../../components/activity-indicator.css" />
+  <link rel="stylesheet" href="../../components/limit-indicator.css" />
+  <link rel="stylesheet" href="../../components/dashboard-section.css" />
+  <link rel="stylesheet" href="../../components/modal.css" />
+  <link rel="stylesheet" href="../../components/table.css" />
+  <link rel="stylesheet" href="../../components/badge-with-led.css" />
+  <style>
+    /* ── Dashboard view layout ─────────────────────────────────────── */
+
+    .dashboard-view {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-32);
+    }
+
+    .sections-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-48);
+    }
+
+    /* ── Subscription limits ───────────────────────────────────────── */
+
+    .subscription-limits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      padding: var(--space-16);
+      background-color: var(--grey-100);
+      border-radius: var(--border-radius);
+    }
+
+    .subscription-limits__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .subscription-limits__row {
+      display: flex;
+      align-items: center;
+    }
+
+    .subscription-limits__item {
+      flex: 1;
+      padding: 0 var(--space-16);
+    }
+
+    .subscription-limits__item:first-child { padding-left: 0; }
+
+    .subscription-limits__item:not(:last-child) {
+      border-right: var(--border-width) solid var(--color-border-strong);
+    }
+
+    /* ── Project zone (project-scoped: row 1) ──────────────────────── */
+
+    .project-zone {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    /* Project tabs bar */
+    .project-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .project-tabs-bar__overflow {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .project-tabs-bar__overflow-menu {
+      position: absolute;
+      top: calc(100% + var(--space-4));
+      left: 0;
+      background: var(--color-background);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      padding: var(--space-4) 0;
+      min-width: 260px;
+      z-index: 20;
+      display: none;
+    }
+
+    .project-tabs-bar__overflow.is-open .project-tabs-bar__overflow-menu {
+      display: block;
+    }
+
+    .project-overflow-section {
+      padding: var(--space-8) 0;
+    }
+
+    .project-overflow-section + .project-overflow-section {
+      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    .project-overflow-section__label {
+      padding: 0 var(--space-16) var(--space-6);
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+      font-weight: var(--fw-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .project-overflow-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      padding: var(--space-4) var(--space-16);
+    }
+
+    .project-overflow-row__label {
+      flex: 1;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .project-overflow-row .action-link {
+      opacity: 0;
+      transition: opacity var(--transition-150);
+    }
+
+    .project-overflow-row:hover .action-link {
+      opacity: 1;
+    }
+
+    .project-overflow-filter {
+      padding: var(--space-8) var(--space-12);
+      border-top: var(--border-width) solid var(--color-border);
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+
+    .project-overflow-row {
+      cursor: default;
+    }
+
+    .project-overflow-filter .form__input {
+      width: 100%;
+    }
+
+    .project-overflow-footer {
+      padding: var(--space-8) var(--space-16);
+      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    /* ── Collaborator chips ────────────────────────────────────────── */
+
+    .subscription-area {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .collab-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      min-height: calc(var(--space-16) + 2 * var(--space-4));
+    }
+
+    .collab-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-4) var(--space-4) var(--space-12);
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      line-height: var(--line-height-12);
+      color: var(--color-text);
+      letter-spacing: 0.01em;
+      text-shadow: 1px 1px 0 var(--white);
+      background-color: var(--grey-200);
+      border-radius: var(--radius-full);
+    }
+
+    .collab-chip__close {
+      display: inline-flex;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--color-text-muted);
+      transition: color var(--transition-150);
+    }
+
+    .collab-chip__close:hover { color: var(--color-text); }
+
+    .collab-chip__close svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ── Project context bar ───────────────────────────────────────── */
+
+    .project-context-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .project-context-bar__status {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: var(--space-16);
+      padding: var(--space-4) var(--space-12);
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      line-height: var(--line-height-12);
+      color: var(--color-text);
+      letter-spacing: 0.01em;
+      text-shadow: 1px 1px 0 var(--white);
+      background-color: var(--grey-200);
+      border-radius: var(--radius-full);
+      transition: background-color var(--transition-150);
+    }
+
+    .project-context-bar__status--shared {
+      background-color: var(--grey-300);
+    }
+
+    .project-context-bar__status > img {
+      width: var(--space-16);
+      height: var(--space-16);
+      display: block;
+    }
+
+    .project-context-bar__edit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      border-radius: var(--radius-full);
+      transition: opacity var(--transition-150);
+    }
+
+    .project-context-bar__edit:hover { opacity: 0.6; }
+
+    .project-context-bar__edit img {
+      width: var(--space-16);
+      height: var(--space-16);
+      display: block;
+    }
+
+    .project-context-bar__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      margin-left: auto;
+    }
+
+    /* ── General zone (cross-project: row 2) ──────────────────────── */
+
+    .general-zone {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .general-zone__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+    }
+
+    .general-zone__label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      font-size: var(--fs-22);
+      color: var(--color-text);
+      font-weight: var(--fw-800);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .general-zone__header::before,
+    .general-zone__header::after {
+      content: '';
+      flex: 1;
+      height: var(--border-width);
+      background-color: var(--color-border);
+    }
+
+    /* ── Dashboard sections grid (shared column structure) ─────────── */
+
+    .dashboard-sections-grid {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr;
+      gap: 0;
+    }
+
+    .dashboard-sections-grid > section { position: relative; min-width: 0; }
+
+    /* Project zone — row 1 cell padding */
+    .project-zone .dashboard-sections-grid > section:nth-child(1) { padding: 0 var(--space-24) var(--space-24) 0; }
+    .project-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 var(--space-24) var(--space-24) var(--space-24); }
+    .project-zone .dashboard-sections-grid > section:nth-child(3) { padding: 0 0 var(--space-24) var(--space-24); }
+
+    /* Project zone — vertical separators (full height, no intersection) */
+    .project-zone .dashboard-sections-grid > section:nth-child(1)::after,
+    .project-zone .dashboard-sections-grid > section:nth-child(2)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: var(--border-width);
+      background-color: var(--color-border);
+    }
+
+    /* General zone — row 2 cell padding */
+    .general-zone .dashboard-sections-grid > section:nth-child(1) { padding: 0 var(--space-24) 0 0; }
+    .general-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 var(--space-24) 0 var(--space-24); }
+
+    /* General zone — vertical separators */
+    .general-zone .dashboard-sections-grid > section:nth-child(1)::after,
+    .general-zone .dashboard-sections-grid > section:nth-child(2)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: var(--border-width);
+      background-color: var(--color-border);
+    }
+
+    /* Titoli sezione: fs-18, colore testo pieno */
+    .dashboard-view .titolo--sezione,
+    .side-panel .titolo--sezione {
+      font-size: var(--fs-18);
+      color: var(--color-text);
+    }
+
+    .list-item__header .link {
+      font-size: var(--fs-16) !important;
+    }
+
+    .meta__label {
+      font-weight: var(--fw-500);
+    }
+
+    /* Compact spacing overrides — context-only, components untouched */
+    .dashboard-sections-grid .dashboard-section {
+      gap: var(--space-12);
+    }
+
+    .dashboard-sections-grid .dashboard-section__list {
+      flex: 1;
+      gap: var(--space-12);
+      max-height: 480px;
+      overflow-y: auto;
+      background:
+        linear-gradient(var(--color-background) 30%, transparent) top    / 100% 32px local  no-repeat,
+        linear-gradient(transparent, var(--color-background) 70%) bottom / 100% 32px local  no-repeat,
+        radial-gradient(farthest-side at 50% 0,    rgba(0,0,0,.1), transparent) top    / 100% 12px scroll no-repeat,
+        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.1), transparent) bottom / 100% 12px scroll no-repeat;
+      background-color: var(--color-background);
+    }
+
+    /* ── Keep / bookmark ──────────────────────────────────────────── */
+
+    .dashboard-sections-grid .list-item__header,
+    #ml-panel .list-item__header {
+      position: relative;
+      justify-content: flex-start;
+      gap: var(--space-16);
+    }
+
+    .list-item__keep {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      color: var(--color-text-muted);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150), color var(--transition-150);
+    }
+
+    .list-item__header:hover .list-item__keep {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .list-item__keep:hover { color: var(--color-text); }
+
+    .list-item__keep svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .sidebar__item--bookmark {
+      position: relative;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-6);
+    }
+
+    .sidebar__item--bookmark .sidebar__icon { flex-shrink: 0; }
+
+    .sidebar__item--bookmark .sidebar__icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .sidebar__item--bookmark .sidebar__label {
+      font-style: italic;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar__bookmark-remove {
+      position: absolute;
+      top: 2px; right: 2px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150);
+    }
+
+    .sidebar__item--bookmark:hover .sidebar__bookmark-remove {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sidebar__bookmark-remove svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* ── Mailing Lists side panel ─────────────────────────────────── */
+
+    .side-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.25);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-150);
+    }
+    .side-panel-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-panel {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: calc(var(--sidebar-width) + (100vw - var(--sidebar-width)) / 2);
+      background: var(--color-background);
+      border-right: var(--border-width) solid var(--color-border);
+      z-index: 101;
+      transform: translateX(-100%);
+      transition: transform 250ms ease;
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-24);
+      gap: var(--space-8);
+      overflow-y: auto;
+    }
+    .side-panel.is-open {
+      transform: translateX(0);
+    }
+
+    .side-panel__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-16);
+    }
+
+    .side-panel__title-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-12);
+      min-width: 0;
+    }
+
+    .side-panel__title-group .titolo {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .side-panel__title-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      min-width: 0;
+    }
+
+    .side-panel__title-icon .titolo {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .side-panel__close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: var(--space-4);
+      cursor: pointer;
+      color: var(--color-text);
+      font-size: var(--fs-24);
+      line-height: 1;
+      width: var(--space-32);
+      height: var(--space-32);
+      flex-shrink: 0;
+      transition: color var(--transition-150);
+    }
+
+    .side-panel__close:hover {
+      color: var(--color-primary);
+    }
+
+    .side-panel__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-16);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    .side-panel__meta .meta__label {
+      font-size: var(--fs-14);
+    }
+
+    .side-panel__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .side-panel__stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-12) var(--space-16);
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    .side-panel__stats .meta__value {
+      font-weight: var(--fw-700);
+    }
+
+    .side-panel__stat-pair {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .side-panel__toolbar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+    }
+
+    .side-panel__toolbar .action-link:disabled,
+    .side-panel__toolbar .action-link--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .side-panel__toolbar .form__select-wrapper {
+      flex: 1 1 200px;
+    }
+
+    .table__filter-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-left: var(--space-4);
+      cursor: pointer;
+      color: var(--color-text-muted);
+      vertical-align: middle;
+      transition: color var(--transition-150);
+    }
+
+    .table__filter-toggle:hover {
+      color: var(--color-text);
+    }
+
+    .dropdown {
+      position: fixed;
+      background: var(--color-background);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+      z-index: 200;
+      min-width: 160px;
+      padding: var(--space-8) 0;
+    }
+
+    .dropdown[hidden] {
+      display: none;
+    }
+
+    .dropdown__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dropdown__item {
+      padding: var(--space-8) var(--space-16);
+      cursor: pointer;
+      font-size: var(--fs-14);
+      color: var(--color-text);
+      transition: background var(--transition-150);
+    }
+
+    .dropdown__item:hover {
+      background: var(--grey-100);
+    }
+
+    .dropdown__item--selected {
+      background: var(--grey-200);
+    }
+
+    .side-panel__table {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      border-top: var(--border-width) solid var(--color-border);
+      margin-top: var(--space-8);
+    }
+
+    .side-panel__table .table {
+      font-size: var(--fs-14);
+    }
+
+    /* ── Activity section ──────────────────────────────────────────── */
+
+    .activity-section {
+      padding: var(--space-16);
+      background-color: var(--grey-100);
+      border-radius: var(--border-radius);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .activity-section__header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .activity-section__header-top {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .activity-section__header-spacer { flex: 1; }
+
+    .activity-section__indicators {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-32);
+    }
+
+    .activity-section__indicators .activity-indicator { flex: 1; }
+
+    /* ── Help: sticky button + side panel ──────────────────────────── */
+
+    .help-button {
+      position: fixed;
+      right: var(--space-24);
+      bottom: var(--space-24);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--height-input-44);
+      height: var(--height-input-44);
+      padding: 0;
+      background-color: var(--color-background);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-12px);
+      cursor: pointer;
+      z-index: var(--z-200);
+      transition: box-shadow var(--transition-150), border-color var(--transition-150);
+    }
+
+    .help-button:hover {
+      border-color: var(--color-border-strong);
+      box-shadow: var(--shadow-24px);
+    }
+
+    .help-button img {
+      width: var(--space-24);
+      height: var(--space-24);
+    }
+
+    .side-panel--right {
+      left: auto;
+      right: 0;
+      width: min(420px, 90vw);
+      border-right: none;
+      border-left: var(--border-width) solid var(--color-border);
+      transform: translateX(100%);
+      z-index: var(--z-300);
+    }
+
+    .side-panel--right.is-open {
+      transform: translateX(0);
+    }
+
+    #help-panel-backdrop {
+      z-index: var(--z-300);
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    .accordion__item {
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+
+    .accordion__trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-16);
+      width: 100%;
+      padding: var(--space-16) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-family);
+      font-size: var(--fs-16);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+    }
+
+    .accordion__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform var(--transition-150);
+    }
+
+    .accordion__item.is-open .accordion__icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion__panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--transition-250);
+    }
+
+    .accordion__item.is-open .accordion__panel {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion__body {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .accordion__body-inner {
+      padding: 0 0 var(--space-16);
+      font-size: var(--fs-14);
+      line-height: var(--line-height-16);
+      color: var(--color-text);
+    }
+
+    .accordion__media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+
+    .accordion__media iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--border-radius);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <aside class="app-layout__sidebar">
+      <div id="sidebar"></div>
+    </aside>
+
+    <main class="app-layout__main">
+      <div class="dashboard-view">
+
+        <div class="subscription-area">
+        <div id="collab-chips" class="collab-chips"></div>
+
+        <!-- ── 1. Limiti abbonamento ──────────────────────────────── -->
+        <section class="subscription-limits">
+          <div class="subscription-limits__header">
+            <h2 class="titolo titolo--sezione">Limiti abbonamento</h2>
+            <button type="button" class="action-link">acquista</button>
+          </div>
+          <div class="subscription-limits__row">
+            <div class="subscription-limits__item">
+              <div class="limit-indicator limit-indicator--dot">
+                <span class="limit-indicator__label">spedizioni</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="width:50%"></div></div>
+                <span class="limit-indicator__value">50k/100k</span>
+                <span class="limit-indicator__dot limit-indicator__dot--green"></span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator limit-indicator--dot">
+                <span class="limit-indicator__label">esportazioni</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="width:90%"></div></div>
+                <span class="limit-indicator__value">90k/100k</span>
+                <span class="limit-indicator__dot limit-indicator__dot--green"></span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator limit-indicator--dot">
+                <span class="limit-indicator__label">mailing list</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="width:30%"></div></div>
+                <span class="limit-indicator__value">300/1k</span>
+                <span class="limit-indicator__dot limit-indicator__dot--orange"></span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator limit-indicator--dot">
+                <span class="limit-indicator__label">progetti</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="width:20%"></div></div>
+                <span class="limit-indicator__value">20/100</span>
+                <span class="limit-indicator__dot limit-indicator__dot--red"></span>
+              </div>
+            </div>
+            <div class="subscription-limits__item">
+              <div class="limit-indicator limit-indicator--dot">
+                <span class="limit-indicator__label">ospiti</span>
+                <div class="limit-indicator__bar"><div class="limit-indicator__progress" style="width:20%"></div></div>
+                <span class="limit-indicator__value">20/100</span>
+                <span class="limit-indicator__dot limit-indicator__dot--red"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        </div><!-- end subscription-area -->
+
+        <!-- ── 2. Zones wrapper ───────────────────────────────────── -->
+        <div class="sections-wrapper">
+
+        <!-- Project zone (spedizioni · comunicati · rassegne) -->
+        <div class="project-zone">
+
+          <div class="general-zone__header">
+            <span class="general-zone__label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>progetti</span>
+          </div>
+
+          <div class="project-tabs-bar">
+            <div class="project-tabs-bar__overflow">
+              <button type="button" class="tabs__tab" id="project-overflow-toggle" aria-haspopup="true" aria-expanded="false">tutti (5) ▾</button>
+              <div class="project-tabs-bar__overflow-menu" role="menu"></div>
+            </div>
+            <nav class="tabs tabs--underline" id="project-tabs-nav" role="tablist" aria-label="Selezione progetto"></nav>
+            <button type="button" class="btn-v2">nuovo progetto</button>
+          </div>
+
+          <div class="project-context-bar">
+            <div class="project-context-bar__status" id="ctx-project-status">
+              <img id="ctx-project-status-icon" src="../../assets/icons/lock.svg" alt="" aria-hidden="true" />
+              <span id="ctx-project-status-text">progetto privato</span>
+              <button type="button" class="project-context-bar__edit" id="ctx-edit-collaborators-btn" aria-label="Modifica collaboratori">
+                <img src="../../assets/icons/edit.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
+            <div class="project-context-bar__actions">
+              <button type="button" class="action-link" id="ctx-invite-guest-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/share.svg" alt="" /></span>
+                <span class="action-link__label">invita ospite</span>
+              </button>
+              <button type="button" class="action-link" id="ctx-send-report-btn">
+                <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/send_report.svg" alt="" /></span>
+                <span class="action-link__label">invia report</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dashboard-sections-grid">
+
+            <!-- Spedizioni -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <span class="side-panel__title-icon"><img src="../../assets/icons/send.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Spedizioni</h2></span>
+                    <span class="badge">22</span>
+                  </div>
+                  <span id="sp-link-vedi-tutte"></span>
+                </div>
+                <button type="button" class="btn-v2">nuova spedizione</button>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
+              </div>
+              <div id="sp-filter-tabs"></div>
+              <div class="dashboard-section__list" id="sp-list"></div>
+            </section>
+
+            <!-- Comunicati -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <span class="side-panel__title-icon"><img src="../../assets/icons/campaign.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Comunicati</h2></span>
+                    <span class="badge">23</span>
+                  </div>
+                  <span id="co-link-vedi-tutti"></span>
+                </div>
+                <button type="button" class="btn-v2">nuovo comunicato</button>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
+              </div>
+              <div id="co-filter-tabs"></div>
+              <div class="dashboard-section__list" id="co-list"></div>
+            </section>
+
+            <!-- Rassegne -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <h2 class="titolo titolo--sezione">Rassegne</h2>
+                    <span class="badge">3</span>
+                  </div>
+                  <span id="pg-link-vedi-tutti"></span>
+                </div>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
+              </div>
+              <div class="dashboard-section__list" id="pg-list"></div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- General zone (risorse condivise: da fare · mailing lists) -->
+        <div class="general-zone">
+
+          <div class="general-zone__header">
+            <span class="general-zone__label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="22" height="22" fill="currentColor" aria-hidden="true" focusable="false"><path d="M155-75q-35-35-35-85t35-85q35-35 85-35 14 0 26 3t23 8l57-71q-28-31-39-70t-5-78l-81-27q-17 25-43 40t-58 15q-50 0-85-35T0-580q0-50 35-85t85-35q50 0 85 35t35 85v8l81 28q20-36 53.5-61t75.5-32v-87q-39-11-64.5-42.5T360-840q0-50 35-85t85-35q50 0 85 35t35 85q0 42-26 73.5T510-724v87q42 7 75.5 32t53.5 61l81-28v-8q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-32 0-58.5-15T739-515l-81 27q6 39-5 77.5T614-340l57 70q11-5 23-7.5t26-2.5q50 0 85 35t35 85q0 50-35 85t-85 35q-50 0-85-35t-35-85q0-20 6.5-38.5T624-232l-57-71q-41 23-87.5 23T392-303l-56 71q11 15 17.5 33.5T360-160q0 50-35 85t-85 35q-50 0-85-35Zm-35-465q17 0 28.5-11.5T160-580q0-17-11.5-28.5T120-620q-17 0-28.5 11.5T80-580q0 17 11.5 28.5T120-540Zm148.5 408.5Q280-143 280-160t-11.5-28.5Q257-200 240-200t-28.5 11.5Q200-177 200-160t11.5 28.5Q223-120 240-120t28.5-11.5Zm240-680Q520-823 520-840t-11.5-28.5Q497-880 480-880t-28.5 11.5Q440-857 440-840t11.5 28.5Q463-800 480-800t28.5-11.5ZM480-360q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm268.5 228.5Q760-143 760-160t-11.5-28.5Q737-200 720-200t-28.5 11.5Q680-177 680-160t11.5 28.5Q703-120 720-120t28.5-11.5Zm120-420Q880-563 880-580t-11.5-28.5Q857-620 840-620t-28.5 11.5Q800-597 800-580t11.5 28.5Q823-540 840-540t28.5-11.5ZM480-840ZM120-580Zm360 120Zm360-120ZM240-160Zm480 0Z"/></svg>risorse globali</span>
+          </div>
+
+          <div class="dashboard-sections-grid">
+
+            <!-- Da fare -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <span class="side-panel__title-icon"><img src="../../assets/icons/task.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Da fare</h2></span>
+                    <span class="badge">4</span>
+                  </div>
+                  <span id="td-link-vedi-tutti"></span>
+                </div>
+                <div class="dashboard-section__header-actions">
+                  <button type="button" class="action-link">lista</button>
+                  <button type="button" class="action-link">cal</button>
+                  <button type="button" class="btn-v2">nuovo todo</button>
+                </div>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
+              </div>
+              <div class="dashboard-section__list" id="td-list"></div>
+            </section>
+
+            <!-- Mailing Lists -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <span class="side-panel__title-icon"><img src="../../assets/icons/list.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Mailing Lists</h2></span>
+                    <span class="badge">199</span>
+                  </div>
+                  <span id="ml-link-vedi-tutte"></span>
+                </div>
+                <button type="button" class="btn-v2">nuova lista</button>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 120px" />
+              </div>
+              <div class="dashboard-section__list" id="ml-list"></div>
+            </section>
+
+          </div>
+        </div>
+
+        </div><!-- end sections-wrapper -->
+
+        <!-- ── 4. Attività ufficio stampa ────────────────────────── -->
+        <section class="activity-section">
+          <div class="activity-section__header">
+            <div class="activity-section__header-top">
+              <h2 class="titolo titolo--sezione">Attività Ufficio Stampa</h2>
+              <div class="activity-section__header-spacer"></div>
+              <div id="activity-period-tabs"></div>
+            </div>
+            <div id="activity-team-tabs"></div>
+          </div>
+          <div class="activity-section__indicators">
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Spedizioni</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuove-spedizioni"></span></div>
+                  <div class="activity-indicator__value">5</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ email inviate</div>
+                  <div class="activity-indicator__value">1539</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-2">⎿ aperte</div>
+                  <div class="activity-indicator__value">345 (18%)</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Mailing Lists</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-liste-modificate"></span></div>
+                  <div class="activity-indicator__value">18</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ create</div>
+                  <div class="activity-indicator__value">12</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Progetti</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuovi-progetti"></span></div>
+                  <div class="activity-indicator__value">1</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-1">⎿ rassegne</div>
+                  <div class="activity-indicator__value">1</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label activity-indicator__label--indent-2">⎿ articoli</div>
+                  <div class="activity-indicator__value">4</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Comunicati</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label"><span id="link-nuovi-comunicati"></span></div>
+                  <div class="activity-indicator__value">5</div>
+                </div>
+              </div>
+            </div>
+            <div class="activity-indicator">
+              <h3 class="activity-indicator__title">Todos</h3>
+              <div class="activity-indicator__list">
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label">nuovi todo</div>
+                  <div class="activity-indicator__value">15</div>
+                </div>
+                <div class="activity-indicator__row">
+                  <div class="activity-indicator__label">fatti</div>
+                  <div class="activity-indicator__value">8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ── Mailing Lists side panel ──────────────────────────────── -->
+  <div class="side-panel-backdrop" id="ml-panel-backdrop"></div>
+  <aside class="side-panel" id="ml-panel" role="dialog" aria-modal="true" aria-labelledby="ml-panel-title">
+    <div class="dashboard-section__header">
+      <div class="dashboard-section__header-group">
+        <div class="dashboard-section__header-left">
+          <span class="side-panel__title-icon"><img src="../../assets/icons/list.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione" id="ml-panel-title">Mailing Lists</h2></span>
+          <span class="badge">199</span>
+        </div>
+      </div>
+      <button type="button" class="btn-v2">nuova lista</button>
+    </div>
+    <div class="dashboard-section__toolbar">
+      <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 120px" />
+      <div class="form__select-wrapper" style="flex:0 0 220px">
+        <select class="form__select form__select--compact">
+          <option>ordina per nome (a-z)</option>
+          <option>ordina per data</option>
+        </select>
+      </div>
+    </div>
+    <nav class="tabs" data-tabs role="tablist" aria-label="Filtro liste" id="ml-panel-tabs">
+      <button type="button" class="tabs__tab tabs__tab--active" data-tab-id="tutti" role="tab" aria-selected="true">tutti</button>
+      <button type="button" class="tabs__tab" data-tab-id="rosa" role="tab" aria-selected="false">rosa</button>
+      <button type="button" class="tabs__tab" data-tab-id="iris" role="tab" aria-selected="false">iris</button>
+      <button type="button" class="tabs__tab" data-tab-id="margherita" role="tab" aria-selected="false">margherita</button>
+    </nav>
+    <div class="dashboard-section__list" id="ml-panel-list"></div>
+  </aside>
+
+  <!-- ── Shipment side panel ─────────────────────────────────────────── -->
+  <div class="side-panel-backdrop" id="sp-panel-backdrop"></div>
+  <aside class="side-panel" id="sp-panel" role="dialog" aria-modal="true" aria-labelledby="sp-panel-title">
+    <div class="side-panel__header">
+      <div class="side-panel__title-group">
+        <span class="side-panel__title-icon"><img src="../../assets/icons/send.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione" id="sp-panel-title">Invito convegno abitare</h2></span>
+        <span class="badge">conclusa</span>
+        <a href="#" class="link" id="sp-panel-press-release" style="font-size:var(--fs-14)">comunicato stampa</a>
+      </div>
+      <button type="button" class="side-panel__close" id="sp-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="side-panel__meta">
+      <div class="meta__item">
+        <span class="meta__label">Inviata il</span>
+        <span class="meta__value">10-5-2026</span>
+      </div>
+      <div class="meta__item">
+        <span class="meta__label">Da</span>
+        <span class="meta__value">@iris</span>
+      </div>
+      <div class="meta__item">
+        <span class="meta__label">Mittente</span>
+        <span class="meta__value">Leo Piseri</span>
+      </div>
+    </div>
+    <div class="side-panel__stats">
+      <div class="meta__item">
+        <span class="meta__value">701</span>
+        <span class="meta__label">destinatari</span>
+      </div>
+      <span class="side-panel__stat-pair"><span class="meta__value">682</span><span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>ricevute</span></span>
+      <span>(</span>
+      <span class="side-panel__stat-pair"><span class="meta__value">19</span><span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>aperte</span></span>
+      <span class="side-panel__stat-pair"><span class="meta__value">81</span><span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--red" aria-hidden="true"></span>chiuse</span></span>
+      <span>)</span>
+      <span>|</span>
+      <span class="side-panel__stat-pair"><span class="meta__value">19</span><span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--red" aria-hidden="true"></span>errori</span></span>
+      <button type="button" class="action-link" id="sp-panel-toggle-percent">%</button>
+    </div>
+    <div class="side-panel__toolbar">
+      <button type="button" class="action-link" id="sp-followup-action">follow-up</button>
+      <button type="button" class="action-link action-link--disabled" id="sp-export-action" disabled>esporta excel</button>
+    </div>
+    <div class="side-panel__table" id="sp-panel-table"></div>
+  </aside>
+
+  <!-- ── Help sticky button + side panel ─────────────────────────────── -->
+  <button type="button" class="help-button" id="help-button" aria-haspopup="dialog" aria-expanded="false" aria-controls="help-panel">
+    <img src="../../assets/icons/help.svg" alt="Aiuto" />
+  </button>
+
+  <div class="side-panel-backdrop" id="help-panel-backdrop"></div>
+  <aside class="side-panel side-panel--right" id="help-panel" role="dialog" aria-modal="true" aria-labelledby="help-panel-title">
+    <div class="side-panel__header">
+      <div class="side-panel__title-group">
+        <h2 class="titolo titolo--sezione" id="help-panel-title">Help</h2>
+      </div>
+      <button type="button" class="side-panel__close" id="help-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="accordion" id="help-accordion">
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-1">
+            Cos'è un progetto?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-1">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/xz9eRWlweNG" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-2">
+            La Dashboard in 2 min
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-2">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/2B7YRuVfBvU" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-3">
+            Filtro per giornalisti o per testate?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-3">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/AMEQ9nbaN11" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-4">
+            Su quale Banca Dati sto lavorando?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-4">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/Y3Lx8bPLLVE" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-5">
+            2 suggerimenti su come usare i filtri
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-5">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/cMKrXQ3MrVx" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-6">
+            Per creare una mailing list, devo salvare una selezione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-6">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/M2WkQ52gmfb" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-7">
+            Le schede giornalista e testata
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-7">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/j21zn0y5P40" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-8">
+            Non c'è bisogno di salvare un nuovo comunicato
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-8">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/VTj28gU0BqY" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-9">
+            Come creo una nuova spedizione?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-9">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/PiJ8q1SWkFW" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-10">
+            Compongo i destinatari di una spedizione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-10">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/3WQSbVpxeT8" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-11">
+            "pulizia" dei destinatari di una spedizione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-11">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/J6g5CZUbddq" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-12">
+            Contenuto di una spedizione: media pitch e comunicato
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-12">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/aI7pqqa12n3" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dropdown" id="sp-status-filter-dropdown" hidden>
+    <ul class="dropdown__list">
+      <li class="dropdown__item dropdown__item--selected" data-value="tutti">tutti</li>
+      <li class="dropdown__item" data-value="aperte">aperte</li>
+      <li class="dropdown__item" data-value="chiuse">chiuse</li>
+      <li class="dropdown__item" data-value="errori">errori</li>
+    </ul>
+  </div>
+
+  <div id="collaborator-modal"></div>
+  <div id="invite-guest-modal"></div>
+  <div id="report-modal"></div>
+
+  <script type="module">
+    import { render as renderSidebar, init as initSidebar } from '../../components/sidebar.js';
+    import { render as renderTabs, init as initTabs } from '../../components/tabs.js';
+    import { render as renderLink } from '../../components/link.js';
+    import { render as renderListItem } from '../../components/list-item.js';
+    import { render as renderTodoItem } from '../../components/todo-item.js';
+    import { render as renderTable, init as initTable } from '../../components/table.js';
+    import { render as renderBadgeWithLed } from '../../components/badge-with-led.js';
+
+    // ── Keep / bookmark SVGs ───────────────────────────────────────────
+    const KEEP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false"><path d="M640-760v280l68 68q6 6 9 13.5t3 15.5v23q0 17-11.5 28.5T680-320H520v234q0 17-11.5 28.5T480-46q-17 0-28.5-11.5T440-86v-234H280q-17 0-28.5-11.5T240-360v-23q0-8 3-15.5t9-13.5l68-68v-280q-17 0-28.5-11.5T280-800q0-17 11.5-28.5T320-840h320q17 0 28.5 11.5T680-800q0 17-11.5 28.5T640-760ZM354-400h252l-46-46v-314H400v314l-46 46Zm126 0Z" fill="currentColor"/></svg>`;
+    const CLOSE_SMALL_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false"><path d="M480-424 364-308q-11 11-28 11t-28-11q-11-11-11-28t11-28l116-116-116-115q-11-11-11-28t11-28q11-11 28-11t28 11l116 116 115-116q11-11 28-11t28 11q12 12 12 28.5T651-595L535-480l116 116q11 11 11 28t-11 28q-12 12-28.5 12T595-308L480-424Z" fill="currentColor"/></svg>`;
+
+    function addKeepButtons(listEl) {
+      listEl.querySelectorAll('.list-item__header').forEach(header => {
+        const titleLink = header.querySelector('.link');
+        if (!titleLink) return;
+        const keepBtn = document.createElement('button');
+        keepBtn.type = 'button';
+        keepBtn.className = 'list-item__keep';
+        keepBtn.setAttribute('aria-label', 'Aggiungi ai preferiti');
+        keepBtn.innerHTML = KEEP_SVG;
+        header.prepend(keepBtn);
+        keepBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          addBookmark(titleLink.textContent.trim());
+        });
+      });
+    }
+
+    function addBookmark(label) {
+      const sidebar = sidebarEl.querySelector('[data-sidebar]');
+      const exists = [...sidebar.querySelectorAll('.sidebar__item--bookmark .sidebar__label')]
+        .some(el => el.textContent.trim() === label);
+      if (exists) return;
+      const item = document.createElement('a');
+      item.href = '#';
+      item.className = 'sidebar__item sidebar__item--bookmark';
+      item.innerHTML = `
+        <span class="sidebar__icon" aria-hidden="true">${KEEP_SVG}</span>
+        <span class="sidebar__label">${label}</span>
+        <button type="button" class="sidebar__bookmark-remove" aria-label="Rimuovi preferito">${CLOSE_SMALL_SVG}</button>
+      `;
+      item.addEventListener('click', e => e.preventDefault());
+      item.querySelector('.sidebar__bookmark-remove').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        item.remove();
+      });
+      sidebar.querySelector('.sidebar__separator').insertAdjacentElement('afterend', item);
+    }
+
+    // ── Sidebar ────────────────────────────────────────────────────────
+    const sidebarEl = document.getElementById('sidebar');
+    sidebarEl.innerHTML = renderSidebar({
+      activeId: 'dashboard',
+      items: [
+        { id: 'dashboard', icon: '../../assets/icons/M_.svg', href: '#', label: 'dashboard' },
+        { id: 'banca-dati', icon: '../../assets/icons/filter.svg', href: '#', label: 'banca dati' },
+        { type: 'separator' },
+        { type: 'spacer' },
+        { type: 'separator' },
+        { id: 'notifiche', icon: '../../assets/icons/notification.svg', href: '#', label: 'notifiche' },
+        { id: 'account', icon: '../../assets/icons/account.svg', href: '#', label: 'account' },
+        { type: 'separator' },
+        { id: 'theme', type: 'toggle', icon: '../../assets/icons/light_mode.svg', iconDark: '../../assets/icons/dark_mode.svg' },
+      ],
+    });
+    initSidebar(sidebarEl.querySelector('[data-sidebar]'));
+
+    // ── Project tabs with open/close management ───────────────────────
+    (function() {
+      let projects = [
+        { id: 'draghi',      label: 'Progetto Draghi',       open: true  },
+        { id: 'rassegna-eco',label: 'Rassegna economica',    open: true  },
+        { id: 'sport',       label: 'Sport locale',          open: true  },
+        { id: 'bilancio',    label: 'Bilancio sostenibilità', open: true },
+        { id: 'lancio-q3',   label: 'Lancio prodotto Q3',    open: false },
+      ];
+      let activeId = 'draghi';
+
+      const tabsNav    = document.getElementById('project-tabs-nav');
+      const overflowWrap   = document.querySelector('.project-tabs-bar__overflow');
+      const overflowToggle = document.getElementById('project-overflow-toggle');
+      const overflowMenu   = document.querySelector('.project-tabs-bar__overflow-menu');
+
+      function openProjects()   { return projects.filter(p => p.open);  }
+      function closedProjects() { return projects.filter(p => !p.open); }
+
+      function renderTabs() {
+        tabsNav.querySelectorAll('.tabs__tab[data-tab-id]').forEach(t => t.remove());
+        openProjects().forEach(p => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'tabs__tab' + (p.id === activeId ? ' tabs__tab--active' : '');
+          btn.dataset.tabId = p.id;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', p.id === activeId ? 'true' : 'false');
+          btn.textContent = p.label;
+          btn.addEventListener('click', () => activateProject(p.id));
+          tabsNav.appendChild(btn);
+        });
+        overflowToggle.textContent = `tutti (${projects.length}) ▾`;
+      }
+
+      function renderMenu(filterValue = '') {
+        const open   = openProjects();
+        const closed = closedProjects();
+        const q = filterValue.toLowerCase();
+        let html = '';
+
+        html += `<div class="project-overflow-filter">
+          <input type="text" class="form__input form__input--compact" placeholder="filtra..." value="${filterValue.replace(/"/g, '&quot;')}" />
+        </div>`;
+
+        const openFiltered   = q ? open.filter(p => p.label.toLowerCase().includes(q))   : open;
+        const closedFiltered = q ? closed.filter(p => p.label.toLowerCase().includes(q)) : closed;
+
+        html += `<div class="project-overflow-section">
+          <div class="project-overflow-section__label">aperti</div>
+          <div class="project-overflow-section__list">`;
+        openFiltered.forEach(p => {
+          html += `<div class="project-overflow-row">
+            <span class="project-overflow-row__label">${p.label}</span>
+            <button type="button" class="action-link" data-action="chiudi" data-pid="${p.id}">chiudi</button>
+            <button type="button" class="action-link" data-action="rinomina" data-pid="${p.id}">rinomina</button>
+            <button type="button" class="action-link" data-action="archivia" data-pid="${p.id}">archivia</button>
+          </div>`;
+        });
+        html += `</div></div>`;
+
+        if (closedFiltered.length > 0) {
+          html += `<div class="project-overflow-section">
+            <div class="project-overflow-section__label">chiusi</div>
+            <div class="project-overflow-section__list">`;
+          closedFiltered.forEach(p => {
+            html += `<div class="project-overflow-row">
+              <span class="project-overflow-row__label">${p.label}</span>
+              <button type="button" class="action-link" data-action="apri" data-pid="${p.id}">apri</button>
+              <button type="button" class="action-link" data-action="rinomina" data-pid="${p.id}">rinomina</button>
+              <button type="button" class="action-link" data-action="archivia" data-pid="${p.id}">archivia</button>
+            </div>`;
+          });
+          html += `</div></div>`;
+        }
+
+        html += `<div class="project-overflow-footer">
+          <a href="#" class="link" style="font-size:var(--fs-14)">Progetti archiviati</a>
+        </div>`;
+
+        overflowMenu.innerHTML = html;
+
+        const filterInput = overflowMenu.querySelector('.project-overflow-filter input');
+        filterInput.addEventListener('click', e => e.stopPropagation());
+        filterInput.addEventListener('input', e => renderMenu(e.target.value));
+        if (filterValue) { filterInput.focus(); filterInput.setSelectionRange(filterValue.length, filterValue.length); }
+
+        overflowMenu.querySelectorAll('[data-action="chiudi"]').forEach(btn => {
+          btn.addEventListener('click', e => { e.stopPropagation(); closeProject(btn.dataset.pid); });
+        });
+        overflowMenu.querySelectorAll('[data-action="apri"]').forEach(btn => {
+          btn.addEventListener('click', e => { e.stopPropagation(); openProject(btn.dataset.pid); });
+        });
+      }
+
+      function activateProject(id) {
+        activeId = id;
+        tabsNav.querySelectorAll('.tabs__tab[data-tab-id]').forEach(t => {
+          const active = t.dataset.tabId === id;
+          t.classList.toggle('tabs__tab--active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      }
+
+      function closeProject(id) {
+        projects.find(p => p.id === id).open = false;
+        if (activeId === id) {
+          const remaining = openProjects();
+          activeId = remaining.length ? remaining[0].id : null;
+        }
+        renderTabs();
+        renderMenu();
+      }
+
+      function openProject(id) {
+        const p = projects.find(p => p.id === id);
+        p.open = true;
+        projects = [p, ...projects.filter(pr => pr.id !== id)];
+        activeId = id;
+        renderTabs();
+        renderMenu();
+      }
+
+      renderTabs();
+      renderMenu();
+
+      overflowToggle.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = overflowWrap.classList.toggle('is-open');
+        overflowToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      document.addEventListener('click', () => {
+        overflowWrap.classList.remove('is-open');
+        overflowToggle.setAttribute('aria-expanded', 'false');
+      });
+    })();
+
+    // ── Mailing Lists ──────────────────────────────────────────────────
+    const mlItems = [
+      { category: 'rosa', title: { href: '#', label: "Studi sull'abitare" },
+        chips: ['6 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 27 }, { label: 'Testate', value: 4 }] }, { label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Rassegna economica' },
+        chips: ['3 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 15 }, { label: 'Testate', value: 8 }] }, { label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'margherita', title: { href: '#', label: 'Sport locale' },
+        meta: [{ group: [{ label: 'Giornalisti', value: 9 }, { label: 'Testate', value: 2 }] }, { label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'rosa', title: { href: '#', label: 'Comunicati energia' },
+        meta: [{ group: [{ label: 'Giornalisti', value: 44 }, { label: 'Testate', value: 11 }] }, { label: 'Modificata il', value: '16-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Tech & innovazione' },
+        chips: ['1 giornalista suggerito'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 6 }, { label: 'Testate', value: 3 }] }, { label: 'Modificata il', value: '15-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    const mlVediTutteSpan = document.getElementById('ml-link-vedi-tutte');
+    mlVediTutteSpan.innerHTML = renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
+    mlVediTutteSpan.querySelector('.link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('ml-panel').classList.add('is-open');
+      document.getElementById('ml-panel-backdrop').classList.add('is-open');
+    });
+    document.getElementById('ml-panel-backdrop').addEventListener('click', () => {
+      document.getElementById('ml-panel').classList.remove('is-open');
+      document.getElementById('ml-panel-backdrop').classList.remove('is-open');
+    });
+
+    document.getElementById('ml-list').innerHTML = mlItems.map(renderListItem).join('');
+    addKeepButtons(document.getElementById('ml-list'));
+
+    const mlPanelItems = [
+      ...mlItems,
+      { category: 'margherita', title: { href: '#', label: 'Ufficio stampa istituzionale' }, links: [],
+        meta: [{ group: [{ label: 'Giornalisti', value: 33 }, { label: 'Testate', value: 7 }] }, { label: 'Modificata il', value: '14-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'rosa', title: { href: '#', label: 'Media nazionali' }, chips: ['5 giornalisti suggeriti'],
+        meta: [{ group: [{ label: 'Giornalisti', value: 78 }, { label: 'Testate', value: 15 }] }, { label: 'Modificata il', value: '13-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', title: { href: '#', label: 'Startup & venture' }, links: [],
+        meta: [{ group: [{ label: 'Giornalisti', value: 22 }, { label: 'Testate', value: 5 }] }, { label: 'Modificata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    document.getElementById('ml-panel-list').innerHTML = mlPanelItems.map(renderListItem).join('');
+    addKeepButtons(document.getElementById('ml-panel-list'));
+    const mlPanelListEls = document.querySelectorAll('#ml-panel-list .list-item');
+    initTabs(document.getElementById('ml-panel-tabs'), {
+      onTabChange: (id) => mlPanelListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Progetti ───────────────────────────────────────────────────────
+    const pgItems = [
+      { category: 'rosa', title: { href: '#', label: 'Progetto Draghi' },
+        chips: ['2 articoli suggeriti'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 2, inverted: true }, { label: 'Articoli', value: 18, inverted: true }] }] },
+      { category: 'iris', title: { href: '#', label: 'Rassegna economica' },
+        meta: [{ group: [{ label: 'Spedizioni', value: 5, inverted: true }, { label: 'Articoli', value: 32, inverted: true }] }] },
+      { category: 'margherita', title: { href: '#', label: 'Sport locale' },
+        chips: ['1 articolo suggerito'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 1, inverted: true }, { label: 'Articoli', value: 7, inverted: true }] }] },
+      { category: 'iris', title: { href: '#', label: 'Bilancio sostenibilità' },
+        meta: [{ group: [{ label: 'Spedizioni', value: 3, inverted: true }, { label: 'Articoli', value: 12, inverted: true }] }] },
+      { category: 'rosa', title: { href: '#', label: 'Lancio prodotto Q3' },
+        chips: ['4 articoli suggeriti'],
+        meta: [{ group: [{ label: 'Spedizioni', value: 0, inverted: true }, { label: 'Articoli', value: 5, inverted: true }] }] },
+    ];
+    document.getElementById('pg-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    document.getElementById('pg-list').innerHTML = pgItems.map(renderListItem).join('');
+
+    // ── Spedizioni ─────────────────────────────────────────────────────
+    const spItems = [
+      { category: 'in corso', title: { href: '#', label: 'Invito convegno abitare' }, badge: 'in corso', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'conclusa', title: { href: '#', label: 'Newsletter economia Q1' }, badge: 'conclusa', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'programmata', title: { href: '#', label: 'Risultati campionato' }, badge: 'programmata', links: [],
+        meta: [{ group: [{ label: 'Programmata il', value: '25-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
+      { category: 'conclusa', title: { href: '#', label: 'Assemblea azionisti 2026' }, badge: 'conclusa', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '14-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'in corso', title: { href: '#', label: 'Report Q1 sostenibilità' }, badge: 'in corso', links: [],
+        meta: [{ group: [{ label: 'Inviata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+    ];
+    document.getElementById('sp-link-vedi-tutte').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
+    const spFilterHost = document.getElementById('sp-filter-tabs');
+    spFilterHost.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutte' }, { id: 'in corso', label: 'in corso' }, { id: 'conclusa', label: 'concluse' }, { id: 'programmata', label: 'programmate' }],
+      activeId: 'tutti',
+      variant: 'underline',
+    });
+    document.getElementById('sp-list').innerHTML = spItems.map(renderListItem).join('');
+    const spListEls = document.querySelectorAll('#sp-list .list-item');
+    initTabs(spFilterHost.querySelector('[data-tabs]'), {
+      onTabChange: (id) => spListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Spedizione side panel ──────────────────────────────────────────
+    const spPanel = document.getElementById('sp-panel');
+    const spPanelBackdrop = document.getElementById('sp-panel-backdrop');
+    const spPanelClose = document.getElementById('sp-panel-close');
+    const spPanelTable = document.getElementById('sp-panel-table');
+    const statusFilterDropdown = document.getElementById('sp-status-filter-dropdown');
+    const statusFilterItems = statusFilterDropdown.querySelectorAll('.dropdown__item');
+    const spExportAction = document.getElementById('sp-export-action');
+
+    let currentFilter = 'tutti';
+    let currentTextFilter = '';
+    let currentTextFilterOutlets = '';
+
+    function openSpPanel() {
+      spPanel.classList.add('is-open');
+      spPanelBackdrop.classList.add('is-open');
+      renderShipmentTable(currentFilter, 'name', 'asc');
+    }
+
+    function closeSpPanel() {
+      spPanel.classList.remove('is-open');
+      spPanelBackdrop.classList.remove('is-open');
+    }
+
+    spPanelClose.addEventListener('click', closeSpPanel);
+    spPanelBackdrop.addEventListener('click', closeSpPanel);
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!statusFilterDropdown.hidden) {
+        closeDropdown();
+        return;
+      }
+      if (spPanel.classList.contains('is-open')) closeSpPanel();
+      if (helpPanel.classList.contains('is-open')) closeHelpPanel();
+    });
+
+    // ── Help side panel ──────────────────────────────────────────────
+    const helpButton = document.getElementById('help-button');
+    const helpPanel = document.getElementById('help-panel');
+    const helpPanelBackdrop = document.getElementById('help-panel-backdrop');
+    const helpPanelClose = document.getElementById('help-panel-close');
+
+    function openHelpPanel() {
+      helpPanel.classList.add('is-open');
+      helpPanelBackdrop.classList.add('is-open');
+      helpButton.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeHelpPanel() {
+      helpPanel.classList.remove('is-open');
+      helpPanelBackdrop.classList.remove('is-open');
+      helpButton.setAttribute('aria-expanded', 'false');
+    }
+
+    helpButton.addEventListener('click', openHelpPanel);
+    helpPanelClose.addEventListener('click', closeHelpPanel);
+    helpPanelBackdrop.addEventListener('click', closeHelpPanel);
+
+    helpPanel.querySelectorAll('.accordion__trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.accordion__item');
+        const isOpen = item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen);
+      });
+    });
+
+    const shipmentRows = [
+      { name: 'Valerio SAMMARCO', email: 'vsammarco@entespettacolo.org', outlets: 'CINEMEDIA, RIVISTA DEL CINEMATOGRAFO, CINEMATOGRAFO.IT', list: 'ML lavoro', status: 'chiusa' },
+      { name: 'Marco Bianchi', email: 'mbianchi@example.org', outlets: 'LA STAMPA, REPUBBLICA', list: 'ML economia', status: 'aperta' },
+      { name: 'Giulia Verdi', email: 'gverdi@example.org', outlets: 'ANSA, IL MESSAGGERO', list: 'ML economia', status: 'chiusa' },
+      { name: 'Sara Rossi', email: 'srossi@example.org', outlets: 'CORRIERE DELLA SERA', list: 'ML lavoro', status: 'errore' },
+      { name: 'Paolo Neri', email: 'pneri@example.org', outlets: 'IL FATTO QUOTIDIANO', list: 'ML economia', status: 'chiusa' },
+    ];
+
+    const filterToStatus = {
+      'tutti': null,
+      'aperte': 'aperta',
+      'chiuse': 'chiusa',
+      'errori': 'errore',
+    };
+
+    function renderShipmentTable(filter, sortKey, sortDir) {
+      const status = filterToStatus[filter];
+      let filtered = status ? shipmentRows.filter(r => r.status === status) : shipmentRows;
+      if (currentTextFilter) {
+        const q = currentTextFilter.toLowerCase();
+        filtered = filtered.filter(r => r.name.toLowerCase().includes(q) || r.email.toLowerCase().includes(q));
+      }
+      if (currentTextFilterOutlets) {
+        const q = currentTextFilterOutlets.toLowerCase();
+        filtered = filtered.filter(r => r.outlets.toLowerCase().includes(q));
+      }
+      filtered = [...filtered].sort((a, b) => {
+        const aVal = String(a[sortKey]).toLowerCase();
+        const bVal = String(b[sortKey]).toLowerCase();
+        if (aVal < bVal) return sortDir === 'asc' ? -1 : 1;
+        if (aVal > bVal) return sortDir === 'asc' ? 1 : -1;
+        return 0;
+      });
+      spPanelTable.innerHTML = renderTable({
+        columns: [
+          { key: 'select', checkbox: true, label: '' },
+          { key: 'name', label: 'GIORNALISTA', headerExtra: `<input type="text" class="table__header-input" placeholder="filtra…" value="${currentTextFilter}" data-col-filter="name" aria-label="Filtra per giornalista">`, sortable: true, sortDirection: sortDir, cellRenderer: (value, row) => `<strong>${value}</strong><p>${row.email}</p>` },
+          { key: 'outlets', label: 'TESTATE', headerExtra: `<input type="text" class="table__header-input" placeholder="filtra…" value="${currentTextFilterOutlets}" data-col-filter="outlets" aria-label="Filtra per testata">` },
+          { key: 'list', label: 'MAILING LIST', cellRenderer: (value) => `<span class="badge">${value}</span>` },
+          { key: 'status', label: `STATUS <button type="button" class="table__filter-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Filtra per status"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="14" height="14" fill="currentColor" aria-hidden="true" focusable="false"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-11-16-2-34t29-18h570q20 0 29 18t-2 34L560-440v240q0 17-11.5 28.5T520-160h-80Z"/></svg></button>`, cellRenderer: (value) => renderBadgeWithLed({ label: value, variant: (value === 'errore' || value === 'chiusa') ? 'red' : 'green' }) },
+        ],
+        rows: filtered,
+      });
+      initTable(spPanelTable.querySelector('[data-table]'), {
+        onSort: (key, dir) => renderShipmentTable(currentFilter, key, dir),
+        onSelect: updateExportAction,
+      });
+      spPanelTable.querySelectorAll('[data-col-filter]').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const colKey = e.target.dataset.colFilter;
+          if (colKey === 'name') currentTextFilter = e.target.value;
+          else if (colKey === 'outlets') currentTextFilterOutlets = e.target.value;
+          renderShipmentTable(currentFilter, sortKey, sortDir);
+          const restored = spPanelTable.querySelector(`[data-col-filter="${colKey}"]`);
+          if (restored) { restored.focus(); restored.setSelectionRange(restored.value.length, restored.value.length); }
+        });
+        input.addEventListener('click', (e) => e.stopPropagation());
+      });
+    }
+
+    function updateExportAction(selected) {
+      const hasSelection = selected.length > 0;
+      spExportAction.disabled = !hasSelection;
+      spExportAction.classList.toggle('action-link--disabled', !hasSelection);
+    }
+
+    function updateDropdownSelection(filter) {
+      statusFilterItems.forEach(item => {
+        item.classList.toggle('dropdown__item--selected', item.dataset.value === filter);
+      });
+    }
+
+    function positionDropdown(button) {
+      const rect = button.getBoundingClientRect();
+      statusFilterDropdown.style.top = `${rect.bottom + 4}px`;
+      statusFilterDropdown.style.left = `${rect.left}px`;
+    }
+
+    function openDropdown(button) {
+      updateDropdownSelection(currentFilter);
+      positionDropdown(button);
+      statusFilterDropdown.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+      statusFilterDropdown.hidden = true;
+      const button = spPanelTable.querySelector('.table__filter-toggle');
+      if (button) button.setAttribute('aria-expanded', 'false');
+    }
+
+    spPanelTable.addEventListener('click', (e) => {
+      const button = e.target.closest('.table__filter-toggle');
+      if (!button) return;
+      e.stopPropagation();
+      if (!statusFilterDropdown.hidden) {
+        closeDropdown();
+      } else {
+        openDropdown(button);
+      }
+    });
+
+    statusFilterDropdown.addEventListener('click', (e) => {
+      const item = e.target.closest('.dropdown__item');
+      if (!item) return;
+      currentFilter = item.dataset.value;
+      renderShipmentTable(currentFilter, 'name', 'asc');
+      closeDropdown();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!statusFilterDropdown.hidden && !statusFilterDropdown.contains(e.target) && !e.target.closest('.table__filter-toggle')) {
+        closeDropdown();
+      }
+    });
+
+    spPanel.addEventListener('scroll', () => {
+      if (!statusFilterDropdown.hidden) closeDropdown();
+    });
+
+    document.getElementById('sp-list').addEventListener('click', (e) => {
+      const link = e.target.closest('.link');
+      if (!link) return;
+      if (link.textContent.trim() === 'Invito convegno abitare') {
+        e.preventDefault();
+        openSpPanel();
+      }
+    });
+
+    // ── Comunicati ─────────────────────────────────────────────────────
+    const coItems = [
+      { category: 'bozza', title: { href: '#', label: 'CS - Mario Draghi riceve il premio "Uomo dell\'anno"' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'spedito', title: { href: '#', label: 'Analisi mercati Q2' }, badge: 'spedito', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+      { category: 'bozza', title: { href: '#', label: 'Torneo regionale' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
+      { category: 'spedito', title: { href: '#', label: 'Apertura nuovo centro ricerche' }, badge: 'spedito', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '16-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+      { category: 'bozza', title: { href: '#', label: 'Risultati semestrale 2026' }, badge: 'bozza', links: [],
+        meta: [{ group: [{ label: 'Modificata il', value: '15-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+    ];
+    document.getElementById('co-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    const coFilterHost = document.getElementById('co-filter-tabs');
+    coFilterHost.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutti' }, { id: 'spedito', label: 'spedito' }, { id: 'bozza', label: 'bozza' }],
+      activeId: 'tutti',
+      variant: 'underline',
+    });
+    document.getElementById('co-list').innerHTML = coItems.map(renderListItem).join('');
+    const coListEls = document.querySelectorAll('#co-list .list-item');
+    initTabs(coFilterHost.querySelector('[data-tabs]'), {
+      onTabChange: (id) => coListEls.forEach(el => {
+        el.style.display = (id === 'tutti' || el.dataset.category === id) ? '' : 'none';
+      }),
+    });
+
+    // ── Todos ──────────────────────────────────────────────────────────
+    const tdItems = [
+      { category: 'iris', label: 'scrivi follow up a Sara', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'margherita', label: 'chiama Serena', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@margherita' }] },
+      { category: 'iris', label: 'mail a Paola', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+      { category: 'rosa', label: 'report a Giada', done: true,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] },
+      { category: 'iris', label: 'fai rassegna progetto "Draghi"', done: false,
+        meta: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] },
+    ];
+    document.getElementById('td-link-vedi-tutti').outerHTML =
+      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
+    document.getElementById('td-list').innerHTML = tdItems.map(renderTodoItem).join('');
+
+    // ── Activity section ───────────────────────────────────────────────
+    const teamTabsEl = document.getElementById('activity-team-tabs');
+    teamTabsEl.innerHTML = renderTabs({
+      tabs: [{ id: 'tutti', label: 'tutti' }, { id: 'rosa', label: 'rosa' }, { id: 'iris', label: 'iris' }, { id: 'margherita', label: 'margherita' }],
+      activeId: 'tutti',
+      variant: 'underline',
+    });
+    initTabs(teamTabsEl.querySelector('[data-tabs]'));
+
+    const periodTabsEl = document.getElementById('activity-period-tabs');
+    periodTabsEl.innerHTML = renderTabs({
+      tabs: [{ id: '7g', label: '7g' }, { id: '15g', label: '15g' }, { id: '30g', label: '30g' }],
+      activeId: '7g', variant: 'underline',
+    });
+    initTabs(periodTabsEl.querySelector('[data-tabs]'));
+
+    document.getElementById('link-nuove-spedizioni').outerHTML = renderLink({ href: '#', label: 'nuove spedizioni' });
+    document.getElementById('link-liste-modificate').outerHTML = renderLink({ href: '#', label: 'liste modificate' });
+    document.getElementById('link-nuovi-progetti').outerHTML = renderLink({ href: '#', label: 'nuovi progetti' });
+    document.getElementById('link-nuovi-comunicati').outerHTML = renderLink({ href: '#', label: 'nuovi comunicati' });
+
+    // ── Modal render functions ─────────────────────────────────────────────────
+
+    function renderCollaboratorModal() {
+      return `
+        <div class="modal__overlay" data-collaborator-modal-overlay>
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="collaborator-modal-title">
+            <div class="modal__header">
+              <h2 class="modal__title" id="collaborator-modal-title">Invita collaboratore</h2>
+              <button type="button" class="modal__close" data-collaborator-modal-close aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+            </div>
+            <form class="form" data-collaborator-form>
+              <div class="form__fields">
+                <div class="form__field form__field--checkbox">
+                  <label class="form__checkbox-label">
+                    <input type="checkbox" name="collaborators" value="iris-rossi" class="form__checkbox" />
+                    <span class="form__checkbox-text">Iris Rossi</span>
+                  </label>
+                </div>
+                <div class="form__field form__field--checkbox">
+                  <label class="form__checkbox-label">
+                    <input type="checkbox" name="collaborators" value="margherita-bianchi" class="form__checkbox" />
+                    <span class="form__checkbox-text">Margherita Bianchi</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__actions">
+                <button type="button" class="action-link" data-collaborator-modal-cancel>annulla</button>
+                <button type="submit" class="action-link action-link--primary">condividi</button>
+              </div>
+            </form>
+          </div>
+        </div>`;
+    }
+
+    function renderGuestModal() {
+      return `
+        <div class="modal__overlay" data-guest-modal-overlay>
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="guest-modal-title">
+            <div class="modal__header">
+              <h2 class="modal__title" id="guest-modal-title">Invita ospite</h2>
+              <button type="button" class="modal__close" data-guest-modal-close aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+            </div>
+            <form class="form" data-guest-form>
+              <div class="form__fields">
+                <div class="form__field">
+                  <label class="form__label" for="guest-sender-name">Nome mittente</label>
+                  <input type="text" id="guest-sender-name" name="senderName" class="form__input form__input--readonly" value="maria bianchi" readonly tabindex="-1" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="guest-sender-email">Email mittente</label>
+                  <input type="email" id="guest-sender-email" name="senderEmail" class="form__input form__input--readonly" value="m.bianchi@comunicareplus.it" readonly tabindex="-1" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="guest-email">Email ospite</label>
+                  <div class="form__select-wrapper">
+                    <select id="guest-email" name="guestEmail" class="form__select">
+                      <option value="">Seleziona email ospite</option>
+                      <option value="ilaria@ospite.it">Ilaria (ilaria@ospite.it)</option>
+                      <option value="marco@ospite.it">Marco (marco@ospite.it)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="guest-subject">Oggetto email</label>
+                  <input type="text" id="guest-subject" name="subject" class="form__input form__input--prefilled" value="Invito a visualizzare Progetto Draghi" />
+                </div>
+              </div>
+              <div class="form__actions">
+                <button type="button" class="action-link" data-guest-modal-cancel>annulla</button>
+                <button type="submit" class="action-link action-link--primary">invita</button>
+              </div>
+            </form>
+          </div>
+        </div>`;
+    }
+
+    function renderReportModal() {
+      return `
+        <div class="modal__overlay" data-report-modal-overlay>
+          <div class="modal modal--wide" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+            <div class="modal__header">
+              <h2 class="modal__title" id="report-modal-title">Invia report</h2>
+              <button type="button" class="modal__close" data-report-modal-close aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+            </div>
+            <form class="form form--report" data-report-form>
+              <div class="form__fields">
+                <div class="form__field">
+                  <label class="form__label" for="report-sender-name">Nome mittente</label>
+                  <input type="text" id="report-sender-name" name="senderName" class="form__input form__input--readonly" value="maria bianchi" readonly tabindex="-1" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="report-sender-email">Email mittente</label>
+                  <input type="email" id="report-sender-email" name="senderEmail" class="form__input form__input--readonly" value="m.bianchi@comunicareplus.it" readonly tabindex="-1" />
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="report-recipient">Email destinatario</label>
+                  <div class="form__select-wrapper">
+                    <select id="report-recipient" name="recipient" class="form__select">
+                      <option value="">Seleziona destinatario</option>
+                      <option value="elviro@cliente.it">Dottor Elviro (elviro@cliente.it)</option>
+                      <option value="mario@cliente.it">Mario Rossi (mario@cliente.it)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form__field">
+                  <label class="form__label" for="report-subject">Oggetto email</label>
+                  <input type="text" id="report-subject" name="subject" class="form__input" value="[Progetto Draghi] - Report attività ufficio stampa 22-7-2025" />
+                </div>
+                <div class="form__field form__field--link">
+                  <button type="button" class="action-link">
+                    <span class="action-link__icon" aria-hidden="true"><img src="../../assets/icons/content_copy.svg" alt="" /></span>
+                    <span class="action-link__label">copia link a questo report</span>
+                  </button>
+                </div>
+                <div class="form__field">
+                  <textarea id="report-message" name="message" class="form__textarea" rows="12">Gentile Dottor Elviro,
+
+siamo lieti di condividere con Lei i risultati dell'attività di comunicazione svolta.
+
+Visualizza il report completo http://mddr.com/345098
+
+Nel documento troverà l'analisi dettagliata delle pubblicazioni ottenute e i dati di reach.
+
+Restiamo a disposizione per qualsiasi chiarimento o approfondimento.
+
+Cordiali saluti,
+Maria Bianchi
+Account Manager Comunicare+ Agency
+Tel. 02 1234567 | m.bianchi@comunicareplus.it</textarea>
+                </div>
+                <div class="form__field form__field--checkbox">
+                  <label class="form__checkbox-label">
+                    <input type="checkbox" name="saveTemplate" class="form__checkbox" />
+                    <span class="form__checkbox-text">salva come template</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__actions">
+                <button type="button" class="action-link" data-report-modal-cancel>annulla</button>
+                <button type="submit" class="action-link action-link--primary">invia report</button>
+              </div>
+            </form>
+          </div>
+        </div>`;
+    }
+
+    // ── Modal: Modifica collaboratori ──────────────────────────────────────────
+    (function() {
+      const host = document.getElementById('collaborator-modal');
+      const btn  = document.getElementById('ctx-edit-collaborators-btn');
+      if (!host || !btn) return;
+      host.innerHTML = renderCollaboratorModal();
+
+      const overlay        = host.querySelector('[data-collaborator-modal-overlay]');
+      const closeBtn       = host.querySelector('[data-collaborator-modal-close]');
+      const cancelBtn      = host.querySelector('[data-collaborator-modal-cancel]');
+      const form           = host.querySelector('[data-collaborator-form]');
+      const statusEl       = document.getElementById('ctx-project-status');
+      const statusText     = document.getElementById('ctx-project-status-text');
+      const statusIcon     = document.getElementById('ctx-project-status-icon');
+      const chipsContainer = document.getElementById('collab-chips');
+
+      const savedCollaborators = new Set();
+
+      const projectName  = () => document.querySelector('#project-tabs-nav .tabs__tab--active')?.textContent?.trim() ?? 'questo progetto';
+      const checkedNames = () => [...form.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.closest('.form__field').querySelector('.form__checkbox-text').textContent.trim());
+
+      const updateStatus = () => {
+        const shared = [...form.querySelectorAll('input[type="checkbox"]')].some(cb => cb.checked);
+        if (statusEl)   statusEl.classList.toggle('project-context-bar__status--shared', shared);
+        if (statusText) statusText.textContent = shared ? 'progetto condiviso' : 'progetto privato';
+        if (statusIcon) statusIcon.src = shared ? '../../assets/icons/people.svg' : '../../assets/icons/lock.svg';
+      };
+
+      const setChip = (text) => {
+        if (!chipsContainer) return;
+        chipsContainer.innerHTML = '';
+        const chip = document.createElement('div');
+        chip.className = 'collab-chip';
+        chip.innerHTML = `<span>${text}</span><button type="button" class="collab-chip__close" aria-label="Rimuovi">${CLOSE_SMALL_SVG}</button>`;
+        chip.querySelector('.collab-chip__close').addEventListener('click', () => chip.remove());
+        chipsContainer.appendChild(chip);
+      };
+
+      const open = () => { overlay.classList.add('is-visible'); form.querySelector('input[type="checkbox"]')?.focus(); };
+
+      const save = () => {
+        overlay.classList.remove('is-visible');
+        const proj    = projectName();
+        const current = new Set(checkedNames());
+        const added   = [...current].filter(n => !savedCollaborators.has(n));
+        const removed = [...savedCollaborators].filter(n => !current.has(n));
+        savedCollaborators.clear();
+        current.forEach(n => savedCollaborators.add(n));
+        if (added.length > 0) {
+          setChip(`Aggiunto collaboratore ${added[added.length - 1]} a progetto ${proj}`);
+        } else if (removed.length > 0) {
+          setChip(`Rimosso collaboratore ${removed[removed.length - 1]} a progetto ${proj}`);
+        }
+      };
+
+      const discard = () => { overlay.classList.remove('is-visible'); form.reset(); updateStatus(); };
+
+      btn.addEventListener('click', open);
+      closeBtn.addEventListener('click', discard);
+      cancelBtn.addEventListener('click', discard);
+      overlay.addEventListener('click', e => { if (e.target === overlay) discard(); });
+      form.addEventListener('submit', e => { e.preventDefault(); save(); });
+      form.addEventListener('change', e => { if (e.target.matches('input[type="checkbox"]')) updateStatus(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-visible')) discard(); });
+    })();
+
+    // ── Modal: Invita ospite ───────────────────────────────────────────────────
+    (function() {
+      const host = document.getElementById('invite-guest-modal');
+      const btn  = document.getElementById('ctx-invite-guest-btn');
+      if (!host || !btn) return;
+      host.innerHTML = renderGuestModal();
+
+      const overlay   = host.querySelector('[data-guest-modal-overlay]');
+      const closeBtn  = host.querySelector('[data-guest-modal-close]');
+      const cancelBtn = host.querySelector('[data-guest-modal-cancel]');
+      const form      = host.querySelector('[data-guest-form]');
+
+      const open  = () => { overlay.classList.add('is-visible'); form.querySelector('select')?.focus(); };
+      const close = () => { overlay.classList.remove('is-visible'); form.reset(); };
+
+      btn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      cancelBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      form.addEventListener('submit', e => { e.preventDefault(); close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-visible')) close(); });
+    })();
+
+    // ── Modal: Invia report ────────────────────────────────────────────────────
+    (function() {
+      const host = document.getElementById('report-modal');
+      const btn  = document.getElementById('ctx-send-report-btn');
+      if (!host || !btn) return;
+      host.innerHTML = renderReportModal();
+
+      const overlay   = host.querySelector('[data-report-modal-overlay]');
+      const closeBtn  = host.querySelector('[data-report-modal-close]');
+      const cancelBtn = host.querySelector('[data-report-modal-cancel]');
+      const form      = host.querySelector('[data-report-form]');
+
+      const open  = () => { overlay.classList.add('is-visible'); form.querySelector('select')?.focus(); };
+      const close = () => { overlay.classList.remove('is-visible'); form.reset(); };
+
+      btn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      cancelBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      form.addEventListener('submit', e => { e.preventDefault(); close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-visible')) close(); });
+    })();
+  </script>
+
+</body>
+</html>
