@@ -726,6 +726,130 @@
     }
 
     .activity-section__indicators .activity-indicator { flex: 1; }
+
+    /* ── Help: sticky button + side panel ──────────────────────────── */
+
+    .help-button {
+      position: fixed;
+      right: var(--space-24);
+      bottom: var(--space-24);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--height-input-44);
+      height: var(--height-input-44);
+      padding: 0;
+      background-color: var(--color-background);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-12px);
+      cursor: pointer;
+      z-index: var(--z-200);
+      transition: box-shadow var(--transition-150), border-color var(--transition-150);
+    }
+
+    .help-button:hover {
+      border-color: var(--color-border-strong);
+      box-shadow: var(--shadow-24px);
+    }
+
+    .help-button img {
+      width: var(--space-24);
+      height: var(--space-24);
+    }
+
+    .side-panel--right {
+      left: auto;
+      right: 0;
+      width: min(420px, 90vw);
+      border-right: none;
+      border-left: var(--border-width) solid var(--color-border);
+      transform: translateX(100%);
+      z-index: var(--z-300);
+    }
+
+    .side-panel--right.is-open {
+      transform: translateX(0);
+    }
+
+    #help-panel-backdrop {
+      z-index: var(--z-300);
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    .accordion__item {
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+
+    .accordion__trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-16);
+      width: 100%;
+      padding: var(--space-16) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-family);
+      font-size: var(--fs-16);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+    }
+
+    .accordion__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform var(--transition-150);
+    }
+
+    .accordion__item.is-open .accordion__icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion__panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--transition-250);
+    }
+
+    .accordion__item.is-open .accordion__panel {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion__body {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .accordion__body-inner {
+      padding: 0 0 var(--space-16);
+      font-size: var(--fs-14);
+      line-height: var(--line-height-16);
+      color: var(--color-text);
+    }
+
+    .accordion__media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+
+    .accordion__media iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--border-radius);
+    }
   </style>
 </head>
 <body>
@@ -1110,6 +1234,227 @@
     <div class="side-panel__table" id="sp-panel-table"></div>
   </aside>
 
+  <!-- ── Help sticky button + side panel ─────────────────────────────── -->
+  <button type="button" class="help-button" id="help-button" aria-haspopup="dialog" aria-expanded="false" aria-controls="help-panel">
+    <img src="../../assets/icons/help.svg" alt="Aiuto" />
+  </button>
+
+  <div class="side-panel-backdrop" id="help-panel-backdrop"></div>
+  <aside class="side-panel side-panel--right" id="help-panel" role="dialog" aria-modal="true" aria-labelledby="help-panel-title">
+    <div class="side-panel__header">
+      <div class="side-panel__title-group">
+        <h2 class="titolo titolo--sezione" id="help-panel-title">Help</h2>
+      </div>
+      <button type="button" class="side-panel__close" id="help-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="accordion" id="help-accordion">
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-1">
+            Cos'è un progetto?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-1">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/xz9eRWlweNG" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-2">
+            La Dashboard in 2 min
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-2">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/2B7YRuVfBvU" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-3">
+            Filtro per giornalisti o per testate?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-3">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/AMEQ9nbaN11" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-4">
+            Su quale Banca Dati sto lavorando?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-4">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/Y3Lx8bPLLVE" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-5">
+            2 suggerimenti su come usare i filtri
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-5">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/cMKrXQ3MrVx" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-6">
+            Per creare una mailing list, devo salvare una selezione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-6">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/M2WkQ52gmfb" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-7">
+            Le schede giornalista e testata
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-7">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/j21zn0y5P40" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-8">
+            Non c'è bisogno di salvare un nuovo comunicato
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-8">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/VTj28gU0BqY" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-9">
+            Come creo una nuova spedizione?
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-9">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/PiJ8q1SWkFW" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-10">
+            Compongo i destinatari di una spedizione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-10">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/3WQSbVpxeT8" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-11">
+            "pulizia" dei destinatari di una spedizione
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-11">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/J6g5CZUbddq" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <h3>
+          <button type="button" class="accordion__trigger" aria-expanded="false" aria-controls="help-accordion-panel-12">
+            Contenuto di una spedizione: media pitch e comunicato
+            <span class="accordion__icon" aria-hidden="true"><img src="../../assets/icons/arrow_drop_down.svg" width="20" height="20" alt="" /></span>
+          </button>
+        </h3>
+        <div class="accordion__panel" id="help-accordion-panel-12">
+          <div class="accordion__body">
+            <div class="accordion__body-inner">
+              <div class="accordion__media">
+                <iframe src="https://share.descript.com/embed/aI7pqqa12n3" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
   <div class="dropdown" id="sp-status-filter-dropdown" hidden>
     <ul class="dropdown__list">
       <li class="dropdown__item dropdown__item--selected" data-value="tutti">tutti</li>
@@ -1462,6 +1807,37 @@
         return;
       }
       if (spPanel.classList.contains('is-open')) closeSpPanel();
+      if (helpPanel.classList.contains('is-open')) closeHelpPanel();
+    });
+
+    // ── Help side panel ──────────────────────────────────────────────
+    const helpButton = document.getElementById('help-button');
+    const helpPanel = document.getElementById('help-panel');
+    const helpPanelBackdrop = document.getElementById('help-panel-backdrop');
+    const helpPanelClose = document.getElementById('help-panel-close');
+
+    function openHelpPanel() {
+      helpPanel.classList.add('is-open');
+      helpPanelBackdrop.classList.add('is-open');
+      helpButton.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeHelpPanel() {
+      helpPanel.classList.remove('is-open');
+      helpPanelBackdrop.classList.remove('is-open');
+      helpButton.setAttribute('aria-expanded', 'false');
+    }
+
+    helpButton.addEventListener('click', openHelpPanel);
+    helpPanelClose.addEventListener('click', closeHelpPanel);
+    helpPanelBackdrop.addEventListener('click', closeHelpPanel);
+
+    helpPanel.querySelectorAll('.accordion__trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.accordion__item');
+        const isOpen = item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen);
+      });
     });
 
     const shipmentRows = [
