@@ -10,7 +10,7 @@ Nel caso invece in cui voglia attivarli, devo:
 
 che installa `playwright` come dev dependency e gli script di test.
 
-Qui sotto metto le RULES del progetto (che in locale vanno nel file corretto a seconda che io usi Cursor o Windsurf).
+Qui sotto metto le RULES del progetto (che in locale vanno nel file corretto a seconda che io usi Cursor o Windsurf)
 
 ## Stack
 - HTML + CSS + vanilla JS. Nessun framework, nessun build tool.
