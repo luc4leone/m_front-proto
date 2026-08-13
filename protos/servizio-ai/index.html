@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mailing list — prompt-first (proof of concept)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">
+        <div class="page__title-group">
+          <span class="page__proto-tag">proof of concept</span>
+          <h1 class="page__title">
+            Costruisci la lista con l'
+            <span class="ai-tooltip">
+              <span class="ai-tooltip__trigger" tabindex="0">AI</span>
+              <span class="ai-tooltip__bubble" role="tooltip"
+                >Assistente sperimentale: riconosce argomento, città e ruolo
+                da un vocabolario noto — non è un vero modello
+                linguistico.</span
+              >
+            </span>
+          </h1>
+          <p class="page__subtitle">
+            Descrivi chi vuoi raggiungere in linguaggio naturale. L'assistente
+            traduce la richiesta in filtri; puoi affinarli in chat o
+            passare alla vista manuale in qualsiasi momento — restano
+            sempre sincronizzati.
+          </p>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Modalità">
+          <button type="button" class="tab is-active" id="tabChat" role="tab" aria-selected="true">Chat AI</button>
+          <button type="button" class="tab" id="tabManual" role="tab" aria-selected="false">Filtri manuali</button>
+        </div>
+      </header>
+
+      <div class="filterbar" id="filterBar" aria-live="polite"></div>
+
+      <div class="split">
+        <section class="pane" id="paneChat">
+          <div class="chat">
+            <div class="chat__messages" id="chatMessages" aria-live="polite"></div>
+            <form class="chat__form" id="chatForm">
+              <input
+                type="text"
+                class="chat__input"
+                id="chatInput"
+                autocomplete="off"
+                aria-label="Messaggio"
+              />
+              <button type="submit" class="chat__send">Invia</button>
+            </form>
+            <div class="chat__suggestions" id="suggestions"></div>
+          </div>
+        </section>
+
+        <section class="pane" id="paneManual" hidden>
+          <div class="manual" id="manualFilters"></div>
+        </section>
+
+        <section class="pane results-pane">
+          <div class="results">
+            <div class="results__header">
+              <h2 class="results__title">Giornalisti</h2>
+              <span class="results__count"><strong id="resultsCount">0</strong> su <span id="resultsTotal">0</span></span>
+              <a href="#" class="results__reset" id="resetLink">azzera tutto</a>
+            </div>
+            <div class="cards-grid" id="cardsGrid"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
