@@ -1036,15 +1036,6 @@
                         id="mainTitleIcon"
                         aria-hidden="true"
                       ></span>
-                      <span class="shipment-title-prefix-wrap">
-                        <span class="step-badge step-badge--warn" aria-hidden="true"
-                          >4</span
-                        >
-                        <span
-                          class="sidebar-section-title shipment-title-prefix"
-                          >oggetto</span
-                        >
-                      </span>
                       <h1
                         class="main-title shipment-title-display"
                         id="mainTitle"
@@ -1336,6 +1327,35 @@
                       >
                     </span>
                   </span>
+                  <div
+                    class="sidebar-mode jt-view-toggle"
+                    role="radiogroup"
+                    aria-label="Visualizzazione giornalisti"
+                    id="journalistsDisplayModeToggle"
+                  >
+                    <input
+                      type="radio"
+                      name="journalistsDisplayMode"
+                      id="jdmGrid"
+                      value="grid"
+                      checked
+                    />
+                    <label class="sidebar-mode-option" for="jdmGrid"
+                      >griglia</label
+                    >
+                    <span class="sidebar-mode-separator" aria-hidden="true"
+                      >/</span
+                    >
+                    <input
+                      type="radio"
+                      name="journalistsDisplayMode"
+                      id="jdmTableA"
+                      value="table-a"
+                    />
+                    <label class="sidebar-mode-option" for="jdmTableA"
+                      >tabella</label
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -2765,6 +2785,29 @@
 
       if (typeof appState.ui.showHelp !== "boolean") {
         appState.ui.showHelp = true;
+      }
+
+      if (
+        appState.ui.journalistsDisplayMode !== "grid" &&
+        appState.ui.journalistsDisplayMode !== "table-a"
+      ) {
+        appState.ui.journalistsDisplayMode = "grid";
+      }
+
+      function getJournalistsDisplayMode() {
+        return appState?.ui?.journalistsDisplayMode === "table-a"
+          ? "table-a"
+          : "grid";
+      }
+
+      function setJournalistsDisplayMode(mode) {
+        const next = mode === "table-a" ? "table-a" : "grid";
+        if (!appState.ui || typeof appState.ui !== "object") {
+          appState.ui = {};
+        }
+        appState.ui.journalistsDisplayMode = next;
+        saveAppState(appState);
+        if (typeof scheduleRender === "function") scheduleRender();
       }
 
       function normalizeId(value) {
@@ -10760,6 +10803,136 @@
         return card;
       }
 
+      function createJournalistTableHead() {
+        const head = document.createElement("div");
+        head.className = "jt-head";
+        head.setAttribute("aria-hidden", "true");
+        head.innerHTML = `
+          <span class="jt-cell jt-cell--select"></span>
+          <span class="jt-cell jt-cell--name">nome</span>
+          <span class="jt-cell jt-cell--servizio">servizio</span>
+          <span class="jt-cell jt-cell--testate">testate</span>
+          <span class="jt-cell jt-cell--contatti">contatti</span>
+          <span class="jt-cell jt-cell--disclosure"></span>
+        `;
+        return head;
+      }
+
+      function createJournalistRow(j, externalHighlightTerms) {
+        const row = document.createElement("div");
+        row.className = "card jt-row jt-row--a";
+
+        const jid = normalizeId(getJournalistId(j));
+        row.dataset.jid = jid;
+
+        const rawFirstName = String(j?.nome || "").trim();
+        const rawLastName = String(j?.cognome || "").trim();
+        const fullName = `${rawFirstName} ${rawLastName}`.trim();
+        row.dataset.fullName = fullName;
+
+        const isSelected = selectedJournalistIds.has(jid);
+        if (isSelected) row.classList.add("is-selected");
+
+        const checkboxId = `jt-select-${jid.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
+
+        const terms = [
+          ...getHighlightTextTerms(),
+          ...(Array.isArray(externalHighlightTerms)
+            ? externalHighlightTerms
+            : []),
+        ].filter((x) => String(x || "").trim());
+
+        const email = String(j?.email || "").trim();
+        const phone = String(j?.telefono || "").trim();
+        const servizio = String(j?.servizio || "").trim();
+        const ruolo = String(j?.ruolo || "").trim();
+
+        const testate = getJournalistTestate(j);
+        const testataLink = (tname) =>
+          `<a href="#" class="testata-link" data-testata="${escapeHtml(
+            tname,
+          )}">${escapeHtml(tname)}</a>`;
+        let testateHtml;
+        if (!testate.length) {
+          testateHtml = '<span class="muted">n/d</span>';
+        } else if (testate.length === 1) {
+          testateHtml = `<span class="jt-testate-current">${testataLink(
+            testate[0],
+          )}</span>`;
+        } else {
+          testateHtml = `
+            <span class="jt-testate-current">${testataLink(testate[0])}</span>
+            <button
+              type="button"
+              class="jt-testate-toggle"
+              aria-expanded="false"
+              aria-label="tutte le testate (${testate.length})"
+            ><span class="jt-testate-count">+${testate.length - 1}</span><span class="jt-testate-chevron" aria-hidden="true">›</span></button>
+            <span class="jt-testate-list" hidden>
+              ${testate.map(testataLink).join("")}
+            </span>`;
+        }
+
+        const notesArr = normalizeNotes(j?.note);
+        const notesCombined = combineNotes(notesArr);
+        const noteHtml = notesArr.length
+          ? highlightHtmlMulti(notesCombined, terms)
+          : '<em class="muted">nessuna nota</em>';
+
+        const emailCellHtml = email
+          ? highlightHtmlMulti(email, terms)
+          : '<span class="muted">n/d</span>';
+        const phoneCellHtml = phone
+          ? escapeHtml(phone)
+          : '<span class="muted">n/d</span>';
+
+        row.innerHTML = `
+          <span class="jt-cell jt-cell--select">
+            <input
+              class="card-select"
+              type="checkbox"
+              id="${checkboxId}"
+              data-jid="${jid}"
+              ${isSelected ? "checked" : ""}
+              aria-label="seleziona ${escapeHtml(fullName)}"
+            />
+          </span>
+          <span class="jt-cell jt-cell--name">
+            <a
+              href="#"
+              class="journalist-link jt-name-link"
+              data-journalist="${escapeHtml(fullName)}"
+              title="${escapeHtml(fullName)}"
+            >${highlightHtmlMulti(fullName, terms)}</a>
+            ${ruolo ? `<span class="jt-role">${escapeHtml(ruolo)}</span>` : ""}
+          </span>
+          <span class="jt-cell jt-cell--servizio" title="${escapeHtml(servizio)}">${
+            servizio ? escapeHtml(servizio) : '<span class="muted">n/d</span>'
+          }</span>
+          <span class="jt-cell jt-cell--testate" title="${escapeHtml(
+            testate.join(" • "),
+          )}">${testateHtml}</span>
+          <span class="jt-cell jt-cell--contatti">
+            <span class="jt-contatti-email" title="${escapeHtml(email)}">${emailCellHtml}</span>
+            <span class="jt-contatti-tel" title="${escapeHtml(phone)}">${phoneCellHtml}</span>
+          </span>
+          <span class="jt-cell jt-cell--disclosure">
+            <button
+              type="button"
+              class="jt-row__disclosure"
+              aria-expanded="false"
+              aria-label="mostra note"
+            ><span class="jt-row__chevron" aria-hidden="true">›</span></button>
+          </span>
+          <div class="jt-row__detail" hidden>
+            <span class="jt-detail-label">note</span>
+            <span class="jt-note">${noteHtml}</span>
+          </div>
+        `;
+
+        return row;
+      }
+
       const CARD_TOP_MIN_GAP_PX = 8;
       let cardNameLayoutRaf = 0;
       let cardsGridResizeObserver = null;
@@ -18751,6 +18924,24 @@
             isMainTestateMode && !isSpedisciListaView ? "none" : "";
         }
 
+        const isJournalistTableEligible =
+          !isSpedisciListaView && !isMailingListView && !isMainTestateMode;
+        const journalistsDisplayMode = isJournalistTableEligible
+          ? getJournalistsDisplayMode()
+          : "grid";
+        {
+          const toggleEl = document.getElementById(
+            "journalistsDisplayModeToggle",
+          );
+          if (toggleEl) {
+            toggleEl.style.display = isJournalistTableEligible ? "" : "none";
+            const activeRadio = toggleEl.querySelector(
+              `input[name="journalistsDisplayMode"][value="${journalistsDisplayMode}"]`,
+            );
+            if (activeRadio && !activeRadio.checked) activeRadio.checked = true;
+          }
+        }
+
         let sortMode = getSortMode();
         const isTestateSortManuallyOverridden =
           !!appState.testateSortManuallyOverridden;
@@ -18836,7 +19027,10 @@
           }
         }
 
-        const cardsModeKey = isMainTestateMode ? "testate" : "giornalisti";
+        const cardsModeKey =
+          (isMainTestateMode ? "testate" : "giornalisti") +
+          "|" +
+          journalistsDisplayMode;
         const cardsModeChanged = cardsModeKey !== lastRenderedMode;
         const shouldClearGrid = cardsModeChanged || cardsQueryKeyChanged;
         if (shouldClearGrid) {
@@ -20083,11 +20277,24 @@
           ? 0
           : Math.min(lastRenderedJournalistCount, endIndex);
 
+        const isJournalistTableView = journalistsDisplayMode === "table-a";
+        if (grid) {
+          grid.classList.toggle("cards-grid--table", isJournalistTableView);
+        }
+
         if (shouldClearGrid) {
           if (cardsLoader) {
             cardsLoader.style.display = "block";
           }
           resetCardsGridScaffold();
+        }
+        if (grid) {
+          const existingHead = grid.querySelector(".jt-head");
+          if (isJournalistTableView && !existingHead) {
+            grid.insertBefore(createJournalistTableHead(), grid.firstChild);
+          } else if (!isJournalistTableView && existingHead) {
+            existingHead.remove();
+          }
         }
 
         const shipmentHighlightTerms =
@@ -20099,7 +20306,10 @@
           items: sorted,
           startIndex,
           endIndex,
-          createElement: (j) => createCard(j, shipmentHighlightTerms),
+          createElement: (j) =>
+            isJournalistTableView
+              ? createJournalistRow(j, getHighlightTextTerms())
+              : createCard(j, shipmentHighlightTerms),
           onDone: () => {
             lastRenderedJournalistCount = endIndex;
             requestAnimationFrame(() => {
@@ -20346,6 +20556,14 @@
         });
       });
 
+      document
+        .querySelectorAll('input[name="journalistsDisplayMode"]')
+        .forEach((el) => {
+          el.addEventListener("change", () => {
+            if (el.checked) setJournalistsDisplayMode(el.value);
+          });
+        });
+
       const cardsGrid = document.getElementById("cardsGrid");
       if (cardsGrid) {
         scheduleUpdateCardNameLayouts();
@@ -20375,6 +20593,58 @@
 
           const emailSelect = e.target?.closest?.(".card-email-select");
           if (emailSelect) return;
+
+          const testateToggle = e.target?.closest?.(".jt-testate-toggle");
+          if (testateToggle) {
+            e.preventDefault();
+            e.stopPropagation();
+            const cell = testateToggle.closest(".jt-cell--testate");
+            const list = cell?.querySelector(".jt-testate-list");
+            const willOpen = !!list && list.hidden;
+            document
+              .querySelectorAll(".jt-testate-list:not([hidden])")
+              .forEach((el) => {
+                if (el !== list) {
+                  el.hidden = true;
+                  el
+                    .closest(".jt-cell--testate")
+                    ?.querySelector(".jt-testate-toggle")
+                    ?.setAttribute("aria-expanded", "false");
+                }
+              });
+            if (list) {
+              list.hidden = !willOpen;
+              testateToggle.setAttribute(
+                "aria-expanded",
+                willOpen ? "true" : "false",
+              );
+            }
+            return;
+          }
+
+          const jtRow = e.target?.closest?.(".jt-row--a");
+          if (
+            jtRow &&
+            !e.target?.closest?.(".journalist-link") &&
+            !e.target?.closest?.(".testata-link") &&
+            !e.target?.closest?.(".jt-testate-list")
+          ) {
+            e.preventDefault();
+            const detail = jtRow.querySelector(".jt-row__detail");
+            const disclosure = jtRow.querySelector(".jt-row__disclosure");
+            if (detail) {
+              const willOpen = detail.hidden;
+              detail.hidden = !willOpen;
+              jtRow.classList.toggle("is-expanded", willOpen);
+              if (disclosure) {
+                disclosure.setAttribute(
+                  "aria-expanded",
+                  willOpen ? "true" : "false",
+                );
+              }
+            }
+            return;
+          }
 
           const removeFromListBtn = e.target?.closest?.(
             ".card-remove-from-list[data-remove-from-list-jid]",
@@ -20416,6 +20686,7 @@
             !testataLink &&
             !journalistLink
           ) {
+            if (e.target?.closest?.(".jt-row")) return;
             const card = e.target?.closest?.(".card");
             if (!card) return;
             if (appState.view === "spedisci-lista") {
@@ -20550,6 +20821,15 @@
             return;
           }
 
+          const openTestataList = testataLink.closest(".jt-testate-list");
+          if (openTestataList) {
+            openTestataList.hidden = true;
+            openTestataList
+              .closest(".jt-cell--testate")
+              ?.querySelector(".jt-testate-toggle")
+              ?.setAttribute("aria-expanded", "false");
+          }
+
           const key = testataLink.getAttribute("data-testata-key");
           const testata =
             testataLink.getAttribute("data-testata") || testataLink.textContent;
@@ -20592,6 +20872,19 @@
               renderSelectedPanelList();
             }
           }
+        });
+
+        document.addEventListener("click", (e) => {
+          if (e.target?.closest?.(".jt-cell--testate")) return;
+          document
+            .querySelectorAll(".jt-testate-list:not([hidden])")
+            .forEach((el) => {
+              el.hidden = true;
+              el
+                .closest(".jt-cell--testate")
+                ?.querySelector(".jt-testate-toggle")
+                ?.setAttribute("aria-expanded", "false");
+            });
         });
 
         testataPanelBody.addEventListener("keydown", (e) => {
