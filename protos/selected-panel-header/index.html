@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selected panel — header su una riga</title>
+
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/tokens.css" />
+    <link rel="stylesheet" href="../../css/theme-default.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../components/split-button.css" />
+    <link rel="stylesheet" href="../../components/count-pill.css" />
+    <link rel="stylesheet" href="../../components/link.css" />
+
+    <style>
+      /* ═══════════════════════════════════════════════════════════
+         Pagina di confronto — solo layout della demo.
+         Tutti i valori vengono da tokens.css / theme-default.css.
+      ═══════════════════════════════════════════════════════════ */
+
+      :root {
+        --panel-w: 360px;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--space-40) var(--space-24) var(--space-80);
+      }
+
+      .page__title {
+        font-size: var(--fs-30);
+        font-weight: var(--fw-700);
+        margin-bottom: var(--space-8);
+      }
+
+      .page__intro {
+        max-width: var(--paragraph-80);
+        color: var(--color-text-muted);
+        font-size: var(--fs-14);
+      }
+
+      /* ─── Controllo larghezza pannello ─────────────────────── */
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: var(--space-12);
+        margin: var(--space-24) 0 var(--space-32);
+        padding: var(--space-12) var(--space-16);
+        background: var(--color-surface);
+        border: var(--border-width) solid var(--color-border);
+        border-radius: var(--border-radius);
+        font-size: var(--fs-14);
+      }
+
+      .controls label {
+        font-weight: var(--fw-600);
+        white-space: nowrap;
+      }
+
+      .controls input[type="range"] {
+        flex: 1 1 auto;
+        max-width: 280px;
+        height: var(--space-4);
+        background: var(--color-border-strong);
+        border-radius: var(--radius-full);
+        cursor: pointer;
+      }
+
+      .controls input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: var(--space-16);
+        height: var(--space-16);
+        border-radius: var(--radius-full);
+        background: var(--color-primary);
+      }
+
+      .controls output {
+        font-variant-numeric: tabular-nums;
+        color: var(--color-text-muted);
+        min-width: 5ch;
+      }
+
+      /* ─── Griglia varianti ─────────────────────────────────── */
+
+      .variants {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: var(--space-32);
+        align-items: start;
+      }
+
+      .variant {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-12);
+      }
+
+      .variant__head {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .variant__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-8);
+        font-size: var(--fs-12);
+        font-weight: var(--fw-700);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      .variant__tag::before {
+        content: "";
+        width: var(--space-16);
+        height: var(--border-width-2);
+        background: var(--color-primary);
+      }
+
+      .variant--problem .variant__tag::before {
+        background: var(--color-error);
+      }
+
+      .variant__name {
+        font-size: var(--fs-18);
+        font-weight: var(--fw-700);
+      }
+
+      .variant__note {
+        font-size: var(--fs-14);
+        color: var(--color-text-muted);
+        max-width: var(--paragraph-40);
+      }
+
+      .variant__verdict {
+        font-size: var(--fs-12);
+        color: var(--color-text-muted);
+        border-left: var(--border-width-2) solid var(--color-border-strong);
+        padding-left: var(--space-8);
+        max-width: var(--paragraph-40);
+      }
+
+      /* Palcoscenico: simula il bordo destro dell'app */
+      .stage {
+        background: var(--color-background);
+        border: var(--border-width) solid var(--color-border);
+        border-radius: var(--border-radius);
+        padding: var(--space-24) var(--space-16);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        min-height: 240px;
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         Il pannello
+      ═══════════════════════════════════════════════════════════ */
+
+      .sel-panel {
+        width: var(--panel-w);
+        max-width: 100%;
+        background: var(--color-surface);
+        border: var(--border-width) solid var(--color-border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-3px);
+        transition: background var(--transition-150),
+          border-color var(--transition-150);
+      }
+
+      .sel-panel__head {
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+        padding: var(--space-10) var(--space-12);
+        min-height: var(--height-input-44);
+      }
+
+      .sel-panel__label {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-8);
+        min-width: 0;
+      }
+
+      .sel-panel__title {
+        font-size: var(--fs-16);
+        font-weight: var(--fw-700);
+        color: var(--color-text-strong);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .sel-panel__spacer {
+        flex: 1 1 auto;
+        min-width: var(--space-8);
+      }
+
+      /* Corpo collassabile */
+      .sel-panel__body {
+        display: none;
+        border-top: var(--border-width) solid var(--color-border);
+        padding: var(--space-8) 0;
+      }
+
+      .sel-panel.is-open .sel-panel__body {
+        display: block;
+      }
+
+      .sel-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+        padding: var(--space-8) var(--space-12);
+      }
+
+      .sel-item:hover {
+        background: var(--grey-050);
+      }
+
+      .sel-item__text {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      .sel-item__name {
+        font-size: var(--fs-14);
+        font-weight: var(--fw-600);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .sel-item__meta {
+        font-size: var(--fs-12);
+        color: var(--color-text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .sel-item__remove {
+        border: 0;
+        background: var(--transparent);
+        color: var(--color-text-muted);
+        cursor: pointer;
+        font-size: var(--fs-18);
+        line-height: 1;
+        padding: var(--space-2) var(--space-6);
+        border-radius: var(--border-radius);
+      }
+
+      .sel-item__remove:hover {
+        background: var(--grey-100);
+        color: var(--color-text-strong);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         Toggle del pannello — tre trattamenti
+      ═══════════════════════════════════════════════════════════ */
+
+      .panel-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-8);
+        background: var(--transparent);
+        font-family: inherit;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        border-radius: var(--border-radius);
+        transition: background var(--transition-150),
+          color var(--transition-150), border-color var(--transition-150);
+      }
+
+      .panel-toggle:focus-visible {
+        outline: var(--border-width-2) solid var(--color-primary);
+        outline-offset: var(--space-2);
+      }
+
+      /* — riquadrato, come oggi — */
+      .panel-toggle--boxed {
+        border: var(--border-width) solid var(--color-border-strong);
+        padding: var(--space-6);
+      }
+
+      .panel-toggle--boxed:hover {
+        border-color: var(--grey-500);
+        color: var(--color-text-strong);
+      }
+
+      /* — ghost, senza bordo: struttura, non azione — */
+      .panel-toggle--ghost {
+        border: var(--border-width) solid var(--transparent);
+        padding: var(--space-6);
+      }
+
+      .panel-toggle--ghost:hover {
+        background: var(--grey-100);
+        color: var(--color-text-strong);
+      }
+
+      /* — riga intera cliccabile (variante A) — */
+      .panel-toggle--row {
+        border: var(--border-width) solid var(--transparent);
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: flex-start;
+        text-align: left;
+        padding: var(--space-6) var(--space-6) var(--space-6) var(--space-4);
+        margin-left: calc(-1 * var(--space-4));
+        color: var(--color-text-strong);
+      }
+
+      .panel-toggle--row:hover {
+        background: var(--grey-100);
+      }
+
+      /* In a2 la pill esce dal toggle: la riga si ferma alla label */
+      .panel-toggle--row-fit {
+        flex: 0 1 auto;
+      }
+
+      /* — a3: l’hover sulla label tinge il pannello, non la riga — */
+      .panel-toggle--row-panel:hover {
+        background: var(--transparent);
+      }
+
+      .sel-panel:not(.is-open):has(.panel-toggle--row-panel:hover) {
+        background: var(--grey-100);
+        border-color: var(--color-border-strong);
+      }
+
+      /* Da aperto il pannello è alto: l’evidenza torna sulla sola riga */
+      .sel-panel.is-open .panel-toggle--row-panel:hover {
+        background: var(--grey-100);
+      }
+
+      /* Il triangolo dello split button riusato come chevron del pannello:
+         ha già la sua transizione, qui servono solo colore e rotazione.
+         Le tre regole “aperto” hanno la stessa specificità di proposito. */
+      .panel-toggle .split-button__arrow {
+        flex: 0 0 auto;
+      }
+
+      /* Il componente fa la freccia color testo (quasi nera): su questa
+         pagina tutte le frecce — split button inclusi — stanno sullo
+         stesso grigio, così le varianti si confrontano a parità di peso. */
+      .split-button__arrow {
+        border-top-color: var(--color-text-muted);
+      }
+
+      .panel-toggle:hover .split-button__arrow,
+      .split-button__toggle:hover .split-button__arrow {
+        border-top-color: var(--color-text-strong);
+      }
+
+      /* ▾ chiuso, ▴ aperto */
+      .sel-panel.is-open .panel-arrow--down {
+        transform: rotate(180deg);
+      }
+
+      /* accordion: ▸ chiuso, ▾ aperto */
+      .panel-arrow--v {
+        transform: rotate(-90deg);
+      }
+
+      .sel-panel.is-open .panel-arrow--v {
+        transform: rotate(0deg);
+      }
+
+      /* pannello che scorre: ◂ chiuso, ▸ aperto */
+      .panel-arrow--h {
+        transform: rotate(90deg);
+      }
+
+      .sel-panel.is-open .panel-arrow--h {
+        transform: rotate(-90deg);
+      }
+
+      /* Footprint stabile: il triangolo è più piccolo di un’icona 16px */
+      .panel-toggle--boxed,
+      .panel-toggle--ghost {
+        min-width: var(--space-28);
+        min-height: var(--space-28);
+        justify-content: center;
+      }
+
+      /* Separatore verticale tra azione e struttura */
+      .head-divider {
+        flex: 0 0 auto;
+        width: var(--border-width);
+        align-self: stretch;
+        margin: var(--space-4) var(--space-4);
+        background: var(--color-border);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         Variante C — bottone semplice + kebab
+      ═══════════════════════════════════════════════════════════ */
+
+      .plain-button {
+        border: var(--border-width) solid var(--grey-400);
+        background: var(--transparent);
+        border-radius: var(--border-radius);
+        padding: var(--space-4) var(--space-8);
+        font-family: inherit;
+        font-size: var(--fs-14);
+        font-weight: var(--fw-600);
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .plain-button:hover {
+        border-color: var(--grey-500);
+      }
+
+      .menu {
+        position: relative;
+        display: inline-flex;
+        flex: 0 0 auto;
+      }
+
+      .kebab {
+        border: var(--border-width) solid var(--transparent);
+        background: var(--transparent);
+        color: var(--color-text-muted);
+        cursor: pointer;
+        padding: var(--space-6);
+        border-radius: var(--border-radius);
+      }
+
+      .kebab:hover,
+      .kebab[aria-expanded="true"] {
+        background: var(--grey-100);
+        color: var(--color-text-strong);
+      }
+
+      .menu__list {
+        position: absolute;
+        right: 0;
+        top: calc(100% + var(--space-4));
+        min-width: 220px;
+        z-index: var(--z-100);
+        background: var(--color-surface);
+        border: var(--border-width) solid var(--color-border);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-12px);
+        padding: var(--space-4) 0;
+        display: none;
+      }
+
+      .menu__list.is-open {
+        display: block;
+      }
+
+      .menu__item {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: var(--transparent);
+        font-family: inherit;
+        font-size: var(--fs-14);
+        color: var(--color-text);
+        padding: var(--space-8) var(--space-12);
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .menu__item:hover {
+        background: var(--grey-050);
+      }
+
+      .menu__sep {
+        height: var(--border-width);
+        background: var(--color-border);
+        margin: var(--space-4) 0;
+      }
+
+      .menu__item--danger {
+        color: var(--color-error);
+      }
+
+      /* Voci del menu split (riuso del componente di sistema) */
+      .split-button__menu .menu__item {
+        font-weight: var(--fw-400);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         Tab tra sotto-varianti (a1 | a2, c1 | c2)
+      ═══════════════════════════════════════════════════════════ */
+
+      [hidden] {
+        display: none !important;
+      }
+
+      .tabs {
+        display: inline-flex;
+        gap: var(--space-2);
+        border-bottom: var(--border-width) solid var(--color-border);
+        align-self: flex-start;
+      }
+
+      .tab {
+        border: 0;
+        background: var(--transparent);
+        font-family: inherit;
+        font-size: var(--fs-14);
+        font-weight: var(--fw-600);
+        color: var(--color-text-muted);
+        padding: var(--space-6) var(--space-12);
+        cursor: pointer;
+        border-bottom: var(--border-width-2) solid var(--transparent);
+        margin-bottom: calc(-1 * var(--border-width));
+        transition: color var(--transition-150),
+          border-color var(--transition-150);
+      }
+
+      .tab:hover {
+        color: var(--color-text);
+      }
+
+      .tab.is-active {
+        color: var(--color-text-strong);
+        border-bottom-color: var(--color-primary);
+      }
+
+      .tab:focus-visible {
+        outline: var(--border-width-2) solid var(--color-primary);
+        outline-offset: var(--space-2);
+      }
+
+      /* ═══════════════════════════════════════════════════════════
+         Pill con azione — numero + cestino (varianti a2 / c2)
+      ═══════════════════════════════════════════════════════════ */
+
+      .count-pill--action {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-16); /* 16px tra numero e cestino */
+        padding-right: var(--space-6);
+      }
+
+      .pill-trash {
+        display: inline-flex;
+        align-items: center;
+        border: 0;
+        padding: 0;
+        background: var(--transparent);
+        color: var(--color-text-muted);
+        cursor: pointer;
+        border-radius: var(--radius-full);
+        transition: color var(--transition-150);
+      }
+
+      .pill-trash:hover {
+        color: var(--color-error);
+      }
+
+      .pill-trash:focus-visible {
+        outline: var(--border-width-2) solid var(--color-primary);
+        outline-offset: var(--space-2);
+      }
+
+      /* Stato vuoto dopo il cestino */
+      .sel-empty {
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-8);
+        padding: var(--space-12);
+        font-size: var(--fs-14);
+        color: var(--color-text-muted);
+      }
+
+      .sel-empty button {
+        border: 0;
+        background: var(--transparent);
+        font-family: inherit;
+        font-size: var(--fs-12);
+        color: var(--color-primary);
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* Evidenzia la collisione nella variante problema */
+      .collision {
+        outline: var(--border-width-2) dashed var(--color-error);
+        outline-offset: var(--space-2);
+        border-radius: var(--border-radius);
+      }
+
+      .legend {
+        margin-top: var(--space-48);
+        padding-top: var(--space-24);
+        border-top: var(--border-width) solid var(--color-border);
+        font-size: var(--fs-14);
+        color: var(--color-text-muted);
+        max-width: var(--paragraph-80);
+      }
+
+      .legend h2 {
+        font-size: var(--fs-18);
+        color: var(--color-text);
+        margin-bottom: var(--space-8);
+      }
+
+      .legend li {
+        margin-bottom: var(--space-8);
+      }
+
+      .legend strong {
+        color: var(--color-text);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <h1 class="page__title">Selected panel — header su una riga</h1>
+      <p class="page__intro">
+        Portando lo split button “salva lista” sulla stessa riga di
+        “Selezionati”, il suo chevron finisce accanto al chevron che apre il
+        pannello: due glifi identici, due significati diversi. Tre modi per
+        risolverlo. Usa lo slider per verificare che reggano anche alla
+        larghezza reale del pannello (oggi
+        <code>min(20vw, 282px)</code>).
+      </p>
+
+      <div class="controls">
+        <label for="widthRange">larghezza pannello</label>
+        <input
+          type="range"
+          id="widthRange"
+          min="260"
+          max="440"
+          step="2"
+          value="360"
+        />
+        <output id="widthOut">360px</output>
+      </div>
+
+      <div class="variants">
+        <!-- ═══ PROBLEMA ═══════════════════════════════════════ -->
+        <section class="variant variant--problem">
+          <div class="variant__head">
+            <span class="variant__tag">problema</span>
+            <h2 class="variant__name">Riga singola, così com’è</h2>
+            <p class="variant__note">
+              I due chevron sono adiacenti, stesso glifo e stesso peso: sembrano
+              due parti dello stesso controllo.
+            </p>
+          </div>
+
+          <div class="stage">
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <span class="sel-panel__label">
+                  <span class="count-pill">1</span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </span>
+                <span class="sel-panel__spacer"></span>
+
+                <span class="split-button collision" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                  </div>
+                </span>
+
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--boxed collision"
+                  data-panel-toggle
+                  aria-expanded="false"
+                  aria-label="apri pannello selezionati"
+                >
+                  <span class="split-button__arrow panel-arrow--down" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <p class="variant__verdict">
+            Distanziarli non basta: il problema è la somiglianza, non i pixel.
+          </p>
+        </section>
+
+        <!-- ═══ A ═══════════════════════════════════════════════ -->
+        <section class="variant" data-group="a">
+          <div class="variant__head">
+            <span class="variant__tag">variante A</span>
+            <h2 class="variant__name">Chevron a sinistra, riga cliccabile</h2>
+            <p class="variant__note" data-pane="a1">
+              Il toggle del pannello passa a sinistra come in un accordion: i
+              due chevron finiscono agli estremi opposti. Badge e label sono
+              dentro il bottone, quindi il target è tutta la riga.
+            </p>
+            <p class="variant__note" data-pane="a2" hidden>
+              Come a1, ma la pill scavalca la label e si porta dentro il
+              cestino: il conteggio e l’azione che lo azzera diventano un
+              oggetto solo.
+            </p>
+            <p class="variant__note" data-pane="a3" hidden>
+              Come a2, ma l’hover sulla label non evidenzia la riga: tinge
+              tutto il pannello chiuso. Il click apre quell’oggetto lì, non
+              preme un bottone.
+            </p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="varianti A">
+            <button
+              type="button"
+              class="tab is-active"
+              role="tab"
+              aria-selected="true"
+              data-tab="a1"
+            >
+              a1
+            </button>
+            <button
+              type="button"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              data-tab="a2"
+            >
+              a2
+            </button>
+            <button
+              type="button"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              data-tab="a3"
+            >
+              a3
+            </button>
+          </div>
+
+          <div class="stage" data-pane="a1">
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--row"
+                  data-panel-toggle
+                  aria-expanded="false"
+                >
+                  <span class="split-button__arrow panel-arrow--v" aria-hidden="true"></span>
+                  <span class="count-pill">1</span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </button>
+
+                <span class="split-button" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                    <div class="menu__sep" role="separator"></div>
+                    <button type="button" class="menu__item menu__item--danger">
+                      rimuovi selezionati
+                    </button>
+                  </div>
+                </span>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <div class="stage" data-pane="a2" hidden>
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--row panel-toggle--row-fit"
+                  data-panel-toggle
+                  aria-expanded="false"
+                >
+                  <span class="split-button__arrow panel-arrow--v" aria-hidden="true"></span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </button>
+
+                <span class="count-pill count-pill--action">
+                    <span data-count>1</span>
+                    <button
+                      type="button"
+                      class="pill-trash"
+                      data-clear
+                      aria-label="rimuovi tutti i selezionati"
+                    >
+                      <svg
+                      viewBox="0 0 16 16"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.2h11" />
+                      <path d="M6.4 4.2V2.9h3.2v1.3" />
+                      <path d="M4.1 4.2l.6 8.3a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9l.6-8.3" />
+                      <path d="M6.7 6.7v4.3M9.3 6.7v4.3" />
+                    </svg>
+                    </button>
+                  </span>
+
+                <span class="sel-panel__spacer"></span>
+
+                <span class="split-button" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                    <div class="menu__sep" role="separator"></div>
+                    <button type="button" class="menu__item menu__item--danger">
+                      rimuovi selezionati
+                    </button>
+                  </div>
+                </span>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <div class="stage" data-pane="a3" hidden>
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--row panel-toggle--row-fit panel-toggle--row-panel"
+                  data-panel-toggle
+                  aria-expanded="false"
+                >
+                  <span class="split-button__arrow panel-arrow--v" aria-hidden="true"></span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </button>
+
+                <span class="count-pill count-pill--action">
+                    <span data-count>1</span>
+                    <button
+                      type="button"
+                      class="pill-trash"
+                      data-clear
+                      aria-label="rimuovi tutti i selezionati"
+                    >
+                      <svg
+                      viewBox="0 0 16 16"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.2h11" />
+                      <path d="M6.4 4.2V2.9h3.2v1.3" />
+                      <path d="M4.1 4.2l.6 8.3a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9l.6-8.3" />
+                      <path d="M6.7 6.7v4.3M9.3 6.7v4.3" />
+                    </svg>
+                    </button>
+                  </span>
+
+                <span class="sel-panel__spacer"></span>
+
+                <span class="split-button" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                    <div class="menu__sep" role="separator"></div>
+                    <button type="button" class="menu__item menu__item--danger">
+                      rimuovi selezionati
+                    </button>
+                  </div>
+                </span>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <p class="variant__verdict" data-pane="a1">
+            Target grande e scopribile, zero ambiguità. In cambio la label non è
+            più allineata al bordo del pannello.
+          </p>
+          <p class="variant__verdict" data-pane="a2" hidden>
+            La pill diventa interattiva, quindi esce dal target del toggle: la
+            riga cliccabile si accorcia a chevron + label.
+          </p>
+          <p class="variant__verdict" data-pane="a3" hidden>
+            L’affordance più leggibile delle tre, ma un pannello che si accende
+            al passaggio è un segnale forte: da provare accanto alle card della
+            lista, che reagiscono anche loro all’hover.
+          </p>
+        </section>
+
+        <!-- ═══ B ═══════════════════════════════════════════════ -->
+        <section class="variant">
+          <div class="variant__head">
+            <span class="variant__tag">variante B</span>
+            <h2 class="variant__name">Direzione e peso diversi</h2>
+            <p class="variant__note">
+              Il chevron resta a destra ma diventa orizzontale e senza bordo:
+              verticale = menu che scende, orizzontale = pannello che scorre.
+              Separatore e peso visivo distinguono struttura da azione.
+            </p>
+          </div>
+
+          <div class="stage">
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <span class="sel-panel__label">
+                  <span class="count-pill">1</span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </span>
+                <span class="sel-panel__spacer"></span>
+
+                <span class="split-button" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                    <div class="menu__sep" role="separator"></div>
+                    <button type="button" class="menu__item menu__item--danger">
+                      rimuovi selezionati
+                    </button>
+                  </div>
+                </span>
+
+                <span class="head-divider" aria-hidden="true"></span>
+
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--ghost"
+                  data-panel-toggle
+                  aria-expanded="false"
+                  aria-label="apri pannello selezionati"
+                >
+                  <span class="split-button__arrow panel-arrow--h" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <p class="variant__verdict">
+            Cambia poco rispetto a oggi ed è la più compatta. Regge finché il
+            chevron orizzontale resta l’unico in tutta la UI.
+          </p>
+        </section>
+
+        <!-- ═══ C ═══════════════════════════════════════════════ -->
+        <section class="variant" data-group="c">
+          <div class="variant__head">
+            <span class="variant__tag">variante C</span>
+            <h2 class="variant__name" data-pane="c1">
+              Kebab al posto dello split button
+            </h2>
+            <h2 class="variant__name" data-pane="c2" hidden>
+              Kebab al posto dello split button
+            </h2>
+            <h2 class="variant__name" data-pane="c3" hidden>
+              Split button, cestino nella pill
+            </h2>
+            <p class="variant__note" data-pane="c1">
+              “salva lista” diventa un bottone semplice; tutto il resto — inclusa
+              “rimuovi selezionati” — finisce sotto il <code>⋯</code>. Nessun
+              secondo chevron da disambiguare.
+            </p>
+            <p class="variant__note" data-pane="c2" hidden>
+              Come c1, ma la pill passa a destra della label e ospita il
+              cestino: “svuota” esce dal kebab e diventa visibile a un click.
+            </p>
+            <p class="variant__note" data-pane="c3" hidden>
+              Come c2 senza kebab: le azioni secondarie rientrano nella tendina
+              dello split button, che riprende il posto del bottone semplice.
+              Un menu invece di due.
+            </p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="varianti C">
+            <button
+              type="button"
+              class="tab is-active"
+              role="tab"
+              aria-selected="true"
+              data-tab="c1"
+            >
+              c1
+            </button>
+            <button
+              type="button"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              data-tab="c2"
+            >
+              c2
+            </button>
+            <button
+              type="button"
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              data-tab="c3"
+            >
+              c3
+            </button>
+          </div>
+
+          <div class="stage" data-pane="c1">
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <span class="sel-panel__label">
+                  <span class="count-pill">1</span>
+                  <span class="sel-panel__title">Selezionati</span>
+                </span>
+                <span class="sel-panel__spacer"></span>
+
+                <button type="button" class="plain-button link">
+                  salva lista
+                </button>
+
+                <span class="menu" data-split>
+                  <button
+                    type="button"
+                    class="kebab"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <svg
+                      viewBox="0 0 16 16"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <circle cx="8" cy="3" r="1.4" />
+                      <circle cx="8" cy="8" r="1.4" />
+                      <circle cx="8" cy="13" r="1.4" />
+                    </svg>
+                  </button>
+                  <div class="menu__list" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                    <div class="menu__sep" role="separator"></div>
+                    <button type="button" class="menu__item menu__item--danger">
+                      rimuovi selezionati
+                    </button>
+                  </div>
+                </span>
+
+                <span class="head-divider" aria-hidden="true"></span>
+
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--ghost"
+                  data-panel-toggle
+                  aria-expanded="false"
+                  aria-label="apri pannello selezionati"
+                >
+                  <span class="split-button__arrow panel-arrow--down" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <div class="stage" data-pane="c2" hidden>
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <span class="sel-panel__label">
+                  <span class="sel-panel__title">Selezionati</span>
+                  <span class="count-pill count-pill--action">
+                    <span data-count>1</span>
+                    <button
+                      type="button"
+                      class="pill-trash"
+                      data-clear
+                      aria-label="rimuovi tutti i selezionati"
+                    >
+                      <svg
+                      viewBox="0 0 16 16"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M2.5 4.2h11" />
+                      <path d="M6.4 4.2V2.9h3.2v1.3" />
+                      <path d="M4.1 4.2l.6 8.3a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9l.6-8.3" />
+                      <path d="M6.7 6.7v4.3M9.3 6.7v4.3" />
+                    </svg>
+                    </button>
+                  </span>
+                </span>
+                <span class="sel-panel__spacer"></span>
+
+                <button type="button" class="plain-button link">
+                  salva lista
+                </button>
+
+                <span class="menu" data-split>
+                  <button
+                    type="button"
+                    class="kebab"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <svg
+                      viewBox="0 0 16 16"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <circle cx="8" cy="3" r="1.4" />
+                      <circle cx="8" cy="8" r="1.4" />
+                      <circle cx="8" cy="13" r="1.4" />
+                    </svg>
+                  </button>
+                  <div class="menu__list" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                  </div>
+                </span>
+
+                <span class="head-divider" aria-hidden="true"></span>
+
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--ghost"
+                  data-panel-toggle
+                  aria-expanded="false"
+                  aria-label="apri pannello selezionati"
+                >
+                  <span class="split-button__arrow panel-arrow--down" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+
+          <div class="stage" data-pane="c3" hidden>
+            <div class="sel-panel" data-panel>
+              <div class="sel-panel__head">
+                <span class="sel-panel__label">
+                  <span class="sel-panel__title">Selezionati</span>
+                  <span class="count-pill count-pill--action">
+                    <span data-count>1</span>
+                    <button
+                      type="button"
+                      class="pill-trash"
+                      data-clear
+                      aria-label="rimuovi tutti i selezionati"
+                    >
+                      <svg
+                        viewBox="0 0 16 16"
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M2.5 4.2h11" />
+                        <path d="M6.4 4.2V2.9h3.2v1.3" />
+                        <path d="M4.1 4.2l.6 8.3a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9l.6-8.3" />
+                        <path d="M6.7 6.7v4.3M9.3 6.7v4.3" />
+                      </svg>
+                    </button>
+                  </span>
+                </span>
+                <span class="sel-panel__spacer"></span>
+
+                <span class="split-button" data-split>
+                  <a href="#" class="split-button__main link">salva lista</a>
+                  <button
+                    type="button"
+                    class="split-button__toggle"
+                    data-split-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-label="altre azioni"
+                  >
+                    <span class="split-button__arrow" aria-hidden="true"></span>
+                  </button>
+                  <div class="split-button__menu" data-split-menu>
+                    <button type="button" class="menu__item">
+                      aggiungi a lista
+                    </button>
+                    <button type="button" class="menu__item">
+                      crea spedizione
+                    </button>
+                    <button type="button" class="menu__item">
+                      aggiungi a spedizione
+                    </button>
+                  </div>
+                </span>
+
+                <span class="head-divider" aria-hidden="true"></span>
+
+                <button
+                  type="button"
+                  class="panel-toggle panel-toggle--ghost"
+                  data-panel-toggle
+                  aria-expanded="false"
+                  aria-label="apri pannello selezionati"
+                >
+                  <span class="split-button__arrow panel-arrow--down" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="sel-panel__body" data-panel-body></div>
+            </div>
+          </div>
+
+          <p class="variant__verdict" data-pane="c1">
+            La più pulita e la più elastica sullo stretto, ma nasconde le azioni
+            secondarie dietro un’icona muta.
+          </p>
+          <p class="variant__verdict" data-pane="c2" hidden>
+            L’azione distruttiva torna in superficie, ma l’header arriva a
+            cinque controlli: la più densa delle quattro.
+          </p>
+          <p class="variant__verdict" data-pane="c3" hidden>
+            Un solo menu e header più corto, ma il chevron dello split torna
+            accanto a quello del pannello: a separarli resta il solo divisore.
+          </p>
+        </section>
+      </div>
+
+      <div class="legend">
+        <h2>Come leggerle</h2>
+        <ul>
+          <li>
+            <strong>A</strong> risolve per <em>posizione</em>: i due controlli
+            non si toccano mai, qualunque cosa succeda alla label.
+          </li>
+          <li>
+            <strong>B</strong> risolve per <em>forma</em>: stessa zona, glifi che
+            raccontano due movimenti diversi.
+          </li>
+          <li>
+            <strong>C</strong> risolve per <em>sottrazione</em>: se un chevron
+            non c’è, non può collidere.
+          </li>
+          <li>
+            A e B si possono combinare — chevron orizzontale a sinistra sulla
+            riga cliccabile — se vuoi il massimo margine di sicurezza.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // ─── Contenuto finto del pannello ────────────────────────
+      const SELECTED = [
+        { name: "Giulia Ferrari", meta: "Corriere della Sera · cronaca" },
+        { name: "Marco Bianchi", meta: "Il Sole 24 Ore · economia" },
+        { name: "Anna Ricci", meta: "la Repubblica · esteri" },
+      ];
+
+      function renderBody(body) {
+        body.innerHTML = SELECTED.map(
+          (p) => `
+            <div class="sel-item">
+              <span class="sel-item__text">
+                <div class="sel-item__name">${p.name}</div>
+                <div class="sel-item__meta">${p.meta}</div>
+              </span>
+              <button type="button" class="sel-item__remove" aria-label="rimuovi ${p.name}">×</button>
+            </div>`
+        ).join("");
+      }
+
+      document.querySelectorAll("[data-panel-body]").forEach(renderBody);
+
+      // ─── Tab tra sotto-varianti (a1|a2, c1|c2) ───────────────
+      document.querySelectorAll("[data-group]").forEach((group) => {
+        group.querySelectorAll("[data-tab]").forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
+
+            group.querySelectorAll("[data-tab]").forEach((t) => {
+              const on = t === tab;
+              t.classList.toggle("is-active", on);
+              t.setAttribute("aria-selected", String(on));
+            });
+
+            group.querySelectorAll("[data-pane]").forEach((pane) => {
+              pane.hidden = pane.dataset.pane !== target;
+            });
+          });
+        });
+      });
+
+      // ─── Cestino nella pill — mock: svuota la selezione ──────
+      document.querySelectorAll("[data-clear]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const panel = btn.closest("[data-panel]");
+          const body = panel.querySelector("[data-panel-body]");
+          panel.querySelector("[data-count]").textContent = "0";
+          body.innerHTML =
+            '<div class="sel-empty">nessun selezionato <button type="button" data-restore>ripristina</button></div>';
+          body.querySelector("[data-restore]").addEventListener("click", () => {
+            panel.querySelector("[data-count]").textContent = "1";
+            renderBody(body);
+          });
+        });
+      });
+
+      // ─── Toggle pannello ─────────────────────────────────────
+      document.querySelectorAll("[data-panel-toggle]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const panel = btn.closest("[data-panel]");
+          const open = panel.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", String(open));
+        });
+      });
+
+      // ─── Menu (split button e kebab) ─────────────────────────
+      function closeAllMenus(except) {
+        document.querySelectorAll("[data-split]").forEach((wrap) => {
+          if (wrap === except) return;
+          wrap.querySelector("[data-split-menu]").classList.remove("is-open");
+          wrap
+            .querySelector("[data-split-toggle]")
+            .setAttribute("aria-expanded", "false");
+        });
+      }
+
+      document.querySelectorAll("[data-split]").forEach((wrap) => {
+        const toggle = wrap.querySelector("[data-split-toggle]");
+        const menu = wrap.querySelector("[data-split-menu]");
+
+        toggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const open = !menu.classList.contains("is-open");
+          closeAllMenus(wrap);
+          menu.classList.toggle("is-open", open);
+          toggle.setAttribute("aria-expanded", String(open));
+        });
+
+        menu.addEventListener("click", () => closeAllMenus());
+      });
+
+      document.addEventListener("click", () => closeAllMenus());
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeAllMenus();
+      });
+
+      // ─── Slider larghezza ────────────────────────────────────
+      const range = document.getElementById("widthRange");
+      const out = document.getElementById("widthOut");
+      range.addEventListener("input", () => {
+        document.documentElement.style.setProperty(
+          "--panel-w",
+          range.value + "px"
+        );
+        out.textContent = range.value + "px";
+      });
+    </script>
+  </body>
+</html>
