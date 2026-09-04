@@ -26,6 +26,10 @@
   background-color: var(--green-500);
 }
 
+.badge-with-led__led--orange {
+  background-color: var(--orange-500);
+}
+
 .badge-with-led__led--red {
   background-color: var(--red-600);
 }

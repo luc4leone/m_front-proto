@@ -16,6 +16,15 @@ function renderMeta(items) {
   ).join('');
 }
 
+// badge accetta una stringa oppure { label, led } per il pallino di stato.
+function renderBadge(badge) {
+  if (badge == null) return '';
+  if (typeof badge === 'string') return `<span class="badge">${badge}</span>`;
+  const { label, led } = badge;
+  if (!led) return `<span class="badge">${label}</span>`;
+  return `<span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--${led}" aria-hidden="true"></span>${label}</span>`;
+}
+
 export function render({ category, title, links = [], meta = [], badge = null, chips = [] }) {
   const titleLink = renderLink({ href: title.href, label: title.label, fontSize: 'var(--fs-18)' });
   const secondaryLinks = links.map(l =>
@@ -28,7 +37,7 @@ export function render({ category, title, links = [], meta = [], badge = null, c
       ${titleLink}
       ${chipsHtml}
       ${secondaryLinks}
-      ${badge != null ? `<span class="badge">${badge}</span>` : ''}
+      ${renderBadge(badge)}
     </div>
     <div class="list-item__meta">
       ${renderMeta(meta)}

@@ -776,6 +776,201 @@
       z-index: var(--z-300);
     }
 
+    /* ── Comunicato stampa side panel ───────────────────────────────
+       Si apre sopra il pannello spedizione, che resta aperto sotto:
+       il comunicato è un dettaglio della spedizione, non una vista
+       alternativa. Percio' backdrop e pannello stanno su --z-400. */
+
+    #cs-panel-backdrop {
+      z-index: var(--z-400);
+    }
+
+    .side-panel--press {
+      width: min(720px, 92vw);
+      z-index: var(--z-400);
+      gap: var(--space-16);
+    }
+
+    .press__body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      border-top: var(--border-width) solid var(--color-border);
+      padding-top: var(--space-16);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    .press__field-label {
+      display: block;
+      font-size: var(--fs-16);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    .press__subject {
+      font-size: var(--fs-16);
+      font-weight: var(--fw-600);
+      color: var(--color-text);
+    }
+
+    .press__text {
+      max-width: var(--paragraph-80);
+      font-size: var(--fs-16);
+      line-height: var(--line-height-16);
+      color: var(--color-text);
+    }
+
+    .press__text p + p {
+      margin-top: var(--space-16);
+    }
+
+    .press__kit {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .press__kit-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      font-size: var(--fs-14);
+    }
+
+    .press__kit-size {
+      color: var(--color-text-muted);
+    }
+
+    /* ── Rassegna stampa ────────────────────────────────────────────
+       Lista di articoli che il software propone per la spedizione.
+       Ogni articolo ha tre stati — da valutare, in rassegna, scartato —
+       e ogni stato e' reversibile: accettare o scartare e' un giudizio
+       rapido, un click sbagliato non deve costare la ricostruzione
+       della rassegna. */
+
+    .rassegna__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .rassegna__count {
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+    }
+
+    .rassegna__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .rassegna-item {
+      border: var(--border-width) solid var(--color-border);
+      border-left: var(--space-4) solid var(--color-border);
+      border-radius: var(--border-radius);
+      background: var(--color-surface);
+      padding: var(--space-12) var(--space-16);
+      transition: border-color var(--transition-150), opacity var(--transition-150);
+    }
+
+    .rassegna-item--accettato {
+      border-left-color: var(--color-success);
+    }
+
+    .rassegna-item--scartato {
+      opacity: 0.55;
+      background: var(--color-surface-raised);
+    }
+
+    .rassegna-item__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      margin-bottom: var(--space-4);
+    }
+
+    .rassegna-item__source {
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-muted);
+    }
+
+    .rassegna-item__badges {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      flex-shrink: 0;
+    }
+
+    .rassegna-item__title {
+      display: inline-block;
+      --link-font-size: var(--fs-16);
+      line-height: var(--line-height-14);
+    }
+
+    .rassegna-item__snippet {
+      margin-top: var(--space-4);
+      font-size: var(--fs-14);
+      line-height: var(--line-height-16);
+      color: var(--color-text-muted);
+    }
+
+    .rassegna-item__actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-16);
+      margin-top: var(--space-12);
+    }
+
+    .rassegna__empty {
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+      padding: var(--space-12) 0;
+    }
+
+    .rassegna__add {
+      display: flex;
+      align-items: stretch;
+      gap: var(--space-8);
+      margin-top: var(--space-16);
+      padding-top: var(--space-16);
+      border-top: var(--border-width) solid var(--color-border);
+    }
+
+    .rassegna__add .form__input {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .rassegna__add .form__input::placeholder {
+      font-size: var(--fs-14);
+    }
+
+    .rassegna__add-error {
+      margin-top: var(--space-8);
+      font-size: var(--fs-14);
+      color: var(--color-error);
+    }
+
+    .rassegna__add-error[hidden] {
+      display: none;
+    }
+
     .accordion {
       display: flex;
       flex-direction: column;
@@ -1194,8 +1389,9 @@
     <div class="side-panel__header">
       <div class="side-panel__title-group">
         <span class="side-panel__title-icon"><img src="../../assets/icons/send.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione" id="sp-panel-title">Invito convegno abitare</h2></span>
-        <span class="badge">conclusa</span>
+        <span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>spedita</span>
         <a href="#" class="link" id="sp-panel-press-release" style="font-size:var(--fs-14)">comunicato stampa</a>
+        <a href="#" class="link" id="sp-panel-press-review" style="font-size:var(--fs-14)">rassegna stampa</a>
       </div>
       <button type="button" class="side-panel__close" id="sp-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
     </div>
@@ -1232,6 +1428,69 @@
       <button type="button" class="action-link action-link--disabled" id="sp-export-action" disabled>esporta excel</button>
     </div>
     <div class="side-panel__table" id="sp-panel-table"></div>
+  </aside>
+
+  <!-- ── Comunicato stampa side panel ────────────────────────────────
+       Aperto dal link "comunicato stampa" nell'header del pannello
+       spedizione. Sola lettura: qui il comunicato e' gia' spedito. -->
+  <div class="side-panel-backdrop" id="cs-panel-backdrop"></div>
+  <aside class="side-panel side-panel--right side-panel--press" id="cs-panel" role="dialog" aria-modal="true" aria-labelledby="cs-panel-title">
+    <div class="side-panel__header">
+      <div class="side-panel__title-group">
+        <span class="side-panel__title-icon"><img src="../../assets/icons/campaign.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione" id="cs-panel-title">CS - Invito convegno Abitare 2026</h2></span>
+        <span class="badge">spedito</span>
+      </div>
+      <button type="button" class="side-panel__close" id="cs-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="side-panel__meta">
+      <div class="meta__item">
+        <span class="meta__label">Creato il</span>
+        <span class="meta__value">4-5-2026</span>
+      </div>
+      <div class="meta__item">
+        <span class="meta__label">Da</span>
+        <span class="meta__value">@iris</span>
+      </div>
+      <div class="meta__item">
+        <span class="meta__label">Spedito con</span>
+        <span class="meta__value">Invito convegno abitare</span>
+      </div>
+    </div>
+    <div class="press__body">
+      <div>
+        <span class="press__field-label">Oggetto</span>
+        <p class="press__subject">Abitare 2026: tre giorni sul futuro della casa a Milano</p>
+      </div>
+      <div>
+        <span class="press__field-label">Testo</span>
+        <div class="press__text">
+          <p>Milano, 4 maggio 2026 — Dal 18 al 20 giugno la Fabbrica del Vapore ospita <strong>Abitare 2026</strong>, il convegno nazionale dedicato alle politiche dell'abitare, alla rigenerazione urbana e alle nuove forme di residenzialità.</p>
+          <p>Tre giornate di lavori, quaranta relatori e otto tavoli tematici mettono a confronto amministrazioni locali, cooperative, studi di progettazione e operatori del social housing. Al centro del programma il nodo dell'accessibilità economica: negli ultimi cinque anni il costo medio dell'affitto nelle grandi città italiane è cresciuto del 24%, a fronte di redditi fermi.</p>
+          <p>La sessione inaugurale, giovedì 18 giugno alle 9.30, è aperta alla stampa. Le giornate di venerdì e sabato prevedono visite guidate a tre interventi di rigenerazione realizzati in città negli ultimi diciotto mesi.</p>
+          <p>L'accredito stampa è gratuito e va richiesto entro il 10 giugno. Il programma completo e i materiali per la stampa sono disponibili nel media kit allegato.</p>
+        </div>
+      </div>
+      <div>
+        <span class="press__field-label">Media kit</span>
+        <ul class="press__kit" role="list">
+          <li class="press__kit-item"><a href="#" class="link">programma-abitare-2026.pdf</a><span class="press__kit-size">380 KB</span></li>
+          <li class="press__kit-item"><a href="#" class="link">cartella-stampa.pdf</a><span class="press__kit-size">1,2 MB</span></li>
+          <li class="press__kit-item"><a href="#" class="link">foto-fabbrica-del-vapore.zip</a><span class="press__kit-size">8,4 MB</span></li>
+        </ul>
+      </div>
+      <div id="cs-rassegna">
+        <div class="rassegna__header">
+          <span class="press__field-label" style="margin-bottom:0">Rassegna stampa</span>
+          <span class="rassegna__count" id="cs-rassegna-count"></span>
+        </div>
+        <ul class="rassegna__list" id="cs-rassegna-list" role="list"></ul>
+        <div class="rassegna__add">
+          <input type="url" class="form__input form__input--compact" id="cs-rassegna-url" placeholder="incolla il link di un articolo" aria-label="Link dell'articolo da aggiungere" />
+          <button type="button" class="btn-v2" id="cs-rassegna-add">aggiungi a rassegna</button>
+        </div>
+        <p class="rassegna__add-error" id="cs-rassegna-error" role="alert" hidden></p>
+      </div>
+    </div>
   </aside>
 
   <!-- ── Help sticky button + side panel ─────────────────────────────── -->
@@ -1747,22 +2006,22 @@
 
     // ── Spedizioni ─────────────────────────────────────────────────────
     const spItems = [
-      { category: 'in corso', title: { href: '#', label: 'Invito convegno abitare' }, badge: 'in corso', links: [],
+      { category: 'conclusa', title: { href: '#', label: 'Invito convegno abitare' }, badge: { label: 'spedita', led: 'green' }, links: [],
         meta: [{ group: [{ label: 'Inviata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
-      { category: 'conclusa', title: { href: '#', label: 'Newsletter economia Q1' }, badge: 'conclusa', links: [],
+      { category: 'conclusa', title: { href: '#', label: 'Newsletter economia Q1' }, badge: { label: 'spedita', led: 'green' }, links: [],
         meta: [{ group: [{ label: 'Inviata il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] }] },
       { category: 'programmata', title: { href: '#', label: 'Risultati campionato' }, badge: 'programmata', links: [],
         meta: [{ group: [{ label: 'Programmata il', value: '25-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
-      { category: 'conclusa', title: { href: '#', label: 'Assemblea azionisti 2026' }, badge: 'conclusa', links: [],
+      { category: 'conclusa', title: { href: '#', label: 'Assemblea azionisti 2026' }, badge: { label: 'spedita', led: 'green' }, links: [],
         meta: [{ group: [{ label: 'Inviata il', value: '14-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
-      { category: 'in corso', title: { href: '#', label: 'Report Q1 sostenibilità' }, badge: 'in corso', links: [],
+      { category: 'in corso', title: { href: '#', label: 'Report Q1 sostenibilità' }, badge: { label: 'in corso', led: 'orange' }, links: [],
         meta: [{ group: [{ label: 'Inviata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] }] },
     ];
     document.getElementById('sp-link-vedi-tutte').outerHTML =
       renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
     const spFilterHost = document.getElementById('sp-filter-tabs');
     spFilterHost.innerHTML = renderTabs({
-      tabs: [{ id: 'tutti', label: 'tutte' }, { id: 'in corso', label: 'in corso' }, { id: 'conclusa', label: 'concluse' }, { id: 'programmata', label: 'programmate' }],
+      tabs: [{ id: 'tutti', label: 'tutte' }, { id: 'in corso', label: 'in corso' }, { id: 'conclusa', label: 'spedite' }, { id: 'programmata', label: 'programmate' }],
       activeId: 'tutti',
       variant: 'underline',
     });
@@ -1806,9 +2065,271 @@
         closeDropdown();
         return;
       }
+      // Chiude un pannello per volta, dal più alto: il comunicato sta
+      // sopra la spedizione, quindi Esc non deve chiuderli insieme.
+      if (csPanel.classList.contains('is-open')) {
+        closeCsPanel();
+        return;
+      }
+      if (helpPanel.classList.contains('is-open')) {
+        closeHelpPanel();
+        return;
+      }
       if (spPanel.classList.contains('is-open')) closeSpPanel();
-      if (helpPanel.classList.contains('is-open')) closeHelpPanel();
     });
+
+    // ── Comunicato stampa side panel ─────────────────────────────────
+    const csPanel = document.getElementById('cs-panel');
+    const csPanelBackdrop = document.getElementById('cs-panel-backdrop');
+    const csPanelClose = document.getElementById('cs-panel-close');
+    const spPanelPressRelease = document.getElementById('sp-panel-press-release');
+    const spPanelPressReview = document.getElementById('sp-panel-press-review');
+    const pressBody = csPanel.querySelector('.press__body');
+    const csRassegna = document.getElementById('cs-rassegna');
+
+    function openCsPanel({ scrollTo } = {}) {
+      csPanel.classList.add('is-open');
+      csPanelBackdrop.classList.add('is-open');
+      // Il pannello scorre nel suo contenitore, non nella pagina: calcolo
+      // l'offset a mano invece di scrollIntoView, che muoverebbe anche il
+      // documento sotto. Il transform di apertura non altera il layout,
+      // quindi le misure sono gia' valide.
+      if (!scrollTo) {
+        pressBody.scrollTop = 0;
+        return;
+      }
+      requestAnimationFrame(() => {
+        const top = scrollTo.getBoundingClientRect().top
+          - pressBody.getBoundingClientRect().top
+          + pressBody.scrollTop;
+        pressBody.scrollTo({ top, behavior: 'smooth' });
+      });
+    }
+
+    function closeCsPanel() {
+      csPanel.classList.remove('is-open');
+      csPanelBackdrop.classList.remove('is-open');
+    }
+
+    spPanelPressRelease.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCsPanel();
+    });
+    spPanelPressReview.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCsPanel({ scrollTo: csRassegna });
+    });
+    csPanelClose.addEventListener('click', closeCsPanel);
+    csPanelBackdrop.addEventListener('click', closeCsPanel);
+
+    // Chiudendo la spedizione si chiude anche il comunicato che ne dipende.
+    spPanelClose.addEventListener('click', closeCsPanel);
+    spPanelBackdrop.addEventListener('click', closeCsPanel);
+
+    // ── Rassegna stampa ──────────────────────────────────────────────
+    // Articoli che il software propone come uscite legate alla spedizione.
+    // stato: 'da-valutare' | 'accettato' | 'scartato' — sempre reversibile.
+    const rassegnaList = document.getElementById('cs-rassegna-list');
+    const rassegnaCount = document.getElementById('cs-rassegna-count');
+    const rassegnaUrlInput = document.getElementById('cs-rassegna-url');
+    const rassegnaAddBtn = document.getElementById('cs-rassegna-add');
+    const rassegnaError = document.getElementById('cs-rassegna-error');
+
+    const rassegnaArticoli = [
+      {
+        id: 'art-1',
+        outlet: 'Il Sole 24 Ore',
+        date: '21-5-2026',
+        title: 'Case popolari, la partita da 4 miliardi che parte da Milano',
+        snippet: 'Al convegno Abitare 2026 il confronto fra amministrazioni e operatori sul nodo dei fondi per il social housing.',
+        stato: 'da-valutare',
+        origine: 'suggerito',
+      },
+      {
+        id: 'art-2',
+        outlet: 'Corriere della Sera',
+        date: '20-5-2026',
+        title: 'Affitti, in cinque anni +24% nelle grandi città: la mappa del disagio',
+        snippet: 'I dati presentati alla Fabbrica del Vapore fotografano un divario che cresce più in fretta dei redditi.',
+        stato: 'da-valutare',
+        origine: 'suggerito',
+      },
+      {
+        id: 'art-3',
+        outlet: 'Domus',
+        date: '20-5-2026',
+        title: 'Rigenerare senza espellere: tre cantieri milanesi a confronto',
+        snippet: 'Le visite guidate del convegno raccontano modelli diversi di recupero del patrimonio pubblico dismesso.',
+        stato: 'da-valutare',
+        origine: 'suggerito',
+      },
+      {
+        id: 'art-4',
+        outlet: 'La Gazzetta dello Sport',
+        date: '19-5-2026',
+        title: 'Nuovo stadio, il Comune apre al project financing',
+        snippet: 'Il progetto entra nella fase di valutazione economica dopo mesi di trattativa.',
+        stato: 'da-valutare',
+        origine: 'suggerito',
+      },
+    ];
+
+    function mockArticleUrl(articolo) {
+      const params = new URLSearchParams({
+        t: articolo.title,
+        o: articolo.outlet,
+        d: articolo.date,
+      });
+      return `mock-articolo.html?${params.toString()}`;
+    }
+
+    function renderRassegna() {
+      rassegnaList.innerHTML = '';
+
+      for (const articolo of rassegnaArticoli) {
+        const li = document.createElement('li');
+        li.className = 'rassegna-item';
+        if (articolo.stato !== 'da-valutare') {
+          li.classList.add(`rassegna-item--${articolo.stato}`);
+        }
+
+        const top = document.createElement('div');
+        top.className = 'rassegna-item__top';
+
+        const source = document.createElement('span');
+        source.className = 'rassegna-item__source';
+        source.textContent = articolo.date
+          ? `${articolo.outlet} · ${articolo.date}`
+          : articolo.outlet;
+        top.appendChild(source);
+
+        // Due etichette distinte: da dove viene l'articolo e dove sta
+        // adesso. La provenienza non deve sparire quando lo stato cambia.
+        const badges = document.createElement('span');
+        badges.className = 'rassegna-item__badges';
+
+        if (articolo.origine === 'aggiunto') {
+          const badge = document.createElement('span');
+          badge.className = 'badge';
+          badge.textContent = 'aggiunto da te';
+          badges.appendChild(badge);
+        }
+
+        if (articolo.stato === 'accettato') {
+          const badge = document.createElement('span');
+          badge.className = 'badge-with-led';
+          badge.innerHTML = '<span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>in rassegna';
+          badges.appendChild(badge);
+        } else if (articolo.stato === 'scartato') {
+          const badge = document.createElement('span');
+          badge.className = 'badge-with-led';
+          badge.innerHTML = '<span class="badge-with-led__led badge-with-led__led--red" aria-hidden="true"></span>scartato';
+          badges.appendChild(badge);
+        }
+
+        if (badges.children.length) top.appendChild(badges);
+
+        const title = document.createElement('a');
+        title.className = 'rassegna-item__title link';
+        title.href = articolo.url || mockArticleUrl(articolo);
+        title.target = '_blank';
+        title.rel = 'noopener';
+        title.textContent = articolo.title;
+
+        li.appendChild(top);
+        li.appendChild(title);
+
+        if (articolo.snippet) {
+          const snippet = document.createElement('p');
+          snippet.className = 'rassegna-item__snippet';
+          snippet.textContent = articolo.snippet;
+          li.appendChild(snippet);
+        }
+
+        const actions = document.createElement('div');
+        actions.className = 'rassegna-item__actions';
+
+        // Un solo interruttore a tre posizioni: da qualunque stato si
+        // raggiungono gli altri due, senza conferme e senza vicoli ciechi.
+        if (articolo.stato === 'da-valutare') {
+          actions.appendChild(rassegnaAction('metti in rassegna', articolo, 'accettato'));
+          actions.appendChild(rassegnaAction('scarta', articolo, 'scartato'));
+        } else if (articolo.stato === 'accettato') {
+          actions.appendChild(rassegnaAction('rimetti tra i suggeriti', articolo, 'da-valutare'));
+          actions.appendChild(rassegnaAction('scarta', articolo, 'scartato'));
+        } else {
+          actions.appendChild(rassegnaAction('metti in rassegna', articolo, 'accettato'));
+          actions.appendChild(rassegnaAction('rimetti tra i suggeriti', articolo, 'da-valutare'));
+        }
+
+        li.appendChild(actions);
+        rassegnaList.appendChild(li);
+      }
+
+      if (!rassegnaArticoli.length) {
+        const empty = document.createElement('li');
+        empty.className = 'rassegna__empty';
+        empty.textContent = 'Nessun articolo suggerito per questa spedizione.';
+        rassegnaList.appendChild(empty);
+      }
+
+      const accettati = rassegnaArticoli.filter(a => a.stato === 'accettato').length;
+      const daValutare = rassegnaArticoli.filter(a => a.stato === 'da-valutare').length;
+      rassegnaCount.textContent = `${accettati} in rassegna · ${daValutare} da valutare`;
+    }
+
+    function rassegnaAction(label, articolo, stato) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'action-link';
+      btn.textContent = label;
+      btn.addEventListener('click', () => {
+        articolo.stato = stato;
+        renderRassegna();
+      });
+      return btn;
+    }
+
+    function addRassegnaArticolo() {
+      const raw = rassegnaUrlInput.value.trim();
+      if (!raw) return;
+
+      let url;
+      try {
+        url = new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`);
+      } catch {
+        rassegnaError.textContent = 'Non sembra un link valido.';
+        rassegnaError.hidden = false;
+        return;
+      }
+
+      rassegnaError.hidden = true;
+      rassegnaArticoli.push({
+        id: `art-${Date.now()}`,
+        outlet: url.hostname.replace(/^www\./, ''),
+        date: '',
+        // Senza scraping il titolo non c'e': mostro il link, che e'
+        // l'unica cosa che lo user ha davvero fornito.
+        title: url.href,
+        snippet: '',
+        // Aggiunto a mano vuol dire scelto: entra gia' in rassegna.
+        stato: 'accettato',
+        origine: 'aggiunto',
+        url: url.href,
+      });
+      rassegnaUrlInput.value = '';
+      renderRassegna();
+    }
+
+    rassegnaAddBtn.addEventListener('click', addRassegnaArticolo);
+    rassegnaUrlInput.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      addRassegnaArticolo();
+    });
+    rassegnaUrlInput.addEventListener('input', () => { rassegnaError.hidden = true; });
+
+    renderRassegna();
 
     // ── Help side panel ──────────────────────────────────────────────
     const helpButton = document.getElementById('help-button');

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articolo</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <style>
+    /* Pagina finta: sta al posto del sito della testata, così il link
+       "leggi" del prototipo apre qualcosa invece di un href="#". */
+
+    body {
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .mock-banner {
+      background: var(--color-warning);
+      padding: var(--space-8) var(--space-24);
+      font-size: var(--fs-12);
+      font-weight: var(--fw-600);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .mock-article {
+      max-width: var(--paragraph-65);
+      margin: 0 auto;
+      padding: var(--space-48) var(--space-24) var(--space-80);
+    }
+
+    .mock-article__outlet {
+      font-size: var(--fs-14);
+      font-weight: var(--fw-700);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+    }
+
+    .mock-article__title {
+      margin-top: var(--space-12);
+      font-size: var(--fs-36);
+      font-weight: var(--fw-700);
+      line-height: var(--line-height-12);
+    }
+
+    .mock-article__byline {
+      margin-top: var(--space-16);
+      padding-bottom: var(--space-24);
+      border-bottom: var(--border-width) solid var(--color-border);
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+    }
+
+    .mock-article__body {
+      margin-top: var(--space-24);
+      font-size: var(--fs-18);
+      line-height: var(--line-height-18);
+    }
+
+    .mock-article__body p + p {
+      margin-top: var(--space-20);
+    }
+  </style>
+</head>
+<body>
+  <div class="mock-banner">Pagina di esempio — prototipo rassegna stampa</div>
+
+  <article class="mock-article">
+    <div class="mock-article__outlet" id="outlet">Testata</div>
+    <h1 class="mock-article__title" id="title">Articolo</h1>
+    <div class="mock-article__byline" id="byline"></div>
+    <div class="mock-article__body">
+      <p>
+        Il convegno Abitare 2026 ha riportato al centro del dibattito pubblico
+        una questione che le amministrazioni locali affrontano da anni senza
+        strumenti adeguati: il divario crescente fra il costo dell'abitare e la
+        capacità di spesa delle famiglie nelle aree urbane più dense.
+      </p>
+      <p>
+        Nei tre giorni di lavori alla Fabbrica del Vapore si sono alternati
+        quaranta relatori fra amministratori, cooperative di abitanti, studi di
+        progettazione e operatori del social housing. Il dato citato più spesso
+        è quello dell'aumento del 24% degli affitti nelle grandi città italiane
+        nell'ultimo quinquennio, a fronte di redditi sostanzialmente fermi.
+      </p>
+      <p>
+        Le visite guidate agli interventi di rigenerazione realizzati in città
+        negli ultimi diciotto mesi hanno mostrato modelli diversi fra loro:
+        recupero di patrimonio pubblico dismesso, densificazione di aree
+        già urbanizzate, formule miste fra proprietà e affitto calmierato.
+      </p>
+      <p>
+        Il nodo che resta aperto, e su cui il convegno non ha prodotto una
+        posizione unitaria, è il rapporto fra risorse pubbliche e capitale
+        privato: quanto la leva finanziaria possa spingersi senza spostare
+        l'obiettivo dall'accessibilità alla redditività dell'operazione.
+      </p>
+    </div>
+  </article>
+
+  <script>
+    // Titolo, testata e data arrivano dalla querystring: una sola pagina
+    // finta serve tutti gli articoli suggeriti del prototipo.
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get('t') || 'Articolo di esempio';
+    const outlet = params.get('o') || 'Testata';
+    const date = params.get('d') || '';
+
+    document.getElementById('title').textContent = title;
+    document.getElementById('outlet').textContent = outlet;
+    document.getElementById('byline').textContent = date
+      ? `Pubblicato il ${date}`
+      : '';
+    document.title = `${title} — ${outlet}`;
+  </script>
+</body>
+</html>
