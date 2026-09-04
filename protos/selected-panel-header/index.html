@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../components/split-button.css" />
     <link rel="stylesheet" href="../../components/count-pill.css" />
     <link rel="stylesheet" href="../../components/link.css" />
+    <link rel="stylesheet" href="../../components/action-link.css" />
 
     <style>
       /* ═══════════════════════════════════════════════════════════
@@ -20,7 +21,7 @@
       ═══════════════════════════════════════════════════════════ */
 
       :root {
-        --panel-w: 360px;
+        --panel-w: 380px;
       }
 
       .page {
@@ -641,9 +642,9 @@
           min="260"
           max="440"
           step="2"
-          value="360"
+          value="380"
         />
-        <output id="widthOut">360px</output>
+        <output id="widthOut">380px</output>
       </div>
 
       <div class="variants">
@@ -1204,8 +1205,8 @@
                 </span>
                 <span class="sel-panel__spacer"></span>
 
-                <button type="button" class="plain-button link">
-                  salva lista
+                <button type="button" class="action-link">
+                  <span class="action-link__label">salva lista</span>
                 </button>
 
                 <span class="menu" data-split>
