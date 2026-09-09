@@ -11,7 +11,12 @@
   border-radius: var(--radius-full);
   cursor: default;
   user-select: none;
+  text-shadow: 1px 1px 0 var(--white);
   letter-spacing: 0.01em;
+}
+
+.badge-with-led .badge__count {
+  margin-left: 0;
 }
 
 .badge-with-led__led {

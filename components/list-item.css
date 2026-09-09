@@ -20,7 +20,8 @@
   text-overflow: ellipsis;
 }
 
-.list-item__header .badge {
+.list-item__header .badge,
+.list-item__header .badge-with-led {
   flex-shrink: 0;
 }
 

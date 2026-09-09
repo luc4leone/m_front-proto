@@ -16,13 +16,21 @@ function renderMeta(items) {
   ).join('');
 }
 
-// badge accetta una stringa oppure { label, led } per il pallino di stato.
+// badge accetta una stringa oppure { label, led, count }: led disegna il
+// pallino di stato, count aggiunge il contatore evidenziato dopo la label.
 function renderBadge(badge) {
   if (badge == null) return '';
   if (typeof badge === 'string') return `<span class="badge">${badge}</span>`;
-  const { label, led } = badge;
-  if (!led) return `<span class="badge">${label}</span>`;
-  return `<span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--${led}" aria-hidden="true"></span>${label}</span>`;
+  const { label, led, count } = badge;
+  const countHtml = count == null ? '' : `<span class="badge__count">${count}</span>`;
+  if (!led) return `<span class="badge">${label}${countHtml}</span>`;
+  return `<span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--${led}" aria-hidden="true"></span>${label}${countHtml}</span>`;
+}
+
+// badge accetta anche un array, per mostrare piu' badge affiancati.
+function renderBadges(badge) {
+  if (badge == null) return '';
+  return (Array.isArray(badge) ? badge : [badge]).map(renderBadge).join('');
 }
 
 export function render({ category, title, links = [], meta = [], badge = null, chips = [] }) {
@@ -37,7 +45,7 @@ export function render({ category, title, links = [], meta = [], badge = null, c
       ${titleLink}
       ${chipsHtml}
       ${secondaryLinks}
-      ${renderBadge(badge)}
+      ${renderBadges(badge)}
     </div>
     <div class="list-item__meta">
       ${renderMeta(meta)}

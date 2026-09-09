@@ -33,3 +33,13 @@
   text-shadow: 1px 1px 0 var(--white);
   letter-spacing: 0.01em;
 }
+
+/* Contatore dentro al badge: sfondo di un gradino piu' scuro per staccare
+   il numero dalla label senza cambiare peso o dimensione del testo. */
+.badge__count {
+  padding: 0 var(--space-6);
+  margin-left: var(--space-6);
+  margin-right: calc(var(--space-6) * -1);
+  background-color: var(--grey-300);
+  border-radius: var(--radius-full);
+}

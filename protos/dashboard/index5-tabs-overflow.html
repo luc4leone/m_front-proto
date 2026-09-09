@@ -281,7 +281,6 @@
       display: flex;
       align-items: center;
       gap: var(--space-12);
-      margin-left: auto;
     }
 
     /* ── General zone (cross-project: row 2) ──────────────────────── */
@@ -322,7 +321,7 @@
 
     .dashboard-sections-grid {
       display: grid;
-      grid-template-columns: 2fr 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 0;
     }
 
@@ -330,12 +329,10 @@
 
     /* Project zone — row 1 cell padding */
     .project-zone .dashboard-sections-grid > section:nth-child(1) { padding: 0 var(--space-24) var(--space-24) 0; }
-    .project-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 var(--space-24) var(--space-24) var(--space-24); }
-    .project-zone .dashboard-sections-grid > section:nth-child(3) { padding: 0 0 var(--space-24) var(--space-24); }
+    .project-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 0 var(--space-24) var(--space-24); }
 
-    /* Project zone — vertical separators (full height, no intersection) */
-    .project-zone .dashboard-sections-grid > section:nth-child(1)::after,
-    .project-zone .dashboard-sections-grid > section:nth-child(2)::after {
+    /* Project zone — vertical separator (full height, no intersection) */
+    .project-zone .dashboard-sections-grid > section:nth-child(1)::after {
       content: '';
       position: absolute;
       right: 0; top: 0; bottom: 0;
@@ -345,11 +342,10 @@
 
     /* General zone — row 2 cell padding */
     .general-zone .dashboard-sections-grid > section:nth-child(1) { padding: 0 var(--space-24) 0 0; }
-    .general-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 var(--space-24) 0 var(--space-24); }
+    .general-zone .dashboard-sections-grid > section:nth-child(2) { padding: 0 0 0 var(--space-24); }
 
-    /* General zone — vertical separators */
-    .general-zone .dashboard-sections-grid > section:nth-child(1)::after,
-    .general-zone .dashboard-sections-grid > section:nth-child(2)::after {
+    /* General zone — vertical separator */
+    .general-zone .dashboard-sections-grid > section:nth-child(1)::after {
       content: '';
       position: absolute;
       right: 0; top: 0; bottom: 0;
@@ -863,9 +859,30 @@
       margin-bottom: var(--space-12);
     }
 
-    .rassegna__count {
+    /* I filtri riusano il componente tabs: attivo nero, gli altri muted.
+       Qui servono piu' compatti della scala di default. */
+    #cs-rassegna-filters .tabs__tab {
       font-size: var(--fs-14);
-      color: var(--color-text-muted);
+      padding: var(--space-4) var(--space-12);
+    }
+
+    #cs-rassegna-filters .tabs__tab:first-child {
+      padding-left: 0;
+    }
+
+    #cs-rassegna-filters .tabs__tab:last-child {
+      padding-right: 0;
+    }
+
+    /* Il contatore eredita il colore del tab: nero sull'attivo, muted sugli
+       altri, cosi' il badge non spicca piu' della label che accompagna. */
+    #cs-rassegna-filters .tabs__tab .badge {
+      color: inherit;
+      text-shadow: none;
+    }
+
+    #cs-rassegna-filters .tabs__tab--active .badge {
+      background-color: var(--grey-300);
     }
 
     .rassegna__list {
@@ -1115,7 +1132,7 @@
         <!-- ── 2. Zones wrapper ───────────────────────────────────── -->
         <div class="sections-wrapper">
 
-        <!-- Project zone (spedizioni · comunicati · rassegne) -->
+        <!-- Project zone (spedizioni · comunicati) -->
         <div class="project-zone">
 
           <div class="general-zone__header">
@@ -1191,27 +1208,11 @@
               <div class="dashboard-section__list" id="co-list"></div>
             </section>
 
-            <!-- Rassegne -->
-            <section class="dashboard-section">
-              <div class="dashboard-section__header">
-                <div class="dashboard-section__header-group">
-                  <div class="dashboard-section__header-left">
-                    <h2 class="titolo titolo--sezione">Rassegne</h2>
-                    <span class="badge">3</span>
-                  </div>
-                  <span id="pg-link-vedi-tutti"></span>
-                </div>
-              </div>
-              <div class="dashboard-section__toolbar">
-                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
-              </div>
-              <div class="dashboard-section__list" id="pg-list"></div>
-            </section>
 
           </div>
         </div>
 
-        <!-- General zone (risorse condivise: da fare · mailing lists) -->
+        <!-- General zone (risorse condivise: mailing lists · da fare) -->
         <div class="general-zone">
 
           <div class="general-zone__header">
@@ -1219,6 +1220,24 @@
           </div>
 
           <div class="dashboard-sections-grid">
+
+            <!-- Mailing Lists -->
+            <section class="dashboard-section">
+              <div class="dashboard-section__header">
+                <div class="dashboard-section__header-group">
+                  <div class="dashboard-section__header-left">
+                    <span class="side-panel__title-icon"><img src="../../assets/icons/list.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Mailing Lists</h2></span>
+                    <span class="badge">199</span>
+                  </div>
+                  <span id="ml-link-vedi-tutte"></span>
+                </div>
+                <button type="button" class="btn-v2">nuova lista</button>
+              </div>
+              <div class="dashboard-section__toolbar">
+                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 120px" />
+              </div>
+              <div class="dashboard-section__list" id="ml-list"></div>
+            </section>
 
             <!-- Da fare -->
             <section class="dashboard-section">
@@ -1240,24 +1259,6 @@
                 <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 280px" />
               </div>
               <div class="dashboard-section__list" id="td-list"></div>
-            </section>
-
-            <!-- Mailing Lists -->
-            <section class="dashboard-section">
-              <div class="dashboard-section__header">
-                <div class="dashboard-section__header-group">
-                  <div class="dashboard-section__header-left">
-                    <span class="side-panel__title-icon"><img src="../../assets/icons/list.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione">Mailing Lists</h2></span>
-                    <span class="badge">199</span>
-                  </div>
-                  <span id="ml-link-vedi-tutte"></span>
-                </div>
-                <button type="button" class="btn-v2">nuova lista</button>
-              </div>
-              <div class="dashboard-section__toolbar">
-                <input type="text" class="form__input form__input--compact" placeholder="filtra..." style="flex:1 1 120px" />
-              </div>
-              <div class="dashboard-section__list" id="ml-list"></div>
             </section>
 
           </div>
@@ -1438,7 +1439,7 @@
     <div class="side-panel__header">
       <div class="side-panel__title-group">
         <span class="side-panel__title-icon"><img src="../../assets/icons/campaign.svg" width="20" height="20" alt="" style="flex-shrink:0"><h2 class="titolo titolo--sezione" id="cs-panel-title">CS - Invito convegno Abitare 2026</h2></span>
-        <span class="badge">spedito</span>
+        <span class="badge-with-led"><span class="badge-with-led__led badge-with-led__led--green" aria-hidden="true"></span>spedito</span>
       </div>
       <button type="button" class="side-panel__close" id="cs-panel-close" aria-label="Chiudi"><span aria-hidden="true">×</span></button>
     </div>
@@ -1481,7 +1482,7 @@
       <div id="cs-rassegna">
         <div class="rassegna__header">
           <span class="press__field-label" style="margin-bottom:0">Rassegna stampa</span>
-          <span class="rassegna__count" id="cs-rassegna-count"></span>
+          <div id="cs-rassegna-filters"></div>
         </div>
         <ul class="rassegna__list" id="cs-rassegna-list" role="list"></ul>
         <div class="rassegna__add">
@@ -1984,38 +1985,18 @@
       }),
     });
 
-    // ── Progetti ───────────────────────────────────────────────────────
-    const pgItems = [
-      { category: 'rosa', title: { href: '#', label: 'Progetto Draghi' },
-        chips: ['2 articoli suggeriti'],
-        meta: [{ group: [{ label: 'Spedizioni', value: 2, inverted: true }, { label: 'Articoli', value: 18, inverted: true }] }] },
-      { category: 'iris', title: { href: '#', label: 'Rassegna economica' },
-        meta: [{ group: [{ label: 'Spedizioni', value: 5, inverted: true }, { label: 'Articoli', value: 32, inverted: true }] }] },
-      { category: 'margherita', title: { href: '#', label: 'Sport locale' },
-        chips: ['1 articolo suggerito'],
-        meta: [{ group: [{ label: 'Spedizioni', value: 1, inverted: true }, { label: 'Articoli', value: 7, inverted: true }] }] },
-      { category: 'iris', title: { href: '#', label: 'Bilancio sostenibilità' },
-        meta: [{ group: [{ label: 'Spedizioni', value: 3, inverted: true }, { label: 'Articoli', value: 12, inverted: true }] }] },
-      { category: 'rosa', title: { href: '#', label: 'Lancio prodotto Q3' },
-        chips: ['4 articoli suggeriti'],
-        meta: [{ group: [{ label: 'Spedizioni', value: 0, inverted: true }, { label: 'Articoli', value: 5, inverted: true }] }] },
-    ];
-    document.getElementById('pg-link-vedi-tutti').outerHTML =
-      renderLink({ href: '#', label: 'vedi tutti', fontSize: 'var(--fs-14)' });
-    document.getElementById('pg-list').innerHTML = pgItems.map(renderListItem).join('');
-
     // ── Spedizioni ─────────────────────────────────────────────────────
     const spItems = [
       { category: 'conclusa', title: { href: '#', label: 'Invito convegno abitare' }, badge: { label: 'spedita', led: 'green' }, links: [],
-        meta: [{ group: [{ label: 'Inviata il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+        meta: [{ group: [{ label: 'Spedita il', value: '19-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
       { category: 'conclusa', title: { href: '#', label: 'Newsletter economia Q1' }, badge: { label: 'spedita', led: 'green' }, links: [],
-        meta: [{ group: [{ label: 'Inviata il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+        meta: [{ group: [{ label: 'Spedita il', value: '10-5-2026' }, { label: 'Da', value: '@iris' }] }] },
       { category: 'programmata', title: { href: '#', label: 'Risultati campionato' }, badge: 'programmata', links: [],
         meta: [{ group: [{ label: 'Programmata il', value: '25-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
       { category: 'conclusa', title: { href: '#', label: 'Assemblea azionisti 2026' }, badge: { label: 'spedita', led: 'green' }, links: [],
-        meta: [{ group: [{ label: 'Inviata il', value: '14-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
+        meta: [{ group: [{ label: 'Spedita il', value: '14-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
       { category: 'in corso', title: { href: '#', label: 'Report Q1 sostenibilità' }, badge: { label: 'in corso', led: 'orange' }, links: [],
-        meta: [{ group: [{ label: 'Inviata il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] }] },
+        meta: [{ group: [{ label: 'Spedita il', value: '12-5-2026' }, { label: 'Da', value: '@iris' }] }] },
     ];
     document.getElementById('sp-link-vedi-tutte').outerHTML =
       renderLink({ href: '#', label: 'vedi tutte', fontSize: 'var(--fs-14)' });
@@ -2130,7 +2111,7 @@
     // Articoli che il software propone come uscite legate alla spedizione.
     // stato: 'da-valutare' | 'accettato' | 'scartato' — sempre reversibile.
     const rassegnaList = document.getElementById('cs-rassegna-list');
-    const rassegnaCount = document.getElementById('cs-rassegna-count');
+    const rassegnaFiltriHost = document.getElementById('cs-rassegna-filters');
     const rassegnaUrlInput = document.getElementById('cs-rassegna-url');
     const rassegnaAddBtn = document.getElementById('cs-rassegna-add');
     const rassegnaError = document.getElementById('cs-rassegna-error');
@@ -2183,10 +2164,28 @@
       return `mock-articolo.html?${params.toString()}`;
     }
 
+    // Il filtro attivo decide quali stati sono visibili; 'da-valutare' e' il
+    // default perche' e' l'unica colonna su cui c'e' del lavoro da fare.
+    let rassegnaFiltro = 'da-valutare';
+
+    const rassegnaStati = ['da-valutare', 'accettato', 'scartato'];
+
+    function contaRassegna(stato) {
+      return rassegnaArticoli.filter(a => a.stato === stato).length;
+    }
+
+    const rassegnaVuoto = {
+      'da-valutare': 'Nessun articolo da valutare.',
+      accettato: 'Nessun articolo in rassegna.',
+      scartato: 'Nessun articolo scartato.',
+    };
+
     function renderRassegna() {
       rassegnaList.innerHTML = '';
 
-      for (const articolo of rassegnaArticoli) {
+      const visibili = rassegnaArticoli.filter(a => a.stato === rassegnaFiltro);
+
+      for (const articolo of visibili) {
         const li = document.createElement('li');
         li.className = 'rassegna-item';
         if (articolo.stato !== 'da-valutare') {
@@ -2266,16 +2265,19 @@
         rassegnaList.appendChild(li);
       }
 
-      if (!rassegnaArticoli.length) {
+      if (!visibili.length) {
         const empty = document.createElement('li');
         empty.className = 'rassegna__empty';
-        empty.textContent = 'Nessun articolo suggerito per questa spedizione.';
+        empty.textContent = rassegnaVuoto[rassegnaFiltro];
         rassegnaList.appendChild(empty);
       }
 
-      const accettati = rassegnaArticoli.filter(a => a.stato === 'accettato').length;
-      const daValutare = rassegnaArticoli.filter(a => a.stato === 'da-valutare').length;
-      rassegnaCount.textContent = `${accettati} in rassegna · ${daValutare} da valutare`;
+      // I conteggi cambiano a ogni spostamento di stato: si aggiornano sui
+      // tab gia' montati, senza rifare il markup e perdere il tab attivo.
+      for (const stato of rassegnaStati) {
+        const badge = rassegnaFiltriHost.querySelector(`[data-tab-id="${stato}"] .badge`);
+        if (badge) badge.textContent = contaRassegna(stato);
+      }
     }
 
     function rassegnaAction(label, articolo, stato) {
@@ -2328,6 +2330,21 @@
       addRassegnaArticolo();
     });
     rassegnaUrlInput.addEventListener('input', () => { rassegnaError.hidden = true; });
+
+    rassegnaFiltriHost.innerHTML = renderTabs({
+      tabs: [
+        { id: 'da-valutare', label: 'da valutare', badge: contaRassegna('da-valutare') },
+        { id: 'accettato', label: 'in rassegna', badge: contaRassegna('accettato') },
+        { id: 'scartato', label: 'scartati', badge: contaRassegna('scartato') },
+      ],
+      activeId: rassegnaFiltro,
+    });
+    initTabs(rassegnaFiltriHost.querySelector('[data-tabs]'), {
+      onTabChange: (id) => {
+        rassegnaFiltro = id;
+        renderRassegna();
+      },
+    });
 
     renderRassegna();
 
@@ -2494,11 +2511,11 @@
     const coItems = [
       { category: 'bozza', title: { href: '#', label: 'CS - Mario Draghi riceve il premio "Uomo dell\'anno"' }, badge: 'bozza', links: [],
         meta: [{ group: [{ label: 'Modificata il', value: '19-5-2026' }, { label: 'Da', value: '@iris' }] }] },
-      { category: 'spedito', title: { href: '#', label: 'Analisi mercati Q2' }, badge: 'spedito', links: [],
+      { category: 'spedito', title: { href: '#', label: 'Analisi mercati Q2' }, badge: [{ label: 'spedito', led: 'green' }, { label: 'rassegna', count: 89 }], links: [],
         meta: [{ group: [{ label: 'Modificata il', value: '18-5-2026' }, { label: 'Da', value: '@iris' }] }] },
       { category: 'bozza', title: { href: '#', label: 'Torneo regionale' }, badge: 'bozza', links: [],
         meta: [{ group: [{ label: 'Modificata il', value: '17-5-2026' }, { label: 'Da', value: '@margherita' }] }] },
-      { category: 'spedito', title: { href: '#', label: 'Apertura nuovo centro ricerche' }, badge: 'spedito', links: [],
+      { category: 'spedito', title: { href: '#', label: 'Apertura nuovo centro ricerche' }, badge: { label: 'spedito', led: 'green' }, links: [],
         meta: [{ group: [{ label: 'Modificata il', value: '16-5-2026' }, { label: 'Da', value: '@rosa' }] }] },
       { category: 'bozza', title: { href: '#', label: 'Risultati semestrale 2026' }, badge: 'bozza', links: [],
         meta: [{ group: [{ label: 'Modificata il', value: '15-5-2026' }, { label: 'Da', value: '@iris' }] }] },
