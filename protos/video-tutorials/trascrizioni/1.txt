@@ -1,0 +1,4 @@
+0:00 Che cos'è un progetto? Un progetto è un insieme di spedizioni e comunicati. Permette una migliore organizzazione del lavoro dell'ufficio stampa. In questo momento io ho aperto due progetti, il progetto di Alvaro Leone e il demo project.
+0:17 Se voglio creare un nuovo progetto, clicco sul bottone, chiamo questo progetto SINNER, per nessun cliente, opzionale, oppure inserisco il nome di un cliente. Clicco su creare, creo il progetto. A questo punto SINNER è un progetto aperto.
+0:32 Ho tre progetti aperti. Posso chiudere un progetTO, in questo caso lo vedrò tra i progetti chiusi. Posso rinominare un progetsto o archiviarlo. Se archivio un progetato, posso vedere i progettati archiviati tornando in tendina.
+0:50 A questo punto avrò il progetato di Alvaro Leone che è stato archiviato, posso definitivamente eliminarlo o ripristinarlo. Se lo ripristino, torno in tendina e vedo che il progetto di Alvaro Leone è tra i progetti chiusi che posso riaprire.

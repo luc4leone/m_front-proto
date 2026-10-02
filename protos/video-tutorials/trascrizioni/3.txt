@@ -1,0 +1,7 @@
+0:00 Posso iniziare una ricerca partendo dai giornalisti, in questo caso avrò i filtri cerca per termine, quindi vengono filtrati, l'intera lista di giornalisti delle mie banche dati attive viene filtrata per il termine che inserirò qua, per esempio so che si chiama Bruno.
+0:19 E il termine Bruno verrà ricercato nei campi nome, nome e cognome, email e note della scheda giornalista. In questo caso quando il termine corrisponde esattamente viene evidenziato in giallo, nel caso di Bruni non è una corrispondenza esatta e quindi non viene evidenziata.
+0:38 Sotto avrò i filtri del giornalista e poi i filtri testata, quindi la lista giornalisti può essere filtrata attraverso questi filtri.
+0:47 Se parto invece dalle testate avrò solo i filtri testata ma avrò anche in questo caso la possibilità di filtrare per un termine, in questo caso per esempio metto libero perché sto cercando le testate, la testata libero che appare in cima.
+1:04 Il termine viene cercato nel nome testata e nelle note di testata e come prima viene evidenziato in giallo quando corrisponde esattamente al termine che ho inserito, quando nei risultati il termine appare interno.
+1:17 Esattamente lo stesso che appare, che ho messo dentro nella mia casella di testo. Notiamo in particolare nel secondo caso che ho una corrispondenza del termine libero sia nel nome testata che nel campo note.
+1:39 Notiamo infine che quando torno al tab giornalisti e ancora meglio si vede ritornando in testate la ricerca precedente viene scelta. Annullata.

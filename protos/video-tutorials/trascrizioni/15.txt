@@ -1,0 +1,2 @@
+0:00 Voglio aggiungere un giornalista alla banca dati. Come faccio? Allora vado in banca datati e io accederò alle banche dati, che in questo caso sono tre attive, schede personali, Italia, Italia firme, cliccando configura.
+0:17 Ed è qui che io posso aggiungere una scheda giornalista oppure una scheda testata.

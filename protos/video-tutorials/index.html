@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro assistenza</title>
+  <link rel="stylesheet" href="../../css/reset.css" />
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/theme-default.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../components/form-elements.css" />
+  <style>
+    body {
+      background: var(--color-background);
+      color: var(--color-text);
+      font-family: var(--font);
+    }
+
+    .video-page {
+      height: 100vh;
+      padding: var(--space-24) var(--space-24) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .video-page__title {
+      font-size: var(--fs-24);
+      font-weight: var(--fw-600);
+      color: var(--color-text-strong);
+    }
+
+    /* Tre colonne a tutta altezza: ognuna scorre per conto suo. */
+    .video-layout {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) minmax(0, 2.2fr) minmax(280px, 1.1fr);
+      gap: var(--space-24);
+    }
+
+    .video-sidebar,
+    .video-main,
+    .faq-column {
+      min-height: 0;
+      overflow-y: auto;
+      padding-bottom: var(--space-24);
+    }
+
+    @media (max-width: 1100px) {
+      .video-page { height: auto; padding-bottom: var(--space-24); }
+      .video-layout { grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr); }
+      .video-sidebar, .video-main, .faq-column { overflow: visible; padding-bottom: 0; }
+      .faq-column { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 800px) {
+      .video-page { padding-inline: var(--space-16); }
+      .video-layout { grid-template-columns: minmax(0, 1fr); }
+      .video-main { order: -1; }
+    }
+
+    /* ── Sidebar: ricerca + lista ──────────────────────────────── */
+
+    .video-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      min-width: 0;
+    }
+
+    .column-header__count {
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+    }
+
+    .video-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .video-list__item {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-10) var(--space-12);
+      text-align: left;
+      background: var(--color-surface);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+    }
+
+    .video-list__item:hover { border-color: var(--color-border-strong); }
+
+    .video-list__item--active {
+      border-color: var(--color-primary);
+      box-shadow: inset 3px 0 0 var(--color-primary);
+    }
+
+    .video-list__title {
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-text-strong);
+    }
+
+    .video-list__title {
+      display: flex;
+      gap: var(--space-8);
+    }
+
+    .video-list__number {
+      flex-shrink: 0;
+      min-width: var(--space-20);
+      color: var(--color-text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .video-list__time {
+      font-weight: var(--fw-600);
+      font-variant-numeric: tabular-nums;
+      color: var(--color-text);
+    }
+
+    .video-list__excerpt {
+      padding-left: calc(var(--space-20) + var(--space-8));
+      font-size: var(--fs-12);
+      color: var(--color-text-muted);
+      line-height: 1.45;
+    }
+
+    .video-list mark {
+      background: var(--color-warning);
+      color: inherit;
+      border-radius: 2px;
+    }
+
+    .video-empty {
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+    }
+
+    /* ── Player ────────────────────────────────────────────────── */
+
+    .video-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      min-width: 0;
+    }
+
+    .video-player {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      min-width: 0;
+    }
+
+    .video-player__frame {
+      aspect-ratio: 16 / 9;
+      background: var(--grey-900);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .video-player__frame video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-player__meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .video-player__title {
+      font-size: var(--fs-20);
+      font-weight: var(--fw-600);
+      color: var(--color-text-strong);
+    }
+
+    .video-player__summary {
+      font-size: var(--fs-14);
+      color: var(--color-text);
+    }
+
+    /* ── Domande frequenti ─────────────────────────────────────── */
+
+    .faq-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      min-width: 0;
+    }
+
+    .column-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .column-header__title {
+      font-size: var(--fs-16);
+      font-weight: var(--fw-600);
+      color: var(--color-text-strong);
+    }
+
+    .faq-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .faq-list__item {
+      background: var(--color-surface);
+      border: var(--border-width) solid var(--color-border);
+      border-radius: var(--border-radius);
+    }
+
+    .faq-list__question {
+      padding: var(--space-10) var(--space-12);
+      font-size: var(--fs-14);
+      font-weight: var(--fw-600);
+      color: var(--color-text-strong);
+      cursor: pointer;
+    }
+
+    .faq-list__body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-8);
+      padding: 0 var(--space-12) var(--space-12);
+    }
+
+    .faq-list__answer {
+      font-size: var(--fs-14);
+      line-height: 1.5;
+    }
+
+    .faq-list__video {
+      display: flex;
+      gap: var(--space-6);
+      padding: 0;
+      background: none;
+      border: 0;
+      text-align: left;
+      font: inherit;
+      font-size: var(--fs-12);
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .faq-list__video:hover { text-decoration: underline; }
+
+    .faq-list__time {
+      font-weight: var(--fw-600);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .faq-list mark {
+      background: var(--color-warning);
+      color: inherit;
+      border-radius: 2px;
+    }
+
+    .video-player__placeholder {
+      font-size: var(--fs-14);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="video-page">
+    <h1 class="video-page__title">Centro assistenza</h1>
+
+    <div class="video-layout">
+      <aside class="video-sidebar">
+        <div class="column-header">
+          <h2 class="column-header__title">Micro video tutorials</h2>
+          <span class="column-header__count" data-video-count></span>
+        </div>
+        <div data-video-list></div>
+      </aside>
+
+      <section class="video-main">
+        <input type="search" class="form__input" placeholder="Cerca in video e domande…"
+          aria-label="Cerca in video e domande" data-video-search />
+        <div class="video-player" data-video-player></div>
+      </section>
+
+      <aside class="faq-column">
+        <div class="column-header">
+          <h2 class="column-header__title">Domande frequenti</h2>
+          <span class="column-header__count" data-faq-count></span>
+        </div>
+        <div data-faq-list></div>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
