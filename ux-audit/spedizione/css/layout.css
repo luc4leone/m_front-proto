@@ -1,0 +1,433 @@
+/* Breakpoint: 768px, costante documentata (vedi design-system.md) — non un var(). */
+
+/* Hero a colonna singola, centrato: titolo, una riga, il video, il
+   bottone. Il video è il pezzo che vende — cinque minuti in cui si vede
+   lavorare — quindi sta al centro e grande, non in una colonna laterale
+   al 45%. Larghezza di lettura (780) e non quella del container: un
+   titolo display a tutta pagina si spezza male e la riga sotto diventa
+   troppo lunga da leggere. */
+.l-hero {
+  max-width: var(--space-780);
+  margin: 0 auto;
+  padding: var(--space-72) var(--space-24);
+  text-align: center;
+}
+
+/* Il nome del prodotto sta qui, non nell'h1: l'h1 è per la promessa. */
+.l-hero__eyebrow {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.l-hero h1 {
+  margin-bottom: var(--space-12);
+}
+
+.l-hero__tagline {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-600);
+}
+
+.l-hero__lead {
+  margin: 0 0 var(--space-18);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-relaxed);
+}
+
+.l-hero__media {
+  margin: var(--space-36) 0 var(--space-24);
+}
+
+/* Il form del pre-corso in linea, campo e bottone sulla stessa riga
+   (a schermo stretto .c-form manda il bottone sotto da sé). L'azione
+   dell'hero è lasciare l'email, non saltare a un'altra sezione.
+   Largo quanto il video che sta sopra — nessun max-width proprio — così
+   il blocco media + form legge come una colonna sola.
+   text-align: left perché il centrato dell'hero si eredita dentro il
+   campo, e una email che si scrive dal centro è sgradevole. */
+.l-hero__form {
+  margin: 0;
+  text-align: left;
+}
+
+/* Larga quanto il form. Su mobile allineata a sinistra, come il bottone
+   a tutta larghezza che ha sopra; da 768px allineata a destra, dove si
+   appoggia al bordo del bottone in riga invece di galleggiare al centro
+   dell'hero. */
+.l-hero__meta {
+  margin: var(--space-12) 0 0;
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .l-hero__meta {
+    text-align: right;
+  }
+}
+
+.l-section {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.l-section__toc {
+  list-style: none;
+  margin: var(--space-12) 0 0;
+  padding: 0;
+}
+
+/* Un passo sopra il 6 della scala: 6px faceva leggere i link come un
+   blocco unico invece che come voci.
+   Interlinea normale e non tight: nell'indice del Master ogni voce è una
+   riga sola e le due misure si equivalgono, ma negli indici di cartella
+   (workflows/, books/) la voce porta una descrizione che va a capo, e a
+   1.1 le righe si toccano. Vedi design-system.md, «Line-height». */
+.l-section__toc li {
+  margin-bottom: var(--space-12);
+  line-height: var(--line-height-normal);
+}
+
+/* Sottolineati sempre, come ogni link: è la sottolineatura a renderli
+   riconoscibili come link, e qui il colore è quello del testo (WCAG 1.4.1).
+   Colore della riga e accento all'hover li dà `a` in base.css. */
+.l-section__toc a {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-500);
+}
+
+@media (min-width: 768px) {
+  .l-section {
+    display: grid;
+    grid-template-columns: 30fr 70fr;
+    gap: var(--space-48);
+  }
+
+  .l-section__intro,
+  .l-section__content {
+    min-width: 0;
+  }
+}
+
+/* Pagina a colonna singola, larghezza di lettura (portfolio.html).
+   Alternativa al grid 30/70 di .l-section: nessuna sidebar. */
+.l-page {
+  max-width: var(--space-780);
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+}
+
+.l-page > section {
+  padding-top: var(--space-48);
+}
+
+.l-page > section h2 {
+  margin-bottom: var(--space-18);
+}
+
+/* Contenitore largo sotto una .l-page (upwork/kravebeauty-cro-audit-slides.html):
+   la pagina di lettura resta a 780, le slide prendono la larghezza del
+   container perché due screenshot da telefono affiancati più le note non
+   stanno in 780 senza diventare francobolli. */
+.l-wide {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-24) var(--space-48);
+}
+
+.l-footer {
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+.l-footer__inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-24);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+/* Home: biglietto da visita. Il footer resta in fondo alla viewport
+   anche quando il contenuto è poco (sticky footer). */
+.p-home,
+.p-results,
+.p-upwork,
+.p-manifesto {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* marketing.html: poche righe di contenuto, quindi senza questo il
+   footer si ferma a metà viewport. Stesso meccanismo sticky di .l-card,
+   applicato al contenitore di pagina invece che al biglietto. */
+.p-results > .l-page,
+.p-upwork > .l-page,
+.p-manifesto > .l-page {
+  flex: 1;
+  /* Figlio di un flex container: senza questo il min-width:auto di default
+     lascia che il contenuto largo (una tabella) sfondi la viewport invece
+     di scorrere dentro il suo contenitore. */
+  min-width: 0;
+}
+
+.l-card {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-72) var(--space-24);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-18);
+}
+
+/* La «u» di Mucca, in corallo, con le sue due eco (vedi .l-card__moo):
+   unico accento della home, come chiede la
+   regola di moderazione del brand kit. Il corallo dei link compare solo
+   all'hover, che è transitorio e non conta come secondo elemento.
+
+   Qui il corallo è scurito. A differenza di un segno decorativo questa
+   è una lettera del nome, quindi vale la soglia AA per il testo grande
+   (3:1) che il token base non raggiunge su bianco: 2.8:1. È il caso
+   previsto dal brand kit — scurire solo dove serve, senza toccare
+   --color-accent, che altrove sta su bordi e icone e va bene com'è.
+
+   Il fallback è il corallo pieno: --color-accent-text esiste solo nella
+   variante light, e su fondo scuro il corallo come testo si legge già. */
+.l-card__accent {
+  color: var(--color-accent-text, var(--color-accent));
+}
+
+/* Muuu: la «u» di Mucca muggisce. Due «u» più piccole salgono a
+   scaletta sopra la prima, come nello sketch del logo — ma nel font
+   e nel corallo del brand, non a mano.
+
+   Sono in assoluto dentro lo span della prima «u», quindi non occupano
+   spazio nella riga: la parola resta larga quanto «Mucca» e «cca» non
+   si sposta. Sono aria-hidden: il titolo si legge sempre «Mucca Design».
+
+   Gli offset sono in em e non token: sono geometria del glyph, relativa
+   alla «u» stessa, e così scalano con l'h1 a ogni breakpoint. */
+.l-card__moo {
+  position: relative;
+}
+
+.l-card__moo-echo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  line-height: 1;
+}
+
+.l-card__moo-echo:nth-child(1) {
+  font-size: 0.7em;
+  transform: translate(0.9em, -1em);
+}
+
+.l-card__moo-echo:nth-child(2) {
+  font-size: 0.5em;
+  transform: translate(2.2em, -2.3em);
+}
+
+.l-card__tagline {
+  font-size: var(--font-size-24);
+}
+
+.l-card__contact {
+  margin-top: var(--space-12);
+}
+
+/* La riga di annuncio sopra il footer (index.html). Sta fuori da .l-card
+   perché è coda di pagina, non biglietto da visita, ma prende la stessa
+   gabbia del footer — larghezza del container e stesso padding laterale —
+   così i due blocchi sono incolonnati. Niente filetto: quello segna
+   l'inizio del footer, e l'annuncio sta ancora dentro la pagina. */
+.l-card__notice {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  /* Lo spazio sotto è quello che separa l'annuncio dal filetto del
+     footer, e vale quanto il padding interno del footer: sotto quella
+     misura le due righe si leggono come un blocco solo, col filetto
+     in mezzo per caso. */
+  padding: 0 var(--space-24) var(--space-24);
+}
+
+.l-card__notice p {
+  margin: 0;
+}
+
+/* Stesso trattamento del footer di offerta-mediaddress:
+   filetto sopra, testo piccolo e secondario. */
+.l-card__footer {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--space-24);
+  border-top: var(--border-width-1) solid var(--color-border);
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+.l-card__footer p {
+  margin: 0;
+}
+
+/* Pagina-visore (upwork/glowal-slides.html). Testata e deck stanno in
+   `.l-screen`, che da 768px è alto esattamente una schermata: il deck
+   `.c-deck--fit` prende tutto lo spazio sotto la testata e dimensiona la
+   slide su quello. Il footer resta fuori, sotto la piega: si raggiunge
+   scorrendo, e non toglie altezza alla slide.
+   Testata compatta a ogni larghezza, perché ogni pixel in alto è un pixel
+   tolto alla slide: niente link di ritorno, padding verticale ridotto,
+   h1 a 30px. */
+.p-deck .l-page {
+  padding-top: var(--space-18);
+  padding-bottom: var(--space-12);
+}
+
+.p-deck h1 {
+  margin-bottom: 0;
+  font-size: var(--font-size-30);
+}
+
+@media (min-width: 768px) {
+  .p-deck .l-screen {
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-deck .l-screen > .l-page {
+    flex: none;
+  }
+
+  /* Niente tetto di larghezza: con le frecce ai lati, i 1080px del
+     container lasciavano la slide più stretta di quanto l'altezza della
+     finestra permetta. Qui decide l'altezza (vedi `.c-deck--fit`). */
+  .p-deck .l-screen > .l-wide {
+    max-width: none;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: var(--space-18);
+  }
+
+  .p-deck .l-screen > .l-wide > .c-deck {
+    flex: 1;
+  }
+}
+
+/* `.p-deck--start`: testata allineata a sinistra, sul bordo dello screenshot,
+   invece che centrata in una colonna da 780 (slides/, deck con le note
+   accanto). Su telefono basta togliere il centraggio; da 768px la testata
+   rientra quanto la freccia indietro più il suo gap, cioè dove comincia la
+   scena. Vale finché il deck è largo quanto la finestra, che è il caso
+   normale con le note accanto; su schermi molto larghi e bassi il deck si
+   centra e la testata resta sul bordo sinistro della pagina. */
+.p-deck--start .l-screen > .l-page {
+  max-width: none;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .p-deck--start .l-screen > .l-page {
+    padding-left: calc(var(--space-24) + var(--space-48) + var(--space-12));
+  }
+}
+
+/* Home a colonne piene (index.html): il nome si riduce a una barra in
+   testa, con i contatti a destra, e le tre aree occupano tutta l'altezza
+   che resta, separate da filetti verticali. Il titolo di ogni area cresce:
+   sono le tre aree a dire cosa fa lo studio, non più la tagline.
+   Da 768px tutto sta in una schermata (.p-home è già una colonna flex
+   alta 100svh); sotto, le aree si impilano e la pagina scorre. */
+.l-home__head,
+.l-home {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-24);
+  padding-right: var(--space-24);
+}
+
+.l-home__head {
+  padding-top: var(--space-48);
+  padding-bottom: var(--space-24);
+}
+
+.l-home__head h1 {
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-30);
+}
+
+.l-home__contact {
+  margin: 0;
+  font-size: var(--font-size-16);
+}
+
+.l-home {
+  flex: 1;
+  display: grid;
+}
+
+.l-home > .c-area {
+  --area-title-size: var(--font-size-30);
+  padding: var(--space-36) 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .l-home__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-24);
+    padding-top: var(--space-36);
+  }
+
+  .l-home__head h1 {
+    margin-bottom: 0;
+  }
+
+  /* Il filetto sotto la barra è il bordo superiore della griglia, così
+     tocca i filetti verticali senza lasciare uno spiraglio. */
+  .l-home {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: var(--border-width-1) solid var(--color-border);
+  }
+
+  .l-home > .c-area {
+    --area-title-size: var(--font-size-36);
+    padding: var(--space-36);
+    border-top: 0;
+  }
+
+  .l-home > .c-area:first-child {
+    padding-left: 0;
+  }
+
+  .l-home > .c-area:last-child {
+    padding-right: 0;
+  }
+
+  .l-home > .c-area + .c-area {
+    border-left: var(--border-width-1) solid var(--color-border);
+  }
+}

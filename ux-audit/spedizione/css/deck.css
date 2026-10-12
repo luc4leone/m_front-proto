@@ -1,0 +1,423 @@
+/* Deck: una storia fatta di immagini, un'immagine per passo
+   (upwork/glowal-slides.html).
+
+   Modello: valuepaths.com/activation/wtf-is-user-value. Le slide sono
+   JPEG 16:9 disegnati fuori dal sito (Excalidraw): la costruzione della
+   scena è già dentro le immagini, qui ci sono solo il visore e lo zoom.
+   Diverso da `.c-slides` (slides.css), dove la scena è HTML e i pezzi
+   compaiono via CSS.
+
+   - `.c-deck__stage` — il riquadro 16:9 che mostra una slide alla volta.
+   - `.c-deck__zoom` — la stessa immagine ingrandita, creata da js/deck.js:
+     tenendo premuto col mouse, o con un tap su touch.
+   - `.c-deck__btn--prev` / `--next` — le frecce: ai lati della slide da
+     768px, ai lati del cursore su telefono.
+   - `.c-deck__bar` — cursore e contatore.
+   - `.c-deck__notes` — una riga: suggerimento sullo zoom e fonte.
+   - `.c-deck__captions` — facoltativo, con `.c-deck--captions`: la nota
+     di ogni passo come testo della pagina, accanto alla scena da 768px e
+     sotto su telefono. Una `.c-deck__caption` per slide, nello stesso
+     ordine; `.c-deck__callouts` ripete i numeri dei bollini nello
+     screenshot a cui la nota si riferisce, uno o più
+     (slides/come-si-fanno-le-slide.md, modo B).
+
+   Interfaccia: `--deck-ratio` (default 16 / 9) è il rapporto della scena,
+   da dare nel markup quando le immagini non sono 16:9, così la scena non
+   le incornicia di grigio.
+
+   Progressive enhancement: senza JS le immagini sono tutte in colonna,
+   come un documento; `js/deck.js` aggiunge `.is-js`. */
+
+.c-deck {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.c-deck__slides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18);
+}
+
+.c-deck__slide {
+  margin: 0;
+}
+
+.c-deck__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-8);
+}
+
+/* ---------------------------------------------------------------
+   Con JS: una slide alla volta
+--------------------------------------------------------------- */
+
+.c-deck.is-js .c-deck__stage {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--deck-ratio, 16 / 9);
+  max-width: 100%;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-8);
+  background: var(--zinc-100);
+  cursor: zoom-in;
+  /* Scorrere la pagina col dito resta possibile finché lo zoom è chiuso. */
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.c-deck.is-js .c-deck__stage.is-zoomed {
+  cursor: zoom-out;
+  touch-action: none;
+}
+
+.c-deck.is-js .c-deck__slides {
+  display: block;
+  height: 100%;
+}
+
+.c-deck.is-js .c-deck__slide {
+  height: 100%;
+}
+
+.c-deck.is-js .c-deck__slide:not(.is-active) {
+  display: none;
+}
+
+.c-deck.is-js .c-deck__slide img {
+  height: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  -webkit-user-drag: none;
+}
+
+.c-deck__zoom {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   Colonna: scena, frecce, cursore, note
+--------------------------------------------------------------- */
+
+/* Una griglia a tre colonne, freccia | scena | freccia, con le stesse
+   colonne a ogni larghezza: cambia solo dove va ciascun pezzo.
+   Su telefono le frecce scendono ai lati del cursore, perché ai lati della
+   slide le toglierebbero un terzo della larghezza. */
+.c-deck__column {
+  display: grid;
+  grid-template-columns: var(--space-48) minmax(0, 1fr) var(--space-48);
+  grid-template-areas:
+    "stage stage stage"
+    "prev  bar   next"
+    "notes notes notes";
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.c-deck__stage { grid-area: stage; }
+.c-deck__btn--prev { grid-area: prev; }
+.c-deck__btn--next { grid-area: next; }
+.c-deck__bar { grid-area: bar; }
+.c-deck__notes { grid-area: notes; }
+
+/* Senza JS non c'è niente da comandare: restano solo le immagini. */
+.c-deck:not(.is-js) .c-deck__btn,
+.c-deck:not(.is-js) .c-deck__bar,
+.c-deck:not(.is-js) .c-deck__notes {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .c-deck__column {
+    grid-template-areas:
+      "prev  stage next"
+      ".     bar   ."
+      ".     notes .";
+  }
+}
+
+/* ---------------------------------------------------------------
+   Comandi
+--------------------------------------------------------------- */
+
+.c-deck__btn {
+  width: var(--space-48);
+  height: var(--space-48);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: var(--font-size-18);
+  cursor: pointer;
+}
+
+.c-deck__btn:hover {
+  border-color: var(--color-text);
+}
+
+.c-deck__btn:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: default;
+}
+
+.c-deck__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+/* Il cursore è anche la barra di avanzamento: si trascina per saltare.
+   Disegnato a mano invece che con accent-color, che avrebbe dato lo stesso
+   colore a pallino e traccia piena: qui la parte già vista è nera e il
+   pallino è corallo. Traccia sottile, alta 18px in tutto.
+   La parte piena: in Firefox c'è ::-moz-range-progress; in Chrome e Safari
+   no, quindi è un gradiente sulla traccia che si ferma a --deck-progress,
+   aggiornato da js/deck.js. */
+.c-deck__range {
+  flex: 1;
+  min-width: 0;
+  height: var(--space-18);
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.c-deck__range::-webkit-slider-runnable-track {
+  height: var(--border-width-4);
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    to right,
+    var(--color-text) var(--deck-progress, 0%),
+    var(--color-border) var(--deck-progress, 0%)
+  );
+}
+
+.c-deck__range::-moz-range-progress {
+  height: var(--border-width-4);
+  border-radius: var(--radius-full);
+  background: var(--color-text);
+}
+
+.c-deck__range::-moz-range-track {
+  height: var(--border-width-4);
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+}
+
+.c-deck__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--space-18);
+  height: var(--space-18);
+  /* centra il pallino sulla traccia: (traccia - pallino) / 2 */
+  margin-top: calc((var(--border-width-4) - var(--space-18)) / 2);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+}
+
+.c-deck__range::-moz-range-thumb {
+  width: var(--space-18);
+  height: var(--space-18);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+}
+
+.c-deck__range:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.c-deck__count {
+  flex: none;
+  margin: 0;
+  font-size: var(--font-size-14);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+/* Suggerimento e fonte sulla stessa riga; vanno a capo solo se non ci
+   stanno. Il suggerimento cambia col dispositivo: mouse o dito. */
+.c-deck__notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) 0;
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+.c-deck__hint {
+  display: none;
+  margin: 0;
+}
+
+.c-deck.is-js .c-deck__hint--pointer {
+  display: block;
+}
+
+@media (hover: none) {
+  .c-deck.is-js .c-deck__hint--pointer {
+    display: none;
+  }
+
+  .c-deck.is-js .c-deck__hint--touch {
+    display: block;
+  }
+}
+
+/* Il link vero a una fonte citata dentro una slide (regola in CLAUDE.md,
+   «Slide-immagine»): nell'immagine non si può cliccare. */
+.c-deck__source {
+  margin: 0;
+}
+
+/* Separatore fra suggerimento e fonte. Generato dal CSS e non scritto nel
+   markup, così lo screen reader non legge «punto elenco». */
+.c-deck__hint + .c-deck__source::before {
+  content: "•";
+  padding: 0 var(--space-12);
+}
+
+/* ---------------------------------------------------------------
+   Adattamento alla finestra
+--------------------------------------------------------------- */
+
+/* `.c-deck--fit`: il deck riempie l'altezza che il genitore gli dà (lo fa
+   `.p-deck .l-screen` in layout.css) e la slide si dimensiona su quella:
+   larga quanto può, ma mai più alta dello spazio che resta sopra cursore e
+   note. Il calcolo usa le unità del container (cqw, cqh) di `.c-deck__fit`.
+
+   - Riserva in altezza, sotto la scena: due gap (24) + cursore (18) + una
+     riga di note da 14px, più margine se le note vanno a capo: --space-84.
+   - Riserva in larghezza, ai lati: due frecce (96) + due gap (24) =
+     --space-120, che la colonna aggiunge alla larghezza della slide.
+   Solo da 768px: su telefono la pagina scorre normalmente. */
+@media (min-width: 768px) {
+  .c-deck--fit.is-js {
+    min-height: 0;
+  }
+
+  .c-deck--fit.is-js .c-deck__fit {
+    flex: 1;
+    min-height: 0;
+    container-type: size;
+    display: flex;
+    justify-content: center;
+  }
+
+  .c-deck--fit.is-js .c-deck__column {
+    width: min(100cqw, (100cqh - var(--space-84)) * var(--deck-ratio, 16 / 9) + var(--space-120));
+    align-content: start;
+  }
+
+  /* Con le note accanto, la colonna è più larga della loro colonna e di
+     un gap. */
+  .c-deck--fit.c-deck--captions.is-js .c-deck__column {
+    width: min(100cqw, (100cqh - var(--space-84)) * var(--deck-ratio, 16 / 9) + var(--space-120) + var(--space-12) + var(--space-360));
+  }
+}
+
+/* ---------------------------------------------------------------
+   Note di testo (`.c-deck--captions`)
+--------------------------------------------------------------- */
+
+/* Su telefono la nota viene dopo il cursore: sta più vicina al testo che
+   segue che alle frecce, e cambiare passo non sposta le frecce.
+   Da 768px è una colonna a destra della freccia avanti: le frecce restano
+   ai lati dello screenshot, che è ciò che comandano. */
+.c-deck--captions .c-deck__column {
+  grid-template-areas:
+    "stage   stage   stage"
+    "prev    bar     next"
+    "caption caption caption"
+    "notes   notes   notes";
+}
+
+.c-deck__captions {
+  grid-area: caption;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-self: start;
+}
+
+@media (min-width: 768px) {
+  .c-deck--captions .c-deck__column {
+    grid-template-columns: var(--space-48) minmax(0, 1fr) var(--space-48) var(--space-360);
+    grid-template-areas:
+      "prev  stage next caption"
+      ".     bar   .    caption"
+      ".     notes .    caption";
+  }
+}
+
+.c-deck__caption {
+  margin: 0 0 var(--space-24);
+}
+
+.c-deck.is-js .c-deck__caption {
+  margin: 0;
+}
+
+.c-deck.is-js .c-deck__caption:not(.is-active) {
+  display: none;
+}
+
+/* I numeri sopra il titolo e non in una colonna accanto: una nota può
+   parlare di più bollini insieme («2, 3 e 4»). */
+.c-deck__callouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-12);
+}
+
+/* Il numero del bollino. Corallo come il pallino del cursore, ma con un
+   altro ruolo: dice a quale punto dello screenshot si riferisce la nota. */
+.c-deck__callout {
+  width: var(--space-30);
+  height: var(--space-30);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-on-primary);
+  font-family: var(--font-display);
+  font-size: var(--font-size-16);
+  line-height: 1;
+}
+
+.c-deck__caption h2 {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-snug);
+}
+
+.c-deck__caption p {
+  margin: 0 0 var(--space-12);
+  line-height: var(--line-height-normal);
+}
+
+.c-deck__caption p:last-child {
+  margin-bottom: 0;
+}

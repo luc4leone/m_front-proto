@@ -1,0 +1,244 @@
+/*
+  Design token — l'unico posto dove un valore è scritto.
+  Le motivazioni stanno in design-system/design-system.md, le scelte di
+  identità visiva in brand-kit/brand-style.md.
+
+  Tre blocchi, in quest'ordine:
+
+    1. Scale        misure e tempi, indipendenti dall'identità visiva
+    2. Palette      i colori del brand, più i grigi e i funzionali
+    3. Semantiche   i nomi che i componenti consumano
+
+  Un componente consuma sempre il blocco 3, mai gli altri due: così
+  cambiare identità visiva è riscrivere il blocco 2 e rimappare il 3,
+  senza toccare un solo file in components/.
+
+  Prima c'erano tre file — questo, brand-kit/brand-tokens-light.css e
+  css/theme-brand.css — e l'ultimo non conteneva solo token: ridisegnava
+  venti regole di componenti, dal border-radius dei bottoni alla scala
+  dei titoli. Quelle regole sono tornate nei file dei rispettivi
+  componenti, dove si cercano.
+
+  Breakpoint (768px, mobile-first) NON è qui: le custom property non
+  funzionano dentro @media, quindi resta una costante documentata da
+  ripetere letteralmente in ogni `@media (min-width: 768px)`.
+*/
+
+/* Archivo Black per i titoli, Archivo per il corpo. Da Google Fonts:
+   nessun file nel repo, nessun build step. L'@import deve restare la
+   prima riga del file — il CSS lo richiede. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ===============================================================
+     1. SCALE — misure e tempi. Non cambiano con l'identità visiva.
+     =============================================================== */
+
+  /* --- Tipografia --- */
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-30: 30px;
+  --font-size-36: 36px;
+  --font-size-48: 48px;
+  --font-size-60: 60px;
+  --font-size-72: 72px;
+
+  /* Archivo Black esiste in un solo peso: un font-weight alto su un
+     font già nero farebbe sintetizzare un finto bold. */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.3;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* naming per fascia, non per valore: decimali (anche negativi)
+     scomodi come suffisso */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.08em;
+
+  /* --- Spaziatura e dimensioni --- */
+  /* Stessa scala per margin/padding/gap e per dimensioni di elementi. */
+  --space-6: 6px;
+  --space-12: 12px;
+  --space-18: 18px;
+  --space-24: 24px;
+  --space-30: 30px;
+  --space-36: 36px;
+  --space-48: 48px;
+  --space-60: 60px;
+  --space-72: 72px;
+  --space-84: 84px;
+  --space-96: 96px;
+  --space-108: 108px;
+  --space-120: 120px;
+  --space-144: 144px;
+  --space-168: 168px;
+  --space-192: 192px;
+  --space-216: 216px;
+  --space-240: 240px;
+  --space-300: 300px;
+  --space-360: 360px;
+  --space-420: 420px;
+  --space-480: 480px;
+  --space-540: 540px;
+  --space-600: 600px;
+  --space-660: 660px;
+  --space-720: 720px;
+  --space-780: 780px;
+
+  /* --- Radius --- */
+  /* Naming per valore, più --radius-full per pillole e cerchi:
+     "full" non è un px, è un concetto a sé. */
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-full: 9999px;
+
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+
+  /* --- Transizioni --- */
+  /* Durata per valore (coerente con font-size e space), easing per
+     nome: sono curve bezier, non un numero singolo. */
+  --duration-150: 150ms;
+  --duration-250: 250ms;
+  --duration-400: 400ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* --- Z-index --- */
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+
+  /* --- Layout --- */
+  --container-max-width: 1080px;
+
+  /* --- Opacity --- */
+  /* Primo caso d'uso reale: lo stato disabled di .c-button. */
+  --opacity-disabled: 0.5;
+
+  /* ===============================================================
+     2. PALETTE — i colori grezzi. Cambiare identità visiva
+        significa riscrivere questo blocco e rimappare il terzo.
+     =============================================================== */
+
+  /* --- Brand --- */
+  --color-coral: #FF6B4A;
+  --color-black: #0E0E10;
+  --color-white: #FAFAFA;
+  --color-grey: #8C8C94;
+
+  /* Varianti scurite, non nel brand kit originale: servono dove il
+     colore diventa testo, e il brand kit stesso prevede il caso
+     («scurisci leggermente solo per quel caso d'uso, senza cambiare
+     il token base»).
+       --color-grey-dark  #8C8C94 su bianco fa ~3,2:1, sotto la soglia
+                          AA (4,5:1) per il testo piccolo. Questo ~5:1.
+       --color-coral-dark #FF6B4A su bianco fa 2,8:1, sotto la soglia
+                          anche per il testo grande (3:1). Questo 3,1:1. */
+  --color-grey-dark: #6B6B73;
+  --color-coral-dark: #FF5833;
+
+  /* Il brand kit non ha un colore per linee e bordi: grigio chiaro
+     derivato dal nero, stessa temperatura neutra. */
+  --color-line: #E3E3E6;
+
+  /* --- Grigi neutri (scala zinc, Tailwind) --- */
+  /* Restano perché alcuni componenti li consumano direttamente per
+     superfici e fondi tenui, dove un alias semantico non direbbe di
+     più di quanto dica il numero. */
+  --zinc-50: #fafafa;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d8;
+  --zinc-400: #a1a1aa;
+  --zinc-500: #71717a;
+  --zinc-600: #52525b;
+  --zinc-700: #3f3f46;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-950: #09090b;
+
+  /* --- Funzionali (non di brand) --- */
+  /* Devono restare riconoscibili qualunque sia il mood del brand. */
+  --celadon: #a4d4b4ff;
+  --red-600: #dc2626;
+
+  /* ===============================================================
+     3. SEMANTICHE — i nomi che i componenti consumano.
+     =============================================================== */
+
+  --color-background: var(--color-white);
+  --color-text: var(--color-black);
+  --color-text-muted: var(--color-grey-dark);
+  --color-border: var(--color-line);
+
+  /* Un solo accento, e va sul CTA. Testo scuro sopra (~7,4:1). */
+  --color-primary: var(--color-coral);
+  --color-on-primary: var(--color-black);
+
+  --color-secondary: var(--color-black);
+  --color-on-secondary: var(--color-white);
+
+  --color-accent: var(--color-coral);
+  /* L'accento quando è testo da leggere, non un bordo o un'icona. */
+  --color-accent-text: var(--color-coral-dark);
+
+  --color-icon-primary: var(--color-black);
+  --color-icon-secondary: var(--color-grey);
+
+  /* success: celadon, verde tenue. Testo scuro sopra (~10,7:1), non
+     testo chiaro (~1,7:1). */
+  --color-success: var(--celadon);
+  --color-on-success: var(--color-black);
+
+  /* error: rosso funzionale. Testo chiaro sopra (~4,8:1, passa AA),
+     non testo scuro piccolo (~3,7:1). */
+  --color-error: var(--red-600);
+  --color-on-error: var(--color-white);
+
+  /* overlay: fondo dietro modale e lead magnet, tinto del nero brand */
+  --color-overlay: rgba(14, 14, 16, 0.6);
+
+  /* Nero su bianco ~19:1, nero su corallo ~7,4:1. */
+  --focus-ring-color: var(--color-black);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+  --font-family-base: var(--font-body);
+
+  /* Il brand è piatto: niente ombre. I token restano perché i
+     componenti li consumano — qui valgono `none`, e riaccenderle è
+     cambiare tre righe invece di cercarle in venti file. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}
+
+/*
+  Promemoria — non ancora token, da valutare quando serve davvero:
+
+  - Aspect-ratio (video, lead magnet): dubbio se debba essere un token
+    o un valore per-istanza — l'aspect-ratio giusto è spesso dettato
+    dal contenuto stesso (rapporto nativo del video), non da una
+    scelta di stile da applicare ovunque. Valutare quando si disegna
+    quella sezione, non anticipare ora.
+*/

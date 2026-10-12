@@ -1,0 +1,206 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-400);
+  line-height: var(--line-height-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 var(--space-12);
+  font-weight: var(--font-weight-600);
+  line-height: var(--line-height-tight);
+}
+
+/* Da h1 a h3 il font è quello display. Archivo Black esiste in un solo
+   peso: un font-weight 600 sopra un font già nero farebbe sintetizzare
+   al browser un finto bold. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-48);
+}
+
+h2 {
+  font-size: var(--font-size-30);
+}
+
+h3 {
+  font-size: var(--font-size-20);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--font-size-60);
+  }
+
+  h2 {
+    font-size: var(--font-size-36);
+  }
+}
+
+/* Dall'h3 in giù il corpo scende sotto i 30px e l'interlinea sale a snug:
+   a quelle dimensioni un titolo su due righe a 1.1 si impasta. È la stessa
+   misura dei titoli di componente (.c-entry__title, .c-requirement__title),
+   che stanno nello stesso intorno di corpo — vedi design-system.md,
+   «Line-height». h1 e h2 restano display, quindi tight. */
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height-snug);
+}
+
+/* Ritmo verticale: margin-top > margin-bottom, il titolo si raggruppa
+   col contenuto che introduce, non con quello che precede. h1/h2/h4-6
+   ancora da decidere (vedi design-system.md). */
+h3 {
+  margin-top: var(--space-30);
+}
+
+/* Eccezione: da primo figlio del contenitore, il margin-top va a 0 —
+   la separazione la dà già il contenitore (padding/gap della sezione),
+   altrimenti l'h3 non si allinea in alto con l'h2 della colonna sidebar. */
+h3:first-child {
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 var(--space-18);
+}
+
+ol,
+ul {
+  margin: 0 0 var(--space-18);
+  padding-left: var(--space-24);
+}
+
+li {
+  margin-bottom: var(--space-6);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* Gerarchia per peso, non per colore: il link è nel colore del testo e
+   si distingue dalla sottolineatura (WCAG 1.4.1). L'accento compare solo
+   all'hover, che è transitorio e non conta come «secondo elemento» nella
+   regola di moderazione del brand kit. */
+a {
+  color: inherit;
+  text-decoration-color: var(--color-grey);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* Nome di file, percorso, proprietà CSS: un frammento di codice dentro
+   una frase. Due misure in em invece che a token, di proposito: il
+   monospace del browser rende più piccolo del testo attorno (0.9em lo
+   riporta in riga), e il respiro laterale deve scalare col carattere —
+   a 6px fissi la pastiglia stacca dalla virgola che la segue. */
+code {
+  padding: 0 0.25em;
+  border-radius: var(--radius-2);
+  background: var(--zinc-200);
+  font-size: 0.9em;
+}
+
+/* Dentro un blocco, la pastiglia è il <pre>, non ogni riga: il <code>
+   torna nudo. Nessuna pagina ha ancora un blocco di codice, ma la
+   regola sopra senza questa si rompe il giorno che ne arriva uno. */
+pre code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  font-size: inherit;
+}
+
+/* Utility: testo che apre un paragrafo con lo stesso peso visivo di un
+   h3, senza essere un vero heading (niente voce separata nell'outline). */
+.u-lead {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-700);
+}
+
+/* Utility: rimuove il marker di lista, per liste con un'emoji già
+   presente nel testo che fa già da marker (niente doppio bullet). */
+.u-list-none {
+  list-style: none;
+  padding-left: 0;
+}
+
+blockquote {
+  margin: 0 0 var(--space-18);
+  padding-left: var(--space-18);
+  border-left: var(--border-width-2) solid var(--color-text);
+  /* Di Archivo sono caricati solo i pesi upright: meglio tondo che un
+     corsivo sintetizzato dal browser. La citazione si distingue per il
+     bordo, non per l'inclinazione. */
+  font-style: normal;
+}
+
+blockquote footer {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-14);
+  font-style: normal;
+  color: var(--color-text-muted);
+}
+
+figcaption {
+  margin-top: var(--space-6);
+  font-size: var(--font-size-14);
+  color: var(--color-text-muted);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  button {
+    transition:
+      color var(--duration-150) var(--ease-out),
+      background-color var(--duration-150) var(--ease-out),
+      filter var(--duration-150) var(--ease-out);
+  }
+}
+
+/* hidden deve vincere su display impostati dai componenti (es. .c-project). */
+[hidden] {
+  display: none !important;
+}

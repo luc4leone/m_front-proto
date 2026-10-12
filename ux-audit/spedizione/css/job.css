@@ -1,0 +1,417 @@
+/*
+  Job / analisi annunci (upwork.html e upwork/*.html).
+
+  Pagine di studio: un elenco di annunci analizzati e, per ciascuno, una
+  pagina lunga di analisi. Impaginazione editoriale a colonna singola,
+  niente ombre, gerarchia tramite peso del font. Un solo elemento in
+  accento per sezione (brand-kit/brand-style.md): il filetto in testa
+  alla pagina, il pallino del verdetto nell'elenco, il bordo sinistro
+  del riquadro verdetto nella pagina di analisi.
+*/
+
+/* ---------------------------------------------------------------
+   Testatina di pagina — filetto + occhiello
+--------------------------------------------------------------- */
+
+.c-rule {
+  width: var(--space-48);
+  height: var(--border-width-4);
+  background: var(--color-accent);
+  margin-bottom: var(--space-18);
+}
+
+.c-eyebrow {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------
+   Elenco annunci (upwork.html)
+--------------------------------------------------------------- */
+
+.c-job-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: var(--border-width-1) solid var(--color-border);
+}
+
+.c-job {
+  margin: 0;
+  padding: var(--space-24) 0;
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-job__date {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.c-job__title {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-24);
+}
+
+/* Un link è sottolineato sempre, anche quando è un titolo: la
+   sottolineatura è ciò che lo rende riconoscibile come link, e toglierla
+   perché "si vede che è un titolo" lascia l'affordance al solo colore —
+   che qui è quello del testo (WCAG 1.4.1). Il colore della riga e
+   l'accento all'hover li dà già `a` in base.css; qui si ispessisce
+   soltanto, perché sotto Archivo Black a 24px la riga di default sparisce. */
+.c-job__title a {
+  text-decoration-thickness: var(--border-width-2);
+}
+
+.c-job__summary {
+  margin: 0 0 var(--space-12);
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-16);
+}
+
+.c-job__verdict {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-12);
+  font-size: var(--font-size-16);
+}
+
+/* Pastiglia di esito. Il pallino è l'unico accento dell'elenco: il
+   testo resta nel colore del corpo, così la pastiglia non compete con
+   i titoli (gerarchia per peso, non per colore). */
+.c-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-12);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.c-badge::before {
+  content: "";
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+}
+
+/* Esito negativo: stesso disegno, pallino spento. */
+.c-badge--no::before {
+  background: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------
+   Pagina di analisi
+--------------------------------------------------------------- */
+
+/* L'annuncio originale, riportato letteralmente. */
+.c-posting {
+  margin: 0 0 var(--space-18);
+  padding: var(--space-18) var(--space-24);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-4);
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
+.c-posting p:last-child {
+  margin-bottom: 0;
+}
+
+.c-posting__label {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+/* Il verdetto: la risposta alla domanda, staccata dal resto. */
+.c-verdict {
+  margin: 0 0 var(--space-18);
+  padding-left: var(--space-18);
+  border-left: var(--border-width-4) solid var(--color-accent);
+}
+
+.c-verdict p:last-child {
+  margin-bottom: 0;
+}
+
+/* Glossario: termine in Archivo Black, definizione sotto. */
+.c-defs {
+  margin: 0;
+}
+
+.c-defs dt {
+  margin-top: var(--space-18);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-400);
+}
+
+.c-defs dt:first-child {
+  margin-top: 0;
+}
+
+.c-defs dd {
+  margin: var(--space-6) 0 0;
+}
+
+/* Esempio dentro una definizione o uno step: rientro e colore
+   secondario, così si distingue dalla regola senza usare l'accento. */
+.c-example {
+  margin: var(--space-6) 0 0;
+  padding-left: var(--space-12);
+  border-left: var(--border-width-1) solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-16);
+}
+
+/* Passi numerati. Il numero è tipografico, non un pallino colorato. */
+.c-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+.c-steps > li {
+  margin: 0 0 var(--space-30);
+  counter-increment: step;
+}
+
+.c-steps > li::before {
+  content: "Passo " counter(step);
+  display: block;
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* h3 o h4 secondo la profondità della sezione che li ospita: i passi
+   della sezione 3 stanno sotto un h2, quelli della sezione 7 sotto un h3. */
+.c-steps h3,
+.c-steps h4 {
+  margin-top: 0;
+}
+
+/* Tabella di confronto. Mobile-first: sotto i 768px non è una tabella ma
+   un elenco di blocchi — due colonne di testo lungo su schermo stretto non
+   si leggono, e farle scorrere lateralmente è peggio che impilarle.
+   Da 768px (costante documentata, vedi design-system.md) torna tabella. */
+
+.c-scroll {
+  overflow-x: auto;
+  margin: 0 0 var(--space-18);
+}
+
+.c-table {
+  width: 100%;
+  font-size: var(--font-size-16);
+}
+
+/* L'intestazione serve solo alla versione tabellare: impilata sarebbe una
+   riga «Cosa scrivono / Cosa significa» sospesa in cima al nulla.
+   Nascosta all'occhio ma non allo screen reader. */
+.c-table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.c-table tbody,
+.c-table tr,
+.c-table th,
+.c-table td {
+  display: block;
+}
+
+.c-table tr {
+  padding: var(--space-18) 0;
+  border-bottom: var(--border-width-1) solid var(--color-border);
+}
+
+.c-table th,
+.c-table td {
+  padding: 0;
+  text-align: left;
+}
+
+.c-table tbody th {
+  margin-bottom: var(--space-6);
+  font-weight: var(--font-weight-600);
+}
+
+@media (min-width: 768px) {
+  .c-table {
+    border-collapse: collapse;
+  }
+
+  .c-table thead {
+    position: static;
+    display: table-header-group;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .c-table tbody {
+    display: table-row-group;
+  }
+
+  .c-table tr {
+    display: table-row;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .c-table th,
+  .c-table td {
+    display: table-cell;
+    padding: var(--space-12);
+    vertical-align: top;
+    border-bottom: var(--border-width-1) solid var(--color-border);
+  }
+
+  .c-table thead th {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-400);
+    font-size: var(--font-size-14);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .c-table tbody th {
+    margin-bottom: 0;
+    width: 40%;
+  }
+}
+
+/* Variante per tabelle di dati (numeri, celle corte): impilata, una cella
+   senza intestazione è un valore orfano — «0» non dice niente. Ogni td porta
+   la sua etichetta in data-label, mostrata solo sotto i 768px.
+   Da tabella la prima colonna non si prende il 40%: le colonne sono tante. */
+.c-table--labeled td[data-label]::before {
+  content: attr(data-label) ": ";
+  font-weight: var(--font-weight-600);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .c-table--labeled td[data-label]::before {
+    content: none;
+  }
+
+  .c-table--labeled tbody th {
+    width: auto;
+  }
+}
+
+/* Navigazione di ritorno all'elenco. */
+.c-back {
+  margin: 0 0 var(--space-24);
+  font-size: var(--font-size-16);
+}
+
+/* ---------------------------------------------------------------
+   Interruttore di lingua (js/lang-toggle.js)
+--------------------------------------------------------------- */
+
+/* Stesso disegno della pastiglia `.c-badge`: è un controllo piccolo che
+   sta accanto al contenuto, non un CTA — quindi bordo sottile e niente
+   riempimento, che è riservato a `.c-button`. Non sottolineato: è un
+   bottone, non un link (vedi journal, 16 settembre 2026). */
+.c-lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 var(--space-18);
+  padding: var(--space-6) var(--space-12);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.c-lang-toggle:hover {
+  border-color: var(--color-text);
+}
+
+/* ---------------------------------------------------------------
+   Nota privata e bozza di lettera
+--------------------------------------------------------------- */
+
+/* Quello che resta a me: la deliberazione che non va mostrata al cliente.
+   Segnalato dal tratteggio, non da un colore — il corallo in questa pagina
+   è già impegnato dal filetto di testata e dal riquadro del verdetto. */
+.c-private {
+  margin: var(--space-30) 0 0;
+  padding: var(--space-18);
+  border: var(--border-width-1) dashed var(--color-border);
+  border-radius: var(--radius-4);
+  font-size: var(--font-size-16);
+}
+
+.c-private__label {
+  margin: 0 0 var(--space-12);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-600);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.c-private > :last-child {
+  margin-bottom: 0;
+}
+
+/* Testo da copiare così com'è. Riquadrato per dire «questo è il pezzo da
+   prendere», e in misura da lettura lunga invece che da nota. */
+.c-letter {
+  margin: 0 0 var(--space-18);
+  padding: var(--space-24);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-4);
+}
+
+.c-letter > :last-child {
+  margin-bottom: 0;
+}
+
+/* Buco da riempire prima di inviare: un valore che dipende da cosa risponde
+   il cliente o da quanto decidi di chiedere. Niente `<mark>`: il giallo di
+   default non è in palette e il senso qui non è «evidenziato» ma «mancante». */
+.c-slot {
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-2);
+  background: var(--color-border);
+  font-weight: var(--font-weight-600);
+}
