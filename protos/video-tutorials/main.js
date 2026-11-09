@@ -87,6 +87,19 @@ faqListEl.addEventListener('click', (event) => {
   if (link) selectVideo(link.dataset.faqVideo, link.dataset.faqTime);
 });
 
+// Un'ancora #faq-… nell'indirizzo apre quella domanda e la porta in vista.
+function openFaqFromHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id.startsWith('faq-')) return;
+  const item = document.getElementById(id);
+  if (!item) return;
+  item.open = true;
+  item.scrollIntoView({ block: 'start' });
+  item.querySelector('summary').focus({ preventScroll: true });
+}
+
+addEventListener('hashchange', openFaqFromHash);
+
 videos = await Promise.all(
   videoData.map(async (video, index) => ({
     ...video,
@@ -98,3 +111,4 @@ videosById = Object.fromEntries(videos.map((video) => [video.id, video]));
 renderVideos();
 renderFaqs();
 renderActivePlayer();
+openFaqFromHash();

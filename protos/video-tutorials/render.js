@@ -128,6 +128,12 @@ function renderVideoItem(video, terms, activeId) {
     </li>`;
 }
 
+// "Cos'è un progetto?" → "faq-cos-e-un-progetto": l'ancora della domanda,
+// per linkarla da fuori (…/video-tutorials/index.html#faq-cos-e-un-progetto).
+export function faqId(question) {
+  return `faq-${normalize(question).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
+}
+
 export function matchesFaq(faq, terms) {
   const haystack = normalize(`${faq.question} ${faq.answer}`);
   return terms.every((term) => haystack.includes(term));
@@ -137,7 +143,7 @@ function renderFaqItem(faq, terms, video) {
   const open = terms.length ? ' open' : '';
   return `
     <li>
-      <details class="faq-list__item"${open}>
+      <details class="faq-list__item" id="${faqId(faq.question)}"${open}>
         <summary class="faq-list__question">${highlight(faq.question, terms)}</summary>
         <div class="faq-list__body">
           <p class="faq-list__answer">${highlight(faq.answer, terms)}</p>
