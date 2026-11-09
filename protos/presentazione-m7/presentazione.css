@@ -1,0 +1,578 @@
+/* presentazione-m7 — stili della presentazione commerciale di M7.
+
+   I componenti (.c-exploded, .c-pitch, .c-pitch-panel, .c-faq-modal)
+   vengono dal sito di Luca (mucca-website), dove sono nati. Qui leggono
+   i token di Mediaddress: il blocco qui sotto traduce i nomi che usano
+   nei token di css/tokens.css e css/theme-default.css. Per cambiare
+   l'aspetto si tocca il tema, non i componenti. */
+
+:root {
+  /* Spazi che la scala di Mediaddress non ha */
+  --space-18: 1.125rem;
+  --space-30: 1.875rem;
+  --space-36: 2.25rem;
+  --space-420: 26.25rem;
+  --space-780: 48.75rem;
+
+  /* Tipografia */
+  --font-body: var(--font);
+  --font-size-14: var(--fs-14);
+  --font-size-16: var(--fs-16);
+  --font-size-20: var(--fs-20);
+  --font-size-24: var(--fs-24);
+  --font-weight-500: var(--fw-500);
+  --font-weight-600: var(--fw-600);
+  --font-weight-700: var(--fw-700);
+  --line-height-tight: var(--line-height-12);
+  --line-height-snug: var(--line-height-14);
+  --line-height-normal: var(--line-height-16);
+  --letter-spacing-wide: 0.06em;
+
+  /* Colori: i nomi dei componenti sui colori del tema */
+  --color-drawing-line: var(--grey-500);
+  --color-badge: var(--grey-200);
+  --color-on-badge: var(--color-text-strong);
+  --color-on-primary: var(--color-text-inverse);
+  --color-overlay: var(--black-alpha-35);
+  --opacity-disabled: 0.4;
+
+  /* Focus, livelli, movimento */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-primary);
+  --z-overlay: var(--z-100);
+  --z-modal: var(--z-300);
+  --duration-250: 250ms;
+  --ease-out: ease;
+
+  /* Quanto si scorre per far esplodere i pezzi */
+  --scroll-runway: 400dvh;
+  --scroll-runway-long: 800dvh;
+}
+
+/* Base della pagina */
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: var(--fs-16);
+  line-height: var(--line-height-16);
+}
+
+h1, h2, h3 {
+  margin: 0 0 var(--space-12);
+  color: var(--color-text-strong);
+  font-weight: var(--fw-700);
+  line-height: var(--line-height-12);
+}
+
+h1 { font-size: var(--fs-36); }
+h2 { font-size: var(--fs-30); }
+h3 { font-size: var(--fs-20); margin-top: var(--space-32); }
+
+p { margin: 0 0 var(--space-12); }
+
+a { color: var(--color-primary); }
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* La pagina da leggere (presentazione.html) */
+.l-page {
+  max-width: var(--space-780);
+  margin: 0 auto;
+  padding: var(--space-48) var(--space-24);
+}
+
+
+/* ── exploded ─────────────────────────────────────────── */
+
+/* .c-exploded — vista esplosa, come nei disegni tecnici.
+
+   Un pezzo principale (la dashboard) e i pezzi che ne escono: ognuno
+   parte sovrapposto al punto da cui viene e, scorrendo, si stacca fino
+   alla sua posizione finale, legato all'origine da una linea di
+   richiamo. Le posizioni sono in pixel della scena, negli attributi
+   data-* del markup; la logica sta in js/exploded.js.
+
+   La scena è a misura reale e la «camera» la riduce per farla stare
+   nella finestra; con zoom e pan l'utente la prende in mano (regole in
+   js/exploded.js). Contorni e richiami sono nello SVG, a 1px qualunque
+   sia la scala.
+
+   Mobile-first: sotto i 768px si vede solo l'avviso (__notice). */
+
+.c-exploded__title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.c-exploded__notice {
+  margin: 0;
+  padding: var(--space-24);
+  color: var(--color-text-muted);
+}
+
+.c-exploded__stage {
+  display: none;
+}
+
+.c-exploded__scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+.c-exploded__piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
+  cursor: zoom-in;
+}
+
+/* Il pezzo già inquadrato non si apre di nuovo: si trascina come lo
+   sfondo. */
+.c-exploded__piece.is-focused {
+  cursor: inherit;
+}
+
+/* Il focus ring sta dentro la scena ridotta: lo spessore si divide per
+   la scala (che il JS scrive in --c-exploded-scale) e resta 2px. */
+.c-exploded__piece:focus-visible {
+  outline: calc(var(--focus-ring-width) / var(--c-exploded-scale, 1)) solid var(--focus-ring-color);
+  outline-offset: calc(var(--focus-ring-offset) / var(--c-exploded-scale, 1));
+}
+
+.c-exploded__piece img {
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.c-exploded__lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-overlay);
+  width: 1px;
+  height: 1px;
+  max-width: none; /* la scena non ha larghezza: il 100% di base.css sarebbe 0 */
+  overflow: visible;
+  pointer-events: none;
+}
+
+.c-exploded__lines rect,
+.c-exploded__lines line {
+  fill: none;
+  stroke: var(--color-drawing-line);
+  stroke-width: var(--border-width-1);
+  vector-effect: non-scaling-stroke;
+}
+
+.c-exploded__lines circle {
+  fill: var(--color-drawing-line);
+}
+
+/* Quando la scena esce dalla finestra, lo sfondo si trascina. */
+.c-exploded.is-pannable .c-exploded__stage {
+  cursor: grab;
+}
+
+.c-exploded.is-dragging .c-exploded__stage,
+.c-exploded.is-dragging .c-exploded__piece {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Barra dello zoom, solo quando la camera è dell'utente:
+   − valore + Adatta pezzo | Vista d'insieme, un gruppo solo in basso a
+   destra. La crea il JS. */
+.c-exploded__zoom {
+  position: absolute;
+  /* --c-exploded-inset: lo spazio a destra preso da un pannello (JS) */
+  right: calc(var(--space-24) + var(--c-exploded-inset, 0px));
+  bottom: var(--space-24);
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  border: var(--border-width-1) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+}
+
+.c-exploded__zoom-btn,
+.c-exploded__zoom-text {
+  height: var(--space-36);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-1) solid transparent;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}
+
+.c-exploded__zoom-btn {
+  width: var(--space-36);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-600);
+}
+
+.c-exploded__zoom-text {
+  padding: 0 var(--space-12);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-500);
+}
+
+.c-exploded__zoom-btn:hover:not(:disabled),
+.c-exploded__zoom-text:hover:not(:disabled) {
+  border-color: var(--color-text);
+}
+
+.c-exploded__zoom-btn:disabled,
+.c-exploded__zoom-text:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: default;
+}
+
+.c-exploded__zoom-value {
+  min-width: var(--space-48);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.c-exploded__zoom-sep {
+  width: var(--border-width-1);
+  height: var(--space-24);
+  background: var(--color-border);
+}
+
+/* Bollino del pitch: sopra l'angolo in alto a destra di un pezzo (fuori,
+   per non coprire lo screenshot), a misura
+   costante (il JS lo scala all'inverso della camera), a ogni zoom.
+   Grigio chiaro; corallo solo quello del pezzo il cui testo è aperto. */
+.c-exploded__pitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11; /* sopra i pezzi (z-index 10 − profondità) */
+  padding: var(--space-6) var(--space-12);
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-badge);
+  color: var(--color-on-badge);
+  font-family: var(--font-body);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-600);
+  line-height: var(--line-height-tight);
+  white-space: nowrap;
+  transform-origin: 0 0;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .c-exploded__pitch {
+    transition: opacity var(--duration-250) var(--ease-out);
+  }
+}
+
+.c-exploded__pitch.is-active {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Freccia in basso che dice «scorri»; sparisce appena si scorre. */
+.c-exploded__hint {
+  position: absolute;
+  bottom: var(--space-24);
+  left: 50%;
+  z-index: var(--z-overlay);
+  margin: 0;
+  transform: translateX(-50%);
+  font-size: var(--font-size-24);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .c-exploded {
+    height: var(--scroll-runway);
+  }
+
+  /* Con molti pezzi serve più scroll, se no escono troppo in fretta. */
+  .c-exploded--long {
+    height: var(--scroll-runway-long);
+  }
+
+  .c-exploded__notice {
+    display: none;
+  }
+
+  .c-exploded__stage {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+/* ── pitch ─────────────────────────────────────────── */
+
+/* .c-pitch — il pitch di vendita come pagina da leggere.
+
+   Fonte: progetti/mediaddress7/presentazione.html, che vale anche da
+   sola. L'esploso la carica e ne mostra una parte: per questo ogni voce
+   (.c-pitch__item) e ogni parte (.c-pitch__part) ha un id, a cui
+   puntano i bollini dei pezzi (data-pitch).
+
+   - .c-pitch__part   una parte numerata (1. Base marketing…)
+   - .c-pitch__item   una voce, con titolo h3 e testo
+   - .c-pitch__note   la nota di regia, in corsivo grigio: non si dice
+                      al cliente così com'è
+   - .c-pitch__state  lo stato di una funzione, in corsivo */
+
+.c-pitch__kicker {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-700);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-snug);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.c-pitch__part {
+  padding-top: var(--space-48);
+}
+
+.c-pitch__item {
+  padding-top: var(--space-24);
+}
+
+.c-pitch__item p,
+.c-pitch__part > p,
+.c-pitch__part > ol {
+  max-width: 64ch;
+}
+
+.c-pitch__note,
+.c-pitch__state {
+  font-style: italic;
+}
+
+.c-pitch__note {
+  color: var(--color-text-muted);
+}
+
+/* La voce raggiunta da un bollino dell'esploso: un filetto a sinistra,
+   nero, per ritrovarla nella pagina intera. */
+.c-pitch__item.is-current,
+.c-pitch__part.is-current {
+  margin-left: calc(-1 * var(--space-18));
+  padding-left: var(--space-18);
+  border-left: var(--border-width-2) solid var(--color-text);
+}
+
+/* In fondo a una voce: il link alla domanda frequente del centro
+   assistenza che spiega come si fa. */
+.c-pitch__faq {
+  font-size: var(--font-size-16);
+  color: var(--color-text-muted);
+}
+
+/* ── pitch-panel ─────────────────────────────────────────── */
+
+/* .c-pitch-panel — il testo del pitch accanto all'esploso (variante B).
+
+   Un pannello fisso a destra, fuori dalla scena: il testo ha sempre la
+   sua misura vera, qualunque sia lo zoom. La camera dell'esploso lo
+   evita (root.exploded.setInset). Dentro: una voce di
+   presentazione.html, con le classi di .c-pitch.
+
+   - __close  la × in alto a destra
+   - __body   la voce, clonata dalla presentazione
+   - __more   il link alla presentazione intera, a quella voce */
+
+.c-pitch-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+  width: min(var(--space-420), 40vw);
+  padding: var(--space-48) var(--space-30) var(--space-30);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-left: var(--border-width-1) solid var(--color-text);
+  background: var(--color-background);
+}
+
+.c-pitch-panel__close {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  width: var(--space-36);
+  height: var(--space-36);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-1) solid transparent;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}
+
+.c-pitch-panel__close:hover {
+  border-color: var(--color-text);
+}
+
+.c-pitch-panel__body {
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-normal);
+}
+
+.c-pitch-panel__body h2 {
+  font-size: var(--font-size-24);
+}
+
+.c-pitch-panel__body h3 {
+  font-size: var(--font-size-20);
+}
+
+/* Nel pannello la voce è già quella giusta: niente filetto né rientri. */
+.c-pitch-panel__body .c-pitch__part,
+.c-pitch-panel__body > .c-pitch__item {
+  padding-top: 0;
+}
+
+.c-pitch-panel__more {
+  margin: var(--space-24) 0 0;
+  font-size: var(--font-size-14);
+}
+
+/* Il titolo riceve il focus all'apertura, per chi usa la tastiera e gli
+   screen reader: non è un controllo, quindi niente anello. */
+.c-pitch-panel__body [tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* ── faq-modal ─────────────────────────────────────────── */
+
+/* .c-faq-modal — una domanda frequente con il suo video, al centro.
+
+   Un <dialog> modale: Esc, focus e sfondo li gestisce il browser. Lo
+   riempie js/faq-modal.js con i dati del centro assistenza.
+
+   - __close     la × in alto a destra
+   - __kicker    «Domanda frequente»
+   - __question  la domanda
+   - __answer    la risposta
+   - __video     il video, già al minuto della risposta
+   - __caption   titolo del video e minuto
+   - __out       il link al centro assistenza, per uscire */
+
+.c-faq-modal {
+  margin: auto; /* il reset di Mediaddress azzera i margini: senza, il dialog non sta al centro */
+  width: min(var(--space-780), calc(100vw - 2 * var(--space-24)));
+  max-height: calc(100dvh - 2 * var(--space-24));
+  padding: var(--space-30);
+  overflow-y: auto;
+  border: var(--border-width-1) solid var(--color-text);
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.c-faq-modal::backdrop {
+  background: var(--color-overlay);
+}
+
+.c-faq-modal__close {
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  width: var(--space-36);
+  height: var(--space-36);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-width-1) solid transparent;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-20);
+  line-height: var(--line-height-tight);
+  cursor: pointer;
+}
+
+.c-faq-modal__close:hover {
+  border-color: var(--color-text);
+}
+
+.c-faq-modal__kicker {
+  margin: 0 0 var(--space-6);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-700);
+  letter-spacing: var(--letter-spacing-wide);
+  line-height: var(--line-height-snug);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.c-faq-modal__question {
+  margin: 0 var(--space-36) var(--space-12) 0;
+  font-size: var(--font-size-24);
+}
+
+.c-faq-modal__answer {
+  margin: 0 0 var(--space-18);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-normal);
+}
+
+.c-faq-modal__video {
+  display: block;
+  width: 100%;
+  border: var(--border-width-1) solid var(--color-border);
+  background: var(--color-text);
+}
+
+.c-faq-modal__caption,
+.c-faq-modal__more {
+  margin: var(--space-6) 0 0;
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-snug);
+}
+
+.c-faq-modal__caption {
+  color: var(--color-text-muted);
+}
+
+.c-faq-modal__more {
+  margin-top: var(--space-18);
+}

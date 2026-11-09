@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mediaddress 7 — esploso</title>
+<meta name="description" content="Mediaddress 7 in vista esplosa: scorrendo, spedizioni, comunicati, mailing list, banca dati, notifiche e account si staccano dal punto della dashboard da cui vengono.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../../css/reset.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/theme-default.css">
+<link rel="stylesheet" href="presentazione.css">
+</head>
+<body>
+
+<main class="c-exploded c-exploded--long">
+  <h1 class="c-exploded__title">Mediaddress 7, l'app per uffici stampa in vista esplosa</h1>
+  <p class="c-exploded__notice">Questa pagina si guarda da desktop: l'esploso ha bisogno di almeno 768px di larghezza.</p>
+
+  <div class="c-exploded__stage">
+    <div class="c-exploded__scene">
+
+      <button type="button" class="c-exploded__piece" id="dashboard" data-pitch="suite" data-pitch-label="3" data-to="0 0">
+        <img src="assets/dashboard.webp" width="1460" height="1884" alt="La dashboard: limiti dell'abbonamento, il progetto aperto con spedizioni e comunicati, le risorse globali con mailing list e cose da fare, e l'attività dell'ufficio stampa per persona">
+      </button>
+
+      <!-- Spedizione in bozza: Destinatari, e da lì il passo Pitch -->
+
+      <button type="button" class="c-exploded__piece" id="spedizione-destinatari" data-parent="dashboard" data-origin="199 467" data-match="591 32" data-attach="199 802" data-to="0 -922" data-step="0">
+        <img src="assets/spedizione-destinatari.webp" width="1230" height="802" alt="Dalla spedizione in bozza: il passo 1 di 8, i destinatari scelti da due mailing list, 456 giornalisti ognuno con la sua email">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="spedizione-pitch" data-pitch="media-pitch" data-pitch-label="2" data-parent="spedizione-destinatari" data-origin="836 90" data-match="836 90" data-attach="606 802" data-to="230 -1844" data-step="1">
+        <img src="assets/spedizione-pitch.webp" width="1230" height="802" alt="Dal passo Pitch: il media pitch si personalizza per il singolo giornalista, scelto dalla lista dei destinatari">
+      </button>
+
+      <!-- Spedizione inviata, dalla linguetta «spedite» -->
+
+      <button type="button" class="c-exploded__piece" id="spedizione-inviata" data-parent="dashboard" data-origin="354 420" data-match="160 68" data-attach="100 802" data-to="1350 -922" data-step="2">
+        <img src="assets/spedizione-inviata.webp" width="1176" height="802" alt="Da una spedizione inviata: stato, mittente, i contatori di destinatari, spediti, aperture, click e falliti, e la tabella dei giornalisti con testate, mailing list e stato">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="rassegna-stampa" data-pitch="monitoraggio-web" data-pitch-label="2" data-parent="spedizione-inviata" data-origin="740 68" data-match="180 25" data-attach="374 802" data-to="1716 -1844" data-step="3">
+        <img src="assets/rassegna-stampa.webp" width="810" height="802" alt="Dal link rassegna stampa della spedizione inviata: il comunicato spedito, non più modificabile, con la sua rassegna stampa web, articoli da valutare, in rassegna e scartati; qui ancora vuota">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="comunicato" data-pitch="stesura-comunicato" data-pitch-label="2" data-parent="dashboard" data-origin="865 716" data-match="63 27" data-attach="0 400" data-to="1580 316" data-step="4">
+        <img src="assets/comunicato.webp" width="810" height="802" alt="Dal comunicato Restorexy: l'editor del testo con la barra di formattazione, gli allegati e il pulsante spedisci">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="mailing-list" data-parent="dashboard" data-origin="176 1375" data-match="446 40" data-attach="176 0" data-to="0 2004" data-step="5">
+        <img src="assets/mailing-list.webp" width="1369" height="802" alt="Dalla mailing list SaloneTorino: lista condivisa, esporta, elimina, spedisci, e i giornalisti in schede con servizio, email e testata">
+      </button>
+
+      <!-- Banca dati, e da lì Suggerimenti da AI, la scheda e Configura -->
+
+      <button type="button" class="c-exploded__piece" id="banca-dati" data-pitch="banca-dati" data-pitch-label="1" data-parent="dashboard" data-origin="50 120" data-match="1369 120" data-attach="1369 120" data-to="-1489 0" data-step="6">
+        <img src="assets/banca-dati.webp" width="1369" height="802" alt="Dalla voce banca dati: i filtri per giornalista e per testata a sinistra, cinque filtri attivi, 66 giornalisti e 40 testate in schede">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="suggerimenti-ai" data-pitch="mailing-list-linguaggio-naturale" data-pitch-label="2" data-parent="banca-dati" data-origin="88 426" data-match="250 196" data-attach="500 196" data-to="-2109 230" data-step="7">
+        <img src="assets/suggerimenti-ai.webp" width="500" height="392" alt="Da Suggerimenti da AI: i filtri intelligenti, si sceglie un comunicato o si scrive la richiesta, qui un vino biologico toscano">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="scheda-giornalista" data-parent="banca-dati" data-origin="438 229" data-match="118 29" data-attach="405 0" data-to="-1489 922" data-step="8">
+        <img src="assets/scheda-giornalista.webp" width="810" height="802" alt="Dal nome di una giornalista: la scheda con note, servizi, contatti, redazioni, articoli, mailing list e spedizioni ricevute">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="testate" data-parent="banca-dati" data-origin="775 160" data-match="777 63" data-attach="1369 0" data-to="-2999 922" data-step="9">
+        <img src="assets/testate.webp" width="1369" height="802" alt="Dalla linguetta testate della banca dati: la griglia delle testate, ognuna con argomento, telefono, email e note">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="scheda-testata" data-parent="testate" data-origin="1159 133" data-match="150 41" data-attach="405 0" data-to="-2399 1844" data-step="10">
+        <img src="assets/scheda-testata.webp" width="810" height="802" alt="Dal nome di una testata: la scheda con note, dati della testata (editore, tipo di media, frequenza, argomento, copertura, sito), social e dati pubblicitari">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="configura-banche-dati" data-parent="banca-dati" data-origin="471 28" data-match="70 16" data-attach="405 802" data-to="-1489 -922" data-step="11">
+        <img src="assets/configura-banche-dati.webp" width="810" height="802" alt="Dal link configura: le banche dati su cui cercare, Schede Personali e Italia selezionate, poi i paesi; sotto Schede Personali i link crea giornalista, crea testata, importa dati">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="importa-giornalisti" data-pitch="importazione-contatti" data-pitch-label="4" data-parent="configura-banche-dati" data-origin="268 182" data-match="570 40" data-attach="268 722" data-to="-1489 -1764" data-step="12">
+        <img src="assets/importa-giornalisti.webp" width="1140" height="722" alt="Da importa dati: l'importazione dei giornalisti da file CSV in sei passi, carica, anteprima, campi, valori, importa, report, con le istruzioni per preparare il file">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="crea-giornalista" data-parent="configura-banche-dati" data-origin="95 182" data-match="810 182" data-attach="810 182" data-to="-2399 -922" data-step="13">
+        <img src="assets/crea-giornalista.webp" width="810" height="440" alt="Da crea giornalista: l'inserimento di una scheda personale, anagrafica con nome, cognome e nickname, e Verifica e Salva">
+      </button>
+
+      <!-- Dalla barra laterale in basso -->
+
+      <button type="button" class="c-exploded__piece" id="notifiche" data-parent="dashboard" data-origin="50 1757" data-match="200 66" data-attach="1369 0" data-to="-1489 1844" data-step="14">
+        <img src="assets/notifiche.webp" width="1369" height="802" alt="Dalla campanella: le notifiche non lette, destinatari aggiunti o rimossi dalle spedizioni, ottimizzazioni applicate">
+      </button>
+
+      <button type="button" class="c-exploded__piece" id="connettori-spedizioni" data-pitch="connettori-invio" data-pitch-label="4" data-parent="dashboard" data-origin="50 1839" data-match="130 394" data-attach="1369 0" data-to="-1489 2766" data-step="15">
+        <img src="assets/connettori-spedizioni.webp" width="1369" height="802" alt="Da account, Connettori spedizioni: i servizi con cui partono le email, Mailgun e Mailjet, attivi o in attesa dei record DNS, con i mittenti che li usano">
+      </button>
+
+      <svg class="c-exploded__lines" aria-hidden="true"></svg>
+    </div>
+
+    <p class="c-exploded__hint" aria-hidden="true">↓</p>
+  </div>
+</main>
+
+<aside class="c-pitch-panel" data-source="presentazione.html" aria-label="Pitch di vendita" hidden>
+  <button type="button" class="c-pitch-panel__close" aria-label="Chiudi il pitch">×</button>
+  <div class="c-pitch-panel__body"></div>
+  <p class="c-pitch-panel__more"><a href="presentazione.html">Tutto il pitch →</a></p>
+</aside>
+
+<dialog class="c-faq-modal" aria-labelledby="faq-modal-question">
+  <form method="dialog"><button class="c-faq-modal__close" aria-label="Chiudi">×</button></form>
+  <p class="c-faq-modal__kicker">Domanda frequente</p>
+  <h2 class="c-faq-modal__question" id="faq-modal-question"></h2>
+  <p class="c-faq-modal__answer"></p>
+  <video class="c-faq-modal__video" controls playsinline preload="metadata"></video>
+  <p class="c-faq-modal__caption"></p>
+  <p class="c-faq-modal__more"><a class="c-faq-modal__out" href="#">Apri nel centro assistenza →</a></p>
+</dialog>
+
+<script type="module" src="exploded.js"></script>
+<script type="module" src="pitch-panel.js"></script>
+<script type="module" src="faq-modal.js"></script>
+</body>
+</html>
