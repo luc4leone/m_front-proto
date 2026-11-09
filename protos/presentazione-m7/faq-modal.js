@@ -71,7 +71,7 @@
 
   document.addEventListener('click', async (e) => {
     const link = e.target.closest('a[href]');
-    if (!link || !link.href.startsWith(HELP) || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (!link || modal.contains(link) || !link.href.startsWith(HELP) || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     const id = decodeURIComponent(new URL(link.href).hash.slice(1));
     if (!id.startsWith('faq-')) return;
     e.preventDefault();
